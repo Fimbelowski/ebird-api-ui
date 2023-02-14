@@ -4,17 +4,24 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
-    "standard-with-typescript",
-    "prettier",
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'standard-with-typescript',
+    'prettier',
   ],
   overrides: [],
   parserOptions: {
-    ecmaVersion: "latest",
-    project: ["tsconfig.json"],
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    project: ['tsconfig.json'],
+    sourceType: 'module',
   },
-  plugins: ["react"],
-  rules: {},
+  plugins: ['react'],
+  rules: {
+    '@typescript-eslint/explicit-function-return-type': 'off',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 };
