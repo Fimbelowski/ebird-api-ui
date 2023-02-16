@@ -8,6 +8,7 @@ export default function CoordinateInput(props: Props) {
     <NumberInput
       {...props}
       hideStepper
+      noScroll
       pattern="-?\d*.\d{2,}"
       step="any"
     />
