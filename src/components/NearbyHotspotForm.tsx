@@ -2,34 +2,32 @@ import { type ChangeEvent, useState, type FormEvent } from 'react';
 
 import Button from './Button';
 import CoordinateInput from './CoordinateInput';
+import type EbirdHotspot from '../types/EbirdHotspot';
 import getValueFromChangeEvent from '../utilities/getValueFromChangeEvent';
 import NumberInput from './NumberInput';
 import PasswordInput from './PasswordInput';
+import useEbirdApi from '../utilities/useEbirdApi';
 
 export default function NearbyHotspotForm() {
+  const ebirdApi = useEbirdApi();
+
   const [apiKey, setApiKey] = useState('');
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('25');
   const [isLoading, setIsLoading] = useState(false);
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<EbirdHotspot[]>([]);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   function getNearbyHotspots(event: FormEvent) {
     event.preventDefault();
 
-    fetch(
-      `https://api.ebird.org/v2/ref/hotspot/geo?lat=${latitude}&lng=${longitude}&fmt=json&dist=${distance}&back=${back}`,
-      {
-        headers: {
-          'x-ebirdapitoken': apiKey,
-        },
-      }
-    )
+    ebirdApi
+      .getNearbyHotspots(apiKey, latitude, longitude, 'json', back, distance)
       .then(async (response) => await response.json())
-      .then((results) => {
-        setResults(results);
+      .then((data) => {
+        setResults(data);
       })
       .catch((error) => {
         console.error(error);
