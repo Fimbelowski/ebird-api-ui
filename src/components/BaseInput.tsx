@@ -13,6 +13,7 @@ export default function BaseInput({
   noScroll = false,
   onChange,
   pattern,
+  placeholder,
   required = false,
   step,
   type,
@@ -67,6 +68,7 @@ export default function BaseInput({
         onKeyDown={onKeyDown}
         onWheel={onWheel}
         pattern={pattern}
+        placeholder={placeholder}
         required={required}
         step={step}
         type={type}

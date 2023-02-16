@@ -110,6 +110,7 @@ export default function NearbyHotspotForm() {
         max={90}
         min={-90}
         onChange={onLatitudeChange}
+        placeholder="42.4799394"
         required
         value={latitude}
       />
@@ -120,6 +121,7 @@ export default function NearbyHotspotForm() {
         max={180}
         min={-180}
         onChange={onLongitudeChange}
+        placeholder="-76.4556869"
         required
         value={longitude}
       />
@@ -135,6 +137,7 @@ export default function NearbyHotspotForm() {
         max={500}
         min={0}
         onChange={onDistanceChange}
+        placeholder="25"
         value={distance}
       />
       <NumberInput
@@ -143,6 +146,7 @@ export default function NearbyHotspotForm() {
         max={30}
         min={1}
         onChange={onBackChange}
+        placeholder="7"
         value={back}
       />
       <Button
