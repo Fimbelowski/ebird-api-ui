@@ -13,10 +13,13 @@ export default function NumberInput({
   step,
   value,
 }: NumberInputProps) {
+  const inputClasses = hideStepper ? 'number-input--no-stepper' : '';
+
   return (
     <>
       <label htmlFor={id}>{label}</label>
       <input
+        className={inputClasses}
         disabled={disabled}
         id={id}
         max={max}
