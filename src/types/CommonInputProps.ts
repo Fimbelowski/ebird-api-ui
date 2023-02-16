@@ -1,4 +1,4 @@
-export default interface BaseInputProps {
+export default interface CommonInputProps {
   disabled?: boolean;
   id: string;
   label: string;

@@ -1,6 +1,6 @@
-import type BaseInputProps from './BaseInputProps';
+import type CommonInputProps from './CommonInputProps';
 
-export default interface NumberInputProps extends BaseInputProps {
+export default interface NumberInputProps extends CommonInputProps {
   hideStepper?: boolean;
   noScroll?: boolean;
   max?: number;
