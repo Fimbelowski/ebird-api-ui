@@ -1,0 +1,30 @@
+.geo {
+  &__back-input,
+  &__distance-input,
+  &__getting-position,
+  &__get-user-position,
+  &__loading-position,
+  &__position-error,
+  &__submit {
+    grid-column: 1 / -1;
+  }
+
+  &__form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: 1rem;
+    align-items: start;
+    margin-bottom: 2rem;
+  }
+
+  &__loading-position,
+  &__position-error {
+    text-align: center;
+  }
+
+  &__position-error {
+    color: red;
+  }
+}

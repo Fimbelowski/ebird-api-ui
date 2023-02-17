@@ -4,10 +4,13 @@ import type NumberInputProps from '../types/NumberInputProps';
 type BaseInputProps = CommonInputProps & NumberInputProps & { type: string };
 
 export default function BaseInput({
+  className = '',
   disabled = false,
+  fullWidth = false,
   hideStepper = false,
   id,
   label,
+  loading = false,
   max,
   min,
   noScroll = false,
@@ -19,8 +22,13 @@ export default function BaseInput({
   type,
   value,
 }: BaseInputProps) {
+  const containerClasses = ['base-input', className].join(' ');
+
   const inputClasses = [
     'base-input__input',
+    disabled ? 'base-input__input--disabled' : '',
+    loading ? 'base-input__input--loading' : '',
+    fullWidth ? 'base-input__input--full-width' : '',
     hideStepper ? 'base-input__input--no-stepper' : '',
   ].join(' ');
 
@@ -52,7 +60,7 @@ export default function BaseInput({
   }
 
   return (
-    <div className="base-input">
+    <div className={containerClasses}>
       <label
         className="base-input__label"
         htmlFor={id}
@@ -61,7 +69,7 @@ export default function BaseInput({
       </label>
       <input
         className={inputClasses}
-        disabled={disabled}
+        disabled={disabled || loading}
         max={max}
         min={min}
         onChange={onChange}

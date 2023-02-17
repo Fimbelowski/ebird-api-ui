@@ -1,0 +1,15 @@
+.base-page {
+  max-width: 75rem;
+  padding: 2rem 5rem;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.15);
+
+  &__title {
+    margin-bottom: 2rem;
+  }
+}

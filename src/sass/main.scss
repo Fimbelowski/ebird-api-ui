@@ -3,5 +3,8 @@
 @import 'base/reset';
 @import 'base/typography';
 
+@import 'layout/BasePage';
+@import 'layout/Geo';
+
 @import 'components/BaseInput';
-@import 'components/NearbyHotspotForm';
+@import 'components/Button';
