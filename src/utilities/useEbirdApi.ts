@@ -9,8 +9,8 @@ interface QueryParam {
 export default function useEbirdApi() {
   async function baseRequest(
     endpoint: string,
-    apiKey: string,
-    queryParams: QueryParam[]
+    queryParams: QueryParam[],
+    apiKey = ''
   ) {
     return await fetch(
       `${BASE_URL}${endpoint}${buildQueryString(queryParams)}`,
@@ -47,7 +47,6 @@ export default function useEbirdApi() {
   }
 
   async function getNearbyHotspots(
-    apiKey: string,
     lat: string,
     lng: string,
     fmt?: 'csv' | 'json',
@@ -79,7 +78,7 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest('ref/hotspot/geo', apiKey, queryParams);
+    return await baseRequest('ref/hotspot/geo', queryParams);
   }
 
   return {

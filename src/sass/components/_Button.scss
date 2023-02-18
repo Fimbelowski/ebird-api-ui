@@ -1,0 +1,9 @@
+.button {
+  &--disabled {
+    cursor: not-allowed;
+  }
+
+  &--loading {
+    cursor: wait;
+  }
+}
