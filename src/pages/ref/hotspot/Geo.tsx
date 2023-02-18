@@ -92,12 +92,40 @@ export default function Geo() {
     setLoadingPosition(false);
   }
 
-  function ResultsList() {
-    const listItems = results.map(({ locId, locName }) => {
-      return <li key={locId}>{locName}</li>;
-    });
+  function ResultsTable() {
+    const tableRows = results.map(
+      ({ lat, latestObsDt, lng, locId, locName, numSpeciesAllTime }) => {
+        return (
+          <tr key={locId}>
+            <td>{locName}</td>
+            <td>{numSpeciesAllTime}</td>
+            <td>{new Date(latestObsDt).toLocaleString()}</td>
+            <td>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
+                target="_blank"
+              >
+                Link
+              </a>
+            </td>
+          </tr>
+        );
+      }
+    );
 
-    return <ol>{listItems}</ol>;
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Species</th>
+            <th>Latest Observation</th>
+            <th>View on Google Maps</th>
+          </tr>
+        </thead>
+        <tbody>{tableRows}</tbody>
+      </table>
+    );
   }
 
   return (
@@ -183,7 +211,7 @@ export default function Geo() {
       </form>
       {loadingResults ? <p>Loading...</p> : null}
       <p>{hasResults ? `Results (${results.length})` : 'No Results'}</p>
-      {hasResults ? <ResultsList /> : null}
+      {hasResults ? <ResultsTable /> : null}
     </BasePage>
   );
 }
