@@ -38,8 +38,8 @@ export default function Geo() {
     setLoadingResults(true);
 
     ebirdApi
-      .getNearbyHotspots(latitude, longitude, 'json', back, distance)
       .then(async (response) => await response.json())
+      .getNearbyHotspots(latitude, longitude, format, back, distance)
       .then((data) => {
         console.log(data);
       })
