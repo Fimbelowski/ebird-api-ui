@@ -32,9 +32,6 @@ export default function Geo() {
     },
   ];
 
-  const hasResults = results.length > 0;
-  const loading = loadingPosition || loadingResults;
-
   const ebirdApi = useEbirdApi();
 
   function getNearbyHotspots(event: FormEvent) {
@@ -64,6 +61,14 @@ export default function Geo() {
       onGetUserPositionSuccess,
       onGetUserPositionFail
     );
+  }
+
+  function hasResults() {
+    return results.length > 0;
+  }
+
+  function loading() {
+    return loadingPosition || loadingResults;
   }
 
   function onBackChange(event: ChangeEvent<HTMLInputElement>) {
@@ -168,7 +173,7 @@ export default function Geo() {
               fullWidth
               id="lat"
               label="Latitude (to at least two decimal places)*"
-              loading={loading}
+              loading={loading()}
               max={90}
               min={-90}
               onChange={onLatitudeChange}
@@ -182,7 +187,7 @@ export default function Geo() {
               fullWidth
               id="lng"
               label="Longitude (to at least two decimal places)*"
-              loading={loading}
+              loading={loading()}
               max={180}
               min={-180}
               onChange={onLongitudeChange}
@@ -195,7 +200,7 @@ export default function Geo() {
         <Button
           className="geo__get-user-position"
           label="Use My Location"
-          loading={loading}
+          loading={loading()}
           onClick={getUserPosition}
           type="button"
         />
@@ -212,7 +217,7 @@ export default function Geo() {
           fullWidth
           id="distance"
           label="Distance (km)"
-          loading={loading}
+          loading={loading()}
           max={500}
           min={0}
           onChange={onDistanceChange}
@@ -224,7 +229,7 @@ export default function Geo() {
           fullWidth
           id="back"
           label="Back"
-          loading={loading}
+          loading={loading()}
           max={30}
           min={1}
           onChange={onBackChange}
@@ -235,7 +240,7 @@ export default function Geo() {
           fullWidth
           id="format"
           label="Format"
-          loading={loading}
+          loading={loading()}
           onChange={onFormatChange}
           options={formatOptions}
           value={format}
@@ -243,13 +248,13 @@ export default function Geo() {
         <Button
           className="geo__submit"
           label="Search"
-          loading={loading}
+          loading={loading()}
           type="submit"
         />
       </form>
       {loadingResults ? <p>Loading...</p> : null}
-      <p>{hasResults ? `Results (${results.length})` : 'No Results'}</p>
-      {hasResults ? <ResultsTable /> : null}
+      <p>{hasResults() ? `Results (${results.length})` : 'No Results'}</p>
+      {hasResults() ? <ResultsTable /> : null}
     </BasePage>
   );
 }
