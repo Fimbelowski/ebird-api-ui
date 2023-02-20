@@ -3,7 +3,6 @@ import { type ChangeEvent, type FormEvent, useState } from 'react';
 import BasePage from '../../../components/BasePage';
 import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
-import type EbirdHotspot from '../../../types/EbirdHotspot';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import NumberInput from '../../../components/NumberInput';
 import Select from '../../../components/Select';
@@ -18,7 +17,6 @@ export default function Geo() {
   const [loadingResults, setLoadingResults] = useState(false);
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
-  const [results, setResults] = useState<EbirdHotspot[]>([]);
   const [showPositionError, setShowPositionError] = useState(false);
 
   const formatOptions: SelectOption[] = [
@@ -43,7 +41,7 @@ export default function Geo() {
       .getNearbyHotspots(latitude, longitude, 'json', back, distance)
       .then(async (response) => await response.json())
       .then((data) => {
-        setResults(data);
+        console.log(data);
       })
       .catch((error) => {
         console.error(error);
@@ -61,10 +59,6 @@ export default function Geo() {
       onGetUserPositionSuccess,
       onGetUserPositionFail
     );
-  }
-
-  function hasResults() {
-    return results.length > 0;
   }
 
   function loading() {
@@ -216,7 +210,6 @@ export default function Geo() {
         />
       </form>
       {loadingResults ? <p>Loading...</p> : null}
-      <p>{hasResults() ? `Results (${results.length})` : 'No Results'}</p>
     </BasePage>
   );
 }
