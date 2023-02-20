@@ -162,32 +162,36 @@ export default function Geo() {
         className="geo__form"
         onSubmit={getNearbyHotspots}
       >
-        <CoordinateInput
-          className="geo__latitude-input"
-          fullWidth
-          id="lat"
-          label="Latitude (to at least two decimal places)*"
-          loading={loading}
-          max={90}
-          min={-90}
-          onChange={onLatitudeChange}
-          placeholder="42.4799394"
-          required
-          value={latitude}
-        />
-        <CoordinateInput
-          className="geo__longitude-input"
-          fullWidth
-          id="lng"
-          label="Longitude (to at least two decimal places)*"
-          loading={loading}
-          max={180}
-          min={-180}
-          onChange={onLongitudeChange}
-          placeholder="-76.4556869"
-          required
-          value={longitude}
-        />
+        <div className="geo__coordinate-inputs">
+          <div className="geo__coordinate-input">
+            <CoordinateInput
+              fullWidth
+              id="lat"
+              label="Latitude (to at least two decimal places)*"
+              loading={loading}
+              max={90}
+              min={-90}
+              onChange={onLatitudeChange}
+              placeholder="42.4799394"
+              required
+              value={latitude}
+            />
+          </div>
+          <div className="geo__coordinate-input">
+            <CoordinateInput
+              fullWidth
+              id="lng"
+              label="Longitude (to at least two decimal places)*"
+              loading={loading}
+              max={180}
+              min={-180}
+              onChange={onLongitudeChange}
+              placeholder="-76.4556869"
+              required
+              value={longitude}
+            />
+          </div>
+        </div>
         <Button
           className="geo__get-user-position"
           label="Use My Location"
