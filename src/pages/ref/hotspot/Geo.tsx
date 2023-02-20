@@ -228,6 +228,7 @@ export default function Geo() {
           value={back}
         />
         <Select
+          fullWidth
           id="format"
           label="Format"
           loading={loading}

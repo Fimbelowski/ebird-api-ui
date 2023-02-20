@@ -5,6 +5,7 @@ import type SelectOption from '../types/SelectOption';
 
 interface Props {
   disabled?: boolean;
+  fullWidth?: boolean;
   id: string;
   label: string;
   loading?: boolean;
@@ -16,6 +17,7 @@ interface Props {
 
 export default function Select({
   disabled = false,
+  fullWidth = false,
   id,
   label,
   loading = false,
@@ -45,11 +47,12 @@ export default function Select({
       'select__select',
       { 'select__select--disabled': disabled },
       { 'select__select--loading': loading },
+      { 'select__select--full-width': fullWidth },
     ]);
   }
 
   return (
-    <>
+    <div>
       <label
         className="select__label"
         htmlFor={id}
@@ -66,6 +69,6 @@ export default function Select({
       >
         <Options />
       </select>
-    </>
+    </div>
   );
 }

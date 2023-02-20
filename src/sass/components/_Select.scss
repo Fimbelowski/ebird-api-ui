@@ -1,5 +1,6 @@
 .select {
   &__label {
+    display: block;
   }
 
   &__option {
@@ -8,6 +9,10 @@
   &__select {
     &--disabled {
       cursor: not-allowed;
+    }
+
+    &--full-width {
+      width: 100%;
     }
 
     &--loading {
