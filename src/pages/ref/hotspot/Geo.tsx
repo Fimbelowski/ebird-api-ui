@@ -121,43 +121,6 @@ export default function Geo() {
     setLoadingPosition(false);
   }
 
-  function ResultsTable() {
-    const tableRows = results.map(
-      ({ lat, latestObsDt, lng, locId, locName, numSpeciesAllTime }) => {
-        return (
-          <tr key={locId}>
-            <td>{locName}</td>
-            <td>{numSpeciesAllTime}</td>
-            <td>{new Date(latestObsDt).toLocaleString()}</td>
-            <td>
-              <a
-                href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
-                rel="noreferrer"
-                target="_blank"
-              >
-                Link
-              </a>
-            </td>
-          </tr>
-        );
-      }
-    );
-
-    return (
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Species</th>
-            <th>Latest Observation</th>
-            <th>View on Google Maps</th>
-          </tr>
-        </thead>
-        <tbody>{tableRows}</tbody>
-      </table>
-    );
-  }
-
   return (
     <BasePage
       className="geo"
@@ -254,7 +217,6 @@ export default function Geo() {
       </form>
       {loadingResults ? <p>Loading...</p> : null}
       <p>{hasResults() ? `Results (${results.length})` : 'No Results'}</p>
-      {hasResults() ? <ResultsTable /> : null}
     </BasePage>
   );
 }
