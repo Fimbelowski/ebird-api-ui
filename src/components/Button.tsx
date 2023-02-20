@@ -1,5 +1,7 @@
 import { type MouseEvent } from 'react';
 
+import classNames from '../utilities/classNames';
+
 interface Props {
   className?: string;
   disabled?: boolean;
@@ -17,16 +19,18 @@ export default function Button({
   onClick,
   type,
 }: Props) {
-  const classes = [
-    'button',
-    disabled ? 'button--disabled' : '',
-    loading ? 'button--loading' : '',
-    className,
-  ].join(' ');
+  function classes() {
+    return classNames([
+      'button',
+      { 'button--disabled': disabled },
+      { 'button--loading': loading },
+      className,
+    ]);
+  }
 
   return (
     <button
-      className={classes}
+      className={classes()}
       disabled={disabled || loading}
       onClick={onClick}
       type={type}
