@@ -1,0 +1,17 @@
+.select {
+  &__label {
+  }
+
+  &__option {
+  }
+
+  &__select {
+    &--disabled {
+      cursor: not-allowed;
+    }
+
+    &--loading {
+      cursor: wait;
+    }
+  }
+}

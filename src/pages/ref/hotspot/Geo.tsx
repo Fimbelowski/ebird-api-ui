@@ -6,17 +6,31 @@ import CoordinateInput from '../../../components/CoordinateInput';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import NumberInput from '../../../components/NumberInput';
+import Select from '../../../components/Select';
+import type SelectOption from '../../../types/SelectOption';
 import useEbirdApi from '../../../utilities/useEbirdApi';
 
 export default function Geo() {
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('25');
+  const [format, setFormat] = useState<'csv' | 'json'>('csv');
   const [loadingPosition, setLoadingPosition] = useState(false);
   const [loadingResults, setLoadingResults] = useState(false);
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [results, setResults] = useState<EbirdHotspot[]>([]);
   const [showPositionError, setShowPositionError] = useState(false);
+
+  const formatOptions: SelectOption[] = [
+    {
+      label: 'CSV',
+      value: 'csv',
+    },
+    {
+      label: 'JSON',
+      value: 'json',
+    },
+  ];
 
   const hasResults = results.length > 0;
   const loading = loadingPosition || loadingResults;
@@ -68,6 +82,16 @@ export default function Geo() {
   ) {
     const value = getValueFromChangeEvent(event);
     setter(value);
+  }
+
+  function onFormatChange(event: ChangeEvent<HTMLSelectElement>) {
+    const value = getValueFromChangeEvent(event);
+
+    if (value !== 'csv' && value !== 'json') {
+      throw Error(`Invalid format: ${value}`);
+    }
+
+    setFormat(value);
   }
 
   function onLatitudeChange(event: ChangeEvent<HTMLInputElement>) {
@@ -202,6 +226,14 @@ export default function Geo() {
           onChange={onBackChange}
           placeholder="7"
           value={back}
+        />
+        <Select
+          id="format"
+          label="Format"
+          loading={loading}
+          onChange={onFormatChange}
+          options={formatOptions}
+          value={format}
         />
         <Button
           className="geo__submit"
