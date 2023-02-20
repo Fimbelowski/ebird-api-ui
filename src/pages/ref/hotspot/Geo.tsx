@@ -3,6 +3,7 @@ import { type ChangeEvent, type FormEvent, useState } from 'react';
 import BasePage from '../../../components/BasePage';
 import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
+import Details from '../../../components/Details';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import NumberInput from '../../../components/NumberInput';
 import Select from '../../../components/Select';
@@ -17,6 +18,7 @@ export default function Geo() {
   const [loadingResults, setLoadingResults] = useState(false);
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
+  const [rawResponse, setRawResponse] = useState('');
   const [showPositionError, setShowPositionError] = useState(false);
 
   const formatOptions: SelectOption[] = [
@@ -38,10 +40,11 @@ export default function Geo() {
     setLoadingResults(true);
 
     ebirdApi
-      .then(async (response) => await response.json())
       .getNearbyHotspots(latitude, longitude, format, back, distance)
+      .then(async (response) => await response.text())
       .then((data) => {
         console.log(data);
+        setRawResponse(data);
       })
       .catch((error) => {
         console.error(error);
@@ -210,6 +213,12 @@ export default function Geo() {
         />
       </form>
       {loadingResults ? <p>Loading...</p> : null}
+      <Details summary="Raw Response">{rawResponse}</Details>
+      <Details summary="Response as Detailed Table"></Details>
+      <Details
+        open
+        summary="Response as Simplified Table"
+      ></Details>
     </BasePage>
   );
 }
