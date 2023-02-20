@@ -103,6 +103,7 @@ export default function Geo() {
             <td>
               <a
                 href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
+                rel="noreferrer"
                 target="_blank"
               >
                 Link
