@@ -71,17 +71,17 @@ export default function Geo() {
     setBack(value);
   }
 
-  function onDistanceChange(event: ChangeEvent<HTMLInputElement>) {
-    const value = getValueFromChangeEvent(event);
-    setDistance(value);
-  }
-
   function onCoordinateChange(
     event: ChangeEvent<HTMLInputElement>,
     setter: React.Dispatch<React.SetStateAction<string>>
   ) {
     const value = getValueFromChangeEvent(event);
     setter(value);
+  }
+
+  function onDistanceChange(event: ChangeEvent<HTMLInputElement>) {
+    const value = getValueFromChangeEvent(event);
+    setDistance(value);
   }
 
   function onFormatChange(event: ChangeEvent<HTMLSelectElement>) {
