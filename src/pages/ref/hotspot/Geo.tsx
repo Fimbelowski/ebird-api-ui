@@ -12,6 +12,7 @@ import NumberInput from '../../../components/NumberInput';
 import Select from '../../../components/Select';
 import type SelectOption from '../../../types/SelectOption';
 import Table from '../../../components/Table';
+import type TableCellCallback from '../../../types/TableCellCallback';
 import type TableHeader from '../../../types/TableHeader';
 import useEbirdApi from '../../../utilities/useEbirdApi';
 
@@ -27,19 +28,19 @@ export default function Geo() {
   const [rawResponse, setRawResponse] = useState('');
   const [showPositionError, setShowPositionError] = useState(false);
 
+  const detailedTableCellCallbacks: Array<TableCellCallback<EbirdHotspot>> = [
+    (item) => item.locId,
+    (item) => item.locName,
+    (item) => item.countryCode,
+    (item) => item.subnational1Code,
+    (item) => item.subnational2Code,
+    (item) => item.lat.toLocaleString(),
+    (item) => item.lng.toLocaleString(),
+    (item) => item.latestObsDt,
+    (item) => item.numSpeciesAllTime.toLocaleString(),
+  ];
+
   const detailedTableHeaders: TableHeader[] = [
-    {
-      label: 'countryCode',
-    },
-    {
-      label: 'lat',
-    },
-    {
-      label: 'latestObsDt',
-    },
-    {
-      label: 'lng',
-    },
     {
       label: 'locId',
     },
@@ -47,13 +48,25 @@ export default function Geo() {
       label: 'locName',
     },
     {
-      label: 'numSpeciesAllTime',
+      label: 'countryCode',
     },
     {
       label: 'subnational1Code',
     },
     {
       label: 'subnational2Code',
+    },
+    {
+      label: 'lat',
+    },
+    {
+      label: 'lng',
+    },
+    {
+      label: 'latestObsDt',
+    },
+    {
+      label: 'numSpeciesAllTime',
     },
   ];
 
@@ -68,6 +81,36 @@ export default function Geo() {
     },
   ];
 
+  const simpleTableCellCallbacks: Array<TableCellCallback<EbirdHotspot>> = [
+    (item) => item.locName,
+    (item) => item.numSpeciesAllTime.toLocaleString(),
+    (item) => new Date(item.latestObsDt).toLocaleString(),
+    (item) => (
+      <a
+        href={`https://maps.google.com/?q=${item.lat},${item.lng}`}
+        rel="noreferrer"
+        target="_blank"
+      >
+        Link
+      </a>
+    ),
+  ];
+
+  const simpleTableHeaders: TableHeader[] = [
+    {
+      label: 'Name',
+    },
+    {
+      label: 'Species Observed',
+    },
+    {
+      label: 'Latest Observation',
+    },
+    {
+      label: 'View on Google Maps',
+    },
+  ];
+
   const ebirdApi = useEbirdApi();
 
   function getNearbyHotspots(event: FormEvent) {
@@ -79,6 +122,7 @@ export default function Geo() {
       .getNearbyHotspots(latitude, longitude, format, back, distance)
       .then(async (response) => await response.text())
       .then((data) => {
+        console.log(data);
         setHotSpots(
           isJson(data)
             ? JSON.parse(data)
@@ -265,12 +309,22 @@ export default function Geo() {
       {loadingResults ? <p>Loading...</p> : null}
       <Details summary="Raw Response">{rawResponse}</Details>
       <Details summary="Response as Detailed Table">
-        <Table headers={detailedTableHeaders} />
+        <Table<EbirdHotspot>
+          cellCallbacks={detailedTableCellCallbacks}
+          headers={detailedTableHeaders}
+          items={hotSpots}
+        />
       </Details>
       <Details
         open
         summary="Response as Simplified Table"
-      ></Details>
+      >
+        <Table<EbirdHotspot>
+          cellCallbacks={simpleTableCellCallbacks}
+          headers={simpleTableHeaders}
+          items={hotSpots}
+        />
+      </Details>
     </BasePage>
   );
 }
