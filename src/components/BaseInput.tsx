@@ -1,3 +1,4 @@
+import classNames from '../utilities/classNames';
 import type CommonInputProps from '../types/CommonInputProps';
 import type NumberInputProps from '../types/NumberInputProps';
 
@@ -22,15 +23,19 @@ export default function BaseInput({
   type,
   value,
 }: BaseInputProps) {
-  const containerClasses = ['base-input', className].join(' ');
+  function containerClasses() {
+    return classNames(['base-input', className]);
+  }
 
-  const inputClasses = [
-    'base-input__input',
-    disabled ? 'base-input__input--disabled' : '',
-    loading ? 'base-input__input--loading' : '',
-    fullWidth ? 'base-input__input--full-width' : '',
-    hideStepper ? 'base-input__input--no-stepper' : '',
-  ].join(' ');
+  function inputClasses() {
+    return classNames([
+      'base-input__input',
+      { 'base-input__input--disabled': disabled },
+      { 'base-input__input--loading': loading },
+      { 'base-input__input--full-width': fullWidth },
+      { 'base-input__input--no-stepper': hideStepper },
+    ]);
+  }
 
   // onKeyDown and onWheel are unfortunate hacks needed to circumvent default
   // scrolling behavior on number input elements since there is no built-in way to disable that functionality.
@@ -60,7 +65,7 @@ export default function BaseInput({
   }
 
   return (
-    <div className={containerClasses}>
+    <div className={containerClasses()}>
       <label
         className="base-input__label"
         htmlFor={id}
@@ -68,7 +73,7 @@ export default function BaseInput({
         {label}
       </label>
       <input
-        className={inputClasses}
+        className={inputClasses()}
         disabled={disabled || loading}
         max={max}
         min={min}

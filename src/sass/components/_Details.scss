@@ -1,0 +1,18 @@
+.details {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 4px;
+
+  &__content {
+    border-top: 1px solid black;
+    white-space: pre-wrap;
+  }
+
+  &__content,
+  &__summary {
+    padding: 1rem 2rem;
+  }
+
+  &__summary {
+  }
+}

@@ -1,5 +1,7 @@
 import { type ReactNode } from 'react';
 
+import classNames from '../utilities/classNames';
+
 interface Props {
   className?: string;
   children?: ReactNode;
@@ -7,10 +9,12 @@ interface Props {
 }
 
 export default function BasePage({ className = '', children, title }: Props) {
-  const classes = ['base-page', className].join(' ');
+  function sectionClasses() {
+    return classNames(['base-page', className]);
+  }
 
   return (
-    <section className={classes}>
+    <section className={sectionClasses()}>
       <h2 className="base-page__title">{title}</h2>
       {children}
     </section>
