@@ -5,6 +5,7 @@ import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
 import csvToArray from '../../../utilities/csvToArray';
 import Details from '../../../components/Details';
+import Form from '../../../components/Form';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import isJson from '../../../utilities/isJson';
@@ -222,40 +223,29 @@ export default function Geo() {
       className="geo"
       title="Nearby hotspots"
     >
-      <form
-        className="geo__form"
-        onSubmit={getNearbyHotspots}
-      >
-        <div className="geo__coordinate-inputs">
-          <div className="geo__coordinate-input">
-            <CoordinateInput
-              fullWidth
-              id="lat"
-              label="Latitude (to at least two decimal places)*"
-              loading={loading()}
-              max={90}
-              min={-90}
-              onChange={onLatitudeChange}
-              placeholder="42.4799394"
-              required
-              value={latitude}
-            />
-          </div>
-          <div className="geo__coordinate-input">
-            <CoordinateInput
-              fullWidth
-              id="lng"
-              label="Longitude (to at least two decimal places)*"
-              loading={loading()}
-              max={180}
-              min={-180}
-              onChange={onLongitudeChange}
-              placeholder="-76.4556869"
-              required
-              value={longitude}
-            />
-          </div>
-        </div>
+      <Form onSubmit={getNearbyHotspots}>
+        <CoordinateInput
+          id="lat"
+          label="Latitude (to at least two decimal places)*"
+          loading={loading()}
+          max={90}
+          min={-90}
+          onChange={onLatitudeChange}
+          placeholder="42.4799394"
+          required
+          value={latitude}
+        />
+        <CoordinateInput
+          id="lng"
+          label="Longitude (to at least two decimal places)*"
+          loading={loading()}
+          max={180}
+          min={-180}
+          onChange={onLongitudeChange}
+          placeholder="-76.4556869"
+          required
+          value={longitude}
+        />
         <Button
           className="geo__get-user-position"
           label="Use My Location"
@@ -273,7 +263,6 @@ export default function Geo() {
         ) : null}
         <NumberInput
           className="geo__distance-input"
-          fullWidth
           id="distance"
           label="Distance (km)"
           loading={loading()}
@@ -285,7 +274,6 @@ export default function Geo() {
         />
         <NumberInput
           className="geo__back-input"
-          fullWidth
           id="back"
           label="Back"
           loading={loading()}
@@ -310,12 +298,12 @@ export default function Geo() {
           loading={loading()}
           type="submit"
         />
-      </form>
+      </Form>
       {loadingResults ? <p>Loading...</p> : null}
       {showResults() ? (
         <div className="geo__results">
           <Details summary="Raw Response">{rawResponse}</Details>
-          <Details summary="Response as Detailed Table">
+          <Details summary="Detailed Table">
             <Table<EbirdHotspot>
               cellCallbacks={detailedTableCellCallbacks}
               headers={detailedTableHeaders}
@@ -324,7 +312,7 @@ export default function Geo() {
           </Details>
           <Details
             open
-            summary="Response as Simplified Table"
+            summary="Simplified Table"
           >
             <Table<EbirdHotspot>
               cellCallbacks={simpleTableCellCallbacks}
