@@ -1,10 +1,9 @@
 .details {
   width: 100%;
-  border: 1px solid black;
-  border-radius: 4px;
+  border-radius: 0.5rem;
+  box-shadow: 0.2rem 0.2rem 0.6rem rgba(0, 0, 0, 0.3);
 
   &__content {
-    border-top: 1px solid black;
     white-space: pre-wrap;
   }
 
