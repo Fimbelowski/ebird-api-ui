@@ -20,7 +20,7 @@ export default function Geo() {
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('25');
   const [format, setFormat] = useState<'csv' | 'json'>('csv');
-  const [hotSpots, setHotSpots] = useState<EbirdHotspot[]>([]);
+  const [hotspots, setHotspots] = useState<EbirdHotspot[]>([]);
   const [loadingPosition, setLoadingPosition] = useState(false);
   const [loadingResults, setLoadingResults] = useState(false);
   const [latitude, setLatitude] = useState('');
@@ -123,7 +123,7 @@ export default function Geo() {
       .then(async (response) => await response.text())
       .then((data) => {
         console.log(data);
-        setHotSpots(
+        setHotspots(
           isJson(data)
             ? JSON.parse(data)
             : csvToArray(data, [
@@ -215,7 +215,7 @@ export default function Geo() {
   return (
     <BasePage
       className="geo"
-      title="Nearby Hotspots"
+      title="Nearby hotspots"
     >
       <form
         className="geo__form"
@@ -312,7 +312,7 @@ export default function Geo() {
         <Table<EbirdHotspot>
           cellCallbacks={detailedTableCellCallbacks}
           headers={detailedTableHeaders}
-          items={hotSpots}
+          items={hotspots}
         />
       </Details>
       <Details
@@ -322,7 +322,7 @@ export default function Geo() {
         <Table<EbirdHotspot>
           cellCallbacks={simpleTableCellCallbacks}
           headers={simpleTableHeaders}
-          items={hotSpots}
+          items={hotspots}
         />
       </Details>
     </BasePage>
