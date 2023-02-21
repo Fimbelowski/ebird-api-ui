@@ -24,4 +24,10 @@
   &__position-error {
     color: red;
   }
+
+  &__results {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 }

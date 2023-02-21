@@ -20,6 +20,7 @@ export default function Geo() {
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('25');
   const [format, setFormat] = useState<'csv' | 'json'>('csv');
+  const [hasQueried, setHasQueried] = useState(false);
   const [hotspots, setHotspots] = useState<EbirdHotspot[]>([]);
   const [loadingPosition, setLoadingPosition] = useState(false);
   const [loadingResults, setLoadingResults] = useState(false);
@@ -122,7 +123,6 @@ export default function Geo() {
       .getNearbyHotspots(latitude, longitude, format, back, distance)
       .then(async (response) => await response.text())
       .then((data) => {
-        console.log(data);
         setHotspots(
           isJson(data)
             ? JSON.parse(data)
@@ -139,6 +139,7 @@ export default function Geo() {
               ])
         );
         setRawResponse(data);
+        setHasQueried(true);
       })
       .catch((error) => {
         console.error(error);
@@ -210,6 +211,10 @@ export default function Geo() {
     setLatitude(latitude.toString());
     setLongitude(longitude.toString());
     setLoadingPosition(false);
+  }
+
+  function showResults() {
+    return hasQueried && !loading();
   }
 
   return (
@@ -307,24 +312,28 @@ export default function Geo() {
         />
       </form>
       {loadingResults ? <p>Loading...</p> : null}
-      <Details summary="Raw Response">{rawResponse}</Details>
-      <Details summary="Response as Detailed Table">
-        <Table<EbirdHotspot>
-          cellCallbacks={detailedTableCellCallbacks}
-          headers={detailedTableHeaders}
-          items={hotspots}
-        />
-      </Details>
-      <Details
-        open
-        summary="Response as Simplified Table"
-      >
-        <Table<EbirdHotspot>
-          cellCallbacks={simpleTableCellCallbacks}
-          headers={simpleTableHeaders}
-          items={hotspots}
-        />
-      </Details>
+      {showResults() ? (
+        <div className="geo__results">
+          <Details summary="Raw Response">{rawResponse}</Details>
+          <Details summary="Response as Detailed Table">
+            <Table<EbirdHotspot>
+              cellCallbacks={detailedTableCellCallbacks}
+              headers={detailedTableHeaders}
+              items={hotspots}
+            />
+          </Details>
+          <Details
+            open
+            summary="Response as Simplified Table"
+          >
+            <Table<EbirdHotspot>
+              cellCallbacks={simpleTableCellCallbacks}
+              headers={simpleTableHeaders}
+              items={hotspots}
+            />
+          </Details>
+        </div>
+      ) : null}
     </BasePage>
   );
 }
