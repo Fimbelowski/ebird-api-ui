@@ -3,23 +3,59 @@ import { type ChangeEvent, type FormEvent, useState } from 'react';
 import BasePage from '../../../components/BasePage';
 import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
+import csvToArray from '../../../utilities/csvToArray';
 import Details from '../../../components/Details';
+import type EbirdHotspot from '../../../types/EbirdHotspot';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
+import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
 import Select from '../../../components/Select';
 import type SelectOption from '../../../types/SelectOption';
+import Table from '../../../components/Table';
+import type TableHeader from '../../../types/TableHeader';
 import useEbirdApi from '../../../utilities/useEbirdApi';
 
 export default function Geo() {
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('25');
   const [format, setFormat] = useState<'csv' | 'json'>('csv');
+  const [hotSpots, setHotSpots] = useState<EbirdHotspot[]>([]);
   const [loadingPosition, setLoadingPosition] = useState(false);
   const [loadingResults, setLoadingResults] = useState(false);
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [rawResponse, setRawResponse] = useState('');
   const [showPositionError, setShowPositionError] = useState(false);
+
+  const detailedTableHeaders: TableHeader[] = [
+    {
+      label: 'countryCode',
+    },
+    {
+      label: 'lat',
+    },
+    {
+      label: 'latestObsDt',
+    },
+    {
+      label: 'lng',
+    },
+    {
+      label: 'locId',
+    },
+    {
+      label: 'locName',
+    },
+    {
+      label: 'numSpeciesAllTime',
+    },
+    {
+      label: 'subnational1Code',
+    },
+    {
+      label: 'subnational2Code',
+    },
+  ];
 
   const formatOptions: SelectOption[] = [
     {
@@ -43,7 +79,21 @@ export default function Geo() {
       .getNearbyHotspots(latitude, longitude, format, back, distance)
       .then(async (response) => await response.text())
       .then((data) => {
-        console.log(data);
+        setHotSpots(
+          isJson(data)
+            ? JSON.parse(data)
+            : csvToArray(data, [
+                'locId',
+                'countryCode',
+                'subnational1Code',
+                'subnational2Code',
+                'lat',
+                'lng',
+                'locName',
+                'latestObsDt',
+                'numSpeciesAllTime',
+              ])
+        );
         setRawResponse(data);
       })
       .catch((error) => {
@@ -214,7 +264,9 @@ export default function Geo() {
       </form>
       {loadingResults ? <p>Loading...</p> : null}
       <Details summary="Raw Response">{rawResponse}</Details>
-      <Details summary="Response as Detailed Table"></Details>
+      <Details summary="Response as Detailed Table">
+        <Table headers={detailedTableHeaders} />
+      </Details>
       <Details
         open
         summary="Response as Simplified Table"
