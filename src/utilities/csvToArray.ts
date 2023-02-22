@@ -1,18 +1,26 @@
-export default function csvToArray(csv: string, headers: string[]) {
+interface Header {
+  defaultValue?: string;
+  name: string;
+}
+
+export default function csvToArray(csv: string, headers: Header[]) {
   const rows = csv.split(/\n(?=.)/);
 
   return rows.map((row) => {
     const values = row.split(/(?!\B"[^"]*),(?![^"]*"\B)/g);
 
-    if (values.length !== headers.length) {
-      throw Error('Lengths of headers and actual values do not match.');
-    }
-
     const rowObject: Record<string, string> = {};
 
-    values.forEach((value, index) => {
-      const header = headers[index];
-      rowObject[header] = value;
+    headers.forEach(({ defaultValue, name }, index) => {
+      if (index < values.length) {
+        rowObject[name] = values[index];
+      } else if (defaultValue === undefined) {
+        throw Error(
+          `No default value supplied for out of bounds index in column ${name}`
+        );
+      } else {
+        rowObject[name] = defaultValue;
+      }
     });
 
     return rowObject;

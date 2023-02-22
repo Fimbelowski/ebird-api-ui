@@ -1,20 +1,20 @@
-import { type MouseEvent } from 'react';
+import { type MouseEvent, type ReactNode } from 'react';
 
 import classNames from '../utilities/classNames';
 
 interface Props {
+  children?: ReactNode;
   className?: string;
   disabled?: boolean;
-  label: string;
   loading?: boolean;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   type: 'button' | 'submit' | 'reset' | undefined;
 }
 
 export default function Button({
+  children,
   className = '',
   disabled = false,
-  label,
   loading = false,
   onClick,
   type,
@@ -24,6 +24,7 @@ export default function Button({
       'button',
       { 'button--disabled': disabled },
       { 'button--loading': loading },
+      { 'button--submit': type === 'submit' },
       className,
     ]);
   }
@@ -35,7 +36,7 @@ export default function Button({
       onClick={onClick}
       type={type}
     >
-      {label}
+      {children}
     </button>
   );
 }

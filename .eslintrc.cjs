@@ -17,6 +17,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'react/prop-types': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
   },
   settings: {

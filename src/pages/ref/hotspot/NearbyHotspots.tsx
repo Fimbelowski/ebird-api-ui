@@ -1,26 +1,26 @@
 import { type ChangeEvent, type FormEvent, useState } from 'react';
 
+import BackInput from '../../../components/BackInput';
 import BasePage from '../../../components/BasePage';
 import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
 import csvToArray from '../../../utilities/csvToArray';
+import DetailedHotspotTable from '../../../components/DetailedHotspotTable';
 import Details from '../../../components/Details';
 import Form from '../../../components/Form';
+import Format from '../../../types/Format';
+import FormatSelect from '../../../components/FormatSelect';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
-import Select from '../../../components/Select';
-import type SelectOption from '../../../types/SelectOption';
-import Table from '../../../components/Table';
-import type TableCell from '../../../types/TableCell';
-import type TableHeader from '../../../types/TableHeader';
+import SimpleHotspotTable from '../../../components/SimpleHotspotTable';
 import useEbirdApi from '../../../utilities/useEbirdApi';
 
-export default function Geo() {
+export default function NearbyHotspots() {
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('25');
-  const [format, setFormat] = useState<'csv' | 'json'>('csv');
+  const [format, setFormat] = useState<Format>(Format.Csv);
   const [hasQueried, setHasQueried] = useState(false);
   const [hotspots, setHotspots] = useState<EbirdHotspot[]>([]);
   const [loadingPosition, setLoadingPosition] = useState(false);
@@ -29,126 +29,6 @@ export default function Geo() {
   const [longitude, setLongitude] = useState('');
   const [rawResponse, setRawResponse] = useState('');
   const [showPositionError, setShowPositionError] = useState(false);
-
-  const detailedTableCells: Array<TableCell<EbirdHotspot>> = [
-    {
-      callback: (item) => item.locId,
-    },
-    {
-      callback: (item) => item.locName,
-    },
-    {
-      callback: (item) => item.countryCode,
-    },
-    {
-      callback: (item) => item.subnational1Code,
-    },
-    {
-      callback: (item) => item.subnational2Code,
-    },
-    {
-      align: 'right',
-      callback: (item) => item.lat.toLocaleString(),
-    },
-    {
-      align: 'right',
-      callback: (item) => item.lng.toLocaleString(),
-    },
-    {
-      callback: (item) => item.latestObsDt,
-    },
-    {
-      align: 'right',
-      callback: (item) => item.numSpeciesAllTime.toLocaleString(),
-    },
-  ];
-
-  const detailedTableHeaders: TableHeader[] = [
-    {
-      label: 'locId',
-    },
-    {
-      label: 'locName',
-    },
-    {
-      label: 'countryCode',
-    },
-    {
-      label: 'subnational1Code',
-    },
-    {
-      label: 'subnational2Code',
-    },
-    {
-      align: 'right',
-      label: 'lat',
-    },
-    {
-      align: 'right',
-      label: 'lng',
-    },
-    {
-      label: 'latestObsDt',
-    },
-    {
-      align: 'right',
-      label: 'numSpeciesAllTime',
-    },
-  ];
-
-  const formatOptions: SelectOption[] = [
-    {
-      label: 'CSV',
-      value: 'csv',
-    },
-    {
-      label: 'JSON',
-      value: 'json',
-    },
-  ];
-
-  const simpleTableCells: Array<TableCell<EbirdHotspot>> = [
-    {
-      callback: (item) => item.locName,
-      wrap: true,
-    },
-    {
-      align: 'right',
-      callback: (item) => item.numSpeciesAllTime.toLocaleString(),
-    },
-    {
-      callback: (item) => (
-        <time>{new Date(item.latestObsDt).toLocaleString()}</time>
-      ),
-    },
-    {
-      callback: (item) => (
-        <a
-          href={`https://maps.google.com/?q=${item.lat},${item.lng}`}
-          rel="noreferrer"
-          target="_blank"
-        >
-          Link
-        </a>
-      ),
-    },
-  ];
-
-  const simpleTableHeaders: TableHeader[] = [
-    {
-      label: 'Name',
-    },
-    {
-      align: 'right',
-      label: 'Species Observed',
-    },
-    {
-      label: 'Latest Observation',
-    },
-    {
-      label: 'View on Google Maps',
-    },
-  ];
 
   const ebirdApi = useEbirdApi();
 
@@ -165,15 +45,15 @@ export default function Geo() {
           isJson(data)
             ? JSON.parse(data)
             : csvToArray(data, [
-                'locId',
-                'countryCode',
-                'subnational1Code',
-                'subnational2Code',
-                'lat',
-                'lng',
-                'locName',
-                'latestObsDt',
-                'numSpeciesAllTime',
+                { name: 'locId' },
+                { name: 'countryCode' },
+                { name: 'subnational1Code' },
+                { name: 'subnational2Code' },
+                { name: 'lat' },
+                { name: 'lng' },
+                { name: 'locName' },
+                { defaultValue: 'N/A', name: 'latestObsDt' },
+                { defaultValue: '0', name: 'numSpeciesAllTime' },
               ])
         );
         setRawResponse(data);
@@ -219,14 +99,8 @@ export default function Geo() {
     setDistance(value);
   }
 
-  function onFormatChange(event: ChangeEvent<HTMLSelectElement>) {
-    const value = getValueFromChangeEvent(event);
-
-    if (value !== 'csv' && value !== 'json') {
-      throw Error(`Invalid format: ${value}`);
-    }
-
-    setFormat(value);
+  function onFormatChange(format: Format) {
+    setFormat(format);
   }
 
   function onLatitudeChange(event: ChangeEvent<HTMLInputElement>) {
@@ -256,11 +130,11 @@ export default function Geo() {
   }
 
   return (
-    <BasePage
-      className="geo"
-      title="Nearby hotspots"
-    >
-      <Form onSubmit={getNearbyHotspots}>
+    <BasePage title="Nearby hotspots">
+      <Form
+        loading={loading()}
+        onSubmit={getNearbyHotspots}
+      >
         <CoordinateInput
           id="lat"
           label="Latitude (to at least two decimal places)*"
@@ -284,22 +158,25 @@ export default function Geo() {
           value={longitude}
         />
         <Button
-          className="geo__get-user-position"
-          label="Use My Location"
+          className="nearby-hotspots__get-user-position"
           loading={loading()}
           onClick={getUserPosition}
           type="button"
-        />
+        >
+          Use My Location
+        </Button>
         {loadingPosition ? (
-          <p className="geo__loading-position">Getting position...</p>
+          <p className="nearby-hotspots__loading-position">
+            Getting position...
+          </p>
         ) : null}
         {showPositionError ? (
-          <p className="geo__position-error">
+          <p className="nearby-hotspots__position-error">
             Unable to get location. Please check permissions and try again.
           </p>
         ) : null}
         <NumberInput
-          className="geo__distance-input"
+          className="nearby-hotspots__distance-input"
           id="distance"
           label="Distance (km)"
           loading={loading()}
@@ -309,53 +186,32 @@ export default function Geo() {
           placeholder="25"
           value={distance}
         />
-        <NumberInput
-          className="geo__back-input"
+        <BackInput
+          className="nearby-hotspots__back-input"
           id="back"
-          label="Back"
           loading={loading()}
-          max={30}
-          min={1}
           onChange={onBackChange}
-          placeholder="7"
           value={back}
         />
-        <Select
-          fullWidth
+        <FormatSelect
           id="format"
-          label="Format"
           loading={loading()}
           onChange={onFormatChange}
-          options={formatOptions}
           value={format}
-        />
-        <Button
-          className="geo__submit"
-          label="Search"
-          loading={loading()}
-          type="submit"
         />
       </Form>
       {loadingResults ? <p>Loading...</p> : null}
       {showResults() ? (
-        <div className="geo__results">
+        <div className="nearby-hotspots__results">
           <Details summary="Raw Response">{rawResponse}</Details>
           <Details summary="Detailed Table">
-            <Table<EbirdHotspot>
-              cells={detailedTableCells}
-              headers={detailedTableHeaders}
-              items={hotspots}
-            />
+            <DetailedHotspotTable hotspots={hotspots} />
           </Details>
           <Details
             open
             summary="Simplified Table"
           >
-            <Table<EbirdHotspot>
-              cells={simpleTableCells}
-              headers={simpleTableHeaders}
-              items={hotspots}
-            />
+            <SimpleHotspotTable hotspots={hotspots} />
           </Details>
         </div>
       ) : null}

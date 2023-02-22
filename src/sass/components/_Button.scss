@@ -9,4 +9,8 @@
   &--loading {
     cursor: wait;
   }
+
+  &--submit {
+    grid-column-start: 1;
+  }
 }
