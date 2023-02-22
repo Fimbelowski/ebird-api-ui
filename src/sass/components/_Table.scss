@@ -1,11 +1,41 @@
 .table {
+  display: block;
+  overflow-x: auto;
   border-collapse: collapse;
+  text-align: left;
+
+  &,
+  &__td,
+  &__th {
+    border: 1px solid black;
+  }
+
+  &__td,
+  &__th {
+    padding: 0.3rem 1rem;
+
+    &--center {
+      text-align: center;
+    }
+
+    &--left {
+      text-align: left;
+    }
+
+    &--right {
+      text-align: right;
+    }
+  }
 
   &__tbody {
   }
 
   &__td {
-    border: 1px solid black;
+    white-space: nowrap;
+
+    &--wrap {
+      white-space: normal;
+    }
   }
 
   &__th {

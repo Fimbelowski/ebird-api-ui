@@ -13,7 +13,7 @@ import NumberInput from '../../../components/NumberInput';
 import Select from '../../../components/Select';
 import type SelectOption from '../../../types/SelectOption';
 import Table from '../../../components/Table';
-import type TableCellCallback from '../../../types/TableCellCallback';
+import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
 import useEbirdApi from '../../../utilities/useEbirdApi';
 
@@ -30,16 +30,37 @@ export default function Geo() {
   const [rawResponse, setRawResponse] = useState('');
   const [showPositionError, setShowPositionError] = useState(false);
 
-  const detailedTableCellCallbacks: Array<TableCellCallback<EbirdHotspot>> = [
-    (item) => item.locId,
-    (item) => item.locName,
-    (item) => item.countryCode,
-    (item) => item.subnational1Code,
-    (item) => item.subnational2Code,
-    (item) => item.lat.toLocaleString(),
-    (item) => item.lng.toLocaleString(),
-    (item) => item.latestObsDt,
-    (item) => item.numSpeciesAllTime.toLocaleString(),
+  const detailedTableCells: Array<TableCell<EbirdHotspot>> = [
+    {
+      callback: (item) => item.locId,
+    },
+    {
+      callback: (item) => item.locName,
+    },
+    {
+      callback: (item) => item.countryCode,
+    },
+    {
+      callback: (item) => item.subnational1Code,
+    },
+    {
+      callback: (item) => item.subnational2Code,
+    },
+    {
+      align: 'right',
+      callback: (item) => item.lat.toLocaleString(),
+    },
+    {
+      align: 'right',
+      callback: (item) => item.lng.toLocaleString(),
+    },
+    {
+      callback: (item) => item.latestObsDt,
+    },
+    {
+      align: 'right',
+      callback: (item) => item.numSpeciesAllTime.toLocaleString(),
+    },
   ];
 
   const detailedTableHeaders: TableHeader[] = [
@@ -59,15 +80,18 @@ export default function Geo() {
       label: 'subnational2Code',
     },
     {
+      align: 'right',
       label: 'lat',
     },
     {
+      align: 'right',
       label: 'lng',
     },
     {
       label: 'latestObsDt',
     },
     {
+      align: 'right',
       label: 'numSpeciesAllTime',
     },
   ];
@@ -83,19 +107,31 @@ export default function Geo() {
     },
   ];
 
-  const simpleTableCellCallbacks: Array<TableCellCallback<EbirdHotspot>> = [
-    (item) => item.locName,
-    (item) => item.numSpeciesAllTime.toLocaleString(),
-    (item) => new Date(item.latestObsDt).toLocaleString(),
-    (item) => (
-      <a
-        href={`https://maps.google.com/?q=${item.lat},${item.lng}`}
-        rel="noreferrer"
-        target="_blank"
-      >
-        Link
-      </a>
-    ),
+  const simpleTableCells: Array<TableCell<EbirdHotspot>> = [
+    {
+      callback: (item) => item.locName,
+      wrap: true,
+    },
+    {
+      align: 'right',
+      callback: (item) => item.numSpeciesAllTime.toLocaleString(),
+    },
+    {
+      callback: (item) => (
+        <time>{new Date(item.latestObsDt).toLocaleString()}</time>
+      ),
+    },
+    {
+      callback: (item) => (
+        <a
+          href={`https://maps.google.com/?q=${item.lat},${item.lng}`}
+          rel="noreferrer"
+          target="_blank"
+        >
+          Link
+        </a>
+      ),
+    },
   ];
 
   const simpleTableHeaders: TableHeader[] = [
@@ -103,6 +139,7 @@ export default function Geo() {
       label: 'Name',
     },
     {
+      align: 'right',
       label: 'Species Observed',
     },
     {
@@ -305,7 +342,7 @@ export default function Geo() {
           <Details summary="Raw Response">{rawResponse}</Details>
           <Details summary="Detailed Table">
             <Table<EbirdHotspot>
-              cellCallbacks={detailedTableCellCallbacks}
+              cells={detailedTableCells}
               headers={detailedTableHeaders}
               items={hotspots}
             />
@@ -315,7 +352,7 @@ export default function Geo() {
             summary="Simplified Table"
           >
             <Table<EbirdHotspot>
-              cellCallbacks={simpleTableCellCallbacks}
+              cells={simpleTableCells}
               headers={simpleTableHeaders}
               items={hotspots}
             />
