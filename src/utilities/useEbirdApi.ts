@@ -107,7 +107,39 @@ export default function useEbirdApi() {
     return await baseRequest('ref/hotspot/geo', queryParams);
   }
 
+  async function getRegionHotspots(
+    regionCode: string,
+    back?: string,
+    fmt: Format = Format.Csv
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+    ];
+
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: 'csv',
+        name: 'fmt',
+        value: fmt,
+      },
+      {
+        name: 'back',
+        value: back,
+      },
+    ];
+
+    return await baseRequest(
+      'ref/hotspot/{{regionCode}}',
+      queryParams,
+      urlParams
+    );
+  }
+
   return {
     getNearbyHotspots,
+    getRegionHotspots,
   };
 }
