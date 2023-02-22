@@ -7,6 +7,7 @@ import CoordinateInput from '../../../components/CoordinateInput';
 import csvToArray from '../../../utilities/csvToArray';
 import Details from '../../../components/Details';
 import Form from '../../../components/Form';
+import Format from '../../../types/Format';
 import FormatSelect from '../../../components/FormatSelect';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
@@ -20,7 +21,7 @@ import useEbirdApi from '../../../utilities/useEbirdApi';
 export default function NearbyHotspots() {
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('25');
-  const [format, setFormat] = useState<'csv' | 'json'>('csv');
+  const [format, setFormat] = useState<Format>(Format.Csv);
   const [hasQueried, setHasQueried] = useState(false);
   const [hotspots, setHotspots] = useState<EbirdHotspot[]>([]);
   const [loadingPosition, setLoadingPosition] = useState(false);
@@ -208,14 +209,8 @@ export default function NearbyHotspots() {
     setDistance(value);
   }
 
-  function onFormatChange(event: ChangeEvent<HTMLSelectElement>) {
-    const value = getValueFromChangeEvent(event);
-
-    if (value !== 'csv' && value !== 'json') {
-      throw Error(`Invalid format: ${value}`);
-    }
-
-    setFormat(value);
+  function onFormatChange(format: Format) {
+    setFormat(format);
   }
 
   function onLatitudeChange(event: ChangeEvent<HTMLInputElement>) {

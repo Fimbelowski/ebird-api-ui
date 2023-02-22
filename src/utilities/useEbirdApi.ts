@@ -1,3 +1,5 @@
+import Format from '../types/Format';
+
 const BASE_URL = 'https://api.ebird.org/v2/';
 
 interface QueryParam {
@@ -49,7 +51,7 @@ export default function useEbirdApi() {
   async function getNearbyHotspots(
     lat: string,
     lng: string,
-    fmt?: 'csv' | 'json',
+    fmt: Format = Format.Csv,
     back?: string,
     dist?: string
   ) {
