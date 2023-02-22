@@ -7,12 +7,11 @@ import CoordinateInput from '../../../components/CoordinateInput';
 import csvToArray from '../../../utilities/csvToArray';
 import Details from '../../../components/Details';
 import Form from '../../../components/Form';
+import FormatSelect from '../../../components/FormatSelect';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
-import Select from '../../../components/Select';
-import type SelectOption from '../../../types/SelectOption';
 import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
@@ -94,17 +93,6 @@ export default function NearbyHotspots() {
     {
       align: 'right',
       label: 'numSpeciesAllTime',
-    },
-  ];
-
-  const formatOptions: SelectOption[] = [
-    {
-      label: 'CSV',
-      value: 'csv',
-    },
-    {
-      label: 'JSON',
-      value: 'json',
     },
   ];
 
@@ -316,12 +304,10 @@ export default function NearbyHotspots() {
           onChange={onBackChange}
           value={back}
         />
-        <Select
+        <FormatSelect
           id="format"
-          label="Format"
           loading={loading()}
           onChange={onFormatChange}
-          options={formatOptions}
           value={format}
         />
         <Button
