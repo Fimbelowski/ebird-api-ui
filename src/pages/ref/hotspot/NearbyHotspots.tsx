@@ -5,6 +5,7 @@ import BasePage from '../../../components/BasePage';
 import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
 import csvToArray from '../../../utilities/csvToArray';
+import DetailedHotspotTable from '../../../components/DetailedHotspotTable';
 import Details from '../../../components/Details';
 import Form from '../../../components/Form';
 import Format from '../../../types/Format';
@@ -14,9 +15,6 @@ import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent'
 import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
 import SimpleHotspotTable from '../../../components/SimpleHotspotTable';
-import Table from '../../../components/Table';
-import type TableCell from '../../../types/TableCell';
-import type TableHeader from '../../../types/TableHeader';
 import useEbirdApi from '../../../utilities/useEbirdApi';
 
 export default function NearbyHotspots() {
@@ -31,72 +29,6 @@ export default function NearbyHotspots() {
   const [longitude, setLongitude] = useState('');
   const [rawResponse, setRawResponse] = useState('');
   const [showPositionError, setShowPositionError] = useState(false);
-
-  const detailedTableCells: Array<TableCell<EbirdHotspot>> = [
-    {
-      callback: (item) => item.locId,
-    },
-    {
-      callback: (item) => item.locName,
-    },
-    {
-      callback: (item) => item.countryCode,
-    },
-    {
-      callback: (item) => item.subnational1Code,
-    },
-    {
-      callback: (item) => item.subnational2Code,
-    },
-    {
-      align: 'right',
-      callback: (item) => item.lat.toLocaleString(),
-    },
-    {
-      align: 'right',
-      callback: (item) => item.lng.toLocaleString(),
-    },
-    {
-      callback: (item) => item.latestObsDt,
-    },
-    {
-      align: 'right',
-      callback: (item) => item.numSpeciesAllTime.toLocaleString(),
-    },
-  ];
-
-  const detailedTableHeaders: TableHeader[] = [
-    {
-      label: 'locId',
-    },
-    {
-      label: 'locName',
-    },
-    {
-      label: 'countryCode',
-    },
-    {
-      label: 'subnational1Code',
-    },
-    {
-      label: 'subnational2Code',
-    },
-    {
-      align: 'right',
-      label: 'lat',
-    },
-    {
-      align: 'right',
-      label: 'lng',
-    },
-    {
-      label: 'latestObsDt',
-    },
-    {
-      align: 'right',
-      label: 'numSpeciesAllTime',
-    },
-  ];
 
   const ebirdApi = useEbirdApi();
 
@@ -273,11 +205,7 @@ export default function NearbyHotspots() {
         <div className="nearby-hotspots__results">
           <Details summary="Raw Response">{rawResponse}</Details>
           <Details summary="Detailed Table">
-            <Table<EbirdHotspot>
-              cells={detailedTableCells}
-              headers={detailedTableHeaders}
-              items={hotspots}
-            />
+            <DetailedHotspotTable hotspots={hotspots} />
           </Details>
           <Details
             open
