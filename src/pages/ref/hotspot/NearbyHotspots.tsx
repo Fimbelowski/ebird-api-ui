@@ -311,13 +311,6 @@ export default function NearbyHotspots() {
           onChange={onFormatChange}
           value={format}
         />
-        <Button
-          className="nearby-hotspots__submit"
-          loading={loading()}
-          type="submit"
-        >
-          Search
-        </Button>
       </Form>
       {loadingResults ? <p>Loading...</p> : null}
       {showResults() ? (
