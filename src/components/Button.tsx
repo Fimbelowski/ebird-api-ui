@@ -24,6 +24,7 @@ export default function Button({
       'button',
       { 'button--disabled': disabled },
       { 'button--loading': loading },
+      { 'button--submit': type === 'submit' },
       className,
     ]);
   }
