@@ -10,6 +10,7 @@ export default function BackInput(props: Props) {
       label="Back"
       max={30}
       min={1}
+      placeholder="7"
     />
   );
 }
