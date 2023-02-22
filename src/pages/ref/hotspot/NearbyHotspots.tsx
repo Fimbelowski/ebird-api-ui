@@ -246,7 +246,10 @@ export default function NearbyHotspots() {
 
   return (
     <BasePage title="Nearby hotspots">
-      <Form onSubmit={getNearbyHotspots}>
+      <Form
+        loading={loading()}
+        onSubmit={getNearbyHotspots}
+      >
         <CoordinateInput
           id="lat"
           label="Latitude (to at least two decimal places)*"
