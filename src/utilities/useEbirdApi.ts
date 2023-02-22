@@ -8,20 +8,44 @@ interface QueryParam {
   value?: string;
 }
 
+interface UrlParam {
+  name: string;
+  value: string;
+}
+
 export default function useEbirdApi() {
   async function baseRequest(
     endpoint: string,
     queryParams: QueryParam[],
+    urlParams: UrlParam[] = [],
     apiKey = ''
   ) {
     return await fetch(
-      `${BASE_URL}${endpoint}${buildQueryString(queryParams)}`,
+      `${BASE_URL}${buildEndpointString(endpoint, urlParams)}${buildQueryString(
+        queryParams
+      )}`,
       {
         headers: {
           'x-ebirdapitoken': apiKey,
         },
       }
     );
+  }
+
+  function buildEndpointString(endpoint: string, urlParams: UrlParam[] = []) {
+    let builtEndpoint = endpoint;
+
+    urlParams.forEach(({ name, value }) => {
+      const mergeTag = `{{${name}}}`;
+
+      if (!builtEndpoint.includes(mergeTag)) {
+        throw Error(`Merge tag "${mergeTag}" not found.`);
+      }
+
+      builtEndpoint = builtEndpoint.replace(`{{${name}}}`, value);
+    });
+
+    return builtEndpoint;
   }
 
   function buildQueryString(queryParams: QueryParam[]) {
