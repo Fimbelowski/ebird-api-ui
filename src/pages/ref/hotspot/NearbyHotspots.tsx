@@ -271,11 +271,12 @@ export default function NearbyHotspots() {
         />
         <Button
           className="nearby-hotspots__get-user-position"
-          label="Use My Location"
           loading={loading()}
           onClick={getUserPosition}
           type="button"
-        />
+        >
+          Use My Location
+        </Button>
         {loadingPosition ? (
           <p className="nearby-hotspots__loading-position">
             Getting position...
@@ -312,10 +313,11 @@ export default function NearbyHotspots() {
         />
         <Button
           className="nearby-hotspots__submit"
-          label="Search"
           loading={loading()}
           type="submit"
-        />
+        >
+          Search
+        </Button>
       </Form>
       {loadingResults ? <p>Loading...</p> : null}
       {showResults() ? (
