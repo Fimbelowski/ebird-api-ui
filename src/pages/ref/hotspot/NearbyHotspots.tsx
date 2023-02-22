@@ -320,7 +320,6 @@ export default function NearbyHotspots() {
           value={back}
         />
         <Select
-          fullWidth
           id="format"
           label="Format"
           loading={loading()}

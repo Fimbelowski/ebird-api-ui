@@ -3,7 +3,6 @@ import type SelectProps from '../types/SelectProps';
 
 export default function Select({
   disabled = false,
-  fullWidth = false,
   id,
   label,
   loading = false,
@@ -33,7 +32,6 @@ export default function Select({
       'select__select',
       { 'select__select--disabled': disabled },
       { 'select__select--loading': loading },
-      { 'select__select--full-width': fullWidth },
     ]);
   }
 

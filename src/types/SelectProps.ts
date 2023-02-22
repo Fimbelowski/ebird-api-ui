@@ -4,7 +4,6 @@ import type SelectOption from '../types/SelectOption';
 
 export default interface SelectProps {
   disabled?: boolean;
-  fullWidth?: boolean;
   id: string;
   label: string;
   loading?: boolean;
