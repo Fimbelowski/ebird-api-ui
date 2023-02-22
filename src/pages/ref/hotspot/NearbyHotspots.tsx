@@ -17,7 +17,7 @@ import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
 import useEbirdApi from '../../../utilities/useEbirdApi';
 
-export default function Geo() {
+export default function NearbyHotspots() {
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('25');
   const [format, setFormat] = useState<'csv' | 'json'>('csv');
@@ -257,7 +257,7 @@ export default function Geo() {
 
   return (
     <BasePage
-      className="geo"
+      className="nearby-hotspots"
       title="Nearby hotspots"
     >
       <Form onSubmit={getNearbyHotspots}>
@@ -284,22 +284,24 @@ export default function Geo() {
           value={longitude}
         />
         <Button
-          className="geo__get-user-position"
+          className="nearby-hotspots__get-user-position"
           label="Use My Location"
           loading={loading()}
           onClick={getUserPosition}
           type="button"
         />
         {loadingPosition ? (
-          <p className="geo__loading-position">Getting position...</p>
+          <p className="nearby-hotspots__loading-position">
+            Getting position...
+          </p>
         ) : null}
         {showPositionError ? (
-          <p className="geo__position-error">
+          <p className="nearby-hotspots__position-error">
             Unable to get location. Please check permissions and try again.
           </p>
         ) : null}
         <NumberInput
-          className="geo__distance-input"
+          className="nearby-hotspots__distance-input"
           id="distance"
           label="Distance (km)"
           loading={loading()}
@@ -310,7 +312,7 @@ export default function Geo() {
           value={distance}
         />
         <NumberInput
-          className="geo__back-input"
+          className="nearby-hotspots__back-input"
           id="back"
           label="Back"
           loading={loading()}
@@ -330,7 +332,7 @@ export default function Geo() {
           value={format}
         />
         <Button
-          className="geo__submit"
+          className="nearby-hotspots__submit"
           label="Search"
           loading={loading()}
           type="submit"
@@ -338,7 +340,7 @@ export default function Geo() {
       </Form>
       {loadingResults ? <p>Loading...</p> : null}
       {showResults() ? (
-        <div className="geo__results">
+        <div className="nearby-hotspots__results">
           <Details summary="Raw Response">{rawResponse}</Details>
           <Details summary="Detailed Table">
             <Table<EbirdHotspot>

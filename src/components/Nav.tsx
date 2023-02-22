@@ -5,7 +5,7 @@ export default function Nav() {
     <nav className="nav">
       <menu className="nav__menu">
         <li>
-          <Link to="/geo">Nearby Hotspots</Link>
+          <Link to="/nearby-hotspots">Nearby Hotspots</Link>
         </li>
       </menu>
     </nav>

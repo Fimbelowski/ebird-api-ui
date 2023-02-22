@@ -1,6 +1,6 @@
 import { type RouteObject } from 'react-router-dom';
 import Root from './pages/Root';
-import Geo from './pages/ref/hotspot/Geo';
+import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 
 const ROUTES: RouteObject[] = [
   {
@@ -8,8 +8,8 @@ const ROUTES: RouteObject[] = [
     element: <Root />,
     children: [
       {
-        path: 'geo',
-        element: <Geo />,
+        path: 'nearby-hotspots',
+        element: <NearbyHotspots />,
       },
     ],
   },
