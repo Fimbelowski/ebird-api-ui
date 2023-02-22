@@ -7,7 +7,6 @@ type BaseInputProps = CommonInputProps & NumberInputProps & { type: string };
 export default function BaseInput({
   className = '',
   disabled = false,
-  fullWidth = false,
   hideStepper = false,
   id,
   label,
@@ -32,7 +31,6 @@ export default function BaseInput({
       'base-input__input',
       { 'base-input__input--disabled': disabled },
       { 'base-input__input--loading': loading },
-      { 'base-input__input--full-width': fullWidth },
       { 'base-input__input--no-stepper': hideStepper },
     ]);
   }

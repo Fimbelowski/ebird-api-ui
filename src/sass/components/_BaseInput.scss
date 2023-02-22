@@ -1,11 +1,14 @@
 .base-input {
   &__input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.6rem;
+
+    border: 1px solid #444;
+    border-radius: 0.4rem;
+
     &--disabled {
       cursor: not-allowed;
-    }
-
-    &--full-width {
-      width: 100%;
     }
 
     &--loading {
@@ -25,5 +28,6 @@
 
   &__label {
     display: block;
+    padding-bottom: 0.2rem;
   }
 }

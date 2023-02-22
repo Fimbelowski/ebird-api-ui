@@ -1,7 +1,6 @@
 export default interface CommonInputProps {
   className?: string;
   disabled?: boolean;
-  fullWidth?: boolean;
   id: string;
   label: string;
   loading?: boolean;

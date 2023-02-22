@@ -1,12 +1,17 @@
 .select {
   &__label {
     display: block;
+    padding-bottom: 0.2rem;
   }
 
   &__option {
+    padding: 1rem 0;
   }
 
   &__select {
+    padding: 1rem;
+    font-size: 1.6rem;
+
     &--disabled {
       cursor: not-allowed;
     }

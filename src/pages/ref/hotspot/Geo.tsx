@@ -5,6 +5,7 @@ import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
 import csvToArray from '../../../utilities/csvToArray';
 import Details from '../../../components/Details';
+import Form from '../../../components/Form';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import isJson from '../../../utilities/isJson';
@@ -12,7 +13,7 @@ import NumberInput from '../../../components/NumberInput';
 import Select from '../../../components/Select';
 import type SelectOption from '../../../types/SelectOption';
 import Table from '../../../components/Table';
-import type TableCellCallback from '../../../types/TableCellCallback';
+import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
 import useEbirdApi from '../../../utilities/useEbirdApi';
 
@@ -29,16 +30,37 @@ export default function Geo() {
   const [rawResponse, setRawResponse] = useState('');
   const [showPositionError, setShowPositionError] = useState(false);
 
-  const detailedTableCellCallbacks: Array<TableCellCallback<EbirdHotspot>> = [
-    (item) => item.locId,
-    (item) => item.locName,
-    (item) => item.countryCode,
-    (item) => item.subnational1Code,
-    (item) => item.subnational2Code,
-    (item) => item.lat.toLocaleString(),
-    (item) => item.lng.toLocaleString(),
-    (item) => item.latestObsDt,
-    (item) => item.numSpeciesAllTime.toLocaleString(),
+  const detailedTableCells: Array<TableCell<EbirdHotspot>> = [
+    {
+      callback: (item) => item.locId,
+    },
+    {
+      callback: (item) => item.locName,
+    },
+    {
+      callback: (item) => item.countryCode,
+    },
+    {
+      callback: (item) => item.subnational1Code,
+    },
+    {
+      callback: (item) => item.subnational2Code,
+    },
+    {
+      align: 'right',
+      callback: (item) => item.lat.toLocaleString(),
+    },
+    {
+      align: 'right',
+      callback: (item) => item.lng.toLocaleString(),
+    },
+    {
+      callback: (item) => item.latestObsDt,
+    },
+    {
+      align: 'right',
+      callback: (item) => item.numSpeciesAllTime.toLocaleString(),
+    },
   ];
 
   const detailedTableHeaders: TableHeader[] = [
@@ -58,15 +80,18 @@ export default function Geo() {
       label: 'subnational2Code',
     },
     {
+      align: 'right',
       label: 'lat',
     },
     {
+      align: 'right',
       label: 'lng',
     },
     {
       label: 'latestObsDt',
     },
     {
+      align: 'right',
       label: 'numSpeciesAllTime',
     },
   ];
@@ -82,19 +107,31 @@ export default function Geo() {
     },
   ];
 
-  const simpleTableCellCallbacks: Array<TableCellCallback<EbirdHotspot>> = [
-    (item) => item.locName,
-    (item) => item.numSpeciesAllTime.toLocaleString(),
-    (item) => new Date(item.latestObsDt).toLocaleString(),
-    (item) => (
-      <a
-        href={`https://maps.google.com/?q=${item.lat},${item.lng}`}
-        rel="noreferrer"
-        target="_blank"
-      >
-        Link
-      </a>
-    ),
+  const simpleTableCells: Array<TableCell<EbirdHotspot>> = [
+    {
+      callback: (item) => item.locName,
+      wrap: true,
+    },
+    {
+      align: 'right',
+      callback: (item) => item.numSpeciesAllTime.toLocaleString(),
+    },
+    {
+      callback: (item) => (
+        <time>{new Date(item.latestObsDt).toLocaleString()}</time>
+      ),
+    },
+    {
+      callback: (item) => (
+        <a
+          href={`https://maps.google.com/?q=${item.lat},${item.lng}`}
+          rel="noreferrer"
+          target="_blank"
+        >
+          Link
+        </a>
+      ),
+    },
   ];
 
   const simpleTableHeaders: TableHeader[] = [
@@ -102,6 +139,7 @@ export default function Geo() {
       label: 'Name',
     },
     {
+      align: 'right',
       label: 'Species Observed',
     },
     {
@@ -222,40 +260,29 @@ export default function Geo() {
       className="geo"
       title="Nearby hotspots"
     >
-      <form
-        className="geo__form"
-        onSubmit={getNearbyHotspots}
-      >
-        <div className="geo__coordinate-inputs">
-          <div className="geo__coordinate-input">
-            <CoordinateInput
-              fullWidth
-              id="lat"
-              label="Latitude (to at least two decimal places)*"
-              loading={loading()}
-              max={90}
-              min={-90}
-              onChange={onLatitudeChange}
-              placeholder="42.4799394"
-              required
-              value={latitude}
-            />
-          </div>
-          <div className="geo__coordinate-input">
-            <CoordinateInput
-              fullWidth
-              id="lng"
-              label="Longitude (to at least two decimal places)*"
-              loading={loading()}
-              max={180}
-              min={-180}
-              onChange={onLongitudeChange}
-              placeholder="-76.4556869"
-              required
-              value={longitude}
-            />
-          </div>
-        </div>
+      <Form onSubmit={getNearbyHotspots}>
+        <CoordinateInput
+          id="lat"
+          label="Latitude (to at least two decimal places)*"
+          loading={loading()}
+          max={90}
+          min={-90}
+          onChange={onLatitudeChange}
+          placeholder="42.4799394"
+          required
+          value={latitude}
+        />
+        <CoordinateInput
+          id="lng"
+          label="Longitude (to at least two decimal places)*"
+          loading={loading()}
+          max={180}
+          min={-180}
+          onChange={onLongitudeChange}
+          placeholder="-76.4556869"
+          required
+          value={longitude}
+        />
         <Button
           className="geo__get-user-position"
           label="Use My Location"
@@ -273,7 +300,6 @@ export default function Geo() {
         ) : null}
         <NumberInput
           className="geo__distance-input"
-          fullWidth
           id="distance"
           label="Distance (km)"
           loading={loading()}
@@ -285,7 +311,6 @@ export default function Geo() {
         />
         <NumberInput
           className="geo__back-input"
-          fullWidth
           id="back"
           label="Back"
           loading={loading()}
@@ -310,24 +335,24 @@ export default function Geo() {
           loading={loading()}
           type="submit"
         />
-      </form>
+      </Form>
       {loadingResults ? <p>Loading...</p> : null}
       {showResults() ? (
         <div className="geo__results">
           <Details summary="Raw Response">{rawResponse}</Details>
-          <Details summary="Response as Detailed Table">
+          <Details summary="Detailed Table">
             <Table<EbirdHotspot>
-              cellCallbacks={detailedTableCellCallbacks}
+              cells={detailedTableCells}
               headers={detailedTableHeaders}
               items={hotspots}
             />
           </Details>
           <Details
             open
-            summary="Response as Simplified Table"
+            summary="Simplified Table"
           >
             <Table<EbirdHotspot>
-              cellCallbacks={simpleTableCellCallbacks}
+              cells={simpleTableCells}
               headers={simpleTableHeaders}
               items={hotspots}
             />
