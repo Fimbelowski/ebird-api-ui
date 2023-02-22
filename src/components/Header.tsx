@@ -1,14 +1,10 @@
-import { type ReactNode } from 'react';
+import Nav from './Nav';
 
-interface Props {
-  children?: ReactNode;
-}
-
-export default function Header({ children }: Props) {
+export default function Header() {
   return (
     <header className="header">
       <h1>eBird API UI</h1>
-      {children}
+      <Nav />
     </header>
   );
 }
