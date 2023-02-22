@@ -1,11 +1,8 @@
 import type EbirdHotspot from '../types/EbirdHotspot';
+import type HotspotTableProps from '../types/HotspotTableProps';
 import Table from './Table';
 import type TableCell from '../types/TableCell';
 import type TableHeader from '../types/TableHeader';
-
-interface Props {
-  hotspots: EbirdHotspot[];
-}
 
 const cells: Array<TableCell<EbirdHotspot>> = [
   {
@@ -50,7 +47,7 @@ const headers: TableHeader[] = [
   },
 ];
 
-export default function SimpleHotspotsTable({ hotspots }: Props) {
+export default function SimpleHotspotsTable({ hotspots }: HotspotTableProps) {
   return (
     <Table<EbirdHotspot>
       cells={cells}
