@@ -7,6 +7,9 @@ export default function Nav() {
         <li>
           <Link to="/nearby-hotspots">Nearby Hotspots</Link>
         </li>
+        <li>
+          <Link to="/region-hotspots">Hotspots in a Region</Link>
+        </li>
       </menu>
     </nav>
   );
