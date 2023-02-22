@@ -256,10 +256,7 @@ export default function NearbyHotspots() {
   }
 
   return (
-    <BasePage
-      className="nearby-hotspots"
-      title="Nearby hotspots"
-    >
+    <BasePage title="Nearby hotspots">
       <Form onSubmit={getNearbyHotspots}>
         <CoordinateInput
           id="lat"
