@@ -13,7 +13,7 @@ import type EbirdHotspot from '../../../types/EbirdHotspot';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
-import SimpleHotspotsTable from '../../../components/SimpleHotspotsTable';
+import SimpleHotspotTable from '../../../components/SimpleHotspotTable';
 import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
@@ -283,7 +283,7 @@ export default function NearbyHotspots() {
             open
             summary="Simplified Table"
           >
-            <SimpleHotspotsTable hotspots={hotspots} />
+            <SimpleHotspotTable hotspots={hotspots} />
           </Details>
         </div>
       ) : null}
