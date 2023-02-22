@@ -1,19 +1,5 @@
-import { type ChangeEvent } from 'react';
-
 import classNames from '../utilities/classNames';
-import type SelectOption from '../types/SelectOption';
-
-interface Props {
-  disabled?: boolean;
-  fullWidth?: boolean;
-  id: string;
-  label: string;
-  loading?: boolean;
-  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
-  options: SelectOption[];
-  required?: boolean;
-  value: string;
-}
+import type SelectProps from '../types/SelectProps';
 
 export default function Select({
   disabled = false,
@@ -25,7 +11,7 @@ export default function Select({
   options,
   required = false,
   value,
-}: Props) {
+}: SelectProps) {
   function Options() {
     const listItems = options.map(({ label, value }, index) => {
       return (
