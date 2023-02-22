@@ -1,5 +1,6 @@
 import { type ChangeEvent, type FormEvent, useState } from 'react';
 
+import BackInput from '../../../components/BackInput';
 import BasePage from '../../../components/BasePage';
 import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
@@ -308,15 +309,11 @@ export default function NearbyHotspots() {
           placeholder="25"
           value={distance}
         />
-        <NumberInput
+        <BackInput
           className="nearby-hotspots__back-input"
           id="back"
-          label="Back"
           loading={loading()}
-          max={30}
-          min={1}
           onChange={onBackChange}
-          placeholder="7"
           value={back}
         />
         <Select
