@@ -13,6 +13,7 @@ import type EbirdHotspot from '../../../types/EbirdHotspot';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
+import SimpleHotspotsTable from '../../../components/SimpleHotspotsTable';
 import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
@@ -94,49 +95,6 @@ export default function NearbyHotspots() {
     {
       align: 'right',
       label: 'numSpeciesAllTime',
-    },
-  ];
-
-  const simpleTableCells: Array<TableCell<EbirdHotspot>> = [
-    {
-      callback: (item) => item.locName,
-      wrap: true,
-    },
-    {
-      align: 'right',
-      callback: (item) => item.numSpeciesAllTime.toLocaleString(),
-    },
-    {
-      callback: (item) => (
-        <time>{new Date(item.latestObsDt).toLocaleString()}</time>
-      ),
-    },
-    {
-      callback: (item) => (
-        <a
-          href={`https://maps.google.com/?q=${item.lat},${item.lng}`}
-          rel="noreferrer"
-          target="_blank"
-        >
-          Link
-        </a>
-      ),
-    },
-  ];
-
-  const simpleTableHeaders: TableHeader[] = [
-    {
-      label: 'Name',
-    },
-    {
-      align: 'right',
-      label: 'Species Observed',
-    },
-    {
-      label: 'Latest Observation',
-    },
-    {
-      label: 'View on Google Maps',
     },
   ];
 
@@ -325,11 +283,7 @@ export default function NearbyHotspots() {
             open
             summary="Simplified Table"
           >
-            <Table<EbirdHotspot>
-              cells={simpleTableCells}
-              headers={simpleTableHeaders}
-              items={hotspots}
-            />
+            <SimpleHotspotsTable hotspots={hotspots} />
           </Details>
         </div>
       ) : null}
