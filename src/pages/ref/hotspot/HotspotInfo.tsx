@@ -29,8 +29,6 @@ export default function HotspotInfo() {
       .getHotspotInfo(locationId)
       .then(async (response) => await response.text())
       .then((data) => {
-        console.log(JSON.parse(data));
-
         setHotspot(JSON.parse(data));
 
         setRawResponse(data);
