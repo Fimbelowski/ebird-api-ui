@@ -13,6 +13,9 @@ export default function Nav() {
         <li>
           <Link to="hotspot-info">Hotspot Info</Link>
         </li>
+        <li>
+          <Link to="taxonomy-versions">Taxonomy Versions</Link>
+        </li>
       </menu>
     </nav>
   );
