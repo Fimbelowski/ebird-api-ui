@@ -45,15 +45,15 @@ export default function NearbyHotspots() {
           isJson(data)
             ? JSON.parse(data)
             : csvToArray(data, [
-                { name: 'locId' },
-                { name: 'countryCode' },
-                { name: 'subnational1Code' },
-                { name: 'subnational2Code' },
-                { name: 'lat' },
-                { name: 'lng' },
-                { name: 'locName' },
-                { defaultValue: 'N/A', name: 'latestObsDt' },
-                { defaultValue: '0', name: 'numSpeciesAllTime' },
+                'locId',
+                'countryCode',
+                'subnational1Code',
+                'subnational2Code',
+                'lat',
+                'lng',
+                'locName',
+                'latestObsDt',
+                'numSpeciesAllTime',
               ])
         );
         setRawResponse(data);
