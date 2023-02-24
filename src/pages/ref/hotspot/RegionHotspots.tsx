@@ -11,6 +11,7 @@ import Format from '../../../types/Format';
 import FormatSelect from '../../../components/FormatSelect';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import isJson from '../../../utilities/isJson';
+import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleHotspotsTable from '../../../components/SimpleHotspotTable';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../utilities/useEbirdApi';
@@ -35,20 +36,19 @@ export default function RegionHotspots() {
       .getRegionHotspots(regionCode, back, format)
       .then(async (response) => await response.text())
       .then((data) => {
-        console.log(data);
         setHotspots(
           isJson(data)
             ? JSON.parse(data)
             : csvToArray(data, [
-                { name: 'locId' },
-                { name: 'countryCode' },
-                { name: 'subnational1Code' },
-                { name: 'subnational2Code' },
-                { name: 'lat' },
-                { name: 'lng' },
-                { name: 'locName' },
-                { defaultValue: 'N/A', name: 'latestObsDt' },
-                { defaultValue: '0', name: 'numSpeciesAllTime' },
+                'locId',
+                'countryCode',
+                'subnational1Code',
+                'subnational2Code',
+                'lat',
+                'lng',
+                'locName',
+                'latestObsDt',
+                'numSpeciesAllTime',
               ])
         );
         setRawResponse(data);
@@ -104,7 +104,7 @@ export default function RegionHotspots() {
       </Form>
       {loading ? <p>Loading...</p> : null}
       {showResults() ? (
-        <div className="region-hotspots__results">
+        <ResultsContainer>
           <Details summary="Raw Response">{rawResponse}</Details>
           <Details summary="Detailed Table">
             <DetailedHotspotTable hotspots={hotspots} />
@@ -112,7 +112,7 @@ export default function RegionHotspots() {
           <Details summary="Simplified Table">
             <SimpleHotspotsTable hotspots={hotspots} />
           </Details>
-        </div>
+        </ResultsContainer>
       ) : null}
     </BasePage>
   );

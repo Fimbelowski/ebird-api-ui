@@ -14,6 +14,7 @@ import type EbirdHotspot from '../../../types/EbirdHotspot';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
+import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleHotspotTable from '../../../components/SimpleHotspotTable';
 import useEbirdApi from '../../../utilities/useEbirdApi';
 
@@ -45,15 +46,15 @@ export default function NearbyHotspots() {
           isJson(data)
             ? JSON.parse(data)
             : csvToArray(data, [
-                { name: 'locId' },
-                { name: 'countryCode' },
-                { name: 'subnational1Code' },
-                { name: 'subnational2Code' },
-                { name: 'lat' },
-                { name: 'lng' },
-                { name: 'locName' },
-                { defaultValue: 'N/A', name: 'latestObsDt' },
-                { defaultValue: '0', name: 'numSpeciesAllTime' },
+                'locId',
+                'countryCode',
+                'subnational1Code',
+                'subnational2Code',
+                'lat',
+                'lng',
+                'locName',
+                'latestObsDt',
+                'numSpeciesAllTime',
               ])
         );
         setRawResponse(data);
@@ -202,7 +203,7 @@ export default function NearbyHotspots() {
       </Form>
       {loadingResults ? <p>Loading...</p> : null}
       {showResults() ? (
-        <div className="nearby-hotspots__results">
+        <ResultsContainer>
           <Details summary="Raw Response">{rawResponse}</Details>
           <Details summary="Detailed Table">
             <DetailedHotspotTable hotspots={hotspots} />
@@ -213,7 +214,7 @@ export default function NearbyHotspots() {
           >
             <SimpleHotspotTable hotspots={hotspots} />
           </Details>
-        </div>
+        </ResultsContainer>
       ) : null}
     </BasePage>
   );

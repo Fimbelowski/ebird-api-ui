@@ -6,34 +6,34 @@ import type TableHeader from '../types/TableHeader';
 
 const cells: Array<TableCell<EbirdHotspot>> = [
   {
-    callback: (item) => item.locId,
+    callback: ({ locId }) => locId,
   },
   {
-    callback: (item) => item.locName,
+    callback: ({ locName }) => locName,
   },
   {
-    callback: (item) => item.countryCode,
+    callback: ({ countryCode }) => countryCode,
   },
   {
-    callback: (item) => item.subnational1Code,
+    callback: ({ subnational1Code }) => subnational1Code,
   },
   {
-    callback: (item) => item.subnational2Code,
-  },
-  {
-    align: 'right',
-    callback: (item) => item.lat.toLocaleString(),
+    callback: ({ subnational2Code }) => subnational2Code,
   },
   {
     align: 'right',
-    callback: (item) => item.lng.toLocaleString(),
-  },
-  {
-    callback: (item) => item.latestObsDt,
+    callback: ({ lat }) => lat.toLocaleString(),
   },
   {
     align: 'right',
-    callback: (item) => item.numSpeciesAllTime.toLocaleString(),
+    callback: ({ lng }) => lng.toLocaleString(),
+  },
+  {
+    callback: ({ latestObsDt = 'N/A' }) => latestObsDt,
+  },
+  {
+    align: 'right',
+    callback: ({ numSpeciesAllTime = 0 }) => numSpeciesAllTime.toLocaleString(),
   },
 ];
 
