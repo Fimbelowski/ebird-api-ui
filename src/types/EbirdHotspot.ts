@@ -1,11 +1,11 @@
 export default interface EbirdHotspot {
   countryCode: string;
   lat: number;
-  latestObsDt: string;
+  latestObsDt?: string;
   lng: number;
   locId: string;
   locName: string;
-  numSpeciesAllTime: number;
+  numSpeciesAllTime?: number;
   subnational1Code: string;
   subnational2Code: string;
 }
