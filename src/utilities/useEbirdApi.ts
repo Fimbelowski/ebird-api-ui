@@ -149,9 +149,14 @@ export default function useEbirdApi() {
     );
   }
 
+  async function getTaxonomyVersions() {
+    return await baseRequest('ref/taxonomy/versions');
+  }
+
   return {
     getHotspotInfo,
     getNearbyHotspots,
     getRegionHotspots,
+    getTaxonomyVersions,
   };
 }

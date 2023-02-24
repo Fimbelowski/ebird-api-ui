@@ -1,19 +1,40 @@
-import { Link } from 'react-router-dom';
+import NavMenu from './NavMenu';
+import type NavMenuItem from '../types/NavMenuItem';
 
 export default function Nav() {
+  const hotspotMenuItmes: NavMenuItem[] = [
+    {
+      label: 'Nearby Hotspots',
+      path: 'nearby-hotspots',
+    },
+    {
+      label: 'Hotspots in a Region',
+      path: 'region-hotspots',
+    },
+    {
+      label: 'Hotspot Info',
+      path: 'hotspot-info',
+    },
+  ];
+
+  const taxonomyMenuItems: NavMenuItem[] = [
+    {
+      label: 'Taxonomy Versions',
+      path: 'taxonomy-versions',
+    },
+  ];
+
   return (
     <nav className="nav">
-      <menu className="nav__menu">
-        <li>
-          <Link to="nearby-hotspots">Nearby Hotspots</Link>
-        </li>
-        <li>
-          <Link to="region-hotspots">Hotspots in a Region</Link>
-        </li>
-        <li>
-          <Link to="hotspot-info">Hotspot Info</Link>
-        </li>
-      </menu>
+      <NavMenu
+        items={hotspotMenuItmes}
+        label="Hotspots"
+      />
+      <NavMenu
+        items={taxonomyMenuItems}
+        label="Taxonomy"
+        menuAlignment="right"
+      />
     </nav>
   );
 }

@@ -1,0 +1,40 @@
+.nav-menu {
+  &__item {
+    padding: 1rem;
+
+    &:hover {
+      background-color: #eee;
+    }
+  }
+
+  &__label {
+    position: relative;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &__menu {
+    position: absolute;
+    list-style: none;
+    background-color: white;
+    border: 1px solid black;
+    white-space: nowrap;
+
+    &--align {
+      &-left {
+        left: 0;
+      }
+
+      &-right {
+        right: 0;
+      }
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+}
