@@ -1,33 +1,29 @@
 import type EbirdHotspot from '../types/EbirdHotspot';
 import type HotspotTableProps from '../types/HotspotTableProps';
+import MapsLink from './MapsLink';
 import Table from './Table';
 import type TableCell from '../types/TableCell';
 import type TableHeader from '../types/TableHeader';
 
 const cells: Array<TableCell<EbirdHotspot>> = [
   {
-    callback: (item) => item.locName,
+    callback: ({ locName }) => locName,
     wrap: true,
   },
   {
     align: 'right',
-    callback: (item) => item.numSpeciesAllTime.toLocaleString(),
+    callback: ({ numSpeciesAllTime = 0 }) => numSpeciesAllTime.toLocaleString(),
   },
   {
-    callback: (item) => (
-      <time>{new Date(item.latestObsDt).toLocaleString()}</time>
-    ),
+    callback: ({ latestObsDt }) =>
+      latestObsDt === undefined ? (
+        'N/A'
+      ) : (
+        <time>{new Date(latestObsDt).toLocaleString()}</time>
+      ),
   },
   {
-    callback: (item) => (
-      <a
-        href={`https://maps.google.com/?q=${item.lat},${item.lng}`}
-        rel="noreferrer"
-        target="_blank"
-      >
-        Link
-      </a>
-    ),
+    callback: (item) => <MapsLink location={item} />,
   },
 ];
 
