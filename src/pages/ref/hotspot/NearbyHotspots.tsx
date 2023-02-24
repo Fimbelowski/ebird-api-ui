@@ -14,6 +14,7 @@ import type EbirdHotspot from '../../../types/EbirdHotspot';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
+import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleHotspotTable from '../../../components/SimpleHotspotTable';
 import useEbirdApi from '../../../utilities/useEbirdApi';
 
@@ -202,7 +203,7 @@ export default function NearbyHotspots() {
       </Form>
       {loadingResults ? <p>Loading...</p> : null}
       {showResults() ? (
-        <div className="nearby-hotspots__results">
+        <ResultsContainer>
           <Details summary="Raw Response">{rawResponse}</Details>
           <Details summary="Detailed Table">
             <DetailedHotspotTable hotspots={hotspots} />
@@ -213,7 +214,7 @@ export default function NearbyHotspots() {
           >
             <SimpleHotspotTable hotspots={hotspots} />
           </Details>
-        </div>
+        </ResultsContainer>
       ) : null}
     </BasePage>
   );

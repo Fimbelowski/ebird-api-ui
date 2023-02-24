@@ -11,6 +11,7 @@ import Format from '../../../types/Format';
 import FormatSelect from '../../../components/FormatSelect';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import isJson from '../../../utilities/isJson';
+import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleHotspotsTable from '../../../components/SimpleHotspotTable';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../utilities/useEbirdApi';
@@ -103,7 +104,7 @@ export default function RegionHotspots() {
       </Form>
       {loading ? <p>Loading...</p> : null}
       {showResults() ? (
-        <div className="region-hotspots__results">
+        <ResultsContainer>
           <Details summary="Raw Response">{rawResponse}</Details>
           <Details summary="Detailed Table">
             <DetailedHotspotTable hotspots={hotspots} />
@@ -111,7 +112,7 @@ export default function RegionHotspots() {
           <Details summary="Simplified Table">
             <SimpleHotspotsTable hotspots={hotspots} />
           </Details>
-        </div>
+        </ResultsContainer>
       ) : null}
     </BasePage>
   );
