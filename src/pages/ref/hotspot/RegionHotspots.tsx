@@ -16,9 +16,13 @@ import SimpleHotspotsTable from '../../../components/SimpleHotspotTable';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useApiKeyRequired from '../../../hooks/useApiKeyRequired';
+import useSetPageFormId from '../../../hooks/useSetPageFormId';
+
+const FORM_ID = 'region-hotspots';
 
 export default function RegionHotspots() {
   useApiKeyRequired(false);
+  useSetPageFormId(FORM_ID);
 
   const [back, setBack] = useState('');
   const [format, setFormat] = useState<Format>(Format.Csv);
@@ -86,7 +90,7 @@ export default function RegionHotspots() {
   return (
     <BasePage title="Hotspots in a Region">
       <Form
-        id="region-hotspots"
+        id={FORM_ID}
         loading={loading}
         onSubmit={getRegionHotspots}
       >
