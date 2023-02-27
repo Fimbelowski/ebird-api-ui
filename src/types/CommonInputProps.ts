@@ -2,6 +2,7 @@ export default interface CommonInputProps {
   className?: string;
   disabled?: boolean;
   id: string;
+  inline?: boolean;
   label: string;
   loading?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

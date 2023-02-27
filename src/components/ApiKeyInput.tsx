@@ -31,6 +31,7 @@ export default function ApiKeyInput() {
     <div className="api-key-input">
       <BaseInput
         id="api-key"
+        inline
         label="Api Key"
         onChange={onChange}
         type={inputType()}
