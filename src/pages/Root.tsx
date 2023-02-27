@@ -8,11 +8,14 @@ import Header from '../components/Header';
 export default function Root() {
   const [apiKey, setApiKey] = useState('');
   const [apiKeyRequired, setApiKeyRequired] = useState(false);
+  const [formId, setFormId] = useState('');
 
   const apiKeyContext: ApiKeyContextInterface = {
     apiKey,
+    formId,
     required: apiKeyRequired,
     setApiKey,
+    setFormId,
     setRequired: setApiKeyRequired,
   };
 
