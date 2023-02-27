@@ -6,7 +6,7 @@ import Button from './Button';
 import getValueFromChangeEvent from '../utilities/getValueFromChangeEvent';
 
 export default function ApiKeyInput() {
-  const { apiKey, setApiKey } = useContext(ApiKeyContext);
+  const { apiKey, required, setApiKey } = useContext(ApiKeyContext);
 
   const [showApiKey, setShowApiKey] = useState(false);
 
@@ -34,6 +34,7 @@ export default function ApiKeyInput() {
         inline
         label="Api Key"
         onChange={onChange}
+        required={required}
         type={inputType()}
         value={apiKey}
       />
