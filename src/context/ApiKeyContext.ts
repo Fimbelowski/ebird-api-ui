@@ -7,9 +7,7 @@ interface ApiKeyContextInterface {
 
 const ApiKeyContext = createContext<ApiKeyContextInterface>({
   apiKey: '',
-  setApiKey: () => {
-    throw Error('The context provider has not overridden the default values.');
-  },
+  setApiKey: () => {},
 });
 
 export default ApiKeyContext;
