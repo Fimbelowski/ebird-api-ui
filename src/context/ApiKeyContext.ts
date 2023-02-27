@@ -1,8 +1,8 @@
 import { createContext } from 'react';
 
-import type ApiKeyContextInterface from '../types/ApiKeyContext';
+import type ApiKeyContext from '../types/ApiKeyContext';
 
-export default createContext<ApiKeyContextInterface>({
+export default createContext<ApiKeyContext>({
   apiKey: '',
   formId: '',
   required: false,
