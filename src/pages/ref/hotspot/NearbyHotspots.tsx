@@ -16,7 +16,7 @@ import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
 import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleHotspotTable from '../../../components/SimpleHotspotTable';
-import useEbirdApi from '../../../utilities/useEbirdApi';
+import useEbirdApi from '../../../hooks/useEbirdApi';
 import useApiKeyRequired from '../../../hooks/useApiKeyRequired';
 
 export default function NearbyHotspots() {

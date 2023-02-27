@@ -9,7 +9,7 @@ import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent'
 import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleLocationTable from '../../../components/SimpleLocationTable';
 import TextInput from '../../../components/TextInput';
-import useEbirdApi from '../../../utilities/useEbirdApi';
+import useEbirdApi from '../../../hooks/useEbirdApi';
 import useApiKeyRequired from '../../../hooks/useApiKeyRequired';
 
 export default function HotspotInfo() {
