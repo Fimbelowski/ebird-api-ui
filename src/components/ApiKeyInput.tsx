@@ -1,12 +1,12 @@
-import { type ChangeEvent, useContext, useState } from 'react';
+import { type ChangeEvent, useState } from 'react';
 
-import ApiKeyContext from '../context/ApiKeyContext';
 import BaseInput from './BaseInput';
 import Button from './Button';
 import getValueFromChangeEvent from '../utilities/getValueFromChangeEvent';
+import useApiKey from '../hooks/useApiKey';
 
 export default function ApiKeyInput() {
-  const { apiKey, required, setApiKey } = useContext(ApiKeyContext);
+  const { apiKey, required, setApiKey } = useApiKey();
 
   const [showApiKey, setShowApiKey] = useState(false);
 
