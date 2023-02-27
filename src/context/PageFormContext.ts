@@ -1,9 +1,6 @@
 import { createContext } from 'react';
 
-interface PageFormContext {
-  formId: string;
-  setFormId: (newValue: string) => void;
-}
+import type PageFormContext from '../types/PageFormContext';
 
 export default createContext<PageFormContext>({
   formId: '',
