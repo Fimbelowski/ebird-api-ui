@@ -82,6 +82,7 @@ export default function BaseInput({
       <input
         className={inputClasses()}
         disabled={disabled || loading}
+        id={id}
         max={max}
         min={min}
         onChange={onChange}
