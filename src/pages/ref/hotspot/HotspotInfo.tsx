@@ -10,8 +10,11 @@ import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleLocationTable from '../../../components/SimpleLocationTable';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../utilities/useEbirdApi';
+import useApiKeyRequired from '../../../hooks/useApiKeyRequired';
 
 export default function HotspotInfo() {
+  useApiKeyRequired(false);
+
   const [hasQueried, setHasQueried] = useState(false);
   const [hotspot, setHotspot] = useState<EbirdLocation>();
   const [locationId, setLocationId] = useState('');

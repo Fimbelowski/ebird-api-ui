@@ -17,8 +17,11 @@ import NumberInput from '../../../components/NumberInput';
 import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleHotspotTable from '../../../components/SimpleHotspotTable';
 import useEbirdApi from '../../../utilities/useEbirdApi';
+import useApiKeyRequired from '../../../hooks/useApiKeyRequired';
 
 export default function NearbyHotspots() {
+  useApiKeyRequired(false);
+
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('25');
   const [format, setFormat] = useState<Format>(Format.Csv);
