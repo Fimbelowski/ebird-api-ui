@@ -1,9 +1,9 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 
-import ApiKeyContext from '../context/ApiKeyContext';
+import useApiKey from './useApiKey';
 
 export default function useApiKeyRequired(required: boolean) {
-  const { setRequired } = useContext(ApiKeyContext);
+  const { setRequired } = useApiKey();
 
   useEffect(() => {
     setRequired(required);
