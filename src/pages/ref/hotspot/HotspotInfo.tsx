@@ -77,7 +77,10 @@ export default function HotspotInfo() {
 
   return (
     <BasePage title="Hotspot Info">
-      <Form onSubmit={getHotspotInfo}>
+      <Form
+        id="hotspot-info"
+        onSubmit={getHotspotInfo}
+      >
         <TextInput
           id="loc-id"
           label="Location ID"

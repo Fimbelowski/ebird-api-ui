@@ -136,6 +136,7 @@ export default function NearbyHotspots() {
   return (
     <BasePage title="Nearby hotspots">
       <Form
+        id="nearby-hotspots"
         loading={loading()}
         onSubmit={getNearbyHotspots}
       >

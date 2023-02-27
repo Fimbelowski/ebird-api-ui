@@ -85,7 +85,10 @@ export default function RegionHotspots() {
 
   return (
     <BasePage title="Hotspots in a Region">
-      <Form onSubmit={getRegionHotspots}>
+      <Form
+        id="region-hotspots"
+        onSubmit={getRegionHotspots}
+      >
         <TextInput
           id="region-code"
           label="Region Code"
