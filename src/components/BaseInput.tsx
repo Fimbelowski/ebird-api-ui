@@ -23,6 +23,10 @@ export default function BaseInput({
   type,
   value,
 }: BaseInputProps) {
+  function computedLabel() {
+    return required ? `${label}*` : label;
+  }
+
   function containerClasses() {
     return classNames(['base-input', className]);
   }
@@ -77,7 +81,7 @@ export default function BaseInput({
         className={labelClasses()}
         htmlFor={id}
       >
-        {label}
+        {computedLabel()}
       </label>
       <input
         className={inputClasses()}

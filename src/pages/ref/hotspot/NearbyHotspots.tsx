@@ -138,7 +138,7 @@ export default function NearbyHotspots() {
       >
         <CoordinateInput
           id="lat"
-          label="Latitude (to at least two decimal places)*"
+          label="Latitude (to at least two decimal places)"
           loading={loading()}
           max={90}
           min={-90}
@@ -149,7 +149,7 @@ export default function NearbyHotspots() {
         />
         <CoordinateInput
           id="lng"
-          label="Longitude (to at least two decimal places)*"
+          label="Longitude (to at least two decimal places)"
           loading={loading()}
           max={180}
           min={-180}
