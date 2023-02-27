@@ -1,11 +1,6 @@
 import { createContext } from 'react';
 
-interface ApiKeyContextInterface {
-  apiKey: string;
-  required: boolean;
-  setApiKey: (newValue: string) => void;
-  setRequired: (newValue: boolean) => void;
-}
+import type ApiKeyContextInterface from '../types/ApiKeyContext';
 
 const ApiKeyContext = createContext<ApiKeyContextInterface>({
   apiKey: '',
