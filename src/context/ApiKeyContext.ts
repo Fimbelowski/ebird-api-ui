@@ -2,7 +2,7 @@ import { createContext } from 'react';
 
 import type ApiKeyContextInterface from '../types/ApiKeyContext';
 
-const ApiKeyContext = createContext<ApiKeyContextInterface>({
+export default createContext<ApiKeyContextInterface>({
   apiKey: '',
   formId: '',
   required: false,
@@ -10,5 +10,3 @@ const ApiKeyContext = createContext<ApiKeyContextInterface>({
   setFormId: () => {},
   setRequired: () => {},
 });
-
-export default ApiKeyContext;
