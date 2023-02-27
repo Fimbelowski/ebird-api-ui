@@ -7,6 +7,7 @@ type BaseInputProps = CommonInputProps & NumberInputProps & { type: string };
 export default function BaseInput({
   className = '',
   disabled = false,
+  form,
   hideStepper = false,
   id,
   inline = false,
@@ -86,6 +87,7 @@ export default function BaseInput({
       <input
         className={inputClasses()}
         disabled={disabled || loading}
+        form={form}
         id={id}
         max={max}
         min={min}
