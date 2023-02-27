@@ -18,13 +18,11 @@ import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleHotspotTable from '../../../components/SimpleHotspotTable';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useApiKeyRequired from '../../../hooks/useApiKeyRequired';
-import useSetPageFormId from '../../../hooks/useSetPageFormId';
 
 const FORM_ID = 'nearby-hotspots';
 
 export default function NearbyHotspots() {
   useApiKeyRequired(false);
-  useSetPageFormId(FORM_ID);
 
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('25');

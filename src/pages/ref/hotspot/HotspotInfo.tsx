@@ -11,13 +11,11 @@ import SimpleLocationTable from '../../../components/SimpleLocationTable';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useApiKeyRequired from '../../../hooks/useApiKeyRequired';
-import useSetPageFormId from '../../../hooks/useSetPageFormId';
 
 const FORM_ID = 'hotspot-info';
 
 export default function HotspotInfo() {
   useApiKeyRequired(false);
-  useSetPageFormId(FORM_ID);
 
   const [hasQueried, setHasQueried] = useState(false);
   const [hotspot, setHotspot] = useState<EbirdLocation>();
