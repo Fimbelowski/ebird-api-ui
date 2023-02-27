@@ -79,6 +79,7 @@ export default function HotspotInfo() {
     <BasePage title="Hotspot Info">
       <Form
         id="hotspot-info"
+        loading={loading}
         onSubmit={getHotspotInfo}
       >
         <TextInput
