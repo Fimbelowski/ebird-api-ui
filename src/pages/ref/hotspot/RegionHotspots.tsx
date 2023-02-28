@@ -16,8 +16,6 @@ import SimpleHotspotsTable from '../../../components/SimpleHotspotTable';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
-const FORM_ID = 'region-hotspots';
-
 export default function RegionHotspots() {
   const [back, setBack] = useState('');
   const [format, setFormat] = useState<Format>(Format.Csv);
@@ -85,7 +83,6 @@ export default function RegionHotspots() {
   return (
     <BasePage title="Hotspots in a Region">
       <Form
-        id={FORM_ID}
         loading={loading}
         onSubmit={getRegionHotspots}
       >
