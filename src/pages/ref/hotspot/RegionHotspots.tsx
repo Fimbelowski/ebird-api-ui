@@ -14,7 +14,7 @@ import isJson from '../../../utilities/isJson';
 import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleHotspotsTable from '../../../components/SimpleHotspotTable';
 import TextInput from '../../../components/TextInput';
-import useEbirdApi from '../../../utilities/useEbirdApi';
+import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function RegionHotspots() {
   const [back, setBack] = useState('');
@@ -82,7 +82,10 @@ export default function RegionHotspots() {
 
   return (
     <BasePage title="Hotspots in a Region">
-      <Form onSubmit={getRegionHotspots}>
+      <Form
+        loading={loading}
+        onSubmit={getRegionHotspots}
+      >
         <TextInput
           id="region-code"
           label="Region Code"

@@ -7,6 +7,7 @@ type BaseInputProps = CommonInputProps & NumberInputProps & { type: string };
 export default function BaseInput({
   className = '',
   disabled = false,
+  form,
   hideStepper = false,
   id,
   label,
@@ -22,6 +23,10 @@ export default function BaseInput({
   type,
   value,
 }: BaseInputProps) {
+  function computedLabel() {
+    return required ? `${label}*` : label;
+  }
+
   function containerClasses() {
     return classNames(['base-input', className]);
   }
@@ -68,11 +73,13 @@ export default function BaseInput({
         className="base-input__label"
         htmlFor={id}
       >
-        {label}
+        {computedLabel()}
       </label>
       <input
         className={inputClasses()}
         disabled={disabled || loading}
+        form={form}
+        id={id}
         max={max}
         min={min}
         onChange={onChange}

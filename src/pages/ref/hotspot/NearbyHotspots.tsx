@@ -16,7 +16,7 @@ import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
 import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleHotspotTable from '../../../components/SimpleHotspotTable';
-import useEbirdApi from '../../../utilities/useEbirdApi';
+import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function NearbyHotspots() {
   const [back, setBack] = useState('');
@@ -138,7 +138,7 @@ export default function NearbyHotspots() {
       >
         <CoordinateInput
           id="lat"
-          label="Latitude (to at least two decimal places)*"
+          label="Latitude (to at least two decimal places)"
           loading={loading()}
           max={90}
           min={-90}
@@ -149,7 +149,7 @@ export default function NearbyHotspots() {
         />
         <CoordinateInput
           id="lng"
-          label="Longitude (to at least two decimal places)*"
+          label="Longitude (to at least two decimal places)"
           loading={loading()}
           max={180}
           min={-180}

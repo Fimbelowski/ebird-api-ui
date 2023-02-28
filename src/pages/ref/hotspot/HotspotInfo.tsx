@@ -9,7 +9,7 @@ import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent'
 import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleLocationTable from '../../../components/SimpleLocationTable';
 import TextInput from '../../../components/TextInput';
-import useEbirdApi from '../../../utilities/useEbirdApi';
+import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function HotspotInfo() {
   const [hasQueried, setHasQueried] = useState(false);
@@ -74,7 +74,10 @@ export default function HotspotInfo() {
 
   return (
     <BasePage title="Hotspot Info">
-      <Form onSubmit={getHotspotInfo}>
+      <Form
+        loading={loading}
+        onSubmit={getHotspotInfo}
+      >
         <TextInput
           id="loc-id"
           label="Location ID"

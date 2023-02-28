@@ -1,6 +1,7 @@
 export default interface CommonInputProps {
   className?: string;
   disabled?: boolean;
+  form?: string;
   id: string;
   label: string;
   loading?: boolean;

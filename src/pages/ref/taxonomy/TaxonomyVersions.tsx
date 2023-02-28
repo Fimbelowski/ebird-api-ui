@@ -7,7 +7,7 @@ import ResultsContainer from '../../../components/ResultsContainer';
 import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
-import useEbirdApi from '../../../utilities/useEbirdApi';
+import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function TaxonomyVersions() {
   const [hasQueried, setHasQueried] = useState(false);

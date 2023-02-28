@@ -4,11 +4,11 @@ import Button from './Button';
 
 interface Props {
   children?: ReactNode;
-  loading?: boolean;
+  loading: boolean;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 }
 
-export default function Form({ children, loading = false, onSubmit }: Props) {
+export default function Form({ children, loading, onSubmit }: Props) {
   return (
     <form
       className="form"

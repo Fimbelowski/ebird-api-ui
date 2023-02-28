@@ -19,6 +19,10 @@ export default function Nav() {
 
   const taxonomyMenuItems: NavMenuItem[] = [
     {
+      label: 'Taxa Locale Codes',
+      path: 'taxa-locale-codes',
+    },
+    {
       label: 'Taxonomy Versions',
       path: 'taxonomy-versions',
     },
