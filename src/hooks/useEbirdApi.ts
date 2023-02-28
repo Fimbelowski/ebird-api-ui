@@ -16,9 +16,9 @@ interface UrlParam {
 export default function useEbirdApi() {
   async function baseRequest(
     endpoint: string,
-    queryParams: QueryParam[] = [],
+    apiKey = '',
     urlParams: UrlParam[] = [],
-    apiKey = ''
+    queryParams: QueryParam[] = []
   ) {
     return await fetch(
       `${BASE_URL}${buildEndpointString(endpoint, urlParams)}${buildQueryString(
@@ -80,7 +80,7 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest('ref/hotspot/info/{{locId}}', [], urlParams);
+    return await baseRequest('ref/hotspot/info/{{locId}}', '', [], urlParams);
   }
 
   async function getNearbyHotspots(
@@ -115,7 +115,7 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest('ref/hotspot/geo', queryParams);
+    return await baseRequest('ref/hotspot/geo', '', [], queryParams);
   }
 
   async function getRegionHotspots(
@@ -144,8 +144,9 @@ export default function useEbirdApi() {
 
     return await baseRequest(
       'ref/hotspot/{{regionCode}}',
-      queryParams,
-      urlParams
+      '',
+      urlParams,
+      queryParams
     );
   }
 
