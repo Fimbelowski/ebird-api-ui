@@ -5,6 +5,7 @@ import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import RegionHotspots from './pages/ref/hotspot/RegionHotspots';
 import Root from './pages/Root';
 import TaxaLocaleCodes from './pages/ref/taxonomy/TaxaLocaleCodes';
+import TaxonomicGroups from './pages/ref/taxonomy/TaxonomicGroups';
 import TaxonomyVersions from './pages/ref/taxonomy/TaxonomyVersions';
 
 const ROUTES: RouteObject[] = [
@@ -27,6 +28,10 @@ const ROUTES: RouteObject[] = [
       {
         path: 'taxa-locale-codes',
         element: <TaxaLocaleCodes />,
+      },
+      {
+        path: 'taxonomic-groups',
+        element: <TaxonomicGroups />,
       },
       {
         path: 'taxonomy-versions',
