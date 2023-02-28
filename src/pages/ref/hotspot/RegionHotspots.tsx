@@ -15,13 +15,10 @@ import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleHotspotsTable from '../../../components/SimpleHotspotTable';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
-import useApiKeyRequired from '../../../hooks/useApiKeyRequired';
 
 const FORM_ID = 'region-hotspots';
 
 export default function RegionHotspots() {
-  useApiKeyRequired(false);
-
   const [back, setBack] = useState('');
   const [format, setFormat] = useState<Format>(Format.Csv);
   const [hasQueried, setHasQueried] = useState(false);

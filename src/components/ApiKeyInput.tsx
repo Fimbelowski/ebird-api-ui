@@ -6,7 +6,7 @@ import getValueFromChangeEvent from '../utilities/getValueFromChangeEvent';
 import useApiKey from '../hooks/useApiKey';
 
 export default function ApiKeyInput() {
-  const { apiKey, required, setApiKey } = useApiKey();
+  const { apiKey, setApiKey } = useApiKey();
 
   const [showApiKey, setShowApiKey] = useState(false);
 
@@ -34,7 +34,7 @@ export default function ApiKeyInput() {
         inline
         label="Api Key"
         onChange={onChange}
-        required={required}
+        required
         type={inputType()}
         value={apiKey}
       />

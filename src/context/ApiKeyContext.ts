@@ -4,7 +4,5 @@ import type ApiKeyContext from '../types/ApiKeyContext';
 
 export default createContext<ApiKeyContext>({
   apiKey: '',
-  required: false,
   setApiKey: () => {},
-  setRequired: () => {},
 });

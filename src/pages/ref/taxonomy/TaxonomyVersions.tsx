@@ -8,11 +8,8 @@ import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
 import useEbirdApi from '../../../hooks/useEbirdApi';
-import useApiKeyRequired from '../../../hooks/useApiKeyRequired';
 
 export default function TaxonomyVersions() {
-  useApiKeyRequired(false);
-
   const [hasQueried, setHasQueried] = useState(false);
   const [loading, setLoading] = useState(true);
   const [rawResponse, setRawResponse] = useState('');
