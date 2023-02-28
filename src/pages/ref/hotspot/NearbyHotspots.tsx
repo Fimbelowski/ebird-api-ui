@@ -18,8 +18,6 @@ import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleHotspotTable from '../../../components/SimpleHotspotTable';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
-const FORM_ID = 'nearby-hotspots';
-
 export default function NearbyHotspots() {
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('25');
@@ -135,7 +133,6 @@ export default function NearbyHotspots() {
   return (
     <BasePage title="Nearby hotspots">
       <Form
-        id={FORM_ID}
         loading={loading()}
         onSubmit={getNearbyHotspots}
       >

@@ -11,8 +11,6 @@ import SimpleLocationTable from '../../../components/SimpleLocationTable';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
-const FORM_ID = 'hotspot-info';
-
 export default function HotspotInfo() {
   const [hasQueried, setHasQueried] = useState(false);
   const [hotspot, setHotspot] = useState<EbirdLocation>();
@@ -77,7 +75,6 @@ export default function HotspotInfo() {
   return (
     <BasePage title="Hotspot Info">
       <Form
-        id={FORM_ID}
         loading={loading}
         onSubmit={getHotspotInfo}
       >
