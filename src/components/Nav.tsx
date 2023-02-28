@@ -23,6 +23,10 @@ export default function Nav() {
       path: 'taxa-locale-codes',
     },
     {
+      label: 'Taxonomic Groups',
+      path: 'taxonomic-groups',
+    },
+    {
       label: 'Taxonomy Versions',
       path: 'taxonomy-versions',
     },
