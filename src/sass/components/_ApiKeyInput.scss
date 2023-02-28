@@ -1,4 +1,9 @@
 .api-key-input {
   display: flex;
   gap: 1rem;
+  align-items: flex-end;
+
+  &__input {
+    flex: 1 1 auto;
+  }
 }

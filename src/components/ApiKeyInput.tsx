@@ -29,15 +29,16 @@ export default function ApiKeyInput() {
 
   return (
     <div className="api-key-input">
-      <BaseInput
-        id="api-key"
-        inline
-        label="Api Key"
-        onChange={onChange}
-        required
-        type={inputType()}
-        value={apiKey}
-      />
+      <div className="api-key-input__input">
+        <BaseInput
+          id="api-key"
+          label="Api Key"
+          onChange={onChange}
+          required
+          type={inputType()}
+          value={apiKey}
+        />
+      </div>
       <Button
         onClick={onToggleShowApiKey}
         type="button"
