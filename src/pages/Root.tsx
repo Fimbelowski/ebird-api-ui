@@ -8,11 +8,13 @@ export default function Root() {
   const [apiKey, setApiKey] = useState('');
 
   return (
-    <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
+    <>
       <Header></Header>
       <main>
-        <Outlet />
+        <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
+          <Outlet />
+        </ApiKeyContext.Provider>
       </main>
-    </ApiKeyContext.Provider>
+    </>
   );
 }
