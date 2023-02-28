@@ -150,6 +150,10 @@ export default function useEbirdApi() {
     );
   }
 
+  async function getTaxaLocaleCodes(apiKey: string) {
+    return await baseRequest('ref/taxa-locales/ebird', apiKey);
+  }
+
   async function getTaxonomyVersions() {
     return await baseRequest('ref/taxonomy/versions');
   }
@@ -158,6 +162,7 @@ export default function useEbirdApi() {
     getHotspotInfo,
     getNearbyHotspots,
     getRegionHotspots,
+    getTaxaLocaleCodes,
     getTaxonomyVersions,
   };
 }
