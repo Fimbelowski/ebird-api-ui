@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 
 import ApiKeyContext from '../../../context/ApiKeyContext';
-import ApiKeyInput from '../../../components/ApiKeyInput';
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
 import type EbirdTaxonomicGroup from '../../../types/EbirdTaxonomicGroup';
@@ -162,7 +161,6 @@ export default function TaxonomicGroups() {
   function FormContent() {
     return (
       <>
-        <ApiKeyInput />
         <Select<SpeciesGrouping>
           id="species-grouping"
           label="Species Grouping"
@@ -220,6 +218,7 @@ export default function TaxonomicGroups() {
       loading={loading}
       onFormSubmit={onSubmit}
       rawResponse={rawResponse}
+      requiresApiKey
       resultsContent={<ResultsContent />}
       title="Taxonomic Groups"
     />

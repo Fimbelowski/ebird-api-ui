@@ -1,5 +1,6 @@
 import { type FormEvent, type ReactNode } from 'react';
 
+import ApiKeyInput from './ApiKeyInput';
 import Details from './Details';
 import Form from './Form';
 import ResultsContainer from './ResultsContainer';
@@ -10,6 +11,7 @@ interface Props {
   loading: boolean;
   onFormSubmit?: () => void;
   rawResponse: string;
+  requiresApiKey?: boolean;
   resultsContent?: ReactNode;
   title: string;
 }
@@ -20,12 +22,17 @@ export default function BasePage({
   loading,
   onFormSubmit = () => {},
   rawResponse,
+  requiresApiKey = false,
   resultsContent,
   title,
 }: Props) {
   function onSubmit(event: FormEvent) {
     event.preventDefault();
     onFormSubmit();
+  }
+
+  function renderForm() {
+    return formContent !== undefined || requiresApiKey;
   }
 
   function showResults() {
@@ -35,11 +42,12 @@ export default function BasePage({
   return (
     <section className="base-page">
       <h2 className="base-page__title">{title}</h2>
-      {formContent !== undefined ? (
+      {renderForm() ? (
         <Form
           loading={loading}
           onSubmit={onSubmit}
         >
+          {requiresApiKey ? <ApiKeyInput /> : null}
           {formContent}
         </Form>
       ) : null}

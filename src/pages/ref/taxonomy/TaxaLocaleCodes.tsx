@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import ApiKeyInput from '../../../components/ApiKeyInput';
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
 import type EbirdTaxaLocaleCode from '../../../types/EbirdTaxaLocaleCode';
@@ -79,11 +78,11 @@ export default function TaxaLocaleCodes() {
 
   return (
     <BasePage
-      formContent={<ApiKeyInput />}
       hasQueried={hasQueried}
       loading={loading}
       onFormSubmit={onSubmit}
       rawResponse={rawResponse}
+      requiresApiKey
       resultsContent={<ResultsContent />}
       title="Taxa Locale Codes"
     />
