@@ -62,19 +62,17 @@ export default function TaxaLocaleCodes() {
       });
   }
 
-  function ResultsContent() {
-    return (
-      <>
-        <Details summary="Results Table">
-          <Table<EbirdTaxaLocaleCode>
-            cells={tableCells}
-            headers={tableHeaders}
-            items={taxaLocaleCodes}
-          />
-        </Details>
-      </>
-    );
-  }
+  const resultsContent = (
+    <>
+      <Details summary="Results Table">
+        <Table<EbirdTaxaLocaleCode>
+          cells={tableCells}
+          headers={tableHeaders}
+          items={taxaLocaleCodes}
+        />
+      </Details>
+    </>
+  );
 
   return (
     <BasePage
@@ -83,7 +81,7 @@ export default function TaxaLocaleCodes() {
       onFormSubmit={onSubmit}
       rawResponse={rawResponse}
       requiresApiKey
-      resultsContent={<ResultsContent />}
+      resultsContent={resultsContent}
       title="Taxa Locale Codes"
     />
   );

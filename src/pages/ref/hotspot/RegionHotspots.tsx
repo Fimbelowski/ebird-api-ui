@@ -25,30 +25,28 @@ export default function RegionHotspots() {
 
   const ebirdApi = useEbirdApi();
 
-  function FormContent() {
-    return (
-      <>
-        <TextInput
-          id="region-code"
-          label="Region Code"
-          onChange={onRegionCodeChange}
-          placeholder="US-CO"
-          required
-          value={regionCode}
-        />
-        <BackInput
-          id="back"
-          onChange={onBackChange}
-          value={back}
-        />
-        <FormatSelect
-          id="format"
-          onChange={onFormatChange}
-          value={format}
-        />
-      </>
-    );
-  }
+  const formContent = (
+    <>
+      <TextInput
+        id="region-code"
+        label="Region Code"
+        onChange={onRegionCodeChange}
+        placeholder="US-CO"
+        required
+        value={regionCode}
+      />
+      <BackInput
+        id="back"
+        onChange={onBackChange}
+        value={back}
+      />
+      <FormatSelect
+        id="format"
+        onChange={onFormatChange}
+        value={format}
+      />
+    </>
+  );
 
   function getRegionHotspots() {
     setLoading(true);
@@ -115,7 +113,7 @@ export default function RegionHotspots() {
 
   return (
     <BasePage
-      formContent={<FormContent />}
+      formContent={formContent}
       hasQueried={hasQueried}
       loading={loading}
       onFormSubmit={getRegionHotspots}

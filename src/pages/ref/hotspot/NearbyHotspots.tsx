@@ -31,78 +31,6 @@ export default function NearbyHotspots() {
 
   const ebirdApi = useEbirdApi();
 
-  function FormContent() {
-    return (
-      <>
-        {' '}
-        <CoordinateInput
-          id="lat"
-          label="Latitude (to at least two decimal places)"
-          loading={loading()}
-          max={90}
-          min={-90}
-          onChange={onLatitudeChange}
-          placeholder="42.4799394"
-          required
-          value={latitude}
-        />
-        <CoordinateInput
-          id="lng"
-          label="Longitude (to at least two decimal places)"
-          loading={loading()}
-          max={180}
-          min={-180}
-          onChange={onLongitudeChange}
-          placeholder="-76.4556869"
-          required
-          value={longitude}
-        />
-        <Button
-          className="nearby-hotspots__get-user-position"
-          loading={loading()}
-          onClick={getUserPosition}
-          type="button"
-        >
-          Use My Location
-        </Button>
-        {loadingPosition ? (
-          <p className="nearby-hotspots__loading-position">
-            Getting position...
-          </p>
-        ) : null}
-        {showPositionError ? (
-          <p className="nearby-hotspots__position-error">
-            Unable to get location. Please check permissions and try again.
-          </p>
-        ) : null}
-        <NumberInput
-          className="nearby-hotspots__distance-input"
-          id="distance"
-          label="Distance (km)"
-          loading={loading()}
-          max={500}
-          min={0}
-          onChange={onDistanceChange}
-          placeholder="25"
-          value={distance}
-        />
-        <BackInput
-          className="nearby-hotspots__back-input"
-          id="back"
-          loading={loading()}
-          onChange={onBackChange}
-          value={back}
-        />
-        <FormatSelect
-          id="format"
-          loading={loading()}
-          onChange={onFormatChange}
-          value={format}
-        />
-      </>
-    );
-  }
-
   function getNearbyHotspots() {
     setLoadingResults(true);
 
@@ -194,30 +122,95 @@ export default function NearbyHotspots() {
     setLoadingPosition(false);
   }
 
-  function ResultsContent() {
-    return (
-      <>
-        <Details summary="Detailed Table">
-          <DetailedHotspotTable hotspots={hotspots} />
-        </Details>
-        <Details
-          open
-          summary="Simplified Table"
-        >
-          <SimpleHotspotTable hotspots={hotspots} />
-        </Details>
-      </>
-    );
-  }
+  const formContent = (
+    <>
+      <CoordinateInput
+        id="lat"
+        label="Latitude (to at least two decimal places)"
+        loading={loading()}
+        max={90}
+        min={-90}
+        onChange={onLatitudeChange}
+        placeholder="42.4799394"
+        required
+        value={latitude}
+      />
+      <CoordinateInput
+        id="lng"
+        label="Longitude (to at least two decimal places)"
+        loading={loading()}
+        max={180}
+        min={-180}
+        onChange={onLongitudeChange}
+        placeholder="-76.4556869"
+        required
+        value={longitude}
+      />
+      <Button
+        className="nearby-hotspots__get-user-position"
+        loading={loading()}
+        onClick={getUserPosition}
+        type="button"
+      >
+        Use My Location
+      </Button>
+      {loadingPosition ? (
+        <p className="nearby-hotspots__loading-position">Getting position...</p>
+      ) : null}
+      {showPositionError ? (
+        <p className="nearby-hotspots__position-error">
+          Unable to get location. Please check permissions and try again.
+        </p>
+      ) : null}
+      <NumberInput
+        className="nearby-hotspots__distance-input"
+        id="distance"
+        label="Distance (km)"
+        loading={loading()}
+        max={500}
+        min={0}
+        onChange={onDistanceChange}
+        placeholder="25"
+        value={distance}
+      />
+      <BackInput
+        className="nearby-hotspots__back-input"
+        id="back"
+        loading={loading()}
+        onChange={onBackChange}
+        value={back}
+      />
+      <FormatSelect
+        id="format"
+        loading={loading()}
+        onChange={onFormatChange}
+        value={format}
+      />
+    </>
+  );
+
+  const resultsContent = (
+    <>
+      <Details summary="Detailed Table">
+        <DetailedHotspotTable hotspots={hotspots} />
+      </Details>
+      <Details
+        open
+        summary="Simplified Table"
+      >
+        <SimpleHotspotTable hotspots={hotspots} />
+      </Details>
+    </>
+  );
 
   return (
     <BasePage
-      formContent={<FormContent />}
+      formContent={formContent}
       hasQueried={hasQueried}
       loading={loadingResults}
       onFormSubmit={getNearbyHotspots}
       rawResponse={rawResponse}
-      resultsContent={<ResultsContent />}
+      resultsContent={resultsContent}
       title="Nearby hotspots"
     />
   );

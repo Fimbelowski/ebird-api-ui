@@ -55,27 +55,25 @@ export default function TaxonomyVersions() {
       });
   }
 
-  function Results() {
-    return (
-      <Details
-        open
-        summary="Results Table"
-      >
-        <Table<EbirdTaxonomyVersion>
-          cells={tableCells}
-          headers={tableHeaders}
-          items={versions}
-        />
-      </Details>
-    );
-  }
+  const resultsContent = (
+    <Details
+      open
+      summary="Results Table"
+    >
+      <Table<EbirdTaxonomyVersion>
+        cells={tableCells}
+        headers={tableHeaders}
+        items={versions}
+      />
+    </Details>
+  );
 
   return (
     <BasePage
       hasQueried={hasQueried}
       loading={loading}
       rawResponse={rawResponse}
-      resultsContent={<Results />}
+      resultsContent={resultsContent}
       title="Taxonomy Versions"
     />
   );

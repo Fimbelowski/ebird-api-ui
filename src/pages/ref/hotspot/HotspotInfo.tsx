@@ -43,12 +43,19 @@ export default function HotspotInfo() {
     setLocationId(value);
   }
 
-  function Results() {
-    if (hotspot === undefined) {
-      return null;
-    }
+  const formContent = (
+    <TextInput
+      id="loc-id"
+      label="Location ID"
+      onChange={onLocationIdChange}
+      placeholder="L140473"
+      required
+      value={locationId}
+    />
+  );
 
-    return (
+  const resultsContent =
+    hotspot !== undefined ? (
       <>
         <Details summary="Detailed Table">
           <DetailedLocationTable locations={[hotspot]} />
@@ -60,30 +67,16 @@ export default function HotspotInfo() {
           <SimpleLocationTable locations={[hotspot]} />
         </Details>
       </>
-    );
-  }
-
-  function FormContent() {
-    return (
-      <TextInput
-        id="loc-id"
-        label="Location ID"
-        onChange={onLocationIdChange}
-        placeholder="L140473"
-        required
-        value={locationId}
-      />
-    );
-  }
+    ) : null;
 
   return (
     <BasePage
-      formContent={<FormContent />}
+      formContent={formContent}
       hasQueried={hasQueried}
       loading={loading}
       onFormSubmit={getHotspotInfo}
       rawResponse={rawResponse}
-      resultsContent={<Results />}
+      resultsContent={resultsContent}
       title="Hotspot Info"
     />
   );

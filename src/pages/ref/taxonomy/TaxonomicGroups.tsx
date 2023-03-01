@@ -158,28 +158,36 @@ export default function TaxonomicGroups() {
     },
   ];
 
-  function FormContent() {
-    return (
-      <>
-        <Select<SpeciesGrouping>
-          id="species-grouping"
-          label="Species Grouping"
-          loading={loading}
-          onChange={setSpeciesGrouping}
-          options={speciesGroupingSelectOptions}
-          value={speciesGrouping}
-        />
-        <Select<GroupNameLocale>
-          id="group-name-locale"
-          label="Group Name Locale"
-          loading={loading}
-          onChange={setGroupNameLocale}
-          options={groupNameLocaleOptions}
-          value={groupNameLocale}
-        />
-      </>
-    );
-  }
+  const formContent = (
+    <>
+      <Select<SpeciesGrouping>
+        id="species-grouping"
+        label="Species Grouping"
+        loading={loading}
+        onChange={setSpeciesGrouping}
+        options={speciesGroupingSelectOptions}
+        value={speciesGrouping}
+      />
+      <Select<GroupNameLocale>
+        id="group-name-locale"
+        label="Group Name Locale"
+        loading={loading}
+        onChange={setGroupNameLocale}
+        options={groupNameLocaleOptions}
+        value={groupNameLocale}
+      />
+    </>
+  );
+
+  const resultsContent = (
+    <Details summary="Results Table">
+      <Table<EbirdTaxonomicGroup>
+        cells={tableCells}
+        headers={tableHeaders}
+        items={taxonomicGroups}
+      />
+    </Details>
+  );
 
   function onSubmit() {
     setLoading(true);
@@ -199,27 +207,15 @@ export default function TaxonomicGroups() {
       });
   }
 
-  function ResultsContent() {
-    return (
-      <Details summary="Results Table">
-        <Table<EbirdTaxonomicGroup>
-          cells={tableCells}
-          headers={tableHeaders}
-          items={taxonomicGroups}
-        />
-      </Details>
-    );
-  }
-
   return (
     <BasePage
-      formContent={<FormContent />}
+      formContent={formContent}
       hasQueried={hasQueried}
       loading={loading}
       onFormSubmit={onSubmit}
       rawResponse={rawResponse}
       requiresApiKey
-      resultsContent={<ResultsContent />}
+      resultsContent={resultsContent}
       title="Taxonomic Groups"
     />
   );
