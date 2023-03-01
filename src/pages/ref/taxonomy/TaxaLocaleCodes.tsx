@@ -1,11 +1,8 @@
-import { type FormEvent, useState } from 'react';
+import { useState } from 'react';
 
-import ApiKeyInput from '../../../components/ApiKeyInput';
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
 import type EbirdTaxaLocaleCode from '../../../types/EbirdTaxaLocaleCode';
-import Form from '../../../components/Form';
-import ResultsContainer from '../../../components/ResultsContainer';
 import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
@@ -47,9 +44,7 @@ export default function TaxaLocaleCodes() {
     },
   ];
 
-  function onSubmit(event: FormEvent) {
-    event.preventDefault();
-
+  function onSubmit() {
     setLoading(true);
 
     getTaxaLocaleCodes(apiKey)
@@ -67,31 +62,27 @@ export default function TaxaLocaleCodes() {
       });
   }
 
-  function showResults() {
-    return hasQueried && !loading;
-  }
+  const resultsContent = (
+    <>
+      <Details summary="Results Table">
+        <Table<EbirdTaxaLocaleCode>
+          cells={tableCells}
+          headers={tableHeaders}
+          items={taxaLocaleCodes}
+        />
+      </Details>
+    </>
+  );
 
   return (
-    <BasePage title="Taxa Locale Codes">
-      <Form
-        loading={loading}
-        onSubmit={onSubmit}
-      >
-        <ApiKeyInput />
-      </Form>
-      {loading ? <p>Loading...</p> : null}
-      {showResults() ? (
-        <ResultsContainer>
-          <Details summary="Raw Response">{rawResponse}</Details>
-          <Details summary="Results Table">
-            <Table<EbirdTaxaLocaleCode>
-              cells={tableCells}
-              headers={tableHeaders}
-              items={taxaLocaleCodes}
-            />
-          </Details>
-        </ResultsContainer>
-      ) : null}
-    </BasePage>
+    <BasePage
+      hasQueried={hasQueried}
+      loading={loading}
+      onFormSubmit={onSubmit}
+      rawResponse={rawResponse}
+      requiresApiKey
+      resultsContent={resultsContent}
+      title="Taxa Locale Codes"
+    />
   );
 }

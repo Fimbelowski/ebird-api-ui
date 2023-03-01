@@ -1,4 +1,4 @@
-import { type ChangeEvent, type FormEvent, useState } from 'react';
+import { type ChangeEvent, useState } from 'react';
 
 import BackInput from '../../../components/BackInput';
 import BasePage from '../../../components/BasePage';
@@ -6,12 +6,10 @@ import csvToArray from '../../../utilities/csvToArray';
 import DetailedHotspotTable from '../../../components/DetailedHotspotTable';
 import Details from '../../../components/Details';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
-import Form from '../../../components/Form';
 import Format from '../../../types/Format';
 import FormatSelect from '../../../components/FormatSelect';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import isJson from '../../../utilities/isJson';
-import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleHotspotsTable from '../../../components/SimpleHotspotTable';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
@@ -25,15 +23,49 @@ export default function RegionHotspots() {
   const [rawResponse, setRawResponse] = useState('');
   const [regionCode, setRegionCode] = useState('');
 
-  const ebirdApi = useEbirdApi();
+  const { getRegionHotspots } = useEbirdApi();
 
-  function getRegionHotspots(event: FormEvent) {
-    event.preventDefault();
+  const formContent = (
+    <>
+      <TextInput
+        id="region-code"
+        label="Region Code"
+        onChange={onRegionCodeChange}
+        placeholder="US-CO"
+        required
+        value={regionCode}
+      />
+      <BackInput
+        id="back"
+        onChange={onBackChange}
+        value={back}
+      />
+      <FormatSelect
+        id="format"
+        onChange={onFormatChange}
+        value={format}
+      />
+    </>
+  );
 
+  function onBackChange(event: ChangeEvent<HTMLInputElement>) {
+    const value = getValueFromChangeEvent(event);
+    setBack(value);
+  }
+
+  function onFormatChange(format: Format) {
+    setFormat(format);
+  }
+
+  function onRegionCodeChange(event: ChangeEvent<HTMLInputElement>) {
+    const value = getValueFromChangeEvent(event);
+    setRegionCode(value);
+  }
+
+  function onSubmit() {
     setLoading(true);
 
-    ebirdApi
-      .getRegionHotspots(regionCode, back, format)
+    getRegionHotspots(regionCode, back, format)
       .then(async (response) => await response.text())
       .then((data) => {
         setHotspots(
@@ -62,61 +94,31 @@ export default function RegionHotspots() {
       });
   }
 
-  function onBackChange(event: ChangeEvent<HTMLInputElement>) {
-    const value = getValueFromChangeEvent(event);
-    setBack(value);
-  }
-
-  function onFormatChange(format: Format) {
-    setFormat(format);
-  }
-
-  function onRegionCodeChange(event: ChangeEvent<HTMLInputElement>) {
-    const value = getValueFromChangeEvent(event);
-    setRegionCode(value);
-  }
-
-  function showResults() {
-    return hasQueried && !loading;
+  function ResultsContent() {
+    return (
+      <>
+        <Details summary="Detailed Table">
+          <DetailedHotspotTable hotspots={hotspots} />
+        </Details>
+        <Details
+          open
+          summary="Simplified Table"
+        >
+          <SimpleHotspotsTable hotspots={hotspots} />
+        </Details>
+      </>
+    );
   }
 
   return (
-    <BasePage title="Hotspots in a Region">
-      <Form
-        loading={loading}
-        onSubmit={getRegionHotspots}
-      >
-        <TextInput
-          id="region-code"
-          label="Region Code"
-          onChange={onRegionCodeChange}
-          placeholder="US-CO"
-          required
-          value={regionCode}
-        />
-        <BackInput
-          id="back"
-          onChange={onBackChange}
-          value={back}
-        />
-        <FormatSelect
-          id="format"
-          onChange={onFormatChange}
-          value={format}
-        />
-      </Form>
-      {loading ? <p>Loading...</p> : null}
-      {showResults() ? (
-        <ResultsContainer>
-          <Details summary="Raw Response">{rawResponse}</Details>
-          <Details summary="Detailed Table">
-            <DetailedHotspotTable hotspots={hotspots} />
-          </Details>
-          <Details summary="Simplified Table">
-            <SimpleHotspotsTable hotspots={hotspots} />
-          </Details>
-        </ResultsContainer>
-      ) : null}
-    </BasePage>
+    <BasePage
+      formContent={formContent}
+      hasQueried={hasQueried}
+      loading={loading}
+      onFormSubmit={onSubmit}
+      rawResponse={rawResponse}
+      resultsContent={ResultsContent()}
+      title="Hotspots in a Region"
+    />
   );
 }
