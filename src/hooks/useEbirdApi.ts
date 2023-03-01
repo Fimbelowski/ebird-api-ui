@@ -82,7 +82,7 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest('ref/hotspot/info/{{locId}}', '', [], urlParams);
+    return await baseRequest('ref/hotspot/info/{{locId}}', '', urlParams, []);
   }
 
   async function getNearbyHotspots(
