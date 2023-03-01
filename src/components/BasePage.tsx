@@ -3,7 +3,6 @@ import { type FormEvent, type ReactNode } from 'react';
 import ApiKeyInput from './ApiKeyInput';
 import Details from './Details';
 import Form from './Form';
-import ResultsContainer from './ResultsContainer';
 
 interface Props {
   formContent?: ReactNode;
@@ -53,10 +52,10 @@ export default function BasePage({
       ) : null}
       {loading ? 'Loading...' : null}
       {showResults() ? (
-        <ResultsContainer>
+        <div className="base-page__results-container">
           <Details summary="Raw Response">{rawResponse}</Details>
           {resultsContent}
-        </ResultsContainer>
+        </div>
       ) : null}
     </section>
   );
