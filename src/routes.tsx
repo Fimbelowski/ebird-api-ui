@@ -1,5 +1,6 @@
 import { type RouteObject } from 'react-router-dom';
 
+import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
 import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import RegionHotspots from './pages/ref/hotspot/RegionHotspots';
@@ -13,6 +14,10 @@ const ROUTES: RouteObject[] = [
     path: '',
     element: <Root />,
     children: [
+      {
+        path: 'adjacent-regions',
+        element: <AdjacentRegions />,
+      },
       {
         path: 'hotspot-info',
         element: <HotspotInfo />,
