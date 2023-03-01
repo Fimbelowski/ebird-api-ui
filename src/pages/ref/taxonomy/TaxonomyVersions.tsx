@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
 import type EbirdTaxonomyVersion from '../../../types/EbirdTaxonomyVersion';
-import ResultsContainer from '../../../components/ResultsContainer';
 import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
@@ -56,28 +55,28 @@ export default function TaxonomyVersions() {
       });
   }
 
-  function showResults() {
-    return hasQueried && !loading;
+  function Results() {
+    return (
+      <Details
+        open
+        summary="Results Table"
+      >
+        <Table<EbirdTaxonomyVersion>
+          cells={tableCells}
+          headers={tableHeaders}
+          items={versions}
+        />
+      </Details>
+    );
   }
 
   return (
-    <BasePage title="Taxonomy Versions">
-      {loading ? <p>Loading...</p> : null}
-      {showResults() ? (
-        <ResultsContainer>
-          <Details summary="Raw Response">{rawResponse}</Details>
-          <Details
-            open
-            summary="Results Table"
-          >
-            <Table<EbirdTaxonomyVersion>
-              cells={tableCells}
-              headers={tableHeaders}
-              items={versions}
-            />
-          </Details>
-        </ResultsContainer>
-      ) : null}
-    </BasePage>
+    <BasePage
+      hasQueried={hasQueried}
+      loading={loading}
+      rawResponse={rawResponse}
+      resultsContent={<Results />}
+      title="Taxonomy Versions"
+    />
   );
 }

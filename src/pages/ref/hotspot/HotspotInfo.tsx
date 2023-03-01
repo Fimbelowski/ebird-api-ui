@@ -1,12 +1,10 @@
-import { type ChangeEvent, type FormEvent, useState } from 'react';
+import { type ChangeEvent, useState } from 'react';
 
 import BasePage from '../../../components/BasePage';
 import DetailedLocationTable from '../../../components/DetailedLocationTable';
 import Details from '../../../components/Details';
 import type EbirdLocation from '../../../types/EbirdLocation';
-import Form from '../../../components/Form';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
-import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleLocationTable from '../../../components/SimpleLocationTable';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
@@ -20,9 +18,7 @@ export default function HotspotInfo() {
 
   const ebirdApi = useEbirdApi();
 
-  function getHotspotInfo(event: FormEvent) {
-    event.preventDefault();
-
+  function getHotspotInfo() {
     setLoading(true);
 
     ebirdApi
@@ -53,8 +49,7 @@ export default function HotspotInfo() {
     }
 
     return (
-      <ResultsContainer>
-        <Details summary="Raw Response">{rawResponse}</Details>
+      <>
         <Details summary="Detailed Table">
           <DetailedLocationTable locations={[hotspot]} />
         </Details>
@@ -64,31 +59,32 @@ export default function HotspotInfo() {
         >
           <SimpleLocationTable locations={[hotspot]} />
         </Details>
-      </ResultsContainer>
+      </>
     );
   }
 
-  function showResults() {
-    return hasQueried && !loading;
+  function FormContent() {
+    return (
+      <TextInput
+        id="loc-id"
+        label="Location ID"
+        onChange={onLocationIdChange}
+        placeholder="L140473"
+        required
+        value={locationId}
+      />
+    );
   }
 
   return (
-    <BasePage title="Hotspot Info">
-      <Form
-        loading={loading}
-        onSubmit={getHotspotInfo}
-      >
-        <TextInput
-          id="loc-id"
-          label="Location ID"
-          onChange={onLocationIdChange}
-          placeholder="L140473"
-          required
-          value={locationId}
-        />
-      </Form>
-      {loading ? <p>Loading...</p> : null}
-      {showResults() ? <Results /> : null}
-    </BasePage>
+    <BasePage
+      formContent={<FormContent />}
+      hasQueried={hasQueried}
+      loading={loading}
+      onFormSubmit={getHotspotInfo}
+      rawResponse={rawResponse}
+      resultsContent={<Results />}
+      title="Hotspot Info"
+    />
   );
 }

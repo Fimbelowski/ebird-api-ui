@@ -1,13 +1,11 @@
-import { type FormEvent, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 
 import ApiKeyContext from '../../../context/ApiKeyContext';
 import ApiKeyInput from '../../../components/ApiKeyInput';
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
 import type EbirdTaxonomicGroup from '../../../types/EbirdTaxonomicGroup';
-import Form from '../../../components/Form';
 import type GroupNameLocale from '../../../types/GroupNameLocale';
-import ResultsContainer from '../../../components/ResultsContainer';
 import Select from '../../../components/Select';
 import type SelectOption from '../../../types/SelectOption';
 import type SpeciesGrouping from '../../../types/SpeciesGrouping';
@@ -161,36 +159,9 @@ export default function TaxonomicGroups() {
     },
   ];
 
-  function onSubmit(event: FormEvent) {
-    event.preventDefault();
-
-    setLoading(true);
-
-    getTaxonomicGroups(apiKey, speciesGrouping, groupNameLocale)
-      .then(async (response) => await response.text())
-      .then((data) => {
-        setRawResponse(data);
-        setTaxonomicGroups(JSON.parse(data));
-        setHasQueried(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
-
-  function showResults() {
-    return hasQueried && !loading;
-  }
-
-  return (
-    <BasePage title="Taxonomic Groups">
-      <Form
-        loading={loading}
-        onSubmit={onSubmit}
-      >
+  function FormContent() {
+    return (
+      <>
         <ApiKeyInput />
         <Select<SpeciesGrouping>
           id="species-grouping"
@@ -208,20 +179,49 @@ export default function TaxonomicGroups() {
           options={groupNameLocaleOptions}
           value={groupNameLocale}
         />
-      </Form>
-      {loading ? 'Loading...' : null}
-      {showResults() ? (
-        <ResultsContainer>
-          <Details summary="Raw Response">{rawResponse}</Details>
-          <Details summary="Results Table">
-            <Table<EbirdTaxonomicGroup>
-              cells={tableCells}
-              headers={tableHeaders}
-              items={taxonomicGroups}
-            />
-          </Details>
-        </ResultsContainer>
-      ) : null}
-    </BasePage>
+      </>
+    );
+  }
+
+  function onSubmit() {
+    setLoading(true);
+
+    getTaxonomicGroups(apiKey, speciesGrouping, groupNameLocale)
+      .then(async (response) => await response.text())
+      .then((data) => {
+        setRawResponse(data);
+        setTaxonomicGroups(JSON.parse(data));
+        setHasQueried(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
+
+  function ResultsContent() {
+    return (
+      <Details summary="Results Table">
+        <Table<EbirdTaxonomicGroup>
+          cells={tableCells}
+          headers={tableHeaders}
+          items={taxonomicGroups}
+        />
+      </Details>
+    );
+  }
+
+  return (
+    <BasePage
+      formContent={<FormContent />}
+      hasQueried={hasQueried}
+      loading={loading}
+      onFormSubmit={onSubmit}
+      rawResponse={rawResponse}
+      resultsContent={<ResultsContent />}
+      title="Taxonomic Groups"
+    />
   );
 }

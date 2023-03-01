@@ -1,4 +1,4 @@
-import { type ChangeEvent, type FormEvent, useState } from 'react';
+import { type ChangeEvent, useState } from 'react';
 
 import BackInput from '../../../components/BackInput';
 import BasePage from '../../../components/BasePage';
@@ -6,12 +6,10 @@ import csvToArray from '../../../utilities/csvToArray';
 import DetailedHotspotTable from '../../../components/DetailedHotspotTable';
 import Details from '../../../components/Details';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
-import Form from '../../../components/Form';
 import Format from '../../../types/Format';
 import FormatSelect from '../../../components/FormatSelect';
 import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import isJson from '../../../utilities/isJson';
-import ResultsContainer from '../../../components/ResultsContainer';
 import SimpleHotspotsTable from '../../../components/SimpleHotspotTable';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
@@ -27,9 +25,32 @@ export default function RegionHotspots() {
 
   const ebirdApi = useEbirdApi();
 
-  function getRegionHotspots(event: FormEvent) {
-    event.preventDefault();
+  function FormContent() {
+    return (
+      <>
+        <TextInput
+          id="region-code"
+          label="Region Code"
+          onChange={onRegionCodeChange}
+          placeholder="US-CO"
+          required
+          value={regionCode}
+        />
+        <BackInput
+          id="back"
+          onChange={onBackChange}
+          value={back}
+        />
+        <FormatSelect
+          id="format"
+          onChange={onFormatChange}
+          value={format}
+        />
+      </>
+    );
+  }
 
+  function getRegionHotspots() {
     setLoading(true);
 
     ebirdApi
@@ -76,47 +97,31 @@ export default function RegionHotspots() {
     setRegionCode(value);
   }
 
-  function showResults() {
-    return hasQueried && !loading;
+  function ResultsContent() {
+    return (
+      <>
+        <Details summary="Detailed Table">
+          <DetailedHotspotTable hotspots={hotspots} />
+        </Details>
+        <Details
+          open
+          summary="Simplified Table"
+        >
+          <SimpleHotspotsTable hotspots={hotspots} />
+        </Details>
+      </>
+    );
   }
 
   return (
-    <BasePage title="Hotspots in a Region">
-      <Form
-        loading={loading}
-        onSubmit={getRegionHotspots}
-      >
-        <TextInput
-          id="region-code"
-          label="Region Code"
-          onChange={onRegionCodeChange}
-          placeholder="US-CO"
-          required
-          value={regionCode}
-        />
-        <BackInput
-          id="back"
-          onChange={onBackChange}
-          value={back}
-        />
-        <FormatSelect
-          id="format"
-          onChange={onFormatChange}
-          value={format}
-        />
-      </Form>
-      {loading ? <p>Loading...</p> : null}
-      {showResults() ? (
-        <ResultsContainer>
-          <Details summary="Raw Response">{rawResponse}</Details>
-          <Details summary="Detailed Table">
-            <DetailedHotspotTable hotspots={hotspots} />
-          </Details>
-          <Details summary="Simplified Table">
-            <SimpleHotspotsTable hotspots={hotspots} />
-          </Details>
-        </ResultsContainer>
-      ) : null}
-    </BasePage>
+    <BasePage
+      formContent={<FormContent />}
+      hasQueried={hasQueried}
+      loading={loading}
+      onFormSubmit={getRegionHotspots}
+      rawResponse={rawResponse}
+      resultsContent={ResultsContent()}
+      title="Hotspots in a Region"
+    />
   );
 }
