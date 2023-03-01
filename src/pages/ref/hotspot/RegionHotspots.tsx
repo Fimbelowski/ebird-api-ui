@@ -1,4 +1,4 @@
-import { type ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 
 import BackInput from '../../../components/BackInput';
 import BasePage from '../../../components/BasePage';
@@ -8,7 +8,6 @@ import Details from '../../../components/Details';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
 import Format from '../../../types/Format';
 import FormatSelect from '../../../components/FormatSelect';
-import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import isJson from '../../../utilities/isJson';
 import SimpleHotspotsTable from '../../../components/SimpleHotspotTable';
 import TextInput from '../../../components/TextInput';
@@ -48,8 +47,7 @@ export default function RegionHotspots() {
     </>
   );
 
-  function onBackChange(event: ChangeEvent<HTMLInputElement>) {
-    const value = getValueFromChangeEvent(event);
+  function onBackChange(value: string) {
     setBack(value);
   }
 
@@ -57,8 +55,7 @@ export default function RegionHotspots() {
     setFormat(format);
   }
 
-  function onRegionCodeChange(event: ChangeEvent<HTMLInputElement>) {
-    const value = getValueFromChangeEvent(event);
+  function onRegionCodeChange(value: string) {
     setRegionCode(value);
   }
 

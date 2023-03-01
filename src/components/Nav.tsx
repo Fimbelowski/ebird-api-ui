@@ -2,7 +2,7 @@ import NavMenu from './NavMenu';
 import type NavMenuItem from '../types/NavMenuItem';
 
 export default function Nav() {
-  const hotspotMenuItmes: NavMenuItem[] = [
+  const hotspotMenuItems: NavMenuItem[] = [
     {
       label: 'Nearby Hotspots',
       path: 'nearby-hotspots',
@@ -14,6 +14,13 @@ export default function Nav() {
     {
       label: 'Hotspot Info',
       path: 'hotspot-info',
+    },
+  ];
+
+  const regionMenuItems: NavMenuItem[] = [
+    {
+      label: 'Adjacent Regions',
+      path: 'adjacent-regions',
     },
   ];
 
@@ -35,8 +42,12 @@ export default function Nav() {
   return (
     <nav className="nav">
       <NavMenu
-        items={hotspotMenuItmes}
+        items={hotspotMenuItems}
         label="Hotspots"
+      />
+      <NavMenu
+        items={regionMenuItems}
+        label="Regions"
       />
       <NavMenu
         items={taxonomyMenuItems}

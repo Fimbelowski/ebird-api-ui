@@ -1,5 +1,8 @@
+import { type ChangeEvent } from 'react';
+
 import classNames from '../utilities/classNames';
 import type CommonInputProps from '../types/CommonInputProps';
+import getValueFromChangeEvent from '../utilities/getValueFromChangeEvent';
 import type NumberInputProps from '../types/NumberInputProps';
 
 type BaseInputProps = CommonInputProps & NumberInputProps & { type: string };
@@ -15,7 +18,7 @@ export default function BaseInput({
   max,
   min,
   noScroll = false,
-  onChange,
+  onChange: onChangeProp,
   pattern,
   placeholder,
   required = false,
@@ -38,6 +41,11 @@ export default function BaseInput({
       { 'base-input__input--loading': loading },
       { 'base-input__input--no-stepper': hideStepper },
     ]);
+  }
+
+  function onChange(event: ChangeEvent<HTMLInputElement>) {
+    const value = getValueFromChangeEvent(event);
+    onChangeProp(value);
   }
 
   // onKeyDown and onWheel are unfortunate hacks needed to circumvent default
