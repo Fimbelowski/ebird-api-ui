@@ -5,7 +5,7 @@ export default interface CommonInputProps {
   id: string;
   label: string;
   loading?: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (value: string) => void;
   pattern?: string;
   placeholder?: string;
   required?: boolean;

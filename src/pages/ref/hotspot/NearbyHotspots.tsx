@@ -1,4 +1,4 @@
-import { type ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 
 import BackInput from '../../../components/BackInput';
 import BasePage from '../../../components/BasePage';
@@ -10,7 +10,6 @@ import Details from '../../../components/Details';
 import Format from '../../../types/Format';
 import FormatSelect from '../../../components/FormatSelect';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
-import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
 import SimpleHotspotTable from '../../../components/SimpleHotspotTable';
@@ -45,21 +44,11 @@ export default function NearbyHotspots() {
     return loadingPosition || loadingResults;
   }
 
-  function onBackChange(event: ChangeEvent<HTMLInputElement>) {
-    const value = getValueFromChangeEvent(event);
+  function onBackChange(value: string) {
     setBack(value);
   }
 
-  function onCoordinateChange(
-    event: ChangeEvent<HTMLInputElement>,
-    setter: React.Dispatch<React.SetStateAction<string>>
-  ) {
-    const value = getValueFromChangeEvent(event);
-    setter(value);
-  }
-
-  function onDistanceChange(event: ChangeEvent<HTMLInputElement>) {
-    const value = getValueFromChangeEvent(event);
+  function onDistanceChange(value: string) {
     setDistance(value);
   }
 
@@ -67,12 +56,12 @@ export default function NearbyHotspots() {
     setFormat(format);
   }
 
-  function onLatitudeChange(event: ChangeEvent<HTMLInputElement>) {
-    onCoordinateChange(event, setLatitude);
+  function onLatitudeChange(value: string) {
+    setLatitude(value);
   }
 
-  function onLongitudeChange(event: ChangeEvent<HTMLInputElement>) {
-    onCoordinateChange(event, setLongitude);
+  function onLongitudeChange(value: string) {
+    setLongitude(value);
   }
 
   function onGetUserPositionFail() {

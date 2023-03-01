@@ -1,10 +1,9 @@
-import { type ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 
 import BasePage from '../../../components/BasePage';
 import DetailedLocationTable from '../../../components/DetailedLocationTable';
 import Details from '../../../components/Details';
 import type EbirdLocation from '../../../types/EbirdLocation';
-import getValueFromChangeEvent from '../../../utilities/getValueFromChangeEvent';
 import SimpleLocationTable from '../../../components/SimpleLocationTable';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
@@ -18,8 +17,7 @@ export default function HotspotInfo() {
 
   const { getHotspotInfo } = useEbirdApi();
 
-  function onLocationIdChange(event: ChangeEvent<HTMLInputElement>) {
-    const value = getValueFromChangeEvent(event);
+  function onLocationIdChange(value: string) {
     setLocationId(value);
   }
 
