@@ -1,0 +1,27 @@
+type GroupNameLocale =
+  | 'bg'
+  | 'cs'
+  | 'da'
+  | 'de'
+  | 'en'
+  | 'es'
+  | 'es_AR'
+  | 'es_CL'
+  | 'es_CU'
+  | 'es_ES'
+  | 'es_MX'
+  | 'es_PA'
+  | 'fr'
+  | 'he'
+  | 'is'
+  | 'nl'
+  | 'no'
+  | 'pt_BR'
+  | 'pt_PT'
+  | 'ru'
+  | 'sr'
+  | 'th'
+  | 'tr'
+  | 'zh';
+
+export default GroupNameLocale;

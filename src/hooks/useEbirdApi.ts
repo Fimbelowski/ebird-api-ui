@@ -1,4 +1,6 @@
 import Format from '../types/Format';
+import type GroupNameLocale from '../types/GroupNameLocale';
+import type SpeciesGrouping from '../types/SpeciesGrouping';
 
 const BASE_URL = 'https://api.ebird.org/v2/';
 
@@ -154,6 +156,34 @@ export default function useEbirdApi() {
     return await baseRequest('ref/taxa-locales/ebird', apiKey);
   }
 
+  async function getTaxonomicGroups(
+    apiKey: string,
+    speciesGrouping: SpeciesGrouping,
+    groupNameLocale: GroupNameLocale
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'speciesGrouping',
+        value: speciesGrouping,
+      },
+    ];
+
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: 'en',
+        name: 'groupNameLocale',
+        value: groupNameLocale,
+      },
+    ];
+
+    return await baseRequest(
+      'ref/sppgroup/{{speciesGrouping}}',
+      apiKey,
+      urlParams,
+      queryParams
+    );
+  }
+
   async function getTaxonomyVersions() {
     return await baseRequest('ref/taxonomy/versions');
   }
@@ -163,6 +193,7 @@ export default function useEbirdApi() {
     getNearbyHotspots,
     getRegionHotspots,
     getTaxaLocaleCodes,
+    getTaxonomicGroups,
     getTaxonomyVersions,
   };
 }
