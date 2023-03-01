@@ -17,6 +17,13 @@ export default function Nav() {
     },
   ];
 
+  const regionMenuItems: NavMenuItem[] = [
+    {
+      label: 'Adjacent Regions',
+      path: 'adjacent-regions',
+    },
+  ];
+
   const taxonomyMenuItems: NavMenuItem[] = [
     {
       label: 'Taxa Locale Codes',
@@ -37,6 +44,10 @@ export default function Nav() {
       <NavMenu
         items={hotspotMenuItems}
         label="Hotspots"
+      />
+      <NavMenu
+        items={regionMenuItems}
+        label="Regions"
       />
       <NavMenu
         items={taxonomyMenuItems}
