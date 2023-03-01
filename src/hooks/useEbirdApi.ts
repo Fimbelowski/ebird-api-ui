@@ -74,6 +74,17 @@ export default function useEbirdApi() {
     return `?${queryParamsAsStrings.join('&')}`;
   }
 
+  async function getAdjacentRegions(apiKey: string, regionCode: string) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+    ];
+
+    return await baseRequest('ref/adjacent/{{regionCode}}', apiKey, urlParams);
+  }
+
   async function getHotspotInfo(locId: string) {
     const urlParams: UrlParam[] = [
       {
@@ -189,6 +200,7 @@ export default function useEbirdApi() {
   }
 
   return {
+    getAdjacentRegions,
     getHotspotInfo,
     getNearbyHotspots,
     getRegionHotspots,
