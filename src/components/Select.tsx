@@ -1,16 +1,19 @@
+import { type ChangeEvent } from 'react';
+
 import classNames from '../utilities/classNames';
+import getValueFromChangeEvent from '../utilities/getValueFromChangeEvent';
 import type SelectProps from '../types/SelectProps';
 
-export default function Select({
+export default function Select<T extends string>({
   disabled = false,
   id,
   label,
   loading = false,
-  onChange,
+  onChange: onChangeProp,
   options,
   required = false,
   value,
-}: SelectProps) {
+}: SelectProps<T>) {
   function Options() {
     const listItems = options.map(({ label, value }, index) => {
       return (
@@ -25,6 +28,11 @@ export default function Select({
     });
 
     return <>{listItems}</>;
+  }
+
+  function onChange(event: ChangeEvent<HTMLSelectElement>) {
+    const value = getValueFromChangeEvent(event);
+    onChangeProp(value as T);
   }
 
   function selectClasses() {

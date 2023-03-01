@@ -1,4 +1,4 @@
-export default interface SelectOption {
+export default interface SelectOption<T> {
   label: string;
-  value: string;
+  value: T;
 }
