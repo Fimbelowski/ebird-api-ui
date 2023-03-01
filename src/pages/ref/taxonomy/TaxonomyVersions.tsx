@@ -35,12 +35,6 @@ export default function TaxonomyVersions() {
   ];
 
   useEffect(() => {
-    getTaxonomyVersions().catch((error) => {
-      console.error(error);
-    });
-  }, []);
-
-  function onSubmit() {
     getTaxonomyVersions()
       .then(async (response) => await response.text())
       .then((data) => {
@@ -54,7 +48,7 @@ export default function TaxonomyVersions() {
       .finally(() => {
         setLoading(false);
       });
-  }
+  }, []);
 
   const resultsContent = (
     <Details
@@ -73,7 +67,6 @@ export default function TaxonomyVersions() {
     <BasePage
       hasQueried={hasQueried}
       loading={loading}
-      onFormSubmit={onSubmit}
       rawResponse={rawResponse}
       resultsContent={resultsContent}
       title="Taxonomy Versions"
