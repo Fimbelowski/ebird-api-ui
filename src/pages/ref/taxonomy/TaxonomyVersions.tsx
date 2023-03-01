@@ -14,7 +14,7 @@ export default function TaxonomyVersions() {
   const [rawResponse, setRawResponse] = useState('');
   const [versions, setVersions] = useState<EbirdTaxonomyVersion[]>([]);
 
-  const ebirdApi = useEbirdApi();
+  const { getTaxonomyVersions } = useEbirdApi();
 
   const tableCells: Array<TableCell<EbirdTaxonomyVersion>> = [
     {
@@ -35,12 +35,13 @@ export default function TaxonomyVersions() {
   ];
 
   useEffect(() => {
-    getTaxonomyVersions();
+    getTaxonomyVersions().catch((error) => {
+      console.error(error);
+    });
   }, []);
 
-  function getTaxonomyVersions() {
-    ebirdApi
-      .getTaxonomyVersions()
+  function onSubmit() {
+    getTaxonomyVersions()
       .then(async (response) => await response.text())
       .then((data) => {
         setRawResponse(data);
@@ -72,6 +73,7 @@ export default function TaxonomyVersions() {
     <BasePage
       hasQueried={hasQueried}
       loading={loading}
+      onFormSubmit={onSubmit}
       rawResponse={rawResponse}
       resultsContent={resultsContent}
       title="Taxonomy Versions"

@@ -16,13 +16,17 @@ export default function HotspotInfo() {
   const [loading, setLoading] = useState(false);
   const [rawResponse, setRawResponse] = useState('');
 
-  const ebirdApi = useEbirdApi();
+  const { getHotspotInfo } = useEbirdApi();
 
-  function getHotspotInfo() {
+  function onLocationIdChange(event: ChangeEvent<HTMLInputElement>) {
+    const value = getValueFromChangeEvent(event);
+    setLocationId(value);
+  }
+
+  function onSubmit() {
     setLoading(true);
 
-    ebirdApi
-      .getHotspotInfo(locationId)
+    getHotspotInfo(locationId)
       .then(async (response) => await response.text())
       .then((data) => {
         setHotspot(JSON.parse(data));
@@ -36,11 +40,6 @@ export default function HotspotInfo() {
       .finally(() => {
         setLoading(false);
       });
-  }
-
-  function onLocationIdChange(event: ChangeEvent<HTMLInputElement>) {
-    const value = getValueFromChangeEvent(event);
-    setLocationId(value);
   }
 
   const formContent = (
@@ -74,7 +73,7 @@ export default function HotspotInfo() {
       formContent={formContent}
       hasQueried={hasQueried}
       loading={loading}
-      onFormSubmit={getHotspotInfo}
+      onFormSubmit={onSubmit}
       rawResponse={rawResponse}
       resultsContent={resultsContent}
       title="Hotspot Info"

@@ -23,7 +23,7 @@ export default function RegionHotspots() {
   const [rawResponse, setRawResponse] = useState('');
   const [regionCode, setRegionCode] = useState('');
 
-  const ebirdApi = useEbirdApi();
+  const { getRegionHotspots } = useEbirdApi();
 
   const formContent = (
     <>
@@ -48,11 +48,24 @@ export default function RegionHotspots() {
     </>
   );
 
-  function getRegionHotspots() {
+  function onBackChange(event: ChangeEvent<HTMLInputElement>) {
+    const value = getValueFromChangeEvent(event);
+    setBack(value);
+  }
+
+  function onFormatChange(format: Format) {
+    setFormat(format);
+  }
+
+  function onRegionCodeChange(event: ChangeEvent<HTMLInputElement>) {
+    const value = getValueFromChangeEvent(event);
+    setRegionCode(value);
+  }
+
+  function onSubmit() {
     setLoading(true);
 
-    ebirdApi
-      .getRegionHotspots(regionCode, back, format)
+    getRegionHotspots(regionCode, back, format)
       .then(async (response) => await response.text())
       .then((data) => {
         setHotspots(
@@ -81,20 +94,6 @@ export default function RegionHotspots() {
       });
   }
 
-  function onBackChange(event: ChangeEvent<HTMLInputElement>) {
-    const value = getValueFromChangeEvent(event);
-    setBack(value);
-  }
-
-  function onFormatChange(format: Format) {
-    setFormat(format);
-  }
-
-  function onRegionCodeChange(event: ChangeEvent<HTMLInputElement>) {
-    const value = getValueFromChangeEvent(event);
-    setRegionCode(value);
-  }
-
   function ResultsContent() {
     return (
       <>
@@ -116,7 +115,7 @@ export default function RegionHotspots() {
       formContent={formContent}
       hasQueried={hasQueried}
       loading={loading}
-      onFormSubmit={getRegionHotspots}
+      onFormSubmit={onSubmit}
       rawResponse={rawResponse}
       resultsContent={ResultsContent()}
       title="Hotspots in a Region"

@@ -29,40 +29,7 @@ export default function NearbyHotspots() {
   const [rawResponse, setRawResponse] = useState('');
   const [showPositionError, setShowPositionError] = useState(false);
 
-  const ebirdApi = useEbirdApi();
-
-  function getNearbyHotspots() {
-    setLoadingResults(true);
-
-    ebirdApi
-      .getNearbyHotspots(latitude, longitude, format, back, distance)
-      .then(async (response) => await response.text())
-      .then((data) => {
-        setHotspots(
-          isJson(data)
-            ? JSON.parse(data)
-            : csvToArray(data, [
-                'locId',
-                'countryCode',
-                'subnational1Code',
-                'subnational2Code',
-                'lat',
-                'lng',
-                'locName',
-                'latestObsDt',
-                'numSpeciesAllTime',
-              ])
-        );
-        setRawResponse(data);
-        setHasQueried(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoadingResults(false);
-      });
-  }
+  const { getNearbyHotspots } = useEbirdApi();
 
   function getUserPosition() {
     setLoadingPosition(true);
@@ -120,6 +87,38 @@ export default function NearbyHotspots() {
     setLatitude(latitude.toString());
     setLongitude(longitude.toString());
     setLoadingPosition(false);
+  }
+
+  function onSubmit() {
+    setLoadingResults(true);
+
+    getNearbyHotspots(latitude, longitude, format, back, distance)
+      .then(async (response) => await response.text())
+      .then((data) => {
+        setHotspots(
+          isJson(data)
+            ? JSON.parse(data)
+            : csvToArray(data, [
+                'locId',
+                'countryCode',
+                'subnational1Code',
+                'subnational2Code',
+                'lat',
+                'lng',
+                'locName',
+                'latestObsDt',
+                'numSpeciesAllTime',
+              ])
+        );
+        setRawResponse(data);
+        setHasQueried(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        setLoadingResults(false);
+      });
   }
 
   const formContent = (
@@ -208,7 +207,7 @@ export default function NearbyHotspots() {
       formContent={formContent}
       hasQueried={hasQueried}
       loading={loadingResults}
-      onFormSubmit={getNearbyHotspots}
+      onFormSubmit={onSubmit}
       rawResponse={rawResponse}
       resultsContent={resultsContent}
       title="Nearby hotspots"
