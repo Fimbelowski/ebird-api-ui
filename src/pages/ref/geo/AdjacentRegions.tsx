@@ -3,12 +3,10 @@ import { useState } from 'react';
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
 import type EbirdRegion from '../../../types/EbirdRegion';
+import EbirdRegionTable from '../../../components/EbirdRegionTable';
 import TextInput from '../../../components/TextInput';
 import useApiKey from '../../../hooks/useApiKey';
 import useEbirdApi from '../../../hooks/useEbirdApi';
-import Table from '../../../components/Table';
-import type TableCell from '../../../types/TableCell';
-import type TableHeader from '../../../types/TableHeader';
 import useRequestState from '../../../hooks/useRequestState';
 
 export default function AdjacentRegions() {
@@ -25,24 +23,6 @@ export default function AdjacentRegions() {
 
   const [regionCode, setRegionCode] = useState('');
   const [regions, setRegions] = useState<EbirdRegion[]>([]);
-
-  const tableHeaders: TableHeader[] = [
-    {
-      label: 'Name',
-    },
-    {
-      label: 'Code',
-    },
-  ];
-
-  const tableCells: Array<TableCell<EbirdRegion>> = [
-    {
-      callback: ({ name }) => name,
-    },
-    {
-      callback: ({ code }) => code,
-    },
-  ];
 
   function onRegionCodeChange(value: string) {
     setRegionCode(value);
@@ -82,11 +62,7 @@ export default function AdjacentRegions() {
       open
       summary="Results Table"
     >
-      <Table<EbirdRegion>
-        cells={tableCells}
-        headers={tableHeaders}
-        items={regions}
-      />
+      <EbirdRegionTable regions={regions} />
     </Details>
   );
 
