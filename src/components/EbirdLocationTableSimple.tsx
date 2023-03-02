@@ -30,7 +30,9 @@ const headers: TableHeader[] = [
   },
 ];
 
-export default function SimpleLocationTable({ locations }: LocationTableProps) {
+export default function EbirdLocationTableSimple({
+  locations,
+}: LocationTableProps) {
   return (
     <Table<EbirdLocation>
       cells={cells}

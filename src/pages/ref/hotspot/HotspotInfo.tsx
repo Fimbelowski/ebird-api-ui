@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 import BasePage from '../../../components/BasePage';
-import DetailedLocationTable from '../../../components/DetailedLocationTable';
 import Details from '../../../components/Details';
 import type EbirdLocation from '../../../types/EbirdLocation';
-import SimpleLocationTable from '../../../components/SimpleLocationTable';
+import EbirdLocationTableDetailed from '../../../components/EbirdLocationTableDetailed';
+import EbirdLocationTableSimple from '../../../components/EbirdLocationTableSimple';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useRequestState from '../../../hooks/useRequestState';
@@ -62,13 +62,13 @@ export default function HotspotInfo() {
     hotspot !== undefined ? (
       <>
         <Details summary="Detailed Table">
-          <DetailedLocationTable locations={[hotspot]} />
+          <EbirdLocationTableDetailed locations={[hotspot]} />
         </Details>
         <Details
           open
           summary="Simplified Table"
         >
-          <SimpleLocationTable locations={[hotspot]} />
+          <EbirdLocationTableSimple locations={[hotspot]} />
         </Details>
       </>
     ) : null;

@@ -5,14 +5,14 @@ import BasePage from '../../../components/BasePage';
 import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
 import csvToArray from '../../../utilities/csvToArray';
-import DetailedHotspotTable from '../../../components/DetailedHotspotTable';
 import Details from '../../../components/Details';
 import type EbirdFormat from '../../../types/EbirdFormat';
+import EbirdHotspotTableDetailed from '../../../components/EbirdHotspotTableDetailed';
+import EbirdHotspotTableSimple from '../../../components/EbirdHotspotTableSimple';
 import FormatSelect from '../../../components/FormatSelect';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
 import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
-import SimpleHotspotTable from '../../../components/SimpleHotspotTable';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useRequestState from '../../../hooks/useRequestState';
 
@@ -182,13 +182,13 @@ export default function NearbyHotspots() {
   const resultsContent = (
     <>
       <Details summary="Detailed Table">
-        <DetailedHotspotTable hotspots={hotspots} />
+        <EbirdHotspotTableDetailed hotspots={hotspots} />
       </Details>
       <Details
         open
         summary="Simplified Table"
       >
-        <SimpleHotspotTable hotspots={hotspots} />
+        <EbirdHotspotTableSimple hotspots={hotspots} />
       </Details>
     </>
   );

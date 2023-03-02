@@ -43,7 +43,9 @@ const headers: TableHeader[] = [
   },
 ];
 
-export default function SimpleHotspotsTable({ hotspots }: HotspotTableProps) {
+export default function EbirdHotspotTableSimple({
+  hotspots,
+}: HotspotTableProps) {
   return (
     <Table<EbirdHotspot>
       cells={cells}

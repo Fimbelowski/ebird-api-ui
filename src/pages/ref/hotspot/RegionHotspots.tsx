@@ -3,13 +3,13 @@ import { useState } from 'react';
 import BackInput from '../../../components/BackInput';
 import BasePage from '../../../components/BasePage';
 import csvToArray from '../../../utilities/csvToArray';
-import DetailedHotspotTable from '../../../components/DetailedHotspotTable';
 import Details from '../../../components/Details';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
+import EbirdHotspotTableDetailed from '../../../components/EbirdHotspotTableDetailed';
 import type EbirdFormat from '../../../types/EbirdFormat';
 import FormatSelect from '../../../components/FormatSelect';
 import isJson from '../../../utilities/isJson';
-import SimpleHotspotsTable from '../../../components/SimpleHotspotTable';
+import EbirdHotspotTableSimple from '../../../components/EbirdHotspotTableSimple';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useRequestState from '../../../hooks/useRequestState';
@@ -102,13 +102,13 @@ export default function RegionHotspots() {
     return (
       <>
         <Details summary="Detailed Table">
-          <DetailedHotspotTable hotspots={hotspots} />
+          <EbirdHotspotTableDetailed hotspots={hotspots} />
         </Details>
         <Details
           open
           summary="Simplified Table"
         >
-          <SimpleHotspotsTable hotspots={hotspots} />
+          <EbirdHotspotTableSimple hotspots={hotspots} />
         </Details>
       </>
     );
