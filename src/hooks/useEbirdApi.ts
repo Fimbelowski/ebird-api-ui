@@ -184,7 +184,7 @@ export default function useEbirdApi() {
 
     const queryParams: QueryParam[] = [
       {
-        defaultValue: 'csv',
+        defaultValue: 'json',
         name: 'fmt',
         value: fmt,
       },
