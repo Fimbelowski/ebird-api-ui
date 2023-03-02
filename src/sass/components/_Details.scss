@@ -4,14 +4,12 @@
   box-shadow: 0.2rem 0.2rem 0.6rem rgba(0, 0, 0, 0.3);
 
   &__content {
+    padding: 2rem;
+    padding-top: 0;
     white-space: pre-wrap;
   }
 
-  &__content,
   &__summary {
     padding: 1rem 2rem;
-  }
-
-  &__summary {
   }
 }
