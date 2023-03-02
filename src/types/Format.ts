@@ -1,6 +1,3 @@
-enum Format {
-  Csv = 'csv',
-  Json = 'json',
-}
+type Format = 'csv' | 'json';
 
 export default Format;

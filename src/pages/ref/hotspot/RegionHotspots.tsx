@@ -6,7 +6,7 @@ import csvToArray from '../../../utilities/csvToArray';
 import DetailedHotspotTable from '../../../components/DetailedHotspotTable';
 import Details from '../../../components/Details';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
-import Format from '../../../types/Format';
+import type Format from '../../../types/Format';
 import FormatSelect from '../../../components/FormatSelect';
 import isJson from '../../../utilities/isJson';
 import SimpleHotspotsTable from '../../../components/SimpleHotspotTable';
@@ -15,7 +15,7 @@ import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function RegionHotspots() {
   const [back, setBack] = useState('');
-  const [format, setFormat] = useState<Format>(Format.Csv);
+  const [format, setFormat] = useState<Format>('csv');
   const [hasQueried, setHasQueried] = useState(false);
   const [hotspots, setHotspots] = useState<EbirdHotspot[]>([]);
   const [loading, setLoading] = useState(false);

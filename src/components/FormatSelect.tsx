@@ -1,4 +1,4 @@
-import Format from '../types/Format';
+import type Format from '../types/Format';
 import Select from './Select';
 import type SelectOption from '../types/SelectOption';
 import type SelectProps from '../types/SelectProps';
@@ -10,11 +10,11 @@ type Props = Omit<SelectProps<Format>, 'label' | 'onChange' | 'options'> & {
 const options: Array<SelectOption<Format>> = [
   {
     label: 'CSV',
-    value: Format.Csv,
+    value: 'csv',
   },
   {
     label: 'JSON',
-    value: Format.Json,
+    value: 'json',
   },
 ];
 

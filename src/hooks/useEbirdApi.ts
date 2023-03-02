@@ -1,4 +1,4 @@
-import Format from '../types/Format';
+import type Format from '../types/Format';
 import type GroupNameLocale from '../types/GroupNameLocale';
 import type SpeciesGrouping from '../types/SpeciesGrouping';
 
@@ -99,7 +99,7 @@ export default function useEbirdApi() {
   async function getNearbyHotspots(
     lat: string,
     lng: string,
-    fmt: Format = Format.Csv,
+    fmt: Format = 'csv',
     back?: string,
     dist?: string
   ) {
@@ -134,7 +134,7 @@ export default function useEbirdApi() {
   async function getRegionHotspots(
     regionCode: string,
     back?: string,
-    fmt: Format = Format.Csv
+    fmt: Format = 'csv'
   ) {
     const urlParams: UrlParam[] = [
       {
@@ -158,6 +158,39 @@ export default function useEbirdApi() {
     return await baseRequest(
       'ref/hotspot/{{regionCode}}',
       '',
+      urlParams,
+      queryParams
+    );
+  }
+
+  async function getSubregionList(
+    apiKey: string,
+    regionType: string,
+    parentRegionCode: string,
+    fmt: 'csv' | 'json'
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionType',
+        value: regionType,
+      },
+      {
+        name: 'parentRegionCode',
+        value: parentRegionCode,
+      },
+    ];
+
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: 'json',
+        name: 'fmt',
+        value: fmt,
+      },
+    ];
+
+    return await baseRequest(
+      'ref/region/list/{{regionType}}/{{parentRegionCode}}',
+      apiKey,
       urlParams,
       queryParams
     );
@@ -204,6 +237,7 @@ export default function useEbirdApi() {
     getHotspotInfo,
     getNearbyHotspots,
     getRegionHotspots,
+    getSubregionList,
     getTaxaLocaleCodes,
     getTaxonomicGroups,
     getTaxonomyVersions,
