@@ -1,6 +1,8 @@
-import Format from '../types/Format';
-import type GroupNameLocale from '../types/GroupNameLocale';
-import type SpeciesGrouping from '../types/SpeciesGrouping';
+import type EbirdRegionType from '../types/EbirdRegionType';
+import type EbirdParentRegionCode from '../types/EbirdParentRegionCode';
+import type EbirdFormat from '../types/EbirdFormat';
+import type EbirdGroupNameLocale from '../types/EbirdGroupNameLocale';
+import type EbirdSpeciesGrouping from '../types/EbirdSpeciesGrouping';
 
 const BASE_URL = 'https://api.ebird.org/v2/';
 
@@ -99,7 +101,7 @@ export default function useEbirdApi() {
   async function getNearbyHotspots(
     lat: string,
     lng: string,
-    fmt: Format = Format.Csv,
+    fmt: EbirdFormat = 'csv',
     back?: string,
     dist?: string
   ) {
@@ -134,7 +136,7 @@ export default function useEbirdApi() {
   async function getRegionHotspots(
     regionCode: string,
     back?: string,
-    fmt: Format = Format.Csv
+    fmt: EbirdFormat = 'csv'
   ) {
     const urlParams: UrlParam[] = [
       {
@@ -163,14 +165,47 @@ export default function useEbirdApi() {
     );
   }
 
+  async function getSubregionList(
+    apiKey: string,
+    regionType: EbirdRegionType,
+    parentRegionCode: EbirdParentRegionCode,
+    fmt: EbirdFormat = 'csv'
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionType',
+        value: regionType,
+      },
+      {
+        name: 'parentRegionCode',
+        value: parentRegionCode,
+      },
+    ];
+
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: 'json',
+        name: 'fmt',
+        value: fmt,
+      },
+    ];
+
+    return await baseRequest(
+      'ref/region/list/{{regionType}}/{{parentRegionCode}}',
+      apiKey,
+      urlParams,
+      queryParams
+    );
+  }
+
   async function getTaxaLocaleCodes(apiKey: string) {
     return await baseRequest('ref/taxa-locales/ebird', apiKey);
   }
 
   async function getTaxonomicGroups(
     apiKey: string,
-    speciesGrouping: SpeciesGrouping,
-    groupNameLocale: GroupNameLocale
+    speciesGrouping: EbirdSpeciesGrouping,
+    groupNameLocale: EbirdGroupNameLocale
   ) {
     const urlParams: UrlParam[] = [
       {
@@ -204,6 +239,7 @@ export default function useEbirdApi() {
     getHotspotInfo,
     getNearbyHotspots,
     getRegionHotspots,
+    getSubregionList,
     getTaxaLocaleCodes,
     getTaxonomicGroups,
     getTaxonomyVersions,

@@ -7,14 +7,20 @@ import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
 import useEbirdApi from '../../../hooks/useEbirdApi';
+import useRequestState from '../../../hooks/useRequestState';
 
 export default function TaxonomyVersions() {
-  const [hasQueried, setHasQueried] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [rawResponse, setRawResponse] = useState('');
-  const [versions, setVersions] = useState<EbirdTaxonomyVersion[]>([]);
-
   const { getTaxonomyVersions } = useEbirdApi();
+  const {
+    hasQueried,
+    loading,
+    rawResponse,
+    setHasQueried,
+    setLoading,
+    setRawResponse,
+  } = useRequestState();
+
+  const [versions, setVersions] = useState<EbirdTaxonomyVersion[]>([]);
 
   const tableCells: Array<TableCell<EbirdTaxonomyVersion>> = [
     {

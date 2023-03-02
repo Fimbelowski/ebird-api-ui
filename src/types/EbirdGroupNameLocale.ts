@@ -1,4 +1,4 @@
-type GroupNameLocale =
+type EbirdGroupNameLocale =
   | 'bg'
   | 'cs'
   | 'da'
@@ -24,4 +24,4 @@ type GroupNameLocale =
   | 'tr'
   | 'zh';
 
-export default GroupNameLocale;
+export default EbirdGroupNameLocale;

@@ -2,24 +2,30 @@ import { useState } from 'react';
 
 import BackInput from '../../../components/BackInput';
 import BasePage from '../../../components/BasePage';
-import csvToArray from '../../../utilities/csvToArray';
-import DetailedHotspotTable from '../../../components/DetailedHotspotTable';
 import Details from '../../../components/Details';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
-import Format from '../../../types/Format';
+import EbirdHotspotTableDetailed from '../../../components/EbirdHotspotTableDetailed';
+import type EbirdFormat from '../../../types/EbirdFormat';
 import FormatSelect from '../../../components/FormatSelect';
-import isJson from '../../../utilities/isJson';
-import SimpleHotspotsTable from '../../../components/SimpleHotspotTable';
+import EbirdHotspotTableSimple from '../../../components/EbirdHotspotTableSimple';
+import parseEbirdHotspotRequestData from '../../../utilities/parseEbirdHotspotRequestData';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
+import useRequestState from '../../../hooks/useRequestState';
 
 export default function RegionHotspots() {
+  const {
+    hasQueried,
+    loading,
+    rawResponse,
+    setHasQueried,
+    setLoading,
+    setRawResponse,
+  } = useRequestState();
+
   const [back, setBack] = useState('');
-  const [format, setFormat] = useState<Format>(Format.Csv);
-  const [hasQueried, setHasQueried] = useState(false);
+  const [format, setFormat] = useState<EbirdFormat>('csv');
   const [hotspots, setHotspots] = useState<EbirdHotspot[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [rawResponse, setRawResponse] = useState('');
   const [regionCode, setRegionCode] = useState('');
 
   const { getRegionHotspots } = useEbirdApi();
@@ -29,35 +35,23 @@ export default function RegionHotspots() {
       <TextInput
         id="region-code"
         label="Region Code"
-        onChange={onRegionCodeChange}
+        onChange={setRegionCode}
         placeholder="US-CO"
         required
         value={regionCode}
       />
       <BackInput
         id="back"
-        onChange={onBackChange}
+        onChange={setBack}
         value={back}
       />
       <FormatSelect
         id="format"
-        onChange={onFormatChange}
+        onChange={setFormat}
         value={format}
       />
     </>
   );
-
-  function onBackChange(value: string) {
-    setBack(value);
-  }
-
-  function onFormatChange(format: Format) {
-    setFormat(format);
-  }
-
-  function onRegionCodeChange(value: string) {
-    setRegionCode(value);
-  }
 
   function onSubmit() {
     setLoading(true);
@@ -65,21 +59,8 @@ export default function RegionHotspots() {
     getRegionHotspots(regionCode, back, format)
       .then(async (response) => await response.text())
       .then((data) => {
-        setHotspots(
-          isJson(data)
-            ? JSON.parse(data)
-            : csvToArray(data, [
-                'locId',
-                'countryCode',
-                'subnational1Code',
-                'subnational2Code',
-                'lat',
-                'lng',
-                'locName',
-                'latestObsDt',
-                'numSpeciesAllTime',
-              ])
-        );
+        const parsedData = parseEbirdHotspotRequestData(data);
+        setHotspots(parsedData);
         setRawResponse(data);
         setHasQueried(true);
       })
@@ -95,13 +76,13 @@ export default function RegionHotspots() {
     return (
       <>
         <Details summary="Detailed Table">
-          <DetailedHotspotTable hotspots={hotspots} />
+          <EbirdHotspotTableDetailed hotspots={hotspots} />
         </Details>
         <Details
           open
           summary="Simplified Table"
         >
-          <SimpleHotspotsTable hotspots={hotspots} />
+          <EbirdHotspotTableSimple hotspots={hotspots} />
         </Details>
       </>
     );

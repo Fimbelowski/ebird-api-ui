@@ -5,7 +5,7 @@ interface Props {
   location: EbirdHotspot | EbirdLocation;
 }
 
-export default function MapsLink({ location }: Props) {
+export default function GoogleMapsLink({ location }: Props) {
   const { lat, lng } = location;
 
   return (

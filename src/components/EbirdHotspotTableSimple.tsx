@@ -1,6 +1,6 @@
 import type EbirdHotspot from '../types/EbirdHotspot';
+import GoogleMapsLink from './GoogleMapsLink';
 import type HotspotTableProps from '../types/HotspotTableProps';
-import MapsLink from './MapsLink';
 import Table from './Table';
 import type TableCell from '../types/TableCell';
 import type TableHeader from '../types/TableHeader';
@@ -23,7 +23,7 @@ const cells: Array<TableCell<EbirdHotspot>> = [
       ),
   },
   {
-    callback: (item) => <MapsLink location={item} />,
+    callback: (item) => <GoogleMapsLink location={item} />,
   },
 ];
 
@@ -43,7 +43,9 @@ const headers: TableHeader[] = [
   },
 ];
 
-export default function SimpleHotspotsTable({ hotspots }: HotspotTableProps) {
+export default function EbirdHotspotTableSimple({
+  hotspots,
+}: HotspotTableProps) {
   return (
     <Table<EbirdHotspot>
       cells={cells}

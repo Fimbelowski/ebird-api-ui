@@ -4,28 +4,29 @@ import BackInput from '../../../components/BackInput';
 import BasePage from '../../../components/BasePage';
 import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
-import csvToArray from '../../../utilities/csvToArray';
-import DetailedHotspotTable from '../../../components/DetailedHotspotTable';
 import Details from '../../../components/Details';
-import Format from '../../../types/Format';
+import type EbirdFormat from '../../../types/EbirdFormat';
+import EbirdHotspotTableDetailed from '../../../components/EbirdHotspotTableDetailed';
+import EbirdHotspotTableSimple from '../../../components/EbirdHotspotTableSimple';
 import FormatSelect from '../../../components/FormatSelect';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
-import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
-import SimpleHotspotTable from '../../../components/SimpleHotspotTable';
+import parseEbirdHotspotRequestData from '../../../utilities/parseEbirdHotspotRequestData';
 import useEbirdApi from '../../../hooks/useEbirdApi';
+import useRequestState from '../../../hooks/useRequestState';
 
 export default function NearbyHotspots() {
+  const { hasQueried, rawResponse, setHasQueried, setRawResponse } =
+    useRequestState();
+
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('25');
-  const [format, setFormat] = useState<Format>(Format.Csv);
-  const [hasQueried, setHasQueried] = useState(false);
+  const [format, setFormat] = useState<EbirdFormat>('csv');
   const [hotspots, setHotspots] = useState<EbirdHotspot[]>([]);
   const [loadingPosition, setLoadingPosition] = useState(false);
   const [loadingResults, setLoadingResults] = useState(false);
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
-  const [rawResponse, setRawResponse] = useState('');
   const [showPositionError, setShowPositionError] = useState(false);
 
   const { getNearbyHotspots } = useEbirdApi();
@@ -42,26 +43,6 @@ export default function NearbyHotspots() {
 
   function loading() {
     return loadingPosition || loadingResults;
-  }
-
-  function onBackChange(value: string) {
-    setBack(value);
-  }
-
-  function onDistanceChange(value: string) {
-    setDistance(value);
-  }
-
-  function onFormatChange(format: Format) {
-    setFormat(format);
-  }
-
-  function onLatitudeChange(value: string) {
-    setLatitude(value);
-  }
-
-  function onLongitudeChange(value: string) {
-    setLongitude(value);
   }
 
   function onGetUserPositionFail() {
@@ -84,21 +65,8 @@ export default function NearbyHotspots() {
     getNearbyHotspots(latitude, longitude, format, back, distance)
       .then(async (response) => await response.text())
       .then((data) => {
-        setHotspots(
-          isJson(data)
-            ? JSON.parse(data)
-            : csvToArray(data, [
-                'locId',
-                'countryCode',
-                'subnational1Code',
-                'subnational2Code',
-                'lat',
-                'lng',
-                'locName',
-                'latestObsDt',
-                'numSpeciesAllTime',
-              ])
-        );
+        const parsedData = parseEbirdHotspotRequestData(data);
+        setHotspots(parsedData);
         setRawResponse(data);
         setHasQueried(true);
       })
@@ -118,7 +86,7 @@ export default function NearbyHotspots() {
         loading={loading()}
         max={90}
         min={-90}
-        onChange={onLatitudeChange}
+        onChange={setLatitude}
         placeholder="42.4799394"
         required
         value={latitude}
@@ -129,7 +97,7 @@ export default function NearbyHotspots() {
         loading={loading()}
         max={180}
         min={-180}
-        onChange={onLongitudeChange}
+        onChange={setLongitude}
         placeholder="-76.4556869"
         required
         value={longitude}
@@ -157,7 +125,7 @@ export default function NearbyHotspots() {
         loading={loading()}
         max={500}
         min={0}
-        onChange={onDistanceChange}
+        onChange={setDistance}
         placeholder="25"
         value={distance}
       />
@@ -165,13 +133,13 @@ export default function NearbyHotspots() {
         className="nearby-hotspots__back-input"
         id="back"
         loading={loading()}
-        onChange={onBackChange}
+        onChange={setBack}
         value={back}
       />
       <FormatSelect
         id="format"
         loading={loading()}
-        onChange={onFormatChange}
+        onChange={setFormat}
         value={format}
       />
     </>
@@ -180,13 +148,13 @@ export default function NearbyHotspots() {
   const resultsContent = (
     <>
       <Details summary="Detailed Table">
-        <DetailedHotspotTable hotspots={hotspots} />
+        <EbirdHotspotTableDetailed hotspots={hotspots} />
       </Details>
       <Details
         open
         summary="Simplified Table"
       >
-        <SimpleHotspotTable hotspots={hotspots} />
+        <EbirdHotspotTableSimple hotspots={hotspots} />
       </Details>
     </>
   );

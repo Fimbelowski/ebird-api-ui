@@ -1,25 +1,28 @@
 import { useState } from 'react';
 
 import BasePage from '../../../components/BasePage';
-import DetailedLocationTable from '../../../components/DetailedLocationTable';
 import Details from '../../../components/Details';
 import type EbirdLocation from '../../../types/EbirdLocation';
-import SimpleLocationTable from '../../../components/SimpleLocationTable';
+import EbirdLocationTableDetailed from '../../../components/EbirdLocationTableDetailed';
+import EbirdLocationTableSimple from '../../../components/EbirdLocationTableSimple';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
+import useRequestState from '../../../hooks/useRequestState';
 
 export default function HotspotInfo() {
-  const [hasQueried, setHasQueried] = useState(false);
+  const {
+    hasQueried,
+    loading,
+    rawResponse,
+    setHasQueried,
+    setLoading,
+    setRawResponse,
+  } = useRequestState();
+
   const [hotspot, setHotspot] = useState<EbirdLocation>();
   const [locationId, setLocationId] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [rawResponse, setRawResponse] = useState('');
 
   const { getHotspotInfo } = useEbirdApi();
-
-  function onLocationIdChange(value: string) {
-    setLocationId(value);
-  }
 
   function onSubmit() {
     setLoading(true);
@@ -44,7 +47,7 @@ export default function HotspotInfo() {
     <TextInput
       id="loc-id"
       label="Location ID"
-      onChange={onLocationIdChange}
+      onChange={setLocationId}
       placeholder="L140473"
       required
       value={locationId}
@@ -55,13 +58,13 @@ export default function HotspotInfo() {
     hotspot !== undefined ? (
       <>
         <Details summary="Detailed Table">
-          <DetailedLocationTable locations={[hotspot]} />
+          <EbirdLocationTableDetailed locations={[hotspot]} />
         </Details>
         <Details
           open
           summary="Simplified Table"
         >
-          <SimpleLocationTable locations={[hotspot]} />
+          <EbirdLocationTableSimple locations={[hotspot]} />
         </Details>
       </>
     ) : null;
