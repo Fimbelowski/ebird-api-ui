@@ -8,14 +8,20 @@ import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
 import useApiKey from '../../../hooks/useApiKey';
 import useEbirdApi from '../../../hooks/useEbirdApi';
+import useRequestState from '../../../hooks/useRequestState';
 
 export default function TaxaLocaleCodes() {
   const { apiKey } = useApiKey();
   const { getTaxaLocaleCodes } = useEbirdApi();
+  const {
+    hasQueried,
+    loading,
+    rawResponse,
+    setHasQueried,
+    setLoading,
+    setRawResponse,
+  } = useRequestState();
 
-  const [hasQueried, setHasQueried] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [rawResponse, setRawResponse] = useState('');
   const [taxaLocaleCodes, setTaxaLocaleCodes] = useState<EbirdTaxaLocaleCode[]>(
     []
   );

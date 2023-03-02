@@ -12,14 +12,21 @@ import isJson from '../../../utilities/isJson';
 import SimpleHotspotsTable from '../../../components/SimpleHotspotTable';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
+import useRequestState from '../../../hooks/useRequestState';
 
 export default function RegionHotspots() {
+  const {
+    hasQueried,
+    loading,
+    rawResponse,
+    setHasQueried,
+    setLoading,
+    setRawResponse,
+  } = useRequestState();
+
   const [back, setBack] = useState('');
   const [format, setFormat] = useState<EbirdFormat>('csv');
-  const [hasQueried, setHasQueried] = useState(false);
   const [hotspots, setHotspots] = useState<EbirdHotspot[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [rawResponse, setRawResponse] = useState('');
   const [regionCode, setRegionCode] = useState('');
 
   const { getRegionHotspots } = useEbirdApi();

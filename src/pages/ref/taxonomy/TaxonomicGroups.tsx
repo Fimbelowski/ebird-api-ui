@@ -12,17 +12,22 @@ import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
 import useEbirdApi from '../../../hooks/useEbirdApi';
+import useRequestState from '../../../hooks/useRequestState';
 
 export default function TaxonomicGroups() {
   const { apiKey } = useContext(ApiKeyContext);
-
   const { getTaxonomicGroups } = useEbirdApi();
+  const {
+    hasQueried,
+    loading,
+    rawResponse,
+    setHasQueried,
+    setLoading,
+    setRawResponse,
+  } = useRequestState();
 
   const [groupNameLocale, setGroupNameLocale] =
     useState<EbirdGroupNameLocale>('en');
-  const [hasQueried, setHasQueried] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [rawResponse, setRawResponse] = useState('');
   const [speciesGrouping, setSpeciesGrouping] =
     useState<EbirdSpeciesGrouping>('ebird');
   const [taxonomicGroups, setTaxonomicGroups] = useState<EbirdTaxonomicGroup[]>(

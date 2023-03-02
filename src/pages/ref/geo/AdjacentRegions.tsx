@@ -9,14 +9,20 @@ import useEbirdApi from '../../../hooks/useEbirdApi';
 import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
+import useRequestState from '../../../hooks/useRequestState';
 
 export default function AdjacentRegions() {
   const { apiKey } = useApiKey();
   const { getAdjacentRegions } = useEbirdApi();
+  const {
+    hasQueried,
+    loading,
+    rawResponse,
+    setHasQueried,
+    setLoading,
+    setRawResponse,
+  } = useRequestState();
 
-  const [hasQueried, setHasQueried] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [rawResponse, setRawResponse] = useState('');
   const [regionCode, setRegionCode] = useState('');
   const [regions, setRegions] = useState<EbirdRegion[]>([]);
 

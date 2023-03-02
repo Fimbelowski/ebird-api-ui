@@ -14,18 +14,20 @@ import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
 import SimpleHotspotTable from '../../../components/SimpleHotspotTable';
 import useEbirdApi from '../../../hooks/useEbirdApi';
+import useRequestState from '../../../hooks/useRequestState';
 
 export default function NearbyHotspots() {
+  const { hasQueried, rawResponse, setHasQueried, setRawResponse } =
+    useRequestState();
+
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('25');
   const [format, setFormat] = useState<EbirdFormat>('csv');
-  const [hasQueried, setHasQueried] = useState(false);
   const [hotspots, setHotspots] = useState<EbirdHotspot[]>([]);
   const [loadingPosition, setLoadingPosition] = useState(false);
   const [loadingResults, setLoadingResults] = useState(false);
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
-  const [rawResponse, setRawResponse] = useState('');
   const [showPositionError, setShowPositionError] = useState(false);
 
   const { getNearbyHotspots } = useEbirdApi();
