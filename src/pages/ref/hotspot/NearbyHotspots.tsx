@@ -45,26 +45,6 @@ export default function NearbyHotspots() {
     return loadingPosition || loadingResults;
   }
 
-  function onBackChange(value: string) {
-    setBack(value);
-  }
-
-  function onDistanceChange(value: string) {
-    setDistance(value);
-  }
-
-  function onFormatChange(format: EbirdFormat) {
-    setFormat(format);
-  }
-
-  function onLatitudeChange(value: string) {
-    setLatitude(value);
-  }
-
-  function onLongitudeChange(value: string) {
-    setLongitude(value);
-  }
-
   function onGetUserPositionFail() {
     setShowPositionError(true);
     setLoadingPosition(false);
@@ -106,7 +86,7 @@ export default function NearbyHotspots() {
         loading={loading()}
         max={90}
         min={-90}
-        onChange={onLatitudeChange}
+        onChange={setLatitude}
         placeholder="42.4799394"
         required
         value={latitude}
@@ -117,7 +97,7 @@ export default function NearbyHotspots() {
         loading={loading()}
         max={180}
         min={-180}
-        onChange={onLongitudeChange}
+        onChange={setLongitude}
         placeholder="-76.4556869"
         required
         value={longitude}
@@ -145,7 +125,7 @@ export default function NearbyHotspots() {
         loading={loading()}
         max={500}
         min={0}
-        onChange={onDistanceChange}
+        onChange={setDistance}
         placeholder="25"
         value={distance}
       />
@@ -153,13 +133,13 @@ export default function NearbyHotspots() {
         className="nearby-hotspots__back-input"
         id="back"
         loading={loading()}
-        onChange={onBackChange}
+        onChange={setBack}
         value={back}
       />
       <FormatSelect
         id="format"
         loading={loading()}
-        onChange={onFormatChange}
+        onChange={setFormat}
         value={format}
       />
     </>

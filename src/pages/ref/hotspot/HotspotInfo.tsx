@@ -24,10 +24,6 @@ export default function HotspotInfo() {
 
   const { getHotspotInfo } = useEbirdApi();
 
-  function onLocationIdChange(value: string) {
-    setLocationId(value);
-  }
-
   function onSubmit() {
     setLoading(true);
 
@@ -51,7 +47,7 @@ export default function HotspotInfo() {
     <TextInput
       id="loc-id"
       label="Location ID"
-      onChange={onLocationIdChange}
+      onChange={setLocationId}
       placeholder="L140473"
       required
       value={locationId}

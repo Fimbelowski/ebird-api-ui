@@ -35,35 +35,23 @@ export default function RegionHotspots() {
       <TextInput
         id="region-code"
         label="Region Code"
-        onChange={onRegionCodeChange}
+        onChange={setRegionCode}
         placeholder="US-CO"
         required
         value={regionCode}
       />
       <BackInput
         id="back"
-        onChange={onBackChange}
+        onChange={setBack}
         value={back}
       />
       <FormatSelect
         id="format"
-        onChange={onFormatChange}
+        onChange={setFormat}
         value={format}
       />
     </>
   );
-
-  function onBackChange(value: string) {
-    setBack(value);
-  }
-
-  function onFormatChange(format: EbirdFormat) {
-    setFormat(format);
-  }
-
-  function onRegionCodeChange(value: string) {
-    setRegionCode(value);
-  }
 
   function onSubmit() {
     setLoading(true);

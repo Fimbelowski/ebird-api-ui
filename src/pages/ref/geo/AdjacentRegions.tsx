@@ -24,10 +24,6 @@ export default function AdjacentRegions() {
   const [regionCode, setRegionCode] = useState('');
   const [regions, setRegions] = useState<EbirdRegion[]>([]);
 
-  function onRegionCodeChange(value: string) {
-    setRegionCode(value);
-  }
-
   function onSubmit() {
     setLoading(true);
 
@@ -50,7 +46,7 @@ export default function AdjacentRegions() {
     <TextInput
       id="region-code"
       label="Region Code"
-      onChange={onRegionCodeChange}
+      onChange={setRegionCode}
       placeholder="US-CO"
       required
       value={regionCode}
