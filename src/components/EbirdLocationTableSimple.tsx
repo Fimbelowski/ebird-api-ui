@@ -1,6 +1,6 @@
 import type EbirdLocation from '../types/EbirdLocation';
+import GoogleMapsLink from './GoogleMapsLink';
 import type LocationTableProps from '../types/LocationTableProps';
-import MapsLink from './MapsLink';
 import Table from './Table';
 import type TableCell from '../types/TableCell';
 import type TableHeader from '../types/TableHeader';
@@ -14,7 +14,7 @@ const cells: Array<TableCell<EbirdLocation>> = [
     callback: ({ countryName }) => countryName,
   },
   {
-    callback: (item) => <MapsLink location={item} />,
+    callback: (item) => <GoogleMapsLink location={item} />,
   },
 ];
 
