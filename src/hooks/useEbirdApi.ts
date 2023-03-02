@@ -1,6 +1,6 @@
 import type EbirdRegionType from '../types/EbirdRegionType';
 import type EbirdParentRegionCode from '../types/EbirdParentRegionCode';
-import type Format from '../types/Format';
+import type EbirdFormat from '../types/EbirdFormat';
 import type GroupNameLocale from '../types/GroupNameLocale';
 import type SpeciesGrouping from '../types/SpeciesGrouping';
 
@@ -101,7 +101,7 @@ export default function useEbirdApi() {
   async function getNearbyHotspots(
     lat: string,
     lng: string,
-    fmt: Format = 'csv',
+    fmt: EbirdFormat = 'csv',
     back?: string,
     dist?: string
   ) {
@@ -136,7 +136,7 @@ export default function useEbirdApi() {
   async function getRegionHotspots(
     regionCode: string,
     back?: string,
-    fmt: Format = 'csv'
+    fmt: EbirdFormat = 'csv'
   ) {
     const urlParams: UrlParam[] = [
       {
@@ -169,7 +169,7 @@ export default function useEbirdApi() {
     apiKey: string,
     regionType: EbirdRegionType,
     parentRegionCode: EbirdParentRegionCode,
-    fmt: Format = 'csv'
+    fmt: EbirdFormat = 'csv'
   ) {
     const urlParams: UrlParam[] = [
       {

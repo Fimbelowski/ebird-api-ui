@@ -1,13 +1,16 @@
-import type Format from '../types/Format';
+import type EbirdFormat from '../types/EbirdFormat';
 import Select from './Select';
 import type SelectOption from '../types/SelectOption';
 import type SelectProps from '../types/SelectProps';
 
-type Props = Omit<SelectProps<Format>, 'label' | 'onChange' | 'options'> & {
-  onChange: (format: Format) => void;
+type Props = Omit<
+  SelectProps<EbirdFormat>,
+  'label' | 'onChange' | 'options'
+> & {
+  onChange: (format: EbirdFormat) => void;
 };
 
-const options: Array<SelectOption<Format>> = [
+const options: Array<SelectOption<EbirdFormat>> = [
   {
     label: 'CSV',
     value: 'csv',
@@ -20,9 +23,9 @@ const options: Array<SelectOption<Format>> = [
 
 export default function FormatSelect(props: Props) {
   return (
-    <Select<Format>
+    <Select<EbirdFormat>
       {...props}
-      label="Format"
+      label="EbirdFormat"
       options={options}
     />
   );
