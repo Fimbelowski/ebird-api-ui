@@ -25,7 +25,7 @@ export default function FormatSelect(props: Props) {
   return (
     <Select<EbirdFormat>
       {...props}
-      label="EbirdFormat"
+      label="Format"
       options={options}
     />
   );
