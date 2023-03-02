@@ -1,8 +1,8 @@
 import type EbirdRegionType from '../types/EbirdRegionType';
 import type EbirdParentRegionCode from '../types/EbirdParentRegionCode';
 import type EbirdFormat from '../types/EbirdFormat';
-import type GroupNameLocale from '../types/GroupNameLocale';
-import type SpeciesGrouping from '../types/SpeciesGrouping';
+import type EbirdGroupNameLocale from '../types/EbirdGroupNameLocale';
+import type EbirdSpeciesGrouping from '../types/EbirdSpeciesGrouping';
 
 const BASE_URL = 'https://api.ebird.org/v2/';
 
@@ -204,8 +204,8 @@ export default function useEbirdApi() {
 
   async function getTaxonomicGroups(
     apiKey: string,
-    speciesGrouping: SpeciesGrouping,
-    groupNameLocale: GroupNameLocale
+    speciesGrouping: EbirdSpeciesGrouping,
+    groupNameLocale: EbirdGroupNameLocale
   ) {
     const urlParams: UrlParam[] = [
       {
