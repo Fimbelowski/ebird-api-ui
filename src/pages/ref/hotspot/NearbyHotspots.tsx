@@ -4,15 +4,14 @@ import BackInput from '../../../components/BackInput';
 import BasePage from '../../../components/BasePage';
 import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
-import csvToArray from '../../../utilities/csvToArray';
 import Details from '../../../components/Details';
 import type EbirdFormat from '../../../types/EbirdFormat';
 import EbirdHotspotTableDetailed from '../../../components/EbirdHotspotTableDetailed';
 import EbirdHotspotTableSimple from '../../../components/EbirdHotspotTableSimple';
 import FormatSelect from '../../../components/FormatSelect';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
-import isJson from '../../../utilities/isJson';
 import NumberInput from '../../../components/NumberInput';
+import parseEbirdHotspotRequestData from '../../../utilities/parseEbirdHotspotRequestData';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useRequestState from '../../../hooks/useRequestState';
 
@@ -86,21 +85,8 @@ export default function NearbyHotspots() {
     getNearbyHotspots(latitude, longitude, format, back, distance)
       .then(async (response) => await response.text())
       .then((data) => {
-        setHotspots(
-          isJson(data)
-            ? JSON.parse(data)
-            : csvToArray(data, [
-                'locId',
-                'countryCode',
-                'subnational1Code',
-                'subnational2Code',
-                'lat',
-                'lng',
-                'locName',
-                'latestObsDt',
-                'numSpeciesAllTime',
-              ])
-        );
+        const parsedData = parseEbirdHotspotRequestData(data);
+        setHotspots(parsedData);
         setRawResponse(data);
         setHasQueried(true);
       })

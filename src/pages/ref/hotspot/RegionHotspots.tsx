@@ -2,14 +2,13 @@ import { useState } from 'react';
 
 import BackInput from '../../../components/BackInput';
 import BasePage from '../../../components/BasePage';
-import csvToArray from '../../../utilities/csvToArray';
 import Details from '../../../components/Details';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
 import EbirdHotspotTableDetailed from '../../../components/EbirdHotspotTableDetailed';
 import type EbirdFormat from '../../../types/EbirdFormat';
 import FormatSelect from '../../../components/FormatSelect';
-import isJson from '../../../utilities/isJson';
 import EbirdHotspotTableSimple from '../../../components/EbirdHotspotTableSimple';
+import parseEbirdHotspotRequestData from '../../../utilities/parseEbirdHotspotRequestData';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useRequestState from '../../../hooks/useRequestState';
@@ -72,21 +71,8 @@ export default function RegionHotspots() {
     getRegionHotspots(regionCode, back, format)
       .then(async (response) => await response.text())
       .then((data) => {
-        setHotspots(
-          isJson(data)
-            ? JSON.parse(data)
-            : csvToArray(data, [
-                'locId',
-                'countryCode',
-                'subnational1Code',
-                'subnational2Code',
-                'lat',
-                'lng',
-                'locName',
-                'latestObsDt',
-                'numSpeciesAllTime',
-              ])
-        );
+        const parsedData = parseEbirdHotspotRequestData(data);
+        setHotspots(parsedData);
         setRawResponse(data);
         setHasQueried(true);
       })
