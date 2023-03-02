@@ -167,7 +167,7 @@ export default function useEbirdApi() {
     apiKey: string,
     regionType: string,
     parentRegionCode: string,
-    fmt: 'csv' | 'json'
+    fmt: Format = 'csv'
   ) {
     const urlParams: UrlParam[] = [
       {
