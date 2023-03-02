@@ -2,6 +2,13 @@ import NavMenu from './NavMenu';
 import type NavMenuItem from '../types/NavMenuItem';
 
 export default function Nav() {
+  const geographyMenuItems: NavMenuItem[] = [
+    {
+      label: 'Adjacent Regions',
+      path: 'adjacent-regions',
+    },
+  ];
+
   const hotspotMenuItems: NavMenuItem[] = [
     {
       label: 'Nearby Hotspots',
@@ -19,8 +26,8 @@ export default function Nav() {
 
   const regionMenuItems: NavMenuItem[] = [
     {
-      label: 'Adjacent Regions',
-      path: 'adjacent-regions',
+      label: 'Sub-region List',
+      path: 'sub-region-list',
     },
   ];
 
@@ -41,6 +48,10 @@ export default function Nav() {
 
   return (
     <nav className="nav">
+      <NavMenu
+        items={geographyMenuItems}
+        label="Geography"
+      />
       <NavMenu
         items={hotspotMenuItems}
         label="Hotspots"
