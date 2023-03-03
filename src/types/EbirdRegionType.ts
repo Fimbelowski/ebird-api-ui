@@ -1,3 +1,3 @@
-type RegionType = 'country' | 'subnational1' | 'subnational2';
+type EbirdRegionType = 'country' | 'subnational1' | 'subnational2';
 
-export default RegionType;
+export default EbirdRegionType;
