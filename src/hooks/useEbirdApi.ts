@@ -1,5 +1,5 @@
 import type EbirdRegionType from '../types/EbirdRegionType';
-import type EbirdParentRegionCode from '../types/EbirdParentRegionCode';
+import type EbirdRegionCode from '../types/EbirdRegionCode';
 import type EbirdFormat from '../types/EbirdFormat';
 import type EbirdGroupNameLocale from '../types/EbirdGroupNameLocale';
 import type EbirdSpeciesGrouping from '../types/EbirdSpeciesGrouping';
@@ -168,7 +168,7 @@ export default function useEbirdApi() {
   async function getSubregionList(
     apiKey: string,
     regionType: EbirdRegionType,
-    parentRegionCode: EbirdParentRegionCode,
+    parentRegionCode: EbirdRegionCode,
     fmt: EbirdFormat = 'csv'
   ) {
     const urlParams: UrlParam[] = [

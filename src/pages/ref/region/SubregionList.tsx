@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
-import type EbirdParentRegionCode from '../../../types/EbirdParentRegionCode';
+import type EbirdParentRegionCode from '../../../types/EbirdRegionCode';
 import type EbirdRegion from '../../../types/EbirdRegion';
 import EbirdRegionTable from '../../../components/EbirdRegionTable';
 import type EbirdRegionType from '../../../types/EbirdRegionType';
