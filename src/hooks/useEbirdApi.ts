@@ -2,6 +2,7 @@ import type EbirdRegionType from '../types/EbirdRegionType';
 import type EbirdRegionCode from '../types/EbirdRegionCode';
 import type EbirdFormat from '../types/EbirdFormat';
 import type EbirdGroupNameLocale from '../types/EbirdGroupNameLocale';
+import type EbirdRegionNameFormat from '../types/EbirdRegionNameFormat';
 import type EbirdSpeciesGrouping from '../types/EbirdSpeciesGrouping';
 
 const BASE_URL = 'https://api.ebird.org/v2/';
@@ -165,6 +166,40 @@ export default function useEbirdApi() {
     );
   }
 
+  async function getRegionInfo(
+    apiKey: string,
+    regionCode: EbirdRegionCode,
+    regionNameFormat: EbirdRegionNameFormat,
+    delim: string
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+    ];
+
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: 'full',
+        name: 'regionNameFormat',
+        value: regionNameFormat,
+      },
+      {
+        defaultValue: ',',
+        name: 'delim',
+        value: delim,
+      },
+    ];
+
+    return await baseRequest(
+      'ref/region/info/{{regionCode}}',
+      apiKey,
+      urlParams,
+      queryParams
+    );
+  }
+
   async function getSubregionList(
     apiKey: string,
     regionType: EbirdRegionType,
@@ -239,6 +274,7 @@ export default function useEbirdApi() {
     getHotspotInfo,
     getNearbyHotspots,
     getRegionHotspots,
+    getRegionInfo,
     getSubregionList,
     getTaxaLocaleCodes,
     getTaxonomicGroups,
