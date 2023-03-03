@@ -2,7 +2,8 @@ import { useState } from 'react';
 
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
-import type EbirdParentRegionCode from '../../../types/EbirdParentRegionCode';
+import type EbirdRegionCode from '../../../types/EbirdRegionCode';
+import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import type EbirdRegion from '../../../types/EbirdRegion';
 import EbirdRegionTable from '../../../components/EbirdRegionTable';
 import type EbirdRegionType from '../../../types/EbirdRegionType';
@@ -14,7 +15,6 @@ import useApiKey from '../../../hooks/useApiKey';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useFormatState from '../../../hooks/useFormatState';
 import useRequestState from '../../../hooks/useRequestState';
-import TextInput from '../../../components/TextInput';
 
 export default function SubregionList() {
   const { apiKey } = useApiKey();
@@ -29,8 +29,7 @@ export default function SubregionList() {
   } = useRequestState();
   const { format, setFormat } = useFormatState();
 
-  const [parentRegionCode, setParentRegionCode] =
-    useState<EbirdParentRegionCode>('');
+  const [parentRegionCode, setParentRegionCode] = useState<EbirdRegionCode>('');
   const [regionType, setRegionType] = useState<EbirdRegionType>('country');
   const [subregions, setSubregions] = useState<EbirdRegion[]>([]);
 
@@ -77,11 +76,10 @@ export default function SubregionList() {
         onChange={setRegionType}
         value={regionType}
       />
-      <TextInput
+      <EbirdRegionCodeInput
         id="parent-region-code"
         label="Parent Region Code"
         onChange={setParentRegionCode}
-        placeholder="world"
         required
         value={parentRegionCode}
       />

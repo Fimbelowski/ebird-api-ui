@@ -7,6 +7,10 @@ export default function Nav() {
       label: 'Adjacent Regions',
       path: 'adjacent-regions',
     },
+    {
+      label: 'Region Info',
+      path: 'region-info',
+    },
   ];
 
   const hotspotMenuItems: NavMenuItem[] = [

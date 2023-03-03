@@ -16,7 +16,9 @@ export default function BaseInput({
   label,
   loading = false,
   max,
+  maxLength,
   min,
+  minLength,
   noScroll = false,
   onChange: onChangeProp,
   pattern,
@@ -89,7 +91,9 @@ export default function BaseInput({
         form={form}
         id={id}
         max={max}
+        maxLength={maxLength}
         min={min}
+        minLength={minLength}
         onChange={onChange}
         onKeyDown={onKeyDown}
         onWheel={onWheel}
