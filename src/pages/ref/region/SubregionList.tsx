@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
-import type EbirdParentRegionCode from '../../../types/EbirdRegionCode';
+import type EbirdRegionCode from '../../../types/EbirdRegionCode';
 import type EbirdRegion from '../../../types/EbirdRegion';
 import EbirdRegionTable from '../../../components/EbirdRegionTable';
 import type EbirdRegionType from '../../../types/EbirdRegionType';
@@ -29,8 +29,7 @@ export default function SubregionList() {
   } = useRequestState();
   const { format, setFormat } = useFormatState();
 
-  const [parentRegionCode, setParentRegionCode] =
-    useState<EbirdParentRegionCode>('');
+  const [parentRegionCode, setParentRegionCode] = useState<EbirdRegionCode>('');
   const [regionType, setRegionType] = useState<EbirdRegionType>('country');
   const [subregions, setSubregions] = useState<EbirdRegion[]>([]);
 
