@@ -186,7 +186,7 @@ export default function useEbirdApi() {
         value: regionNameFormat,
       },
       {
-        defaultValue: ',',
+        defaultValue: ', ',
         name: 'delim',
         value: delim,
       },
