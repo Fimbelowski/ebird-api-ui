@@ -1,3 +1,3 @@
-type EbirdParentRegionCode = string | 'world';
+type EbirdRegionCode = string | 'world';
 
-export default EbirdParentRegionCode;
+export default EbirdRegionCode;
