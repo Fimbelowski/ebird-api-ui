@@ -3,8 +3,8 @@ import { useState } from 'react';
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
 import type EbirdRegion from '../../../types/EbirdRegion';
+import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import EbirdRegionTable from '../../../components/EbirdRegionTable';
-import TextInput from '../../../components/TextInput';
 import useApiKey from '../../../hooks/useApiKey';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useRequestState from '../../../hooks/useRequestState';
@@ -43,11 +43,10 @@ export default function AdjacentRegions() {
   }
 
   const formContent = (
-    <TextInput
+    <EbirdRegionCodeInput
       id="region-code"
       label="Region Code"
       onChange={setRegionCode}
-      placeholder="US-CO"
       required
       value={regionCode}
     />
