@@ -119,8 +119,6 @@ export default function RegionInfo() {
   const formContent = (
     <>
       <EbirdRegionCodeInput
-        id="region-code"
-        label="Region Code"
         onChange={setRegionCode}
         required
         value={regionCode}

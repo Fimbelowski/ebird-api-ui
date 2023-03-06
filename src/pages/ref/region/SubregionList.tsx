@@ -76,7 +76,6 @@ export default function SubregionList() {
         value={regionType}
       />
       <EbirdRegionCodeInput
-        id="parent-region-code"
         label="Parent Region Code"
         onChange={setParentRegionCode}
         required

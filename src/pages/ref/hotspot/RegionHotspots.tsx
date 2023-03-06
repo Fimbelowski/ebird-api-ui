@@ -33,8 +33,6 @@ export default function RegionHotspots() {
   const formContent = (
     <>
       <EbirdRegionCodeInput
-        id="region-code"
-        label="Region Code"
         onChange={setRegionCode}
         required
         value={regionCode}

@@ -44,8 +44,6 @@ export default function AdjacentRegions() {
 
   const formContent = (
     <EbirdRegionCodeInput
-      id="region-code"
-      label="Region Code"
       onChange={setRegionCode}
       required
       value={regionCode}
