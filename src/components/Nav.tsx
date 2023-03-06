@@ -30,6 +30,10 @@ export default function Nav() {
 
   const productMenuItems: NavMenuItem[] = [
     {
+      label: 'Regional Statistics on a Date',
+      path: 'region-stats-on-date',
+    },
+    {
       label: 'Species List for a Region',
       path: 'species-list-region',
     },
