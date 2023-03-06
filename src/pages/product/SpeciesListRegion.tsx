@@ -1,11 +1,14 @@
+import { useState } from 'react';
+
 import BasePage from '../../components/BasePage';
+import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import useApiKey from '../../hooks/useApiKey';
 import useEbirdApi from '../../hooks/useEbirdApi';
 import useRequestState from '../../hooks/useRequestState';
 
 export default function SpeciesListRegion() {
   const { apiKey } = useApiKey();
-  const ebirdApi = useEbirdApi();
+  const { getSpeciesListForRegion } = useEbirdApi();
   const {
     hasQueried,
     loading,
@@ -15,8 +18,18 @@ export default function SpeciesListRegion() {
     setRawResponse,
   } = useRequestState();
 
+  const [regionCode, setRegionCode] = useState('');
+
+  const formContent = (
+    <EbirdRegionCodeInput
+      onChange={setRegionCode}
+      value={regionCode}
+    />
+  );
+
   return (
     <BasePage
+      formContent={formContent}
       hasQueried={hasQueried}
       loading={loading}
       rawResponse={rawResponse}
