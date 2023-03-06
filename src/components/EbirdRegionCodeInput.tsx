@@ -7,7 +7,7 @@ export default function EbirdRegionCodeInput(props: Props) {
   return (
     <TextInput
       {...props}
-      placeholder="world"
+      placeholder="US-CO"
     />
   );
 }
