@@ -70,7 +70,10 @@ export default function TaxaLocaleCodes() {
 
   const resultsContent = (
     <>
-      <Details summary="Results Table">
+      <Details
+        open
+        summary="Results Table"
+      >
         <Table<EbirdTaxaLocaleCode>
           cells={tableCells}
           headers={tableHeaders}

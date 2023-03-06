@@ -1,13 +1,20 @@
 import type CommonInputProps from '../types/CommonInputProps';
 import TextInput from './TextInput';
 
-type Props = Omit<CommonInputProps, 'placeholder'>;
+type Props = Omit<CommonInputProps, 'id' | 'label' | 'placeholder'> & {
+  label?: string;
+};
 
-export default function EbirdRegionCodeInput(props: Props) {
+export default function EbirdRegionCodeInput({
+  label = 'Region Code',
+  ...rest
+}: Props) {
   return (
     <TextInput
-      {...props}
-      placeholder="world"
+      {...rest}
+      id="region-code"
+      label={label}
+      placeholder="US-CO"
     />
   );
 }

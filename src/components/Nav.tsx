@@ -28,6 +28,13 @@ export default function Nav() {
     },
   ];
 
+  const productMenuItems: NavMenuItem[] = [
+    {
+      label: 'Species List for a Region',
+      path: 'species-list-region',
+    },
+  ];
+
   const regionMenuItems: NavMenuItem[] = [
     {
       label: 'Sub-region List',
@@ -59,6 +66,10 @@ export default function Nav() {
       <NavMenu
         items={hotspotMenuItems}
         label="Hotspots"
+      />
+      <NavMenu
+        items={productMenuItems}
+        label="Product"
       />
       <NavMenu
         items={regionMenuItems}

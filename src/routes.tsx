@@ -6,6 +6,7 @@ import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import RegionHotspots from './pages/ref/hotspot/RegionHotspots';
 import RegionInfo from './pages/ref/region/RegionInfo';
 import Root from './pages/Root';
+import SpeciesListRegion from './pages/product/SpeciesListRegion';
 import SubregionList from './pages/ref/region/SubregionList';
 import TaxaLocaleCodes from './pages/ref/taxonomy/TaxaLocaleCodes';
 import TaxonomicGroups from './pages/ref/taxonomy/TaxonomicGroups';
@@ -35,6 +36,10 @@ const ROUTES: RouteObject[] = [
       {
         path: 'region-info',
         element: <RegionInfo />,
+      },
+      {
+        path: 'species-list-region',
+        element: <SpeciesListRegion />,
       },
       {
         path: 'sub-region-list',

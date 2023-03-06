@@ -1,5 +1,4 @@
 import type EbirdRegionType from '../types/EbirdRegionType';
-import type EbirdRegionCode from '../types/EbirdRegionCode';
 import type EbirdFormat from '../types/EbirdFormat';
 import type EbirdGroupNameLocale from '../types/EbirdGroupNameLocale';
 import type EbirdRegionNameFormat from '../types/EbirdRegionNameFormat';
@@ -168,7 +167,7 @@ export default function useEbirdApi() {
 
   async function getRegionInfo(
     apiKey: string,
-    regionCode: EbirdRegionCode,
+    regionCode: string,
     regionNameFormat: EbirdRegionNameFormat,
     delim: string
   ) {
@@ -200,10 +199,25 @@ export default function useEbirdApi() {
     );
   }
 
+  async function getSpeciesListForRegion(apiKey: string, regionCode: string) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+    ];
+
+    return await baseRequest(
+      'product/spplist/{{regionCode}}',
+      apiKey,
+      urlParams
+    );
+  }
+
   async function getSubregionList(
     apiKey: string,
     regionType: EbirdRegionType,
-    parentRegionCode: EbirdRegionCode,
+    parentRegionCode: string,
     fmt: EbirdFormat = 'csv'
   ) {
     const urlParams: UrlParam[] = [
@@ -275,6 +289,7 @@ export default function useEbirdApi() {
     getNearbyHotspots,
     getRegionHotspots,
     getRegionInfo,
+    getSpeciesListForRegion,
     getSubregionList,
     getTaxaLocaleCodes,
     getTaxonomicGroups,

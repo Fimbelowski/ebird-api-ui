@@ -4,12 +4,12 @@ import BackInput from '../../../components/BackInput';
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
 import type EbirdHotspot from '../../../types/EbirdHotspot';
+import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import EbirdHotspotTableDetailed from '../../../components/EbirdHotspotTableDetailed';
 import type EbirdFormat from '../../../types/EbirdFormat';
 import FormatSelect from '../../../components/FormatSelect';
 import EbirdHotspotTableSimple from '../../../components/EbirdHotspotTableSimple';
 import parseEbirdHotspotRequestData from '../../../utilities/parseEbirdHotspotRequestData';
-import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useRequestState from '../../../hooks/useRequestState';
 
@@ -32,11 +32,8 @@ export default function RegionHotspots() {
 
   const formContent = (
     <>
-      <TextInput
-        id="region-code"
-        label="Region Code"
+      <EbirdRegionCodeInput
         onChange={setRegionCode}
-        placeholder="US-CO"
         required
         value={regionCode}
       />

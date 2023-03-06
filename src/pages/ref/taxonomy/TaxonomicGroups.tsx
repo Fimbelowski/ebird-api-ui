@@ -188,7 +188,10 @@ export default function TaxonomicGroups() {
   );
 
   const resultsContent = (
-    <Details summary="Results Table">
+    <Details
+      open
+      summary="Results Table"
+    >
       <Table<EbirdTaxonomicGroup>
         cells={tableCells}
         headers={tableHeaders}
