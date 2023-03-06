@@ -200,6 +200,24 @@ export default function useEbirdApi() {
     );
   }
 
+  async function getSpeciesListForRegion(
+    apiKey: string,
+    regionCode: EbirdRegionCode
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+    ];
+
+    return await baseRequest(
+      'product/spplist/{{regionCode}}',
+      apiKey,
+      urlParams
+    );
+  }
+
   async function getSubregionList(
     apiKey: string,
     regionType: EbirdRegionType,
@@ -275,6 +293,7 @@ export default function useEbirdApi() {
     getNearbyHotspots,
     getRegionHotspots,
     getRegionInfo,
+    getSpeciesListForRegion,
     getSubregionList,
     getTaxaLocaleCodes,
     getTaxonomicGroups,
