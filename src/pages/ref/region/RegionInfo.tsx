@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
-import type EbirdRegionCode from '../../../types/EbirdRegionCode';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import type EbirdRegionInfo from '../../../types/EbirdRegionInfo';
 import type EbirdRegionNameFormat from '../../../types/EbirdRegionNameFormat';
@@ -29,7 +28,7 @@ export default function RegionInfo() {
   } = useRequestState();
 
   const [delimiter, setDelimiter] = useState(', ');
-  const [regionCode, setRegionCode] = useState<EbirdRegionCode>('');
+  const [regionCode, setRegionCode] = useState('');
   const [regionInfo, setRegionInfo] = useState<EbirdRegionInfo>();
   const [regionNameFormat, setRegionNameFormat] =
     useState<EbirdRegionNameFormat>('full');
