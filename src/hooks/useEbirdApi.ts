@@ -199,6 +199,39 @@ export default function useEbirdApi() {
     );
   }
 
+  async function getRegionStatsOnDate(
+    apiKey: string,
+    regionCode: string,
+    y: number,
+    m: number,
+    d: number
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+      {
+        name: 'y',
+        value: y.toString(),
+      },
+      {
+        name: 'm',
+        value: m.toString(),
+      },
+      {
+        name: 'd',
+        value: d.toString(),
+      },
+    ];
+
+    return await baseRequest(
+      'product/stats/{{regionCode}}/{{y}}/{{m}}/{{d}}',
+      apiKey,
+      urlParams
+    );
+  }
+
   async function getSpeciesListForRegion(apiKey: string, regionCode: string) {
     const urlParams: UrlParam[] = [
       {
@@ -289,6 +322,7 @@ export default function useEbirdApi() {
     getNearbyHotspots,
     getRegionHotspots,
     getRegionInfo,
+    getRegionStatsOnDate,
     getSpeciesListForRegion,
     getSubregionList,
     getTaxaLocaleCodes,
