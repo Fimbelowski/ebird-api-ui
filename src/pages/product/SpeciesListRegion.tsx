@@ -63,7 +63,10 @@ export default function SpeciesListRegion() {
   );
 
   const resultsContent = (
-    <Details summary="Results Table">
+    <Details
+      open
+      summary="Results Table"
+    >
       <Table<string>
         cells={tableCells}
         headers={tableHeaders}
