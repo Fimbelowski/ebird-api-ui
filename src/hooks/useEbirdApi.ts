@@ -2,6 +2,7 @@ import useApiKey from './useApiKey';
 import type EbirdRegionType from '../types/EbirdRegionType';
 import type EbirdFormat from '../types/EbirdFormat';
 import type EbirdGroupNameLocale from '../types/EbirdGroupNameLocale';
+import type EbirdRankedBy from '../types/EbirdRankedBy';
 import type EbirdRegionNameFormat from '../types/EbirdRegionNameFormat';
 import type EbirdSpeciesGrouping from '../types/EbirdSpeciesGrouping';
 
@@ -305,6 +306,52 @@ export default function useEbirdApi() {
     return await baseRequest('ref/taxonomy/versions');
   }
 
+  async function getTop100(
+    regionCode: string,
+    year: string,
+    month: string,
+    day: string,
+    rankedBy: EbirdRankedBy,
+    maxResults: string
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+      {
+        name: 'y',
+        value: year,
+      },
+      {
+        name: 'm',
+        value: month,
+      },
+      {
+        name: 'd',
+        value: day,
+      },
+    ];
+
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: 'spp',
+        name: 'rankedBy',
+        value: rankedBy,
+      },
+      {
+        name: 'maxResults',
+        value: maxResults,
+      },
+    ];
+
+    return await baseRequest(
+      'product/top100/{{regionCode}}/{{y}}/{{m}}/{{d}}',
+      urlParams,
+      queryParams
+    );
+  }
+
   return {
     getAdjacentRegions,
     getHotspotInfo,
@@ -317,5 +364,6 @@ export default function useEbirdApi() {
     getTaxaLocaleCodes,
     getTaxonomicGroups,
     getTaxonomyVersions,
+    getTop100,
   };
 }
