@@ -11,12 +11,10 @@ import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
 import TextInput from '../../../components/TextInput';
-import useApiKey from '../../../hooks/useApiKey';
 import useRequestState from '../../../hooks/useRequestState';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function RegionInfo() {
-  const { apiKey } = useApiKey();
   const { getRegionInfo } = useEbirdApi();
   const {
     hasQueried,
@@ -101,7 +99,7 @@ export default function RegionInfo() {
   function onFormSubmit() {
     setLoading(true);
 
-    getRegionInfo(apiKey, regionCode, regionNameFormat, delimiter)
+    getRegionInfo(regionCode, regionNameFormat, delimiter)
       .then(async (response) => await response.text())
       .then((data) => {
         setRawResponse(data);

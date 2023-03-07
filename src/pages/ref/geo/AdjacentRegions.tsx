@@ -5,12 +5,10 @@ import Details from '../../../components/Details';
 import type EbirdRegion from '../../../types/EbirdRegion';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import EbirdRegionTable from '../../../components/EbirdRegionTable';
-import useApiKey from '../../../hooks/useApiKey';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useRequestState from '../../../hooks/useRequestState';
 
 export default function AdjacentRegions() {
-  const { apiKey } = useApiKey();
   const { getAdjacentRegions } = useEbirdApi();
   const {
     hasQueried,
@@ -27,7 +25,7 @@ export default function AdjacentRegions() {
   function onSubmit() {
     setLoading(true);
 
-    getAdjacentRegions(apiKey, regionCode)
+    getAdjacentRegions(regionCode)
       .then(async (response) => await response.text())
       .then((data) => {
         setRawResponse(data);

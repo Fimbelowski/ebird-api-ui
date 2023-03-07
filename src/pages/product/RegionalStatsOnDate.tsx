@@ -9,12 +9,10 @@ import type EbirdRegionStats from '../../types/EbirdRegionStats';
 import Table from '../../components/Table';
 import type TableCell from '../../types/TableCell';
 import type TableHeader from '../../types/TableHeader';
-import useApiKey from '../../hooks/useApiKey';
 import useEbirdApi from '../../hooks/useEbirdApi';
 import useRequestState from '../../hooks/useRequestState';
 
 export default function RegionalStatsOnDate() {
-  const { apiKey } = useApiKey();
   const {
     hasQueried,
     loading,
@@ -64,7 +62,7 @@ export default function RegionalStatsOnDate() {
 
     const { year, month, day } = dateStringToObject(date);
 
-    getRegionStatsOnDate(apiKey, regionCode, year, month, day)
+    getRegionStatsOnDate(regionCode, year, month, day)
       .then(async (response) => await response.text())
       .then((data) => {
         setRawResponse(data);

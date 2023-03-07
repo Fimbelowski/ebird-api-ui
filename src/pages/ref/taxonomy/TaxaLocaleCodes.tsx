@@ -6,12 +6,10 @@ import type EbirdTaxaLocaleCode from '../../../types/EbirdTaxaLocaleCode';
 import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
-import useApiKey from '../../../hooks/useApiKey';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useRequestState from '../../../hooks/useRequestState';
 
 export default function TaxaLocaleCodes() {
-  const { apiKey } = useApiKey();
   const { getTaxaLocaleCodes } = useEbirdApi();
   const {
     hasQueried,
@@ -53,7 +51,7 @@ export default function TaxaLocaleCodes() {
   function onSubmit() {
     setLoading(true);
 
-    getTaxaLocaleCodes(apiKey)
+    getTaxaLocaleCodes()
       .then(async (response) => await response.text())
       .then((data) => {
         setHasQueried(true);
