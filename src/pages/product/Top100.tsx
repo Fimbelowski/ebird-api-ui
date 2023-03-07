@@ -1,8 +1,10 @@
 import BasePage from '../../components/BasePage';
+import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
 import useRequestState from '../../hooks/useRequestState';
 
 export default function Top100() {
+  const { day, month, onChange: onDateChange, year } = useDate();
   const {
     hasQueried,
     loading,
@@ -11,7 +13,7 @@ export default function Top100() {
     setLoading,
     setRawResponse,
   } = useRequestState();
-  const ebirdApi = useEbirdApi();
+  const { getTop100 } = useEbirdApi();
 
   return (
     <BasePage
