@@ -1,12 +1,13 @@
 import BaseInput from './BaseInput';
 import type CommonInputProps from '../types/CommonInputProps';
 
-type Props = Omit<CommonInputProps, 'type'>;
+type Props = Omit<CommonInputProps, 'label' | 'type'> & { label?: string };
 
-export default function DateInput(props: Props) {
+export default function DateInput({ label = 'Date', ...rest }: Props) {
   return (
     <BaseInput
-      {...props}
+      {...rest}
+      label={label}
       type="date"
     />
   );
