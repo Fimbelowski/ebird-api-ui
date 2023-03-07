@@ -200,9 +200,9 @@ export default function useEbirdApi() {
 
   async function getRegionStatsOnDate(
     regionCode: string,
-    y: string,
-    m: string,
-    d: string
+    year: string,
+    month: string,
+    day: string
   ) {
     const urlParams: UrlParam[] = [
       {
@@ -211,15 +211,15 @@ export default function useEbirdApi() {
       },
       {
         name: 'y',
-        value: y,
+        value: year,
       },
       {
         name: 'm',
-        value: m,
+        value: month,
       },
       {
         name: 'd',
-        value: d,
+        value: day,
       },
     ];
 
