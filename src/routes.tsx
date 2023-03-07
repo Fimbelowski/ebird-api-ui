@@ -5,6 +5,7 @@ import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
 import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import RegionHotspots from './pages/ref/hotspot/RegionHotspots';
 import RegionInfo from './pages/ref/region/RegionInfo';
+import RegionalStatsOnDate from './pages/product/RegionalStatsOnDate';
 import Root from './pages/Root';
 import SpeciesListRegion from './pages/product/SpeciesListRegion';
 import SubregionList from './pages/ref/region/SubregionList';
@@ -36,6 +37,10 @@ const ROUTES: RouteObject[] = [
       {
         path: 'region-info',
         element: <RegionInfo />,
+      },
+      {
+        path: 'region-stats-on-date',
+        element: <RegionalStatsOnDate />,
       },
       {
         path: 'species-list-region',
