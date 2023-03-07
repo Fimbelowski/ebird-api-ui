@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import DateInput from '../components/DateInput';
+
 export default function useDate() {
   const [day, setDay] = useState('');
   const [month, setMonth] = useState('');
@@ -19,5 +21,5 @@ export default function useDate() {
     setDay(dateStringAsDate.getUTCDate().toString());
   }
 
-  return { day, month, onChange, year };
+  return { DateInput, day, month, onChange, year };
 }

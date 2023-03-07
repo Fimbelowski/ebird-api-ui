@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import BasePage from '../../components/BasePage';
-import DateInput from '../../components/DateInput';
 import Details from '../../components/Details';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import type EbirdRegionStats from '../../types/EbirdRegionStats';
@@ -13,7 +12,7 @@ import useEbirdApi from '../../hooks/useEbirdApi';
 import useRequestState from '../../hooks/useRequestState';
 
 export default function RegionalStatsOnDate() {
-  const { day, month, onChange: onDateChange, year } = useDate();
+  const { DateInput, day, month, onChange: onDateChange, year } = useDate();
   const { getRegionStatsOnDate } = useEbirdApi();
   const {
     hasQueried,
