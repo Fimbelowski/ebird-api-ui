@@ -4,6 +4,7 @@ import BasePage from '../../components/BasePage';
 import Details from '../../components/Details';
 import type EbirdChecklistSortKey from '../../types/EbirdChecklistSortKey';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
+import GoogleMapsLink from '../../components/GoogleMapsLink';
 import NumberInput from '../../components/NumberInput';
 import Select from '../../components/Select';
 import type SelectOption from '../../types/SelectOption';
@@ -82,6 +83,50 @@ export default function ChecklistFeedOnDate() {
     },
   ];
 
+  const simpleTableCells: Array<TableCell<EbirdChecklist>> = [
+    {
+      callback: ({ userDisplayName }) => userDisplayName,
+    },
+    {
+      callback: ({ loc: { locName } }) => locName,
+    },
+    {
+      align: 'right',
+      callback: ({ numSpecies }) => numSpecies,
+    },
+    {
+      callback: ({ obsDt, obsTime = '' }) => {
+        const date = new Date(`${obsDt} ${obsTime}`);
+
+        return obsTime === ''
+          ? date.toLocaleDateString()
+          : date.toLocaleString();
+      },
+    },
+    {
+      callback: ({ loc }) => <GoogleMapsLink location={loc} />,
+    },
+  ];
+
+  const simpleTableHeaders: TableHeader[] = [
+    {
+      label: 'Contributor',
+    },
+    {
+      label: 'Location',
+    },
+    {
+      align: 'right',
+      label: '# Species',
+    },
+    {
+      label: 'Date of Observation',
+    },
+    {
+      label: 'View on Google Maps',
+    },
+  ];
+
   const sortKeySelectOptions: Array<SelectOption<EbirdChecklistSortKey>> = [
     {
       label: 'Observation Date',
@@ -145,6 +190,16 @@ export default function ChecklistFeedOnDate() {
         <Table<EbirdChecklist>
           cells={detailedTableCells}
           headers={detailedTableHeaders}
+          items={checklists}
+        />
+      </Details>
+      <Details
+        open
+        summary="Simple Table"
+      >
+        <Table<EbirdChecklist>
+          cells={simpleTableCells}
+          headers={simpleTableHeaders}
           items={checklists}
         />
       </Details>
