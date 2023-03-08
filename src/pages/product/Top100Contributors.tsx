@@ -97,7 +97,7 @@ export default function Top100() {
       onFormSubmit={onSubmit}
       rawResponse={rawResponse}
       requiresApiKey
-      title="Top 100"
+      title="Top 100 Contributors"
     />
   );
 }

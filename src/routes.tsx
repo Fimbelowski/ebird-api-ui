@@ -12,7 +12,7 @@ import SubregionList from './pages/ref/region/SubregionList';
 import TaxaLocaleCodes from './pages/ref/taxonomy/TaxaLocaleCodes';
 import TaxonomicGroups from './pages/ref/taxonomy/TaxonomicGroups';
 import TaxonomyVersions from './pages/ref/taxonomy/TaxonomyVersions';
-import Top100 from './pages/product/Top100';
+import Top100Contributors from './pages/product/Top100Contributors';
 
 const ROUTES: RouteObject[] = [
   {
@@ -65,7 +65,7 @@ const ROUTES: RouteObject[] = [
       },
       {
         path: 'top-100',
-        element: <Top100 />,
+        element: <Top100Contributors />,
       },
     ],
   },

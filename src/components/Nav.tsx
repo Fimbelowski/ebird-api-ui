@@ -38,7 +38,7 @@ export default function Nav() {
       path: 'species-list-region',
     },
     {
-      label: 'Top 100',
+      label: 'Top 100 Contributors',
       path: 'top-100',
     },
   ];
