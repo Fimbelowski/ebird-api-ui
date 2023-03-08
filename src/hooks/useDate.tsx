@@ -17,7 +17,7 @@ export default function useDate() {
     const dateStringAsDate = new Date(value);
 
     setYear(dateStringAsDate.getUTCFullYear().toString());
-    setMonth(dateStringAsDate.getUTCMonth().toString());
+    setMonth((dateStringAsDate.getUTCMonth() + 1).toString());
     setDay(dateStringAsDate.getUTCDate().toString());
   }
 
