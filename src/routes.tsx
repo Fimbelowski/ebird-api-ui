@@ -1,6 +1,7 @@
 import { type RouteObject } from 'react-router-dom';
 
 import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
+import ChecklistFeedOnDate from './pages/product/ChecklistFeedOnDate';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
 import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import RegionHotspots from './pages/ref/hotspot/RegionHotspots';
@@ -22,6 +23,10 @@ const ROUTES: RouteObject[] = [
       {
         path: 'adjacent-regions',
         element: <AdjacentRegions />,
+      },
+      {
+        path: 'checklist-feed-on-date',
+        element: <ChecklistFeedOnDate />,
       },
       {
         path: 'hotspot-info',

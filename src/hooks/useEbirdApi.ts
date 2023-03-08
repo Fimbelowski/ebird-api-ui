@@ -1,4 +1,5 @@
 import useApiKey from './useApiKey';
+import type EbirdChecklistSortKey from '../types/EbirdChecklistSortKey';
 import type EbirdRegionType from '../types/EbirdRegionType';
 import type EbirdFormat from '../types/EbirdFormat';
 import type EbirdGroupNameLocale from '../types/EbirdGroupNameLocale';
@@ -88,6 +89,53 @@ export default function useEbirdApi() {
     ];
 
     return await baseRequest('ref/adjacent/{{regionCode}}', urlParams);
+  }
+
+  async function getChecklistFeedOnDate(
+    regionCode: string,
+    year: string,
+    month: string,
+    day: string,
+    sortKey: EbirdChecklistSortKey = 'obs_dt',
+    maxResults = '10'
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+      {
+        name: 'y',
+        value: year,
+      },
+      {
+        name: 'm',
+        value: month,
+      },
+      {
+        name: 'd',
+        value: day,
+      },
+    ];
+
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: 'obs_dt',
+        name: 'sortKey',
+        value: sortKey,
+      },
+      {
+        defaultValue: '10',
+        name: 'maxResults',
+        value: maxResults,
+      },
+    ];
+
+    return await baseRequest(
+      'product/lists/{{regionCode}}/{{y}}/{{m}}/{{d}}',
+      urlParams,
+      queryParams
+    );
   }
 
   async function getHotspotInfo(locId: string) {
@@ -354,6 +402,7 @@ export default function useEbirdApi() {
 
   return {
     getAdjacentRegions,
+    getChecklistFeedOnDate,
     getHotspotInfo,
     getNearbyHotspots,
     getRegionHotspots,

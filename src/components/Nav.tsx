@@ -30,6 +30,10 @@ export default function Nav() {
 
   const productMenuItems: NavMenuItem[] = [
     {
+      label: 'Checklist Feed on a Date',
+      path: 'checklist-feed-on-date',
+    },
+    {
       label: 'Regional Statistics on a Date',
       path: 'region-stats-on-date',
     },
