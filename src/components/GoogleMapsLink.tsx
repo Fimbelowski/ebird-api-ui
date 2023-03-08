@@ -1,5 +1,6 @@
 import type EbirdHotspot from '../types/EbirdHotspot';
 import type EbirdLocation from '../types/EbirdLocation';
+import NewTabLink from './NewTabLink';
 
 interface Props {
   location: EbirdHotspot | EbirdLocation;
@@ -9,12 +10,8 @@ export default function GoogleMapsLink({ location }: Props) {
   const { lat, lng } = location;
 
   return (
-    <a
-      href={`https://maps.google.com/?q=${lat},${lng}`}
-      rel="noreferrer"
-      target="_blank"
-    >
+    <NewTabLink href={`https://maps.google.com/?q=${lat},${lng}`}>
       Link
-    </a>
+    </NewTabLink>
   );
 }
