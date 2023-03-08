@@ -1,14 +1,19 @@
 import { useState } from 'react';
 
 import BasePage from '../../components/BasePage';
+import Details from '../../components/Details';
 import type EbirdChecklistSortKey from '../../types/EbirdChecklistSortKey';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import NumberInput from '../../components/NumberInput';
 import Select from '../../components/Select';
 import type SelectOption from '../../types/SelectOption';
+import Table from '../../components/Table';
+import type TableCell from '../../types/TableCell';
+import type TableHeader from '../../types/TableHeader';
 import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
 import useRequestState from '../../hooks/useRequestState';
+import type EbirdChecklist from '../../types/EbirdChecklist';
 
 export default function ChecklistFeedOnDate() {
   const { DateInput, day, month, onChange: onDateChange, year } = useDate();
@@ -22,9 +27,60 @@ export default function ChecklistFeedOnDate() {
     setRawResponse,
   } = useRequestState();
 
+  const [checklists, setChecklists] = useState<EbirdChecklist[]>([]);
   const [maxResults, setMaxResults] = useState('10');
   const [regionCode, setRegionCode] = useState('');
   const [sortKey, setSortKey] = useState<EbirdChecklistSortKey>('obs_dt');
+
+  const detailedTableCells: Array<TableCell<EbirdChecklist>> = [
+    {
+      callback: ({ locId }) => locId,
+    },
+    {
+      callback: ({ subId }) => subId,
+    },
+    {
+      callback: ({ userDisplayName }) => userDisplayName,
+    },
+    {
+      align: 'right',
+      callback: ({ numSpecies }) => numSpecies,
+    },
+    {
+      callback: ({ obsDt }) => obsDt,
+    },
+    {
+      callback: ({ obsTime }) => obsTime,
+    },
+    {
+      callback: ({ subID }) => subID,
+    },
+  ];
+
+  const detailedTableHeaders: TableHeader[] = [
+    {
+      label: 'locId',
+    },
+    {
+      label: 'subId',
+    },
+    {
+      label: 'userDisplayName',
+    },
+    {
+      align: 'right',
+      label: 'numSpecies',
+    },
+    {
+      label: 'obsDt',
+    },
+    {
+      label: 'obsTime',
+    },
+    {
+      label: 'subID',
+    },
+  ];
 
   const sortKeySelectOptions: Array<SelectOption<EbirdChecklistSortKey>> = [
     {
@@ -43,7 +99,7 @@ export default function ChecklistFeedOnDate() {
     getChecklistFeedOnDate(regionCode, year, month, day, sortKey, maxResults)
       .then(async (response) => await response.text())
       .then((data) => {
-        console.log(JSON.parse(data));
+        setChecklists(JSON.parse(data));
         setRawResponse(data);
         setHasQueried(true);
       })
@@ -83,6 +139,18 @@ export default function ChecklistFeedOnDate() {
     </>
   );
 
+  const resultsContent = (
+    <>
+      <Details summary="Detailed Table">
+        <Table<EbirdChecklist>
+          cells={detailedTableCells}
+          headers={detailedTableHeaders}
+          items={checklists}
+        />
+      </Details>
+    </>
+  );
+
   return (
     <BasePage
       formContent={formContent}
@@ -91,6 +159,7 @@ export default function ChecklistFeedOnDate() {
       onFormSubmit={onSubmit}
       rawResponse={rawResponse}
       requiresApiKey
+      resultsContent={resultsContent}
       title="Checklist Feed on a Date"
     />
   );
