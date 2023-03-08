@@ -4,7 +4,7 @@ type Props = Pick<EbirdContributor, 'userDisplayName'> & {
   profileHandle: string;
 };
 
-export default function ebirdProfileLink({
+export default function EbirdProfileLink({
   profileHandle,
   userDisplayName,
 }: Props) {
