@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import BasePage from '../../components/BasePage';
+import type EbirdContributor from '../../types/EbirdContributor';
 import type EbirdRankedBy from '../../types/EbirdRankedBy';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import NumberInput from '../../components/NumberInput';
@@ -22,6 +23,7 @@ export default function Top100() {
   } = useRequestState();
   const { getTop100 } = useEbirdApi();
 
+  const [contributors, setContributors] = useState<EbirdContributor[]>([]);
   const [maxResults, setMaxResults] = useState('');
   const [rankedBy, setRankedBy] = useState<EbirdRankedBy>('spp');
   const [regionCode, setRegionCode] = useState('');
@@ -36,6 +38,25 @@ export default function Top100() {
       value: 'spp',
     },
   ];
+
+  function onSubmit() {
+    setLoading(true);
+
+    getTop100(regionCode, year, month, day, rankedBy, maxResults)
+      .then(async (response) => await response.text())
+      .then((data) => {
+        console.log(JSON.parse(data));
+        setRawResponse(data);
+        setContributors(JSON.parse(data));
+        setHasQueried(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
 
   const formContent = (
     <>
@@ -73,6 +94,7 @@ export default function Top100() {
       formContent={formContent}
       hasQueried={hasQueried}
       loading={loading}
+      onFormSubmit={onSubmit}
       rawResponse={rawResponse}
       requiresApiKey
       title="Top 100"
