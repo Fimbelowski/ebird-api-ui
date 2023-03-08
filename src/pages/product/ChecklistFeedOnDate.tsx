@@ -6,15 +6,13 @@ import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import NumberInput from '../../components/NumberInput';
 import Select from '../../components/Select';
 import type SelectOption from '../../types/SelectOption';
-import useApiKey from '../../hooks/useApiKey';
 import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
 import useRequestState from '../../hooks/useRequestState';
 
 export default function ChecklistFeedOnDate() {
-  const { apiKey } = useApiKey();
   const { DateInput, day, month, onChange: onDateChange, year } = useDate();
-  const ebirdApi = useEbirdApi();
+  const { getChecklistFeedOnDate } = useEbirdApi();
   const {
     hasQueried,
     loading,
@@ -38,6 +36,24 @@ export default function ChecklistFeedOnDate() {
       value: 'creation_dt',
     },
   ];
+
+  function onSubmit() {
+    setLoading(true);
+
+    getChecklistFeedOnDate(regionCode, year, month, day, sortKey, maxResults)
+      .then(async (response) => await response.text())
+      .then((data) => {
+        console.log(JSON.parse(data));
+        setRawResponse(data);
+        setHasQueried(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
 
   const formContent = (
     <>
@@ -72,6 +88,7 @@ export default function ChecklistFeedOnDate() {
       formContent={formContent}
       hasQueried={hasQueried}
       loading={loading}
+      onFormSubmit={onSubmit}
       rawResponse={rawResponse}
       requiresApiKey
       title="Checklist Feed on a Date"
