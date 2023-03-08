@@ -5,7 +5,7 @@ export default interface EbirdChecklist {
   locId: string;
   numSpecies: number;
   obsDt: string;
-  obsTime: string;
+  obsTime?: string;
   subID: string;
   subId: string;
   userDisplayName: string;
