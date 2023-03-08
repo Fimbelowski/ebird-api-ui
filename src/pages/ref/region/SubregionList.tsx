@@ -6,17 +6,14 @@ import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import type EbirdRegion from '../../../types/EbirdRegion';
 import EbirdRegionTable from '../../../components/EbirdRegionTable';
 import type EbirdRegionType from '../../../types/EbirdRegionType';
-import FormatSelect from '../../../components/FormatSelect';
 import parseRequestData from '../../../utilities/parseRequestData';
 import Select from '../../../components/Select';
 import type SelectOption from '../../../types/SelectOption';
-import useApiKey from '../../../hooks/useApiKey';
 import useEbirdApi from '../../../hooks/useEbirdApi';
-import useFormatState from '../../../hooks/useFormatState';
+import useEbirdFormat from '../../../hooks/useEbirdFormat';
 import useRequestState from '../../../hooks/useRequestState';
 
 export default function SubregionList() {
-  const { apiKey } = useApiKey();
   const { getSubregionList } = useEbirdApi();
   const {
     hasQueried,
@@ -26,7 +23,7 @@ export default function SubregionList() {
     setLoading,
     setRawResponse,
   } = useRequestState();
-  const { format, setFormat } = useFormatState();
+  const { format, FormatSelect, setFormat } = useEbirdFormat();
 
   const [parentRegionCode, setParentRegionCode] = useState('');
   const [regionType, setRegionType] = useState<EbirdRegionType>('country');
@@ -50,7 +47,7 @@ export default function SubregionList() {
   function onSubmit() {
     setLoading(true);
 
-    getSubregionList(apiKey, regionType, parentRegionCode, format)
+    getSubregionList(regionType, parentRegionCode, format)
       .then(async (response) => await response.text())
       .then((data) => {
         const parsedData = parseRequestData(data, ['code', 'name'], true);

@@ -11,5 +11,5 @@ export default interface CommonInputProps {
   pattern?: string;
   placeholder?: string;
   required?: boolean;
-  value: string;
+  value?: string;
 }

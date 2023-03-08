@@ -37,6 +37,10 @@ export default function Nav() {
       label: 'Species List for a Region',
       path: 'species-list-region',
     },
+    {
+      label: 'Top 100 Contributors',
+      path: 'top-100',
+    },
   ];
 
   const regionMenuItems: NavMenuItem[] = [

@@ -1,20 +1,19 @@
 import { useState } from 'react';
 
 import BasePage from '../../components/BasePage';
-import DateInput from '../../components/DateInput';
-import dateStringToObject from '../../utilities/dateStringToObject';
 import Details from '../../components/Details';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import type EbirdRegionStats from '../../types/EbirdRegionStats';
 import Table from '../../components/Table';
 import type TableCell from '../../types/TableCell';
 import type TableHeader from '../../types/TableHeader';
-import useApiKey from '../../hooks/useApiKey';
+import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
 import useRequestState from '../../hooks/useRequestState';
 
 export default function RegionalStatsOnDate() {
-  const { apiKey } = useApiKey();
+  const { DateInput, day, month, onChange: onDateChange, year } = useDate();
+  const { getRegionStatsOnDate } = useEbirdApi();
   const {
     hasQueried,
     loading,
@@ -23,9 +22,7 @@ export default function RegionalStatsOnDate() {
     setLoading,
     setRawResponse,
   } = useRequestState();
-  const { getRegionStatsOnDate } = useEbirdApi();
 
-  const [date, setDate] = useState('');
   const [regionCode, setRegionCode] = useState('');
   const [stats, setStats] = useState<EbirdRegionStats>();
 
@@ -62,9 +59,7 @@ export default function RegionalStatsOnDate() {
   function onSubmit() {
     setLoading(true);
 
-    const { year, month, day } = dateStringToObject(date);
-
-    getRegionStatsOnDate(apiKey, regionCode, year, month, day)
+    getRegionStatsOnDate(regionCode, year, month, day)
       .then(async (response) => await response.text())
       .then((data) => {
         setRawResponse(data);
@@ -88,9 +83,8 @@ export default function RegionalStatsOnDate() {
       />
       <DateInput
         id="date"
-        onChange={setDate}
+        onChange={onDateChange}
         required
-        value={date}
       />
     </>
   );

@@ -6,12 +6,10 @@ import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import Table from '../../components/Table';
 import type TableCell from '../../types/TableCell';
 import type TableHeader from '../../types/TableHeader';
-import useApiKey from '../../hooks/useApiKey';
 import useEbirdApi from '../../hooks/useEbirdApi';
 import useRequestState from '../../hooks/useRequestState';
 
 export default function SpeciesListRegion() {
-  const { apiKey } = useApiKey();
   const { getSpeciesListForRegion } = useEbirdApi();
   const {
     hasQueried,
@@ -40,7 +38,7 @@ export default function SpeciesListRegion() {
   function onSubmit() {
     setLoading(true);
 
-    getSpeciesListForRegion(apiKey, regionCode)
+    getSpeciesListForRegion(regionCode)
       .then(async (response) => await response.text())
       .then((data) => {
         setSpeciesCodes(JSON.parse(data));

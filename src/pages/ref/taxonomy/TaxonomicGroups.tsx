@@ -1,6 +1,5 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
-import ApiKeyContext from '../../../context/ApiKeyContext';
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
 import type EbirdTaxonomicGroup from '../../../types/EbirdTaxonomicGroup';
@@ -15,7 +14,6 @@ import useEbirdApi from '../../../hooks/useEbirdApi';
 import useRequestState from '../../../hooks/useRequestState';
 
 export default function TaxonomicGroups() {
-  const { apiKey } = useContext(ApiKeyContext);
   const { getTaxonomicGroups } = useEbirdApi();
   const {
     hasQueried,
@@ -203,7 +201,7 @@ export default function TaxonomicGroups() {
   function onSubmit() {
     setLoading(true);
 
-    getTaxonomicGroups(apiKey, speciesGrouping, groupNameLocale)
+    getTaxonomicGroups(speciesGrouping, groupNameLocale)
       .then(async (response) => await response.text())
       .then((data) => {
         setRawResponse(data);
