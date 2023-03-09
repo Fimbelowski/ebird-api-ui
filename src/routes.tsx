@@ -14,6 +14,7 @@ import TaxaLocaleCodes from './pages/ref/taxonomy/TaxaLocaleCodes';
 import TaxonomicGroups from './pages/ref/taxonomy/TaxonomicGroups';
 import TaxonomyVersions from './pages/ref/taxonomy/TaxonomyVersions';
 import Top100Contributors from './pages/product/Top100Contributors';
+import ViewChecklist from './pages/product/ViewChecklist';
 
 const ROUTES: RouteObject[] = [
   {
@@ -71,6 +72,10 @@ const ROUTES: RouteObject[] = [
       {
         path: 'top-100',
         element: <Top100Contributors />,
+      },
+      {
+        path: 'view-checklist',
+        element: <ViewChecklist />,
       },
     ],
   },
