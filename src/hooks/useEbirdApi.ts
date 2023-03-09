@@ -400,8 +400,20 @@ export default function useEbirdApi() {
     );
   }
 
+  async function getChecklist(checklistId: string) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'subId',
+        value: checklistId,
+      },
+    ];
+
+    return await baseRequest('product/checklist/view/{{subId}}', urlParams);
+  }
+
   return {
     getAdjacentRegions,
+    getChecklist,
     getChecklistFeedOnDate,
     getHotspotInfo,
     getNearbyHotspots,
