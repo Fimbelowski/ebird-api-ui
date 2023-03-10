@@ -18,6 +18,24 @@ export default function ViewChecklist() {
 
   const [checklistId, setChecklistId] = useState('');
 
+  function onSubmit() {
+    setLoading(true);
+
+    getChecklist(checklistId)
+      .then(async (response) => await response.text())
+      .then((data) => {
+        console.log(JSON.parse(data));
+        setRawResponse(data);
+        setHasQueried(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
+
   const formContent = (
     <TextInput
       id="checklist-id"
@@ -35,6 +53,7 @@ export default function ViewChecklist() {
       formContent={formContent}
       hasQueried={hasQueried}
       loading={loading}
+      onFormSubmit={onSubmit}
       rawResponse={rawResponse}
       requiresApiKey
       title="View Checklist"

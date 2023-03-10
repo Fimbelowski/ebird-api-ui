@@ -1,6 +1,6 @@
 import type EbirdLocation from './EbirdLocation';
 
-export default interface EbirdChecklist {
+export default interface EbirdChecklistSimple {
   loc: EbirdLocation;
   locId: string;
   numSpecies: number;

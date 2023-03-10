@@ -14,7 +14,7 @@ import type TableHeader from '../../types/TableHeader';
 import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
 import useRequestState from '../../hooks/useRequestState';
-import type EbirdChecklist from '../../types/EbirdChecklist';
+import type EbirdChecklistSimple from '../../types/EbirdChecklistSimple';
 
 export default function ChecklistFeedOnDate() {
   const { DateInput, day, month, onChange: onDateChange, year } = useDate();
@@ -28,12 +28,12 @@ export default function ChecklistFeedOnDate() {
     setRawResponse,
   } = useRequestState();
 
-  const [checklists, setChecklists] = useState<EbirdChecklist[]>([]);
+  const [checklists, setChecklists] = useState<EbirdChecklistSimple[]>([]);
   const [maxResults, setMaxResults] = useState('10');
   const [regionCode, setRegionCode] = useState('');
   const [sortKey, setSortKey] = useState<EbirdChecklistSortKey>('obs_dt');
 
-  const detailedTableCells: Array<TableCell<EbirdChecklist>> = [
+  const detailedTableCells: Array<TableCell<EbirdChecklistSimple>> = [
     {
       callback: ({ locId }) => locId,
     },
@@ -83,7 +83,7 @@ export default function ChecklistFeedOnDate() {
     },
   ];
 
-  const simpleTableCells: Array<TableCell<EbirdChecklist>> = [
+  const simpleTableCells: Array<TableCell<EbirdChecklistSimple>> = [
     {
       callback: ({ userDisplayName }) => userDisplayName,
     },
@@ -187,7 +187,7 @@ export default function ChecklistFeedOnDate() {
   const resultsContent = (
     <>
       <Details summary="Detailed Table">
-        <Table<EbirdChecklist>
+        <Table<EbirdChecklistSimple>
           cells={detailedTableCells}
           headers={detailedTableHeaders}
           items={checklists}
@@ -197,7 +197,7 @@ export default function ChecklistFeedOnDate() {
         open
         summary="Simple Table"
       >
-        <Table<EbirdChecklist>
+        <Table<EbirdChecklistSimple>
           cells={simpleTableCells}
           headers={simpleTableHeaders}
           items={checklists}
