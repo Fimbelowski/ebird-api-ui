@@ -3,8 +3,8 @@ import { type RouteObject } from 'react-router-dom';
 import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
 import ChecklistFeedOnDate from './pages/product/ChecklistFeedOnDate';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
-import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
-import RegionHotspots from './pages/ref/hotspot/RegionHotspots';
+import HotspotsNearby from './pages/ref/hotspot/HotSpotsNearby';
+import HotspotsRegion from './pages/ref/hotspot/HotspotsRegion';
 import RegionInfo from './pages/ref/region/RegionInfo';
 import RegionalStatsOnDate from './pages/product/RegionalStatsOnDate';
 import Root from './pages/Root';
@@ -34,11 +34,11 @@ const ROUTES: RouteObject[] = [
       },
       {
         path: 'nearby-hotspots',
-        element: <NearbyHotspots />,
+        element: <HotspotsNearby />,
       },
       {
         path: 'region-hotspots',
-        element: <RegionHotspots />,
+        element: <HotspotsRegion />,
       },
       {
         path: 'region-info',

@@ -14,7 +14,7 @@ import type EbirdHotspot from '../../../types/EbirdHotspot';
 import NumberInput from '../../../components/NumberInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
-export default function NearbyHotspots() {
+export default function HotspotsNearby() {
   const { getNearbyHotspots } = useEbirdApi();
 
   const [back, setBack] = useState('');

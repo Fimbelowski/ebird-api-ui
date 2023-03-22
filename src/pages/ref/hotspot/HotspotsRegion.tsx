@@ -12,7 +12,7 @@ import EBIRD_HOTSPOT_CSV_HEADERS from '../../../utilities/ebirdHotspotCsvHeaders
 import EbirdHotspotTableSimple from '../../../components/EbirdHotspotTableSimple';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
-export default function RegionHotspots() {
+export default function HotspotsRegion() {
   const [back, setBack] = useState('');
   const [format, setFormat] = useState<EbirdFormat>('csv');
   const [hotspots, setHotspots] = useState<EbirdHotspot[]>([]);
