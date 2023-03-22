@@ -13,12 +13,12 @@ import EbirdHotspotTableSimple from '../../../components/EbirdHotspotTableSimple
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function HotspotsRegion() {
+  const { getRegionHotspots } = useEbirdApi();
+
   const [back, setBack] = useState('');
   const [format, setFormat] = useState<EbirdFormat>('csv');
   const [hotspots, setHotspots] = useState<EbirdHotspot[]>([]);
   const [regionCode, setRegionCode] = useState('');
-
-  const { getRegionHotspots } = useEbirdApi();
 
   async function request() {
     return await getRegionHotspots(regionCode, back, format);
