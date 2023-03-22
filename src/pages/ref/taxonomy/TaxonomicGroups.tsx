@@ -11,11 +11,9 @@ import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
 import useEbirdApi from '../../../hooks/useEbirdApi';
-import useLoading from '../../../hooks/useLoading';
 
 export default function TaxonomicGroups() {
   const { getTaxonomicGroups } = useEbirdApi();
-  const { loading } = useLoading();
 
   const [groupNameLocale, setGroupNameLocale] =
     useState<EbirdGroupNameLocale>('en');
@@ -166,7 +164,6 @@ export default function TaxonomicGroups() {
       <Select<EbirdSpeciesGrouping>
         id="species-grouping"
         label="Species Grouping"
-        loading={loading}
         onChange={setSpeciesGrouping}
         options={speciesGroupingSelectOptions}
         value={speciesGrouping}
@@ -174,7 +171,6 @@ export default function TaxonomicGroups() {
       <Select<EbirdGroupNameLocale>
         id="group-name-locale"
         label="Group Name Locale"
-        loading={loading}
         onChange={setGroupNameLocale}
         options={groupNameLocaleOptions}
         value={groupNameLocale}
