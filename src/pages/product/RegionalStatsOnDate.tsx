@@ -9,19 +9,10 @@ import type TableCell from '../../types/TableCell';
 import type TableHeader from '../../types/TableHeader';
 import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
-import useRequestState from '../../hooks/useRequestState';
 
 export default function RegionalStatsOnDate() {
   const { DateInput, day, month, onChange: onDateChange, year } = useDate();
   const { getRegionStatsOnDate } = useEbirdApi();
-  const {
-    hasQueried,
-    loading,
-    rawResponse,
-    setHasQueried,
-    setLoading,
-    setRawResponse,
-  } = useRequestState();
 
   const [regionCode, setRegionCode] = useState('');
   const [stats, setStats] = useState<EbirdRegionStats>();
@@ -56,22 +47,8 @@ export default function RegionalStatsOnDate() {
     },
   ];
 
-  function onSubmit() {
-    setLoading(true);
-
-    getRegionStatsOnDate(regionCode, year, month, day)
-      .then(async (response) => await response.text())
-      .then((data) => {
-        setRawResponse(data);
-        setStats(JSON.parse(data));
-        setHasQueried(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+  async function request() {
+    return await getRegionStatsOnDate(regionCode, year, month, day);
   }
 
   const formContent = (
@@ -104,12 +81,10 @@ export default function RegionalStatsOnDate() {
     );
 
   return (
-    <BasePage
+    <BasePage<EbirdRegionStats>
       formContent={formContent}
-      hasQueried={hasQueried}
-      loading={loading}
-      onFormSubmit={onSubmit}
-      rawResponse={rawResponse}
+      onLoad={setStats}
+      request={request}
       requiresApiKey
       resultsContent={resultsContent}
       title="Regional Statistics on a Date"

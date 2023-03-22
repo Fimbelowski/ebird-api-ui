@@ -7,18 +7,9 @@ import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
 import useEbirdApi from '../../../hooks/useEbirdApi';
-import useRequestState from '../../../hooks/useRequestState';
 
 export default function TaxaLocaleCodes() {
   const { getTaxaLocaleCodes } = useEbirdApi();
-  const {
-    hasQueried,
-    loading,
-    rawResponse,
-    setHasQueried,
-    setLoading,
-    setRawResponse,
-  } = useRequestState();
 
   const [taxaLocaleCodes, setTaxaLocaleCodes] = useState<EbirdTaxaLocaleCode[]>(
     []
@@ -48,24 +39,6 @@ export default function TaxaLocaleCodes() {
     },
   ];
 
-  function onSubmit() {
-    setLoading(true);
-
-    getTaxaLocaleCodes()
-      .then(async (response) => await response.text())
-      .then((data) => {
-        setHasQueried(true);
-        setRawResponse(data);
-        setTaxaLocaleCodes(JSON.parse(data));
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
-
   const resultsContent = (
     <>
       <Details
@@ -82,11 +55,9 @@ export default function TaxaLocaleCodes() {
   );
 
   return (
-    <BasePage
-      hasQueried={hasQueried}
-      loading={loading}
-      onFormSubmit={onSubmit}
-      rawResponse={rawResponse}
+    <BasePage<EbirdTaxaLocaleCode[]>
+      onLoad={setTaxaLocaleCodes}
+      request={getTaxaLocaleCodes}
       requiresApiKey
       resultsContent={resultsContent}
       title="Taxa Locale Codes"

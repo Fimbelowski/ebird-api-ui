@@ -6,38 +6,15 @@ import type EbirdRegion from '../../../types/EbirdRegion';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import EbirdRegionTable from '../../../components/EbirdRegionTable';
 import useEbirdApi from '../../../hooks/useEbirdApi';
-import useRequestState from '../../../hooks/useRequestState';
 
 export default function AdjacentRegions() {
   const { getAdjacentRegions } = useEbirdApi();
-  const {
-    hasQueried,
-    loading,
-    rawResponse,
-    setHasQueried,
-    setLoading,
-    setRawResponse,
-  } = useRequestState();
 
   const [regionCode, setRegionCode] = useState('');
   const [regions, setRegions] = useState<EbirdRegion[]>([]);
 
-  function onSubmit() {
-    setLoading(true);
-
-    getAdjacentRegions(regionCode)
-      .then(async (response) => await response.text())
-      .then((data) => {
-        setRawResponse(data);
-        setRegions(JSON.parse(data));
-        setHasQueried(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+  async function request() {
+    return await getAdjacentRegions(regionCode);
   }
 
   const formContent = (
@@ -58,12 +35,10 @@ export default function AdjacentRegions() {
   );
 
   return (
-    <BasePage
+    <BasePage<EbirdRegion[]>
+      request={request}
       formContent={formContent}
-      hasQueried={hasQueried}
-      loading={loading}
-      onFormSubmit={onSubmit}
-      rawResponse={rawResponse}
+      onLoad={setRegions}
       requiresApiKey
       resultsContent={resultsContent}
       title="Adjacent Regions"

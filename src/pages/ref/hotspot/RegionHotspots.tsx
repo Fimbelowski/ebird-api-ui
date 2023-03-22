@@ -8,27 +8,21 @@ import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import EbirdHotspotTableDetailed from '../../../components/EbirdHotspotTableDetailed';
 import type EbirdFormat from '../../../types/EbirdFormat';
 import FormatSelect from '../../../components/FormatSelect';
+import EBIRD_HOTSPOT_CSV_HEADERS from '../../../utilities/ebirdHotspotCsvHeaders';
 import EbirdHotspotTableSimple from '../../../components/EbirdHotspotTableSimple';
-import parseEbirdHotspotRequestData from '../../../utilities/parseEbirdHotspotRequestData';
 import useEbirdApi from '../../../hooks/useEbirdApi';
-import useRequestState from '../../../hooks/useRequestState';
 
 export default function RegionHotspots() {
-  const {
-    hasQueried,
-    loading,
-    rawResponse,
-    setHasQueried,
-    setLoading,
-    setRawResponse,
-  } = useRequestState();
-
   const [back, setBack] = useState('');
   const [format, setFormat] = useState<EbirdFormat>('csv');
   const [hotspots, setHotspots] = useState<EbirdHotspot[]>([]);
   const [regionCode, setRegionCode] = useState('');
 
   const { getRegionHotspots } = useEbirdApi();
+
+  async function request() {
+    return await getRegionHotspots(regionCode, back, format);
+  }
 
   const formContent = (
     <>
@@ -50,25 +44,6 @@ export default function RegionHotspots() {
     </>
   );
 
-  function onSubmit() {
-    setLoading(true);
-
-    getRegionHotspots(regionCode, back, format)
-      .then(async (response) => await response.text())
-      .then((data) => {
-        const parsedData = parseEbirdHotspotRequestData(data);
-        setHotspots(parsedData);
-        setRawResponse(data);
-        setHasQueried(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
-
   function ResultsContent() {
     return (
       <>
@@ -86,12 +61,11 @@ export default function RegionHotspots() {
   }
 
   return (
-    <BasePage
+    <BasePage<EbirdHotspot[]>
+      csvHeaders={EBIRD_HOTSPOT_CSV_HEADERS}
       formContent={formContent}
-      hasQueried={hasQueried}
-      loading={loading}
-      onFormSubmit={onSubmit}
-      rawResponse={rawResponse}
+      onLoad={setHotspots}
+      request={request}
       resultsContent={ResultsContent()}
       title="Hotspots in a Region"
     />

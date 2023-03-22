@@ -11,19 +11,10 @@ import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
 import TextInput from '../../../components/TextInput';
-import useRequestState from '../../../hooks/useRequestState';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function RegionInfo() {
   const { getRegionInfo } = useEbirdApi();
-  const {
-    hasQueried,
-    loading,
-    rawResponse,
-    setHasQueried,
-    setLoading,
-    setRawResponse,
-  } = useRequestState();
 
   const [delimiter, setDelimiter] = useState(', ');
   const [regionCode, setRegionCode] = useState('');
@@ -96,22 +87,8 @@ export default function RegionInfo() {
     },
   ];
 
-  function onFormSubmit() {
-    setLoading(true);
-
-    getRegionInfo(regionCode, regionNameFormat, delimiter)
-      .then(async (response) => await response.text())
-      .then((data) => {
-        setRawResponse(data);
-        setRegionInfo(JSON.parse(data));
-        setHasQueried(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+  async function request() {
+    return await getRegionInfo(regionCode, regionNameFormat, delimiter);
   }
 
   const formContent = (
@@ -154,12 +131,10 @@ export default function RegionInfo() {
     );
 
   return (
-    <BasePage
+    <BasePage<EbirdRegionInfo>
       formContent={formContent}
-      hasQueried={hasQueried}
-      loading={loading}
-      onFormSubmit={onFormSubmit}
-      rawResponse={rawResponse}
+      onLoad={setRegionInfo}
+      request={request}
       requiresApiKey
       resultsContent={resultsContent}
       title="Region Info"

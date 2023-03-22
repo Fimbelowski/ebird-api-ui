@@ -11,18 +11,11 @@ import Table from '../../../components/Table';
 import type TableCell from '../../../types/TableCell';
 import type TableHeader from '../../../types/TableHeader';
 import useEbirdApi from '../../../hooks/useEbirdApi';
-import useRequestState from '../../../hooks/useRequestState';
+import useLoading from '../../../hooks/useLoading';
 
 export default function TaxonomicGroups() {
   const { getTaxonomicGroups } = useEbirdApi();
-  const {
-    hasQueried,
-    loading,
-    rawResponse,
-    setHasQueried,
-    setLoading,
-    setRawResponse,
-  } = useRequestState();
+  const { loading } = useLoading();
 
   const [groupNameLocale, setGroupNameLocale] =
     useState<EbirdGroupNameLocale>('en');
@@ -164,6 +157,10 @@ export default function TaxonomicGroups() {
     },
   ];
 
+  async function request() {
+    return await getTaxonomicGroups(speciesGrouping, groupNameLocale);
+  }
+
   const formContent = (
     <>
       <Select<EbirdSpeciesGrouping>
@@ -198,31 +195,11 @@ export default function TaxonomicGroups() {
     </Details>
   );
 
-  function onSubmit() {
-    setLoading(true);
-
-    getTaxonomicGroups(speciesGrouping, groupNameLocale)
-      .then(async (response) => await response.text())
-      .then((data) => {
-        setRawResponse(data);
-        setTaxonomicGroups(JSON.parse(data));
-        setHasQueried(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
-
   return (
-    <BasePage
+    <BasePage<EbirdTaxonomicGroup[]>
       formContent={formContent}
-      hasQueried={hasQueried}
-      loading={loading}
-      onFormSubmit={onSubmit}
-      rawResponse={rawResponse}
+      onLoad={setTaxonomicGroups}
+      request={request}
       requiresApiKey
       resultsContent={resultsContent}
       title="Taxonomic Groups"

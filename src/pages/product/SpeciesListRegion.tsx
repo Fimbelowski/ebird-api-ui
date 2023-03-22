@@ -7,18 +7,9 @@ import Table from '../../components/Table';
 import type TableCell from '../../types/TableCell';
 import type TableHeader from '../../types/TableHeader';
 import useEbirdApi from '../../hooks/useEbirdApi';
-import useRequestState from '../../hooks/useRequestState';
 
 export default function SpeciesListRegion() {
   const { getSpeciesListForRegion } = useEbirdApi();
-  const {
-    hasQueried,
-    loading,
-    rawResponse,
-    setHasQueried,
-    setLoading,
-    setRawResponse,
-  } = useRequestState();
 
   const [speciesCodes, setSpeciesCodes] = useState<string[]>([]);
   const [regionCode, setRegionCode] = useState('');
@@ -35,22 +26,8 @@ export default function SpeciesListRegion() {
     },
   ];
 
-  function onSubmit() {
-    setLoading(true);
-
-    getSpeciesListForRegion(regionCode)
-      .then(async (response) => await response.text())
-      .then((data) => {
-        setSpeciesCodes(JSON.parse(data));
-        setRawResponse(data);
-        setHasQueried(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+  async function request() {
+    return await getSpeciesListForRegion(regionCode);
   }
 
   const formContent = (
@@ -74,12 +51,10 @@ export default function SpeciesListRegion() {
   );
 
   return (
-    <BasePage
+    <BasePage<string[]>
       formContent={formContent}
-      hasQueried={hasQueried}
-      loading={loading}
-      onFormSubmit={onSubmit}
-      rawResponse={rawResponse}
+      onLoad={setSpeciesCodes}
+      request={request}
       resultsContent={resultsContent}
       requiresApiKey
       title="Speciest List for a Region"

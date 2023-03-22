@@ -4,11 +4,17 @@ import Button from './Button';
 
 interface Props {
   children?: ReactNode;
+  disableSubmit?: boolean;
   loading: boolean;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 }
 
-export default function Form({ children, loading, onSubmit }: Props) {
+export default function Form({
+  children,
+  disableSubmit = false,
+  loading,
+  onSubmit,
+}: Props) {
   return (
     <form
       className="form"
@@ -16,6 +22,7 @@ export default function Form({ children, loading, onSubmit }: Props) {
     >
       {children}
       <Button
+        disabled={disableSubmit}
         loading={loading}
         type="submit"
       >
