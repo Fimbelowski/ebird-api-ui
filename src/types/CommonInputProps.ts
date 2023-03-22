@@ -4,7 +4,6 @@ export default interface CommonInputProps {
   form?: string;
   id: string;
   label: string;
-  loading?: boolean;
   maxLength?: number;
   minLength?: number;
   onChange: (value: string) => void;

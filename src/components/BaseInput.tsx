@@ -4,6 +4,7 @@ import classNames from '../utilities/classNames';
 import type CommonInputProps from '../types/CommonInputProps';
 import getValueFromChangeEvent from '../utilities/getValueFromChangeEvent';
 import type NumberInputProps from '../types/NumberInputProps';
+import useLoading from '../hooks/useLoading';
 
 type BaseInputProps = CommonInputProps & NumberInputProps & { type: string };
 
@@ -14,7 +15,6 @@ export default function BaseInput({
   hideStepper = false,
   id,
   label,
-  loading = false,
   max,
   maxLength,
   min,
@@ -28,6 +28,8 @@ export default function BaseInput({
   type,
   value,
 }: BaseInputProps) {
+  const { loading } = useLoading();
+
   function computedLabel() {
     return required ? `${label}*` : label;
   }

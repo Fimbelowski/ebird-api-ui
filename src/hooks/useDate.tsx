@@ -11,7 +11,7 @@ export default function useDate() {
     const parsedDate = Date.parse(value);
 
     if (Number.isNaN(parsedDate)) {
-      throw Error(`Invalid date string ${value}`);
+      return;
     }
 
     const dateStringAsDate = new Date(value);

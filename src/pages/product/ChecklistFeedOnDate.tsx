@@ -13,20 +13,11 @@ import type TableCell from '../../types/TableCell';
 import type TableHeader from '../../types/TableHeader';
 import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
-import useRequestState from '../../hooks/useRequestState';
 import type EbirdChecklist from '../../types/EbirdChecklist';
 
 export default function ChecklistFeedOnDate() {
   const { DateInput, day, month, onChange: onDateChange, year } = useDate();
   const { getChecklistFeedOnDate } = useEbirdApi();
-  const {
-    hasQueried,
-    loading,
-    rawResponse,
-    setHasQueried,
-    setLoading,
-    setRawResponse,
-  } = useRequestState();
 
   const [checklists, setChecklists] = useState<EbirdChecklist[]>([]);
   const [maxResults, setMaxResults] = useState('10');
@@ -138,22 +129,15 @@ export default function ChecklistFeedOnDate() {
     },
   ];
 
-  function onSubmit() {
-    setLoading(true);
-
-    getChecklistFeedOnDate(regionCode, year, month, day, sortKey, maxResults)
-      .then(async (response) => await response.text())
-      .then((data) => {
-        setChecklists(JSON.parse(data));
-        setRawResponse(data);
-        setHasQueried(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+  async function request() {
+    return await getChecklistFeedOnDate(
+      regionCode,
+      year,
+      month,
+      day,
+      sortKey,
+      maxResults
+    );
   }
 
   const formContent = (
@@ -207,12 +191,10 @@ export default function ChecklistFeedOnDate() {
   );
 
   return (
-    <BasePage
+    <BasePage<EbirdChecklist[]>
       formContent={formContent}
-      hasQueried={hasQueried}
-      loading={loading}
-      onFormSubmit={onSubmit}
-      rawResponse={rawResponse}
+      onLoad={setChecklists}
+      request={request}
       requiresApiKey
       resultsContent={resultsContent}
       title="Checklist Feed on a Date"

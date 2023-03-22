@@ -15,18 +15,9 @@ import type TableCell from '../../types/TableCell';
 import type TableHeader from '../../types/TableHeader';
 import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
-import useRequestState from '../../hooks/useRequestState';
 
 export default function Top100() {
   const { DateInput, day, month, onChange: onDateChange, year } = useDate();
-  const {
-    hasQueried,
-    loading,
-    rawResponse,
-    setHasQueried,
-    setLoading,
-    setRawResponse,
-  } = useRequestState();
   const { getTop100 } = useEbirdApi();
 
   const [contributors, setContributors] = useState<EbirdContributor[]>([]);
@@ -130,23 +121,13 @@ export default function Top100() {
     },
   ];
 
-  function onSubmit() {
-    setLoading(true);
+  function onLoad(results: EbirdContributor[]) {
+    setLastRankedBy(rankedBy);
+    setContributors(results);
+  }
 
-    getTop100(regionCode, year, month, day, rankedBy, maxResults)
-      .then(async (response) => await response.text())
-      .then((data) => {
-        setRawResponse(data);
-        setContributors(JSON.parse(data));
-        setLastRankedBy(rankedBy);
-        setHasQueried(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+  async function request() {
+    return await getTop100(regionCode, year, month, day, rankedBy, maxResults);
   }
 
   const formContent = (
@@ -203,12 +184,10 @@ export default function Top100() {
   );
 
   return (
-    <BasePage
+    <BasePage<EbirdContributor[]>
       formContent={formContent}
-      hasQueried={hasQueried}
-      loading={loading}
-      onFormSubmit={onSubmit}
-      rawResponse={rawResponse}
+      onLoad={onLoad}
+      request={request}
       requiresApiKey
       resultsContent={resultsContent}
       title="Top 100 Contributors"

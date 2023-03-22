@@ -3,17 +3,19 @@ import { type ChangeEvent } from 'react';
 import classNames from '../utilities/classNames';
 import getValueFromChangeEvent from '../utilities/getValueFromChangeEvent';
 import type SelectProps from '../types/SelectProps';
+import useLoading from '../hooks/useLoading';
 
 export default function Select<T extends string>({
   disabled = false,
   id,
   label,
-  loading = false,
   onChange: onChangeProp,
   options,
   required = false,
   value,
 }: SelectProps<T>) {
+  const { loading } = useLoading();
+
   function Options() {
     const listItems = options.map(({ label, value }, index) => {
       return (

@@ -7,40 +7,15 @@ import EbirdLocationTableDetailed from '../../../components/EbirdLocationTableDe
 import EbirdLocationTableSimple from '../../../components/EbirdLocationTableSimple';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
-import useRequestState from '../../../hooks/useRequestState';
 
 export default function HotspotInfo() {
-  const {
-    hasQueried,
-    loading,
-    rawResponse,
-    setHasQueried,
-    setLoading,
-    setRawResponse,
-  } = useRequestState();
+  const { getHotspotInfo } = useEbirdApi();
 
   const [hotspot, setHotspot] = useState<EbirdLocation>();
   const [locationId, setLocationId] = useState('');
 
-  const { getHotspotInfo } = useEbirdApi();
-
-  function onSubmit() {
-    setLoading(true);
-
-    getHotspotInfo(locationId)
-      .then(async (response) => await response.text())
-      .then((data) => {
-        setHotspot(JSON.parse(data));
-
-        setRawResponse(data);
-        setHasQueried(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+  async function request() {
+    return await getHotspotInfo(locationId);
   }
 
   const formContent = (
@@ -70,12 +45,10 @@ export default function HotspotInfo() {
     ) : null;
 
   return (
-    <BasePage
+    <BasePage<EbirdLocation>
       formContent={formContent}
-      hasQueried={hasQueried}
-      loading={loading}
-      onFormSubmit={onSubmit}
-      rawResponse={rawResponse}
+      onLoad={setHotspot}
+      request={request}
       resultsContent={resultsContent}
       title="Hotspot Info"
     />

@@ -6,23 +6,13 @@ import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import type EbirdRegion from '../../../types/EbirdRegion';
 import EbirdRegionTable from '../../../components/EbirdRegionTable';
 import type EbirdRegionType from '../../../types/EbirdRegionType';
-import parseRequestData from '../../../utilities/parseRequestData';
 import Select from '../../../components/Select';
 import type SelectOption from '../../../types/SelectOption';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useEbirdFormat from '../../../hooks/useEbirdFormat';
-import useRequestState from '../../../hooks/useRequestState';
 
 export default function SubregionList() {
   const { getSubregionList } = useEbirdApi();
-  const {
-    hasQueried,
-    loading,
-    rawResponse,
-    setHasQueried,
-    setLoading,
-    setRawResponse,
-  } = useRequestState();
   const { format, FormatSelect, setFormat } = useEbirdFormat();
 
   const [parentRegionCode, setParentRegionCode] = useState('');
@@ -44,23 +34,8 @@ export default function SubregionList() {
     },
   ];
 
-  function onSubmit() {
-    setLoading(true);
-
-    getSubregionList(regionType, parentRegionCode, format)
-      .then(async (response) => await response.text())
-      .then((data) => {
-        const parsedData = parseRequestData(data, ['code', 'name'], true);
-        setRawResponse(data);
-        setSubregions(parsedData);
-        setHasQueried(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+  async function request() {
+    return await getSubregionList(regionType, parentRegionCode, format);
   }
 
   const formContent = (
@@ -96,12 +71,12 @@ export default function SubregionList() {
   );
 
   return (
-    <BasePage
+    <BasePage<EbirdRegion[]>
+      csvHeaders={['code', 'name']}
+      csvIgnoreFirstLine
       formContent={formContent}
-      hasQueried={hasQueried}
-      loading={loading}
-      onFormSubmit={onSubmit}
-      rawResponse={rawResponse}
+      onLoad={setSubregions}
+      request={request}
       requiresApiKey
       resultsContent={resultsContent}
       title="Sub-region List"
