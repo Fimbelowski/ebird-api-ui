@@ -7,13 +7,35 @@ import type EbirdGroupNameLocale from '../../../types/EbirdGroupNameLocale';
 import Select from '../../../components/Select';
 import type SelectOption from '../../../types/SelectOption';
 import type EbirdSpeciesGrouping from '../../../types/EbirdSpeciesGrouping';
-import Table from '../../../components/Table';
-import type TableCell from '../../../types/TableCell';
-import type TableHeader from '../../../types/TableHeader';
 import useEbirdApi from '../../../hooks/useEbirdApi';
+import useTable from '../../../hooks/useTable';
 
 export default function TaxonomicGroups() {
   const { getTaxonomicGroups } = useEbirdApi();
+  const { Table } = useTable<EbirdTaxonomicGroup>(
+    [
+      {
+        callback: ({ groupName }) => groupName,
+      },
+      {
+        callback: ({ groupOrder }) => groupOrder.toString(),
+      },
+      {
+        callback: ({ taxonOrderBounds }) => taxonOrderBounds[0].join(', '),
+      },
+    ],
+    [
+      {
+        label: 'Name',
+      },
+      {
+        label: 'Order',
+      },
+      {
+        label: 'Taxon Order Bounds',
+      },
+    ]
+  );
 
   const [groupNameLocale, setGroupNameLocale] =
     useState<EbirdGroupNameLocale>('en');
@@ -131,30 +153,6 @@ export default function TaxonomicGroups() {
     },
   ];
 
-  const tableCells: Array<TableCell<EbirdTaxonomicGroup>> = [
-    {
-      callback: ({ groupName }) => groupName,
-    },
-    {
-      callback: ({ groupOrder }) => groupOrder.toString(),
-    },
-    {
-      callback: ({ taxonOrderBounds }) => taxonOrderBounds[0].join(', '),
-    },
-  ];
-
-  const tableHeaders: TableHeader[] = [
-    {
-      label: 'Name',
-    },
-    {
-      label: 'Order',
-    },
-    {
-      label: 'Taxon Order Bounds',
-    },
-  ];
-
   async function request() {
     return await getTaxonomicGroups(speciesGrouping, groupNameLocale);
   }
@@ -183,11 +181,7 @@ export default function TaxonomicGroups() {
       open
       summary="Results Table"
     >
-      <Table<EbirdTaxonomicGroup>
-        cells={tableCells}
-        headers={tableHeaders}
-        items={taxonomicGroups}
-      />
+      <Table items={taxonomicGroups} />
     </Details>
   );
 

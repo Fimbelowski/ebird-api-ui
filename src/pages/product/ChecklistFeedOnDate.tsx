@@ -2,121 +2,120 @@ import { useState } from 'react';
 
 import BasePage from '../../components/BasePage';
 import Details from '../../components/Details';
+import type EbirdChecklist from '../../types/EbirdChecklist';
 import type EbirdChecklistSortKey from '../../types/EbirdChecklistSortKey';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import GoogleMapsLink from '../../components/GoogleMapsLink';
 import NumberInput from '../../components/NumberInput';
 import Select from '../../components/Select';
 import type SelectOption from '../../types/SelectOption';
-import Table from '../../components/Table';
-import type TableCell from '../../types/TableCell';
-import type TableHeader from '../../types/TableHeader';
 import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
-import type EbirdChecklist from '../../types/EbirdChecklist';
+import useTable from '../../hooks/useTable';
 
 export default function ChecklistFeedOnDate() {
   const { DateInput, day, month, onChange: onDateChange, year } = useDate();
   const { getChecklistFeedOnDate } = useEbirdApi();
+  const { Table: DetailedTable } = useTable<EbirdChecklist>(
+    [
+      {
+        callback: ({ locId }) => locId,
+      },
+      {
+        callback: ({ subId }) => subId,
+      },
+      {
+        callback: ({ userDisplayName }) => userDisplayName,
+      },
+      {
+        align: 'right',
+        callback: ({ numSpecies }) => numSpecies,
+      },
+      {
+        callback: ({ obsDt }) => obsDt,
+      },
+      {
+        callback: ({ obsTime }) => obsTime,
+      },
+      {
+        callback: ({ subID }) => subID,
+      },
+    ],
+    [
+      {
+        label: 'locId',
+      },
+      {
+        label: 'subId',
+      },
+      {
+        label: 'userDisplayName',
+      },
+      {
+        align: 'right',
+        label: 'numSpecies',
+      },
+      {
+        label: 'obsDt',
+      },
+      {
+        label: 'obsTime',
+      },
+      {
+        label: 'subID',
+      },
+    ]
+  );
+
+  const { Table: SimpleTable } = useTable<EbirdChecklist>(
+    [
+      {
+        callback: ({ userDisplayName }) => userDisplayName,
+      },
+      {
+        callback: ({ loc: { locName } }) => locName,
+      },
+      {
+        align: 'right',
+        callback: ({ numSpecies }) => numSpecies,
+      },
+      {
+        callback: ({ obsDt, obsTime = '' }) => {
+          const date = new Date(`${obsDt} ${obsTime}`);
+
+          return obsTime === ''
+            ? date.toLocaleDateString()
+            : date.toLocaleString();
+        },
+      },
+      {
+        callback: ({ loc }) => <GoogleMapsLink location={loc} />,
+      },
+    ],
+    [
+      {
+        label: 'Contributor',
+      },
+      {
+        label: 'Location',
+      },
+      {
+        align: 'right',
+        label: '# Species',
+      },
+      {
+        label: 'Date of Observation',
+      },
+      {
+        label: 'View on Google Maps',
+      },
+    ]
+  );
 
   const [checklists, setChecklists] = useState<EbirdChecklist[]>([]);
   const [maxResults, setMaxResults] = useState('10');
   const [regionCode, setRegionCode] = useState('');
   const [sortKey, setSortKey] = useState<EbirdChecklistSortKey>('obs_dt');
-
-  const detailedTableCells: Array<TableCell<EbirdChecklist>> = [
-    {
-      callback: ({ locId }) => locId,
-    },
-    {
-      callback: ({ subId }) => subId,
-    },
-    {
-      callback: ({ userDisplayName }) => userDisplayName,
-    },
-    {
-      align: 'right',
-      callback: ({ numSpecies }) => numSpecies,
-    },
-    {
-      callback: ({ obsDt }) => obsDt,
-    },
-    {
-      callback: ({ obsTime }) => obsTime,
-    },
-    {
-      callback: ({ subID }) => subID,
-    },
-  ];
-
-  const detailedTableHeaders: TableHeader[] = [
-    {
-      label: 'locId',
-    },
-    {
-      label: 'subId',
-    },
-    {
-      label: 'userDisplayName',
-    },
-    {
-      align: 'right',
-      label: 'numSpecies',
-    },
-    {
-      label: 'obsDt',
-    },
-    {
-      label: 'obsTime',
-    },
-    {
-      label: 'subID',
-    },
-  ];
-
-  const simpleTableCells: Array<TableCell<EbirdChecklist>> = [
-    {
-      callback: ({ userDisplayName }) => userDisplayName,
-    },
-    {
-      callback: ({ loc: { locName } }) => locName,
-    },
-    {
-      align: 'right',
-      callback: ({ numSpecies }) => numSpecies,
-    },
-    {
-      callback: ({ obsDt, obsTime = '' }) => {
-        const date = new Date(`${obsDt} ${obsTime}`);
-
-        return obsTime === ''
-          ? date.toLocaleDateString()
-          : date.toLocaleString();
-      },
-    },
-    {
-      callback: ({ loc }) => <GoogleMapsLink location={loc} />,
-    },
-  ];
-
-  const simpleTableHeaders: TableHeader[] = [
-    {
-      label: 'Contributor',
-    },
-    {
-      label: 'Location',
-    },
-    {
-      align: 'right',
-      label: '# Species',
-    },
-    {
-      label: 'Date of Observation',
-    },
-    {
-      label: 'View on Google Maps',
-    },
-  ];
 
   const sortKeySelectOptions: Array<SelectOption<EbirdChecklistSortKey>> = [
     {
@@ -171,21 +170,13 @@ export default function ChecklistFeedOnDate() {
   const resultsContent = (
     <>
       <Details summary="Detailed Table">
-        <Table<EbirdChecklist>
-          cells={detailedTableCells}
-          headers={detailedTableHeaders}
-          items={checklists}
-        />
+        <DetailedTable items={checklists} />
       </Details>
       <Details
         open
         summary="Simple Table"
       >
-        <Table<EbirdChecklist>
-          cells={simpleTableCells}
-          headers={simpleTableHeaders}
-          items={checklists}
-        />
+        <SimpleTable items={checklists} />
       </Details>
     </>
   );
