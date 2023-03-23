@@ -7,14 +7,48 @@ import type EbirdRegionInfo from '../../../types/EbirdRegionInfo';
 import type EbirdRegionNameFormat from '../../../types/EbirdRegionNameFormat';
 import Select from '../../../components/Select';
 import type SelectOption from '../../../types/SelectOption';
-import Table from '../../../components/Table';
-import type TableCell from '../../../types/TableCell';
-import type TableHeader from '../../../types/TableHeader';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
+import useTable from '../../../hooks/useTable';
 
 export default function RegionInfo() {
   const { getRegionInfo } = useEbirdApi();
+  const { Table } = useTable<EbirdRegionInfo>(
+    [
+      {
+        callback: ({ result }) => result,
+      },
+      {
+        callback: ({ bounds: { minX } }) => minX.toString(),
+      },
+      {
+        callback: ({ bounds: { maxX } }) => maxX.toString(),
+      },
+      {
+        callback: ({ bounds: { minY } }) => minY.toString(),
+      },
+      {
+        callback: ({ bounds: { maxY } }) => maxY.toString(),
+      },
+    ],
+    [
+      {
+        label: 'Region Name',
+      },
+      {
+        label: 'Min X',
+      },
+      {
+        label: 'Max X',
+      },
+      {
+        label: 'Min Y',
+      },
+      {
+        label: 'Max Y',
+      },
+    ]
+  );
 
   const [delimiter, setDelimiter] = useState(', ');
   const [regionCode, setRegionCode] = useState('');
@@ -48,42 +82,6 @@ export default function RegionInfo() {
     {
       label: 'Reverse Detailed',
       value: 'revdetailed',
-    },
-  ];
-
-  const tableCells: Array<TableCell<EbirdRegionInfo>> = [
-    {
-      callback: ({ result }) => result,
-    },
-    {
-      callback: ({ bounds: { minX } }) => minX.toString(),
-    },
-    {
-      callback: ({ bounds: { maxX } }) => maxX.toString(),
-    },
-    {
-      callback: ({ bounds: { minY } }) => minY.toString(),
-    },
-    {
-      callback: ({ bounds: { maxY } }) => maxY.toString(),
-    },
-  ];
-
-  const tableHeaders: TableHeader[] = [
-    {
-      label: 'Region Name',
-    },
-    {
-      label: 'Min X',
-    },
-    {
-      label: 'Max X',
-    },
-    {
-      label: 'Min Y',
-    },
-    {
-      label: 'Max Y',
     },
   ];
 
@@ -122,11 +120,7 @@ export default function RegionInfo() {
         open
         summary="Results Table"
       >
-        <Table<EbirdRegionInfo>
-          cells={tableCells}
-          headers={tableHeaders}
-          items={[regionInfo]}
-        />
+        <Table items={[regionInfo]} />
       </Details>
     );
 
