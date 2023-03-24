@@ -1,83 +1,72 @@
-import useApiKey from './useApiKey';
+import type EbirdApiClientResponse from '../types/EbirdApiClientResponse';
+import type EbirdApiParams from '../types/EbirdApiParams';
+import type EbirdChecklist from '../types/EbirdChecklist';
 import type EbirdChecklistSortKey from '../types/EbirdChecklistSortKey';
+import type EbirdContributor from '../types/EbirdContributor';
 import type EbirdRegionType from '../types/EbirdRegionType';
 import type EbirdFormat from '../types/EbirdFormat';
 import type EbirdGroupNameLocale from '../types/EbirdGroupNameLocale';
+import type EbirdHotspot from '../types/EbirdHotspot';
+import type EbirdLocation from '../types/EbirdLocation';
 import type EbirdRankedBy from '../types/EbirdRankedBy';
+import type EbirdRegion from '../types/EbirdRegion';
+import type EbirdRegionInfo from '../types/EbirdRegionInfo';
 import type EbirdRegionNameFormat from '../types/EbirdRegionNameFormat';
+import type EbirdRegionStats from '../types/EbirdRegionStats';
 import type EbirdSpeciesGrouping from '../types/EbirdSpeciesGrouping';
+import type EbirdTaxaLocaleCode from '../types/EbirdTaxaLocaleCode';
+import type EbirdTaxonomicGroup from '../types/EbirdTaxonomicGroup';
+import type EbirdTaxonomyVersion from '../types/EbirdTaxonomyVersion';
+import makeRequest from '../utilities/ebirdApiClient';
+import type QueryParam from '../types/QueryParam';
+import type UrlParam from '../types/UrlParam';
+import useApiKey from './useApiKey';
 
-const BASE_URL = 'https://api.ebird.org/v2/';
+import EBIRD_HOTSPOT_CSV_HEADERS from '../utilities/ebirdHotspotCsvHeaders';
+import isJson from '../utilities/isJson';
+import csvToArray from '../utilities/csvToArray';
 
-interface QueryParam {
-  defaultValue?: string;
-  name: string;
-  value?: string;
-}
-
-interface UrlParam {
-  name: string;
-  value: string;
+interface CsvOptions {
+  headers: string[];
+  ignoreFirstLine?: boolean;
 }
 
 export default function useEbirdApi() {
   const { apiKey } = useApiKey();
 
-  async function baseRequest(
-    endpoint: string,
-    urlParams: UrlParam[] = [],
-    queryParams: QueryParam[] = []
-  ) {
-    return await fetch(
-      `${BASE_URL}${buildEndpointString(endpoint, urlParams)}${buildQueryString(
-        queryParams
-      )}`,
-      {
-        headers: {
-          'x-ebirdapitoken': apiKey,
-        },
-      }
-    );
-  }
+  async function baseRequest<T>(
+    {
+      endpoint,
+      queryParams = [],
+      urlParams = [],
+    }: Omit<EbirdApiParams, 'apiKey'>,
+    csvOptions?: CsvOptions
+  ): EbirdApiClientResponse<T> {
+    return await makeRequest({ endpoint, apiKey, queryParams, urlParams })
+      .then(async (response) => await response.text())
+      .then((rawResponse) => {
+        let parsedResponse: T;
 
-  function buildEndpointString(endpoint: string, urlParams: UrlParam[] = []) {
-    let builtEndpoint = endpoint;
-
-    urlParams.forEach(({ name, value }) => {
-      const mergeTag = `{{${name}}}`;
-
-      if (!builtEndpoint.includes(mergeTag)) {
-        throw Error(`Merge tag "${mergeTag}" not found.`);
-      }
-
-      builtEndpoint = builtEndpoint.replace(`{{${name}}}`, value);
-    });
-
-    return builtEndpoint;
-  }
-
-  function buildQueryString(queryParams: QueryParam[]) {
-    if (queryParams.length === 0) {
-      return '';
-    }
-
-    const queryParamsAsStrings = queryParams
-      .map(({ defaultValue, name, value }) => {
-        if (value === defaultValue) {
-          return '';
+        if (isJson(rawResponse)) {
+          parsedResponse = JSON.parse(rawResponse);
+        } else if (csvOptions === undefined) {
+          throw Error(
+            'CSV response detected, but no CSV parsing parameters were provided.'
+          );
+        } else {
+          const { headers, ignoreFirstLine = false } = csvOptions;
+          parsedResponse = csvToArray(
+            rawResponse,
+            headers,
+            ignoreFirstLine
+          ) as T;
         }
 
-        const computedValue = value ?? defaultValue ?? '';
-
-        if (computedValue === '') {
-          return computedValue;
-        }
-
-        return `${name}=${computedValue}`;
-      })
-      .filter((queryParamAsString) => queryParamAsString !== '');
-
-    return `?${queryParamsAsStrings.join('&')}`;
+        return {
+          parsedResponse,
+          rawResponse,
+        };
+      });
   }
 
   async function getAdjacentRegions(regionCode: string) {
@@ -88,7 +77,10 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest('ref/adjacent/{{regionCode}}', urlParams);
+    return await baseRequest<EbirdRegion[]>({
+      endpoint: 'ref/adjacent/{{regionCode}}',
+      urlParams,
+    });
   }
 
   async function getChecklistFeedOnDate(
@@ -131,11 +123,11 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest(
-      'product/lists/{{regionCode}}/{{y}}/{{m}}/{{d}}',
+    return await baseRequest<EbirdChecklist[]>({
+      endpoint: 'product/lists/{{regionCode}}/{{y}}/{{m}}/{{d}}',
       urlParams,
-      queryParams
-    );
+      queryParams,
+    });
   }
 
   async function getHotspotInfo(locId: string) {
@@ -146,7 +138,10 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest('ref/hotspot/info/{{locId}}', urlParams);
+    return await baseRequest<EbirdLocation>({
+      endpoint: 'ref/hotspot/info/{{locId}}',
+      urlParams,
+    });
   }
 
   async function getNearbyHotspots(
@@ -181,7 +176,15 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest('ref/hotspot/geo', [], queryParams);
+    return await baseRequest<EbirdHotspot[]>(
+      {
+        endpoint: 'ref/hotspot/geo',
+        queryParams,
+      },
+      {
+        headers: EBIRD_HOTSPOT_CSV_HEADERS,
+      }
+    );
   }
 
   async function getRegionHotspots(
@@ -208,10 +211,13 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest(
-      'ref/hotspot/{{regionCode}}',
-      urlParams,
-      queryParams
+    return await baseRequest<EbirdHotspot[]>(
+      {
+        endpoint: 'ref/hotspot/{{regionCode}}',
+        urlParams,
+        queryParams,
+      },
+      { headers: EBIRD_HOTSPOT_CSV_HEADERS }
     );
   }
 
@@ -240,11 +246,11 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest(
-      'ref/region/info/{{regionCode}}',
+    return await baseRequest<EbirdRegionInfo>({
+      endpoint: 'ref/region/info/{{regionCode}}',
       urlParams,
-      queryParams
-    );
+      queryParams,
+    });
   }
 
   async function getRegionStatsOnDate(
@@ -272,10 +278,10 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest(
-      'product/stats/{{regionCode}}/{{y}}/{{m}}/{{d}}',
-      urlParams
-    );
+    return await baseRequest<EbirdRegionStats>({
+      endpoint: 'product/stats/{{regionCode}}/{{y}}/{{m}}/{{d}}',
+      urlParams,
+    });
   }
 
   async function getSpeciesListForRegion(regionCode: string) {
@@ -286,7 +292,10 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest('product/spplist/{{regionCode}}', urlParams);
+    return await baseRequest<string[]>({
+      endpoint: 'product/spplist/{{regionCode}}',
+      urlParams,
+    });
   }
 
   async function getSubregionList(
@@ -313,15 +322,20 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest(
-      'ref/region/list/{{regionType}}/{{parentRegionCode}}',
-      urlParams,
-      queryParams
+    return await baseRequest<EbirdRegion[]>(
+      {
+        endpoint: 'ref/region/list/{{regionType}}/{{parentRegionCode}}',
+        urlParams,
+        queryParams,
+      },
+      { headers: ['code', 'name'], ignoreFirstLine: true }
     );
   }
 
   async function getTaxaLocaleCodes() {
-    return await baseRequest('ref/taxa-locales/ebird');
+    return await baseRequest<EbirdTaxaLocaleCode[]>({
+      endpoint: 'ref/taxa-locales/ebird',
+    });
   }
 
   async function getTaxonomicGroups(
@@ -343,15 +357,17 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest(
-      'ref/sppgroup/{{speciesGrouping}}',
+    return await baseRequest<EbirdTaxonomicGroup[]>({
+      endpoint: 'ref/sppgroup/{{speciesGrouping}}',
       urlParams,
-      queryParams
-    );
+      queryParams,
+    });
   }
 
   async function getTaxonomyVersions() {
-    return await baseRequest('ref/taxonomy/versions');
+    return await baseRequest<EbirdTaxonomyVersion[]>({
+      endpoint: 'ref/taxonomy/versions',
+    });
   }
 
   async function getTop100(
@@ -393,11 +409,11 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest(
-      'product/top100/{{regionCode}}/{{y}}/{{m}}/{{d}}',
+    return await baseRequest<EbirdContributor[]>({
+      endpoint: 'product/top100/{{regionCode}}/{{y}}/{{m}}/{{d}}',
       urlParams,
-      queryParams
-    );
+      queryParams,
+    });
   }
 
   return {
