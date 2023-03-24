@@ -8,7 +8,7 @@ import useTable from '../../../hooks/useTable';
 
 export default function TaxonomyVersions() {
   const { getTaxonomyVersions } = useEbirdApi();
-  const { Table } = useTable<EbirdTaxonomyVersion>(
+  const Table = useTable<EbirdTaxonomyVersion>(
     [
       {
         callback: ({ authorityVer }) => authorityVer.toString(),

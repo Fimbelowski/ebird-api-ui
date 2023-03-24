@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function EbirdRegionTable({ regions }: Props) {
-  const { Table } = useTable<EbirdRegion>(
+  const Table = useTable<EbirdRegion>(
     [
       {
         callback: ({ name }) => name,

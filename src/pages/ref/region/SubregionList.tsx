@@ -6,20 +6,14 @@ import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import type EbirdRegion from '../../../types/EbirdRegion';
 import EbirdRegionTable from '../../../components/EbirdRegionTable';
 import type EbirdRegionType from '../../../types/EbirdRegionType';
-import Select from '../../../components/Select';
-import type SelectOption from '../../../types/SelectOption';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useEbirdFormat from '../../../hooks/useEbirdFormat';
+import useSelect from '../../../hooks/useSelect';
 
 export default function SubregionList() {
   const { getSubregionList } = useEbirdApi();
   const { format, FormatSelect, setFormat } = useEbirdFormat();
-
-  const [parentRegionCode, setParentRegionCode] = useState('');
-  const [regionType, setRegionType] = useState<EbirdRegionType>('country');
-  const [subregions, setSubregions] = useState<EbirdRegion[]>([]);
-
-  const regionTypeOptions: Array<SelectOption<EbirdRegionType>> = [
+  const Select = useSelect<EbirdRegionType>([
     {
       label: 'Country',
       value: 'country',
@@ -32,7 +26,11 @@ export default function SubregionList() {
       label: 'Subnational 2',
       value: 'subnational2',
     },
-  ];
+  ]);
+
+  const [parentRegionCode, setParentRegionCode] = useState('');
+  const [regionType, setRegionType] = useState<EbirdRegionType>('country');
+  const [subregions, setSubregions] = useState<EbirdRegion[]>([]);
 
   async function request() {
     return await getSubregionList(regionType, parentRegionCode, format);
@@ -40,10 +38,9 @@ export default function SubregionList() {
 
   const formContent = (
     <>
-      <Select<EbirdRegionType>
+      <Select
         id="region-type"
         label="Region Type"
-        options={regionTypeOptions}
         onChange={setRegionType}
         value={regionType}
       />

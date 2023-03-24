@@ -6,7 +6,7 @@ import useTable from '../hooks/useTable';
 export default function EbirdLocationTableSimple({
   locations,
 }: LocationTableProps) {
-  const { Table } = useTable<EbirdLocation>(
+  const Table = useTable<EbirdLocation>(
     [
       {
         callback: ({ hierarchicalName }) => hierarchicalName,

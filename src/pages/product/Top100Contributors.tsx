@@ -8,16 +8,25 @@ import type EbirdRankedBy from '../../types/EbirdRankedBy';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import getOrdinalNumber from '../../utilities/getOrdinalNumber';
 import NumberInput from '../../components/NumberInput';
-import Select from '../../components/Select';
-import type SelectOption from '../../types/SelectOption';
 import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
+import useSelect from '../../hooks/useSelect';
 import useTable from '../../hooks/useTable';
 
 export default function Top100() {
   const { DateInput, day, month, onChange: onDateChange, year } = useDate();
   const { getTop100 } = useEbirdApi();
-  const { Table: DetailedTable } = useTable<EbirdContributor>(
+  const Select = useSelect<EbirdRankedBy>([
+    {
+      label: 'Checklists',
+      value: 'cl',
+    },
+    {
+      label: 'Species',
+      value: 'spp',
+    },
+  ]);
+  const DetailedTable = useTable<EbirdContributor>(
     [
       {
         callback: ({ profileHandle }) => profileHandle,
@@ -72,7 +81,7 @@ export default function Top100() {
   const [rankedBy, setRankedBy] = useState<EbirdRankedBy>('spp');
   const [regionCode, setRegionCode] = useState('');
 
-  const { Table: SimpleTable } = useTable<EbirdContributor>(
+  const SimpleTable = useTable<EbirdContributor>(
     [
       {
         callback: ({ rowNum }) => getOrdinalNumber(rowNum),
@@ -111,17 +120,6 @@ export default function Top100() {
     ]
   );
 
-  const rankedByOptions: Array<SelectOption<EbirdRankedBy>> = [
-    {
-      label: 'Checklists',
-      value: 'cl',
-    },
-    {
-      label: 'Species',
-      value: 'spp',
-    },
-  ];
-
   function onLoad(results: EbirdContributor[]) {
     setLastRankedBy(rankedBy);
     setContributors(results);
@@ -143,11 +141,10 @@ export default function Top100() {
         onChange={onDateChange}
         required
       />
-      <Select<EbirdRankedBy>
+      <Select
         id="ranked-by"
         label="Ranked By"
         onChange={setRankedBy}
-        options={rankedByOptions}
         value={rankedBy}
       />
       <NumberInput

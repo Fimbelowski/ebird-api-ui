@@ -16,7 +16,5 @@ export default function useTable<T>(
     );
   }
 
-  return {
-    Table: CurriedTable,
-  };
+  return CurriedTable;
 }
