@@ -72,8 +72,6 @@ export default function SubregionList() {
 
   return (
     <BasePage<EbirdRegion[]>
-      csvHeaders={['code', 'name']}
-      csvIgnoreFirstLine
       formContent={formContent}
       onLoad={setSubregions}
       request={request}
