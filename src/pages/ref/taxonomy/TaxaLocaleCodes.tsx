@@ -8,7 +8,7 @@ import useTable from '../../../hooks/useTable';
 
 export default function TaxaLocaleCodes() {
   const { getTaxaLocaleCodes } = useEbirdApi();
-  const { Table } = useTable<EbirdTaxaLocaleCode>(
+  const Table = useTable<EbirdTaxaLocaleCode>(
     [
       {
         callback: ({ name }) => name,

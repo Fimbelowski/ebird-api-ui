@@ -11,7 +11,7 @@ import useTable from '../../hooks/useTable';
 export default function RegionalStatsOnDate() {
   const { DateInput, day, month, onChange: onDateChange, year } = useDate();
   const { getRegionStatsOnDate } = useEbirdApi();
-  const { Table } = useTable<EbirdRegionStats>(
+  const Table = useTable<EbirdRegionStats>(
     [
       {
         align: 'right',

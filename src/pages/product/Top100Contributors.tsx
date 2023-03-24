@@ -26,7 +26,7 @@ export default function Top100() {
       value: 'spp',
     },
   ]);
-  const { Table: DetailedTable } = useTable<EbirdContributor>(
+  const DetailedTable = useTable<EbirdContributor>(
     [
       {
         callback: ({ profileHandle }) => profileHandle,
@@ -81,7 +81,7 @@ export default function Top100() {
   const [rankedBy, setRankedBy] = useState<EbirdRankedBy>('spp');
   const [regionCode, setRegionCode] = useState('');
 
-  const { Table: SimpleTable } = useTable<EbirdContributor>(
+  const SimpleTable = useTable<EbirdContributor>(
     [
       {
         callback: ({ rowNum }) => getOrdinalNumber(rowNum),

@@ -117,7 +117,7 @@ export default function TaxonomicGroups() {
     },
   ]);
 
-  const { Table } = useTable<EbirdTaxonomicGroup>(
+  const Table = useTable<EbirdTaxonomicGroup>(
     [
       {
         callback: ({ groupName }) => groupName,

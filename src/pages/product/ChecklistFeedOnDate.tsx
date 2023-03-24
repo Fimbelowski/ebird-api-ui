@@ -25,7 +25,7 @@ export default function ChecklistFeedOnDate() {
       value: 'creation_dt',
     },
   ]);
-  const { Table: DetailedTable } = useTable<EbirdChecklist>(
+  const DetailedTable = useTable<EbirdChecklist>(
     [
       {
         callback: ({ locId }) => locId,
@@ -76,7 +76,7 @@ export default function ChecklistFeedOnDate() {
     ]
   );
 
-  const { Table: SimpleTable } = useTable<EbirdChecklist>(
+  const SimpleTable = useTable<EbirdChecklist>(
     [
       {
         callback: ({ userDisplayName }) => userDisplayName,

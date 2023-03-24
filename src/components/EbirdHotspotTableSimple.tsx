@@ -6,7 +6,7 @@ import useTable from '../hooks/useTable';
 export default function EbirdHotspotTableSimple({
   hotspots,
 }: HotspotTableProps) {
-  const { Table } = useTable<EbirdHotspot>(
+  const Table = useTable<EbirdHotspot>(
     [
       {
         callback: ({ locName }) => locName,

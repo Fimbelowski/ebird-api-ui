@@ -5,7 +5,7 @@ import useTable from '../hooks/useTable';
 export default function DetailedLocationTable({
   locations,
 }: LocationTableProps) {
-  const { Table } = useTable<EbirdLocation>(
+  const Table = useTable<EbirdLocation>(
     [
       {
         callback: ({ locId }) => locId,

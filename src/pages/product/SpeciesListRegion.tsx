@@ -8,7 +8,7 @@ import useTable from '../../hooks/useTable';
 
 export default function SpeciesListRegion() {
   const { getSpeciesListForRegion } = useEbirdApi();
-  const { Table } = useTable<string>(
+  const Table = useTable<string>(
     [
       {
         callback: (speciesCode) => speciesCode,

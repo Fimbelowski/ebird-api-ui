@@ -38,7 +38,7 @@ export default function RegionInfo() {
       value: 'revdetailed',
     },
   ]);
-  const { Table } = useTable<EbirdRegionInfo>(
+  const Table = useTable<EbirdRegionInfo>(
     [
       {
         callback: ({ result }) => result,
