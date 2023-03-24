@@ -5,14 +5,39 @@ import Details from '../../../components/Details';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import type EbirdRegionInfo from '../../../types/EbirdRegionInfo';
 import type EbirdRegionNameFormat from '../../../types/EbirdRegionNameFormat';
-import Select from '../../../components/Select';
-import type SelectOption from '../../../types/SelectOption';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
+import useSelect from '../../../hooks/useSelect';
 import useTable from '../../../hooks/useTable';
 
 export default function RegionInfo() {
   const { getRegionInfo } = useEbirdApi();
+  const Select = useSelect<EbirdRegionNameFormat>([
+    {
+      label: 'Detailed',
+      value: 'detailed',
+    },
+    {
+      label: 'Full',
+      value: 'full',
+    },
+    {
+      label: 'Name Only',
+      value: 'nameonly',
+    },
+    {
+      label: 'Qualified Detailed',
+      value: 'detailednoqual',
+    },
+    {
+      label: 'Qualified Name',
+      value: 'namequal',
+    },
+    {
+      label: 'Reverse Detailed',
+      value: 'revdetailed',
+    },
+  ]);
   const { Table } = useTable<EbirdRegionInfo>(
     [
       {
@@ -56,35 +81,6 @@ export default function RegionInfo() {
   const [regionNameFormat, setRegionNameFormat] =
     useState<EbirdRegionNameFormat>('full');
 
-  const regionNameFormatSelectOptions: Array<
-    SelectOption<EbirdRegionNameFormat>
-  > = [
-    {
-      label: 'Detailed',
-      value: 'detailed',
-    },
-    {
-      label: 'Full',
-      value: 'full',
-    },
-    {
-      label: 'Name Only',
-      value: 'nameonly',
-    },
-    {
-      label: 'Qualified Detailed',
-      value: 'detailednoqual',
-    },
-    {
-      label: 'Qualified Name',
-      value: 'namequal',
-    },
-    {
-      label: 'Reverse Detailed',
-      value: 'revdetailed',
-    },
-  ];
-
   async function request() {
     return await getRegionInfo(regionCode, regionNameFormat, delimiter);
   }
@@ -96,11 +92,10 @@ export default function RegionInfo() {
         required
         value={regionCode}
       />
-      <Select<EbirdRegionNameFormat>
+      <Select
         id="region-name-format"
         label="Region Name Format"
         onChange={setRegionNameFormat}
-        options={regionNameFormatSelectOptions}
         value={regionNameFormat}
       />
       <TextInput

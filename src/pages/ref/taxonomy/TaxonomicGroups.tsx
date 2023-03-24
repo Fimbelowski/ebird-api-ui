@@ -4,48 +4,14 @@ import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
 import type EbirdTaxonomicGroup from '../../../types/EbirdTaxonomicGroup';
 import type EbirdGroupNameLocale from '../../../types/EbirdGroupNameLocale';
-import Select from '../../../components/Select';
-import type SelectOption from '../../../types/SelectOption';
 import type EbirdSpeciesGrouping from '../../../types/EbirdSpeciesGrouping';
 import useEbirdApi from '../../../hooks/useEbirdApi';
+import useSelect from '../../../hooks/useSelect';
 import useTable from '../../../hooks/useTable';
 
 export default function TaxonomicGroups() {
   const { getTaxonomicGroups } = useEbirdApi();
-  const { Table } = useTable<EbirdTaxonomicGroup>(
-    [
-      {
-        callback: ({ groupName }) => groupName,
-      },
-      {
-        callback: ({ groupOrder }) => groupOrder.toString(),
-      },
-      {
-        callback: ({ taxonOrderBounds }) => taxonOrderBounds[0].join(', '),
-      },
-    ],
-    [
-      {
-        label: 'Name',
-      },
-      {
-        label: 'Order',
-      },
-      {
-        label: 'Taxon Order Bounds',
-      },
-    ]
-  );
-
-  const [groupNameLocale, setGroupNameLocale] =
-    useState<EbirdGroupNameLocale>('en');
-  const [speciesGrouping, setSpeciesGrouping] =
-    useState<EbirdSpeciesGrouping>('ebird');
-  const [taxonomicGroups, setTaxonomicGroups] = useState<EbirdTaxonomicGroup[]>(
-    []
-  );
-
-  const groupNameLocaleOptions: Array<SelectOption<EbirdGroupNameLocale>> = [
+  const GroupNameLocaleSelect = useSelect<EbirdGroupNameLocale>([
     {
       label: 'Bulgarian',
       value: 'bg',
@@ -138,11 +104,9 @@ export default function TaxonomicGroups() {
       label: 'Turkish',
       value: 'th',
     },
-  ];
+  ]);
 
-  const speciesGroupingSelectOptions: Array<
-    SelectOption<EbirdSpeciesGrouping>
-  > = [
+  const SpeciesGroupingSelect = useSelect<EbirdSpeciesGrouping>([
     {
       label: 'eBird',
       value: 'ebird',
@@ -151,7 +115,40 @@ export default function TaxonomicGroups() {
       label: 'Merlin',
       value: 'merlin',
     },
-  ];
+  ]);
+
+  const { Table } = useTable<EbirdTaxonomicGroup>(
+    [
+      {
+        callback: ({ groupName }) => groupName,
+      },
+      {
+        callback: ({ groupOrder }) => groupOrder.toString(),
+      },
+      {
+        callback: ({ taxonOrderBounds }) => taxonOrderBounds[0].join(', '),
+      },
+    ],
+    [
+      {
+        label: 'Name',
+      },
+      {
+        label: 'Order',
+      },
+      {
+        label: 'Taxon Order Bounds',
+      },
+    ]
+  );
+
+  const [groupNameLocale, setGroupNameLocale] =
+    useState<EbirdGroupNameLocale>('en');
+  const [speciesGrouping, setSpeciesGrouping] =
+    useState<EbirdSpeciesGrouping>('ebird');
+  const [taxonomicGroups, setTaxonomicGroups] = useState<EbirdTaxonomicGroup[]>(
+    []
+  );
 
   async function request() {
     return await getTaxonomicGroups(speciesGrouping, groupNameLocale);
@@ -159,18 +156,16 @@ export default function TaxonomicGroups() {
 
   const formContent = (
     <>
-      <Select<EbirdSpeciesGrouping>
+      <SpeciesGroupingSelect
         id="species-grouping"
         label="Species Grouping"
         onChange={setSpeciesGrouping}
-        options={speciesGroupingSelectOptions}
         value={speciesGrouping}
       />
-      <Select<EbirdGroupNameLocale>
+      <GroupNameLocaleSelect
         id="group-name-locale"
         label="Group Name Locale"
         onChange={setGroupNameLocale}
-        options={groupNameLocaleOptions}
         value={groupNameLocale}
       />
     </>
