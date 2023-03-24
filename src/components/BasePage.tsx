@@ -1,19 +1,16 @@
 import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 
+import type EbirdApiClientResponse from '../types/EbirdApiClientResponse';
 import ApiKeyInput from './ApiKeyInput';
-import csvToArray from '../utilities/csvToArray';
 import Details from './Details';
 import Form from './Form';
-import isJson from '../utilities/isJson';
 import useLoading from '../hooks/useLoading';
 
 interface Props<T> {
-  csvHeaders?: string[];
-  csvIgnoreFirstLine?: boolean;
   disableSubmit?: boolean;
   formContent?: ReactNode;
   onLoad: (results: T) => void;
-  request: () => Promise<Response>;
+  request: () => EbirdApiClientResponse<T>;
   requestOnMount?: boolean;
   requiresApiKey?: boolean;
   resultsContent?: ReactNode;
@@ -21,8 +18,6 @@ interface Props<T> {
 }
 
 export default function BasePage<T>({
-  csvHeaders = [],
-  csvIgnoreFirstLine = false,
   disableSubmit = false,
   formContent,
   onLoad,
@@ -47,18 +42,10 @@ export default function BasePage<T>({
     setLoading(true);
 
     request()
-      .then(async (response) => {
+      .then(({ parsedResponse, rawResponse }) => {
         setHasQueried(true);
-        return await response.text();
-      })
-      .then((data) => {
-        setRawResponse(data);
-
-        const results = isJson(data)
-          ? JSON.parse(data)
-          : csvToArray(data, csvHeaders, csvIgnoreFirstLine);
-
-        onLoad(results);
+        setRawResponse(rawResponse);
+        onLoad(parsedResponse);
       })
       .catch((error) => {
         console.error(error);

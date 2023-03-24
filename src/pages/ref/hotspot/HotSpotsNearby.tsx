@@ -6,7 +6,6 @@ import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
 import Details from '../../../components/Details';
 import type EbirdFormat from '../../../types/EbirdFormat';
-import EBIRD_HOTSPOT_CSV_HEADERS from '../../../utilities/ebirdHotspotCsvHeaders';
 import EbirdHotspotTableDetailed from '../../../components/EbirdHotspotTableDetailed';
 import EbirdHotspotTableSimple from '../../../components/EbirdHotspotTableSimple';
 import FormatSelect from '../../../components/FormatSelect';
@@ -137,7 +136,6 @@ export default function HotspotsNearby() {
 
   return (
     <BasePage<EbirdHotspot[]>
-      csvHeaders={EBIRD_HOTSPOT_CSV_HEADERS}
       disableSubmit={loadingPosition}
       formContent={formContent}
       onLoad={setHotspots}

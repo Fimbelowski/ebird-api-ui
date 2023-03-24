@@ -8,7 +8,6 @@ import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import EbirdHotspotTableDetailed from '../../../components/EbirdHotspotTableDetailed';
 import type EbirdFormat from '../../../types/EbirdFormat';
 import FormatSelect from '../../../components/FormatSelect';
-import EBIRD_HOTSPOT_CSV_HEADERS from '../../../utilities/ebirdHotspotCsvHeaders';
 import EbirdHotspotTableSimple from '../../../components/EbirdHotspotTableSimple';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
@@ -62,7 +61,6 @@ export default function HotspotsRegion() {
 
   return (
     <BasePage<EbirdHotspot[]>
-      csvHeaders={EBIRD_HOTSPOT_CSV_HEADERS}
       formContent={formContent}
       onLoad={setHotspots}
       request={request}
