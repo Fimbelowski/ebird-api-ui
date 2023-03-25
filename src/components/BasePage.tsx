@@ -41,6 +41,7 @@ export default function BasePage<T>({
 
   function makeRequest() {
     setLoading(true);
+    setIsError(false);
 
     request()
       .then(({ parsedResponse, rawResponse }) => {
@@ -57,6 +58,10 @@ export default function BasePage<T>({
       });
   }
 
+  function noData() {
+    return hasQueried && rawResponse.length === 0;
+  }
+
   function onSubmit(event: FormEvent) {
     event.preventDefault();
     setLoading(true);
@@ -69,7 +74,7 @@ export default function BasePage<T>({
   }
 
   function showResults() {
-    return hasQueried && !loading && !isError;
+    return hasQueried && !loading && !isError && !noData();
   }
 
   return (
@@ -87,6 +92,7 @@ export default function BasePage<T>({
       ) : null}
       {loading ? 'Loading...' : null}
       {isError ? 'An error occured and has been logged to the console. Please check the form and try again.' : null}
+      {noData() ? 'No data' : null}
       {showResults() ? (
         <div className="base-page__results-container">
           <Details summary="Raw Response">{rawResponse}</Details>
