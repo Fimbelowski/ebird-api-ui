@@ -1,8 +1,8 @@
 import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 
-import type EbirdApiClientResponse from '../types/EbirdApiClientResponse';
 import ApiKeyInput from './ApiKeyInput';
 import Details from './Details';
+import type EbirdApiClientResponse from '../types/EbirdApiClientResponse';
 import Form from './Form';
 import useLoading from '../hooks/useLoading';
 
@@ -30,6 +30,7 @@ export default function BasePage<T>({
   const { loading, setLoading } = useLoading();
 
   const [hasQueried, setHasQueried] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [rawResponse, setRawResponse] = useState('');
 
   useEffect(() => {
@@ -49,6 +50,7 @@ export default function BasePage<T>({
       })
       .catch((error) => {
         console.error(error);
+        setIsError(true);
       })
       .finally(() => {
         setLoading(false);
@@ -67,7 +69,7 @@ export default function BasePage<T>({
   }
 
   function showResults() {
-    return hasQueried && !loading;
+    return hasQueried && !loading && !isError;
   }
 
   return (
@@ -84,6 +86,7 @@ export default function BasePage<T>({
         </Form>
       ) : null}
       {loading ? 'Loading...' : null}
+      {isError ? 'An error occured and has been logged to the console. Please check the form and try again.' : null}
       {showResults() ? (
         <div className="base-page__results-container">
           <Details summary="Raw Response">{rawResponse}</Details>
