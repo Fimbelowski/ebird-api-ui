@@ -59,7 +59,7 @@ export default function BasePage<T>({
   }
 
   function noData() {
-    return hasQueried && rawResponse.length === 0;
+    return hasQueried && (rawResponse.length === 0 || rawResponse === '[]');
   }
 
   function onSubmit(event: FormEvent) {
@@ -74,7 +74,7 @@ export default function BasePage<T>({
   }
 
   function showResults() {
-    return hasQueried && !loading && !isError && !noData();
+    return hasQueried && !isError && !noData();
   }
 
   return (
@@ -90,15 +90,22 @@ export default function BasePage<T>({
           {formContent}
         </Form>
       ) : null}
-      {loading ? 'Loading...' : null}
-      {isError ? 'An error occured and has been logged to the console. Please check the form and try again.' : null}
-      {noData() ? 'No data' : null}
-      {showResults() ? (
-        <div className="base-page__results-container">
-          <Details summary="Raw Response">{rawResponse}</Details>
-          {resultsContent}
-        </div>
-      ) : null}
+      {loading ? (
+        'Loading...'
+      ) : (
+        <>
+          {isError
+            ? 'An error occured and has been logged to the console. Please check the form and try again.'
+            : null}
+          {noData() ? 'No data' : null}
+          {showResults() ? (
+            <div className="base-page__results-container">
+              <Details summary="Raw Response">{rawResponse}</Details>
+              {resultsContent}
+            </div>
+          ) : null}
+        </>
+      )}
     </section>
   );
 }

@@ -78,7 +78,7 @@ export default function HotspotsNearby() {
         value={longitude}
       />
       <Button
-        className="nearby-hotspots__get-user-position"
+        className="hotspots-nearby__get-user-position"
         disabled={loadingPosition}
         onClick={getUserPosition}
         type="button"
@@ -86,15 +86,15 @@ export default function HotspotsNearby() {
         Use My Location
       </Button>
       {loadingPosition ? (
-        <p className="nearby-hotspots__loading-position">Getting position...</p>
+        <p className="hotspots-nearby__loading-position">Getting position...</p>
       ) : null}
       {showPositionError ? (
-        <p className="nearby-hotspots__position-error">
+        <p className="hotspots-nearby__position-error">
           Unable to get location. Please check permissions and try again.
         </p>
       ) : null}
       <NumberInput
-        className="nearby-hotspots__distance-input"
+        className="hotspots-nearby__distance-input"
         disabled={loadingPosition}
         id="distance"
         label="Distance (km)"
@@ -105,7 +105,7 @@ export default function HotspotsNearby() {
         value={distance}
       />
       <BackInput
-        className="nearby-hotspots__back-input"
+        className="hotspots-nearby__back-input"
         disabled={loadingPosition}
         id="back"
         onChange={setBack}
