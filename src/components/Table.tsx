@@ -1,14 +1,26 @@
+import { type ReactNode } from 'react';
+
 import classNames from '../utilities/classNames';
-import type TableCell from '../types/TableCell';
-import type TableHeader from '../types/TableHeader';
+interface TableCell<T> {
+  align?: 'left' | 'center' | 'right';
+  callback: (item: T) => string | ReactNode;
+  wrap?: boolean;
+}
+
+export type TableCellArray<T> = Array<TableCell<T>>;
+
+export interface TableHeader {
+  align?: 'left' | 'center' | 'right';
+  label: string;
+}
 
 interface Props<T> {
-  cells: Array<TableCell<T>>;
+  cells: TableCellArray<T>;
   headers: TableHeader[];
   items: T[];
 }
 
-export default function Table<T>({ cells, headers, items }: Props<T>) {
+export function Table<T>({ cells, headers, items }: Props<T>) {
   function Headers() {
     const listItems = headers.map(({ align, label }, index) => {
       const classes = classNames([
