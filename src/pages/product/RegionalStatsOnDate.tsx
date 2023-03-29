@@ -4,46 +4,50 @@ import BasePage from '../../components/BasePage';
 import Details from '../../components/Details';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import type EbirdRegionStats from '../../types/EbirdRegionStats';
+import {
+  Table,
+  type TableCellArray,
+  type TableHeader,
+} from '../../components/Table';
 import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
-import useTable from '../../hooks/useTable';
 
 export default function RegionalStatsOnDate() {
   const { DateInput, day, month, onChange: onDateChange, year } = useDate();
   const { getRegionStatsOnDate } = useEbirdApi();
-  const Table = useTable<EbirdRegionStats>(
-    [
-      {
-        align: 'right',
-        callback: ({ numChecklists }) => numChecklists,
-      },
-      {
-        align: 'right',
-        callback: ({ numContributors }) => numContributors,
-      },
-      {
-        align: 'right',
-        callback: ({ numSpecies }) => numSpecies,
-      },
-    ],
-    [
-      {
-        align: 'right',
-        label: 'Checklists',
-      },
-      {
-        align: 'right',
-        label: 'Contributors',
-      },
-      {
-        align: 'right',
-        label: 'Species',
-      },
-    ]
-  );
 
   const [regionCode, setRegionCode] = useState('');
   const [stats, setStats] = useState<EbirdRegionStats>();
+
+  const tableCells: TableCellArray<EbirdRegionStats> = [
+    {
+      align: 'right',
+      callback: ({ numChecklists }) => numChecklists,
+    },
+    {
+      align: 'right',
+      callback: ({ numContributors }) => numContributors,
+    },
+    {
+      align: 'right',
+      callback: ({ numSpecies }) => numSpecies,
+    },
+  ];
+
+  const tableHeaders: TableHeader[] = [
+    {
+      align: 'right',
+      label: 'Checklists',
+    },
+    {
+      align: 'right',
+      label: 'Contributors',
+    },
+    {
+      align: 'right',
+      label: 'Species',
+    },
+  ];
 
   async function request() {
     return await getRegionStatsOnDate(regionCode, year, month, day);
@@ -70,7 +74,11 @@ export default function RegionalStatsOnDate() {
         open
         summary="Results Table"
       >
-        <Table items={[stats]} />
+        <Table
+          cells={tableCells}
+          headers={tableHeaders}
+          items={[stats]}
+        />
       </Details>
     );
 

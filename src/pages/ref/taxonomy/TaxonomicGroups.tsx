@@ -5,9 +5,13 @@ import Details from '../../../components/Details';
 import type EbirdTaxonomicGroup from '../../../types/EbirdTaxonomicGroup';
 import type EbirdGroupNameLocale from '../../../types/EbirdGroupNameLocale';
 import type EbirdSpeciesGrouping from '../../../types/EbirdSpeciesGrouping';
+import {
+  Table,
+  type TableCellArray,
+  type TableHeader,
+} from '../../../components/Table';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useSelect from '../../../hooks/useSelect';
-import useTable from '../../../hooks/useTable';
 
 export default function TaxonomicGroups() {
   const { getTaxonomicGroups } = useEbirdApi();
@@ -117,31 +121,6 @@ export default function TaxonomicGroups() {
     },
   ]);
 
-  const Table = useTable<EbirdTaxonomicGroup>(
-    [
-      {
-        callback: ({ groupName }) => groupName,
-      },
-      {
-        callback: ({ groupOrder }) => groupOrder.toString(),
-      },
-      {
-        callback: ({ taxonOrderBounds }) => taxonOrderBounds[0].join(', '),
-      },
-    ],
-    [
-      {
-        label: 'Name',
-      },
-      {
-        label: 'Order',
-      },
-      {
-        label: 'Taxon Order Bounds',
-      },
-    ]
-  );
-
   const [groupNameLocale, setGroupNameLocale] =
     useState<EbirdGroupNameLocale>('en');
   const [speciesGrouping, setSpeciesGrouping] =
@@ -149,6 +128,30 @@ export default function TaxonomicGroups() {
   const [taxonomicGroups, setTaxonomicGroups] = useState<EbirdTaxonomicGroup[]>(
     []
   );
+
+  const tableCells: TableCellArray<EbirdTaxonomicGroup> = [
+    {
+      callback: ({ groupName }) => groupName,
+    },
+    {
+      callback: ({ groupOrder }) => groupOrder.toString(),
+    },
+    {
+      callback: ({ taxonOrderBounds }) => taxonOrderBounds[0].join(', '),
+    },
+  ];
+
+  const tableHeaders: TableHeader[] = [
+    {
+      label: 'Name',
+    },
+    {
+      label: 'Order',
+    },
+    {
+      label: 'Taxon Order Bounds',
+    },
+  ];
 
   async function request() {
     return await getTaxonomicGroups(speciesGrouping, groupNameLocale);
@@ -176,7 +179,11 @@ export default function TaxonomicGroups() {
       open
       summary="Results Table"
     >
-      <Table items={taxonomicGroups} />
+      <Table
+        cells={tableCells}
+        headers={tableHeaders}
+        items={taxonomicGroups}
+      />
     </Details>
   );
 

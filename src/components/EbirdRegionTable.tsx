@@ -1,29 +1,38 @@
 import type EbirdRegion from '../types/EbirdRegion';
-import useTable from '../hooks/useTable';
+import {
+  Table,
+  type TableHeader,
+  type TableCellArray,
+} from '../components/Table';
 
 interface Props {
   regions: EbirdRegion[];
 }
 
 export default function EbirdRegionTable({ regions }: Props) {
-  const Table = useTable<EbirdRegion>(
-    [
-      {
-        callback: ({ name }) => name,
-      },
-      {
-        callback: ({ code }) => code,
-      },
-    ],
-    [
-      {
-        label: 'Name',
-      },
-      {
-        label: 'Code',
-      },
-    ]
-  );
+  const tableCells: TableCellArray<EbirdRegion> = [
+    {
+      callback: ({ name }) => name,
+    },
+    {
+      callback: ({ code }) => code,
+    },
+  ];
 
-  return <Table items={regions} />;
+  const tableHeaders: TableHeader[] = [
+    {
+      label: 'Name',
+    },
+    {
+      label: 'Code',
+    },
+  ];
+
+  return (
+    <Table
+      cells={tableCells}
+      headers={tableHeaders}
+      items={regions}
+    />
+  );
 }

@@ -5,10 +5,14 @@ import Details from '../../../components/Details';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import type EbirdRegionInfo from '../../../types/EbirdRegionInfo';
 import type EbirdRegionNameFormat from '../../../types/EbirdRegionNameFormat';
+import {
+  Table,
+  type TableCellArray,
+  type TableHeader,
+} from '../../../components/Table';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useSelect from '../../../hooks/useSelect';
-import useTable from '../../../hooks/useTable';
 
 export default function RegionInfo() {
   const { getRegionInfo } = useEbirdApi();
@@ -38,48 +42,48 @@ export default function RegionInfo() {
       value: 'revdetailed',
     },
   ]);
-  const Table = useTable<EbirdRegionInfo>(
-    [
-      {
-        callback: ({ result }) => result,
-      },
-      {
-        callback: ({ bounds: { minX } }) => minX.toString(),
-      },
-      {
-        callback: ({ bounds: { maxX } }) => maxX.toString(),
-      },
-      {
-        callback: ({ bounds: { minY } }) => minY.toString(),
-      },
-      {
-        callback: ({ bounds: { maxY } }) => maxY.toString(),
-      },
-    ],
-    [
-      {
-        label: 'Region Name',
-      },
-      {
-        label: 'Min X',
-      },
-      {
-        label: 'Max X',
-      },
-      {
-        label: 'Min Y',
-      },
-      {
-        label: 'Max Y',
-      },
-    ]
-  );
 
   const [delimiter, setDelimiter] = useState(', ');
   const [regionCode, setRegionCode] = useState('');
   const [regionInfo, setRegionInfo] = useState<EbirdRegionInfo>();
   const [regionNameFormat, setRegionNameFormat] =
     useState<EbirdRegionNameFormat>('full');
+
+  const tableCells: TableCellArray<EbirdRegionInfo> = [
+    {
+      callback: ({ result }) => result,
+    },
+    {
+      callback: ({ bounds: { minX } }) => minX.toString(),
+    },
+    {
+      callback: ({ bounds: { maxX } }) => maxX.toString(),
+    },
+    {
+      callback: ({ bounds: { minY } }) => minY.toString(),
+    },
+    {
+      callback: ({ bounds: { maxY } }) => maxY.toString(),
+    },
+  ];
+
+  const tableHeaders: TableHeader[] = [
+    {
+      label: 'Region Name',
+    },
+    {
+      label: 'Min X',
+    },
+    {
+      label: 'Max X',
+    },
+    {
+      label: 'Min Y',
+    },
+    {
+      label: 'Max Y',
+    },
+  ];
 
   async function request() {
     return await getRegionInfo(regionCode, regionNameFormat, delimiter);
@@ -115,7 +119,11 @@ export default function RegionInfo() {
         open
         summary="Results Table"
       >
-        <Table items={[regionInfo]} />
+        <Table
+          cells={tableCells}
+          headers={tableHeaders}
+          items={[regionInfo]}
+        />
       </Details>
     );
 
