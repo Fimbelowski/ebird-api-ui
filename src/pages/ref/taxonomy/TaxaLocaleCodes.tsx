@@ -3,39 +3,43 @@ import { useState } from 'react';
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
 import type EbirdTaxaLocaleCode from '../../../types/EbirdTaxaLocaleCode';
+import {
+  Table,
+  type TableCellArray,
+  type TableHeader,
+} from '../../../components/Table';
 import useEbirdApi from '../../../hooks/useEbirdApi';
-import useTable from '../../../hooks/useTable';
 
 export default function TaxaLocaleCodes() {
   const { getTaxaLocaleCodes } = useEbirdApi();
-  const Table = useTable<EbirdTaxaLocaleCode>(
-    [
-      {
-        callback: ({ name }) => name,
-      },
-      {
-        callback: ({ code }) => code,
-      },
-      {
-        callback: ({ lastUpdate }) => new Date(lastUpdate).toLocaleString(),
-      },
-    ],
-    [
-      {
-        label: 'Name',
-      },
-      {
-        label: 'Code',
-      },
-      {
-        label: 'Last Update',
-      },
-    ]
-  );
 
   const [taxaLocaleCodes, setTaxaLocaleCodes] = useState<EbirdTaxaLocaleCode[]>(
     []
   );
+
+  const tableCells: TableCellArray<EbirdTaxaLocaleCode> = [
+    {
+      callback: ({ name }) => name,
+    },
+    {
+      callback: ({ code }) => code,
+    },
+    {
+      callback: ({ lastUpdate }) => new Date(lastUpdate).toLocaleString(),
+    },
+  ];
+
+  const tableHeaders: TableHeader[] = [
+    {
+      label: 'Name',
+    },
+    {
+      label: 'Code',
+    },
+    {
+      label: 'Last Update',
+    },
+  ];
 
   const resultsContent = (
     <>
@@ -43,7 +47,11 @@ export default function TaxaLocaleCodes() {
         open
         summary="Results Table"
       >
-        <Table items={taxaLocaleCodes} />
+        <Table
+          cells={tableCells}
+          headers={tableHeaders}
+          items={taxaLocaleCodes}
+        />
       </Details>
     </>
   );

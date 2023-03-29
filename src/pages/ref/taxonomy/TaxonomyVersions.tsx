@@ -3,38 +3,46 @@ import { useState } from 'react';
 import BasePage from '../../../components/BasePage';
 import Details from '../../../components/Details';
 import type EbirdTaxonomyVersion from '../../../types/EbirdTaxonomyVersion';
+import {
+  Table,
+  type TableCellArray,
+  type TableHeader,
+} from '../../../components/Table';
 import useEbirdApi from '../../../hooks/useEbirdApi';
-import useTable from '../../../hooks/useTable';
 
 export default function TaxonomyVersions() {
   const { getTaxonomyVersions } = useEbirdApi();
-  const Table = useTable<EbirdTaxonomyVersion>(
-    [
-      {
-        callback: ({ authorityVer }) => authorityVer.toString(),
-      },
-      {
-        callback: ({ latest }) => latest.toString(),
-      },
-    ],
-    [
-      {
-        label: 'Version',
-      },
-      {
-        label: 'Latest',
-      },
-    ]
-  );
 
   const [versions, setVersions] = useState<EbirdTaxonomyVersion[]>([]);
+
+  const tableCells: TableCellArray<EbirdTaxonomyVersion> = [
+    {
+      callback: ({ authorityVer }) => authorityVer.toString(),
+    },
+    {
+      callback: ({ latest }) => latest.toString(),
+    },
+  ];
+
+  const tableHeaders: TableHeader[] = [
+    {
+      label: 'Version',
+    },
+    {
+      label: 'Latest',
+    },
+  ];
 
   const resultsContent = (
     <Details
       open
       summary="Results Table"
     >
-      <Table items={versions} />
+      <Table
+        cells={tableCells}
+        headers={tableHeaders}
+        items={versions}
+      />
     </Details>
   );
 

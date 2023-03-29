@@ -3,26 +3,30 @@ import { useState } from 'react';
 import BasePage from '../../components/BasePage';
 import Details from '../../components/Details';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
+import {
+  Table,
+  type TableCellArray,
+  type TableHeader,
+} from '../../components/Table';
 import useEbirdApi from '../../hooks/useEbirdApi';
-import useTable from '../../hooks/useTable';
 
 export default function SpeciesListRegion() {
   const { getSpeciesListForRegion } = useEbirdApi();
-  const Table = useTable<string>(
-    [
-      {
-        callback: (speciesCode) => speciesCode,
-      },
-    ],
-    [
-      {
-        label: 'Species Code',
-      },
-    ]
-  );
 
   const [speciesCodes, setSpeciesCodes] = useState<string[]>([]);
   const [regionCode, setRegionCode] = useState('');
+
+  const tableCells: TableCellArray<string> = [
+    {
+      callback: (speciesCode) => speciesCode,
+    },
+  ];
+
+  const tableHeaders: TableHeader[] = [
+    {
+      label: 'Species Code',
+    },
+  ];
 
   async function request() {
     return await getSpeciesListForRegion(regionCode);
@@ -40,7 +44,11 @@ export default function SpeciesListRegion() {
       open
       summary="Results Table"
     >
-      <Table items={speciesCodes} />
+      <Table
+        cells={tableCells}
+        headers={tableHeaders}
+        items={speciesCodes}
+      />
     </Details>
   );
 

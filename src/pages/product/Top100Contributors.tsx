@@ -8,15 +8,110 @@ import type EbirdRankedBy from '../../types/EbirdRankedBy';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import getOrdinalNumber from '../../utilities/getOrdinalNumber';
 import NumberInput from '../../components/NumberInput';
+import { Select, type SelectOptionArray } from '../../components/Select';
+import {
+  Table,
+  type TableCellArray,
+  type TableHeader,
+} from '../../components/Table';
 import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
-import useSelect from '../../hooks/useSelect';
-import useTable from '../../hooks/useTable';
 
 export default function Top100() {
   const { DateInput, day, month, onChange: onDateChange, year } = useDate();
   const { getTop100 } = useEbirdApi();
-  const Select = useSelect<EbirdRankedBy>([
+
+  const [contributors, setContributors] = useState<EbirdContributor[]>([]);
+  const [lastRankedBy, setLastRankedBy] = useState<EbirdRankedBy>('spp');
+  const [maxResults, setMaxResults] = useState('');
+  const [rankedBy, setRankedBy] = useState<EbirdRankedBy>('spp');
+  const [regionCode, setRegionCode] = useState('');
+
+  const detailedTableCells: TableCellArray<EbirdContributor> = [
+    {
+      callback: ({ profileHandle }) => profileHandle,
+    },
+    {
+      callback: ({ userDisplayName }) => userDisplayName,
+    },
+    {
+      align: 'right',
+      callback: ({ numSpecies }) => numSpecies,
+    },
+    {
+      align: 'right',
+      callback: ({ numCompleteChecklists }) => numCompleteChecklists,
+    },
+    {
+      align: 'right',
+      callback: ({ rowNum }) => rowNum,
+    },
+    {
+      callback: ({ userId }) => userId,
+    },
+  ];
+
+  const detailedTableHeaders: TableHeader[] = [
+    {
+      label: 'profileHandle',
+    },
+    {
+      label: 'userDisplayName',
+    },
+    {
+      align: 'right',
+      label: 'numSpecies',
+    },
+    {
+      align: 'right',
+      label: 'numCompleteChecklists',
+    },
+    {
+      align: 'right',
+      label: 'rowNum',
+    },
+    {
+      label: 'userId',
+    },
+  ];
+
+  const simpleTableCells: TableCellArray<EbirdContributor> = [
+    {
+      callback: ({ rowNum }) => getOrdinalNumber(rowNum),
+    },
+    {
+      callback: ({ userDisplayName, profileHandle }) =>
+        profileHandle === undefined ? (
+          userDisplayName
+        ) : (
+          <EbirdProfileLink
+            profileHandle={profileHandle}
+            userDisplayName={userDisplayName}
+          />
+        ),
+    },
+    {
+      align: 'right',
+      callback: ({ numCompleteChecklists, numSpecies }) =>
+        lastRankedBy === 'spp' ? numSpecies : numCompleteChecklists,
+    },
+  ];
+
+  const simpleTableHeaders: TableHeader[] = [
+    {
+      align: 'right',
+      label: 'Place',
+    },
+    {
+      label: 'Contributor',
+    },
+    {
+      align: 'right',
+      label: `# ${lastRankedBy === 'spp' ? 'Species' : 'Complete Checklists'}`,
+    },
+  ];
+
+  const rankedByOptions: SelectOptionArray<EbirdRankedBy> = [
     {
       label: 'Checklists',
       value: 'cl',
@@ -25,100 +120,7 @@ export default function Top100() {
       label: 'Species',
       value: 'spp',
     },
-  ]);
-  const DetailedTable = useTable<EbirdContributor>(
-    [
-      {
-        callback: ({ profileHandle }) => profileHandle,
-      },
-      {
-        callback: ({ userDisplayName }) => userDisplayName,
-      },
-      {
-        align: 'right',
-        callback: ({ numSpecies }) => numSpecies,
-      },
-      {
-        align: 'right',
-        callback: ({ numCompleteChecklists }) => numCompleteChecklists,
-      },
-      {
-        align: 'right',
-        callback: ({ rowNum }) => rowNum,
-      },
-      {
-        callback: ({ userId }) => userId,
-      },
-    ],
-    [
-      {
-        label: 'profileHandle',
-      },
-      {
-        label: 'userDisplayName',
-      },
-      {
-        align: 'right',
-        label: 'numSpecies',
-      },
-      {
-        align: 'right',
-        label: 'numCompleteChecklists',
-      },
-      {
-        align: 'right',
-        label: 'rowNum',
-      },
-      {
-        label: 'userId',
-      },
-    ]
-  );
-
-  const [contributors, setContributors] = useState<EbirdContributor[]>([]);
-  const [lastRankedBy, setLastRankedBy] = useState<EbirdRankedBy>('spp');
-  const [maxResults, setMaxResults] = useState('');
-  const [rankedBy, setRankedBy] = useState<EbirdRankedBy>('spp');
-  const [regionCode, setRegionCode] = useState('');
-
-  const SimpleTable = useTable<EbirdContributor>(
-    [
-      {
-        callback: ({ rowNum }) => getOrdinalNumber(rowNum),
-      },
-      {
-        callback: ({ userDisplayName, profileHandle }) =>
-          profileHandle === undefined ? (
-            userDisplayName
-          ) : (
-            <EbirdProfileLink
-              profileHandle={profileHandle}
-              userDisplayName={userDisplayName}
-            />
-          ),
-      },
-      {
-        align: 'right',
-        callback: ({ numCompleteChecklists, numSpecies }) =>
-          lastRankedBy === 'spp' ? numSpecies : numCompleteChecklists,
-      },
-    ],
-    [
-      {
-        align: 'right',
-        label: 'Place',
-      },
-      {
-        label: 'Contributor',
-      },
-      {
-        align: 'right',
-        label: `# ${
-          lastRankedBy === 'spp' ? 'Species' : 'Complete Checklists'
-        }`,
-      },
-    ]
-  );
+  ];
 
   function onLoad(results: EbirdContributor[]) {
     setLastRankedBy(rankedBy);
@@ -141,10 +143,11 @@ export default function Top100() {
         onChange={onDateChange}
         required
       />
-      <Select
+      <Select<EbirdRankedBy>
         id="ranked-by"
         label="Ranked By"
         onChange={setRankedBy}
+        options={rankedByOptions}
         value={rankedBy}
       />
       <NumberInput
@@ -162,13 +165,21 @@ export default function Top100() {
   const resultsContent = (
     <>
       <Details summary="Detailed Table">
-        <DetailedTable items={contributors} />
+        <Table
+          cells={detailedTableCells}
+          headers={detailedTableHeaders}
+          items={contributors}
+        />
       </Details>
       <Details
         open
         summary="Simple Table"
       >
-        <SimpleTable items={contributors} />
+        <Table
+          cells={simpleTableCells}
+          headers={simpleTableHeaders}
+          items={contributors}
+        />
       </Details>
     </>
   );

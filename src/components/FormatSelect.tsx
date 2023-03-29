@@ -1,6 +1,5 @@
 import type EbirdFormat from '../types/EbirdFormat';
-import type SelectProps from '../types/SelectProps';
-import useSelect from '../hooks/useSelect';
+import { Select, type SelectProps, type SelectOptionArray } from './Select';
 
 type Props = Omit<
   SelectProps<EbirdFormat>,
@@ -10,7 +9,7 @@ type Props = Omit<
 };
 
 export default function FormatSelect(props: Props) {
-  const Select = useSelect<EbirdFormat>([
+  const options: SelectOptionArray<EbirdFormat> = [
     {
       label: 'CSV',
       value: 'csv',
@@ -19,12 +18,13 @@ export default function FormatSelect(props: Props) {
       label: 'JSON',
       value: 'json',
     },
-  ]);
+  ];
 
   return (
-    <Select
+    <Select<EbirdFormat>
       {...props}
       label="Format"
+      options={options}
     />
   );
 }
