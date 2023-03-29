@@ -3,12 +3,9 @@
     grid-column: 1 / -1;
   }
 
-  &__loading-position {
-    grid-column: 1 / -1;
-  }
-
   &__loading-position,
   &__position-error {
+    grid-column: 1 / -1;
     text-align: center;
   }
 
