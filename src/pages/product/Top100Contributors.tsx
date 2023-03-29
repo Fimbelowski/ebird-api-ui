@@ -8,6 +8,7 @@ import type EbirdRankedBy from '../../types/EbirdRankedBy';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import getOrdinalNumber from '../../utilities/getOrdinalNumber';
 import NumberInput from '../../components/NumberInput';
+import { Select, type SelectOptionArray } from '../../components/Select';
 import {
   Table,
   type TableCellArray,
@@ -15,21 +16,10 @@ import {
 } from '../../components/Table';
 import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
-import useSelect from '../../hooks/useSelect';
 
 export default function Top100() {
   const { DateInput, day, month, onChange: onDateChange, year } = useDate();
   const { getTop100 } = useEbirdApi();
-  const Select = useSelect<EbirdRankedBy>([
-    {
-      label: 'Checklists',
-      value: 'cl',
-    },
-    {
-      label: 'Species',
-      value: 'spp',
-    },
-  ]);
 
   const [contributors, setContributors] = useState<EbirdContributor[]>([]);
   const [lastRankedBy, setLastRankedBy] = useState<EbirdRankedBy>('spp');
@@ -121,6 +111,17 @@ export default function Top100() {
     },
   ];
 
+  const rankedByOptions: SelectOptionArray<EbirdRankedBy> = [
+    {
+      label: 'Checklists',
+      value: 'cl',
+    },
+    {
+      label: 'Species',
+      value: 'spp',
+    },
+  ];
+
   function onLoad(results: EbirdContributor[]) {
     setLastRankedBy(rankedBy);
     setContributors(results);
@@ -142,10 +143,11 @@ export default function Top100() {
         onChange={onDateChange}
         required
       />
-      <Select
+      <Select<EbirdRankedBy>
         id="ranked-by"
         label="Ranked By"
         onChange={setRankedBy}
+        options={rankedByOptions}
         value={rankedBy}
       />
       <NumberInput

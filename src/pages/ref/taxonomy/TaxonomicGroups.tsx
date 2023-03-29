@@ -5,17 +5,26 @@ import Details from '../../../components/Details';
 import type EbirdTaxonomicGroup from '../../../types/EbirdTaxonomicGroup';
 import type EbirdGroupNameLocale from '../../../types/EbirdGroupNameLocale';
 import type EbirdSpeciesGrouping from '../../../types/EbirdSpeciesGrouping';
+import { Select, type SelectOptionArray } from '../../../components/Select';
 import {
   Table,
   type TableCellArray,
   type TableHeader,
 } from '../../../components/Table';
 import useEbirdApi from '../../../hooks/useEbirdApi';
-import useSelect from '../../../hooks/useSelect';
 
 export default function TaxonomicGroups() {
   const { getTaxonomicGroups } = useEbirdApi();
-  const GroupNameLocaleSelect = useSelect<EbirdGroupNameLocale>([
+
+  const [groupNameLocale, setGroupNameLocale] =
+    useState<EbirdGroupNameLocale>('en');
+  const [speciesGrouping, setSpeciesGrouping] =
+    useState<EbirdSpeciesGrouping>('ebird');
+  const [taxonomicGroups, setTaxonomicGroups] = useState<EbirdTaxonomicGroup[]>(
+    []
+  );
+
+  const groupNameLocaleOptions: SelectOptionArray<EbirdGroupNameLocale> = [
     {
       label: 'Bulgarian',
       value: 'bg',
@@ -108,9 +117,9 @@ export default function TaxonomicGroups() {
       label: 'Turkish',
       value: 'th',
     },
-  ]);
+  ];
 
-  const SpeciesGroupingSelect = useSelect<EbirdSpeciesGrouping>([
+  const speciesGroupingOptions: SelectOptionArray<EbirdSpeciesGrouping> = [
     {
       label: 'eBird',
       value: 'ebird',
@@ -119,15 +128,7 @@ export default function TaxonomicGroups() {
       label: 'Merlin',
       value: 'merlin',
     },
-  ]);
-
-  const [groupNameLocale, setGroupNameLocale] =
-    useState<EbirdGroupNameLocale>('en');
-  const [speciesGrouping, setSpeciesGrouping] =
-    useState<EbirdSpeciesGrouping>('ebird');
-  const [taxonomicGroups, setTaxonomicGroups] = useState<EbirdTaxonomicGroup[]>(
-    []
-  );
+  ];
 
   const tableCells: TableCellArray<EbirdTaxonomicGroup> = [
     {
@@ -159,16 +160,18 @@ export default function TaxonomicGroups() {
 
   const formContent = (
     <>
-      <SpeciesGroupingSelect
+      <Select<EbirdSpeciesGrouping>
         id="species-grouping"
         label="Species Grouping"
         onChange={setSpeciesGrouping}
+        options={speciesGroupingOptions}
         value={speciesGrouping}
       />
-      <GroupNameLocaleSelect
+      <Select<EbirdGroupNameLocale>
         id="group-name-locale"
         label="Group Name Locale"
         onChange={setGroupNameLocale}
+        options={groupNameLocaleOptions}
         value={groupNameLocale}
       />
     </>

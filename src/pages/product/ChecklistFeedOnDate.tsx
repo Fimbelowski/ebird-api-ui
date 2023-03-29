@@ -7,6 +7,7 @@ import type EbirdChecklistSortKey from '../../types/EbirdChecklistSortKey';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import GoogleMapsLink from '../../components/GoogleMapsLink';
 import NumberInput from '../../components/NumberInput';
+import { Select, type SelectOptionArray } from '../../components/Select';
 import {
   Table,
   type TableCellArray,
@@ -14,21 +15,10 @@ import {
 } from '../../components/Table';
 import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
-import useSelect from '../../hooks/useSelect';
 
 export default function ChecklistFeedOnDate() {
   const { DateInput, day, month, onChange: onDateChange, year } = useDate();
   const { getChecklistFeedOnDate } = useEbirdApi();
-  const Select = useSelect<EbirdChecklistSortKey>([
-    {
-      label: 'Observation Date',
-      value: 'obs_dt',
-    },
-    {
-      label: 'Creation Date',
-      value: 'creation_dt',
-    },
-  ]);
 
   const [checklists, setChecklists] = useState<EbirdChecklist[]>([]);
   const [maxResults, setMaxResults] = useState('10');
@@ -129,6 +119,17 @@ export default function ChecklistFeedOnDate() {
     },
   ];
 
+  const sortKeyOptions: SelectOptionArray<EbirdChecklistSortKey> = [
+    {
+      label: 'Observation Date',
+      value: 'obs_dt',
+    },
+    {
+      label: 'Creation Date',
+      value: 'creation_dt',
+    },
+  ];
+
   async function request() {
     return await getChecklistFeedOnDate(
       regionCode,
@@ -152,10 +153,11 @@ export default function ChecklistFeedOnDate() {
         onChange={onDateChange}
         required
       />
-      <Select
+      <Select<EbirdChecklistSortKey>
         id="sort-key"
         label="Sort By"
         onChange={setSortKey}
+        options={sortKeyOptions}
         value={sortKey}
       />
       <NumberInput
