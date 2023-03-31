@@ -60,6 +60,10 @@ export default function Nav() {
       path: 'taxa-locale-codes',
     },
     {
+      label: 'Taxonomic Forms',
+      path: 'taxonomic-forms',
+    },
+    {
       label: 'Taxonomic Groups',
       path: 'taxonomic-groups',
     },
