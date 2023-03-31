@@ -14,13 +14,13 @@ export interface TableHeader {
   label: string;
 }
 
-interface Props<T> {
+export interface TableProps<T> {
   cells: TableCellArray<T>;
   headers: TableHeader[];
   items: T[];
 }
 
-export function Table<T>({ cells, headers, items }: Props<T>) {
+export function Table<T>({ cells, headers, items }: TableProps<T>) {
   function Headers() {
     const listItems = headers.map(({ align, label }, index) => {
       const classes = classNames([

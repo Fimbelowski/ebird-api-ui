@@ -1,14 +1,10 @@
 import { useState } from 'react';
 
 import BackInput from '../../../components/BackInput';
-import { BasePage } from '../../../components/BasePage';
-import Details from '../../../components/Details';
-import type EbirdHotspot from '../../../types/EbirdHotspot';
+import BasePageTableEbirdHotspot from '../../../components/BasePageTableEbirdHotspot';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
-import EbirdHotspotTableDetailed from '../../../components/EbirdHotspotTableDetailed';
 import type EbirdFormat from '../../../types/EbirdFormat';
 import FormatSelect from '../../../components/FormatSelect';
-import EbirdHotspotTableSimple from '../../../components/EbirdHotspotTableSimple';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function HotspotsRegion() {
@@ -16,7 +12,6 @@ export default function HotspotsRegion() {
 
   const [back, setBack] = useState('');
   const [format, setFormat] = useState<EbirdFormat>('csv');
-  const [hotspots, setHotspots] = useState<EbirdHotspot[]>([]);
   const [regionCode, setRegionCode] = useState('');
 
   async function request() {
@@ -43,28 +38,10 @@ export default function HotspotsRegion() {
     </>
   );
 
-  function ResultsContent() {
-    return (
-      <>
-        <Details summary="Detailed Table">
-          <EbirdHotspotTableDetailed hotspots={hotspots} />
-        </Details>
-        <Details
-          open
-          summary="Simplified Table"
-        >
-          <EbirdHotspotTableSimple hotspots={hotspots} />
-        </Details>
-      </>
-    );
-  }
-
   return (
-    <BasePage<EbirdHotspot[]>
+    <BasePageTableEbirdHotspot
       formContent={formContent}
-      onLoad={setHotspots}
       request={request}
-      resultsContent={ResultsContent()}
       title="Hotspots in a Region"
     />
   );

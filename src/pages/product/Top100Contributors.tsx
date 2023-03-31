@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-import { BasePage } from '../../components/BasePage';
-import Details from '../../components/Details';
+import { BasePageTable, type Tables } from '../../components/BasePageTable';
 import type EbirdContributor from '../../types/EbirdContributor';
 import EbirdProfileLink from '../../components/ebirdProfileLink';
 import type EbirdRankedBy from '../../types/EbirdRankedBy';
@@ -9,11 +8,6 @@ import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import getOrdinalNumber from '../../utilities/getOrdinalNumber';
 import NumberInput from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select';
-import {
-  Table,
-  type TableCellArray,
-  type TableHeader,
-} from '../../components/Table';
 import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
 
@@ -21,93 +15,100 @@ export default function Top100() {
   const { DateInput, day, month, onChange: onDateChange, year } = useDate();
   const { getTop100 } = useEbirdApi();
 
-  const [contributors, setContributors] = useState<EbirdContributor[]>([]);
   const [lastRankedBy, setLastRankedBy] = useState<EbirdRankedBy>('spp');
   const [maxResults, setMaxResults] = useState('');
   const [rankedBy, setRankedBy] = useState<EbirdRankedBy>('spp');
   const [regionCode, setRegionCode] = useState('');
 
-  const detailedTableCells: TableCellArray<EbirdContributor> = [
+  const tables: Tables<EbirdContributor> = [
     {
-      callback: ({ profileHandle }) => profileHandle,
+      cells: [
+        {
+          callback: ({ profileHandle }) => profileHandle,
+        },
+        {
+          callback: ({ userDisplayName }) => userDisplayName,
+        },
+        {
+          align: 'right',
+          callback: ({ numSpecies }) => numSpecies,
+        },
+        {
+          align: 'right',
+          callback: ({ numCompleteChecklists }) => numCompleteChecklists,
+        },
+        {
+          align: 'right',
+          callback: ({ rowNum }) => rowNum,
+        },
+        {
+          callback: ({ userId }) => userId,
+        },
+      ],
+      headers: [
+        {
+          label: 'profileHandle',
+        },
+        {
+          label: 'userDisplayName',
+        },
+        {
+          align: 'right',
+          label: 'numSpecies',
+        },
+        {
+          align: 'right',
+          label: 'numCompleteChecklists',
+        },
+        {
+          align: 'right',
+          label: 'rowNum',
+        },
+        {
+          label: 'userId',
+        },
+      ],
+      title: 'Detailed Table',
     },
     {
-      callback: ({ userDisplayName }) => userDisplayName,
-    },
-    {
-      align: 'right',
-      callback: ({ numSpecies }) => numSpecies,
-    },
-    {
-      align: 'right',
-      callback: ({ numCompleteChecklists }) => numCompleteChecklists,
-    },
-    {
-      align: 'right',
-      callback: ({ rowNum }) => rowNum,
-    },
-    {
-      callback: ({ userId }) => userId,
-    },
-  ];
-
-  const detailedTableHeaders: TableHeader[] = [
-    {
-      label: 'profileHandle',
-    },
-    {
-      label: 'userDisplayName',
-    },
-    {
-      align: 'right',
-      label: 'numSpecies',
-    },
-    {
-      align: 'right',
-      label: 'numCompleteChecklists',
-    },
-    {
-      align: 'right',
-      label: 'rowNum',
-    },
-    {
-      label: 'userId',
-    },
-  ];
-
-  const simpleTableCells: TableCellArray<EbirdContributor> = [
-    {
-      callback: ({ rowNum }) => getOrdinalNumber(rowNum),
-    },
-    {
-      callback: ({ userDisplayName, profileHandle }) =>
-        profileHandle === undefined ? (
-          userDisplayName
-        ) : (
-          <EbirdProfileLink
-            profileHandle={profileHandle}
-            userDisplayName={userDisplayName}
-          />
-        ),
-    },
-    {
-      align: 'right',
-      callback: ({ numCompleteChecklists, numSpecies }) =>
-        lastRankedBy === 'spp' ? numSpecies : numCompleteChecklists,
-    },
-  ];
-
-  const simpleTableHeaders: TableHeader[] = [
-    {
-      align: 'right',
-      label: 'Place',
-    },
-    {
-      label: 'Contributor',
-    },
-    {
-      align: 'right',
-      label: `# ${lastRankedBy === 'spp' ? 'Species' : 'Complete Checklists'}`,
+      cells: [
+        {
+          callback: ({ rowNum }) => getOrdinalNumber(rowNum),
+        },
+        {
+          callback: ({ userDisplayName, profileHandle }) =>
+            profileHandle === undefined ? (
+              userDisplayName
+            ) : (
+              <EbirdProfileLink
+                profileHandle={profileHandle}
+                userDisplayName={userDisplayName}
+              />
+            ),
+        },
+        {
+          align: 'right',
+          callback: ({ numCompleteChecklists, numSpecies }) =>
+            lastRankedBy === 'spp' ? numSpecies : numCompleteChecklists,
+        },
+      ],
+      headers: [
+        {
+          align: 'right',
+          label: 'Place',
+        },
+        {
+          label: 'Contributor',
+        },
+        {
+          align: 'right',
+          label: `# ${
+            lastRankedBy === 'spp' ? 'Species' : 'Complete Checklists'
+          }`,
+        },
+      ],
+      open: true,
+      title: 'Simple Table',
     },
   ];
 
@@ -122,9 +123,8 @@ export default function Top100() {
     },
   ];
 
-  function onLoad(results: EbirdContributor[]) {
+  function onLoad() {
     setLastRankedBy(rankedBy);
-    setContributors(results);
   }
 
   async function request() {
@@ -162,35 +162,13 @@ export default function Top100() {
     </>
   );
 
-  const resultsContent = (
-    <>
-      <Details summary="Detailed Table">
-        <Table
-          cells={detailedTableCells}
-          headers={detailedTableHeaders}
-          items={contributors}
-        />
-      </Details>
-      <Details
-        open
-        summary="Simple Table"
-      >
-        <Table
-          cells={simpleTableCells}
-          headers={simpleTableHeaders}
-          items={contributors}
-        />
-      </Details>
-    </>
-  );
-
   return (
-    <BasePage<EbirdContributor[]>
+    <BasePageTable<EbirdContributor>
       formContent={formContent}
       onLoad={onLoad}
       request={request}
       requiresApiKey
-      resultsContent={resultsContent}
+      tables={tables}
       title="Top 100 Contributors"
     />
   );

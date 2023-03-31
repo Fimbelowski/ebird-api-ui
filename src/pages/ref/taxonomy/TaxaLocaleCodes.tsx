@@ -1,67 +1,44 @@
-import { useState } from 'react';
-
-import { BasePage } from '../../../components/BasePage';
-import Details from '../../../components/Details';
+import { BasePageTable, type Tables } from '../../../components/BasePageTable';
 import type EbirdTaxaLocaleCode from '../../../types/EbirdTaxaLocaleCode';
-import {
-  Table,
-  type TableCellArray,
-  type TableHeader,
-} from '../../../components/Table';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function TaxaLocaleCodes() {
   const { getTaxaLocaleCodes } = useEbirdApi();
 
-  const [taxaLocaleCodes, setTaxaLocaleCodes] = useState<EbirdTaxaLocaleCode[]>(
-    []
-  );
-
-  const tableCells: TableCellArray<EbirdTaxaLocaleCode> = [
+  const tables: Tables<EbirdTaxaLocaleCode> = [
     {
-      callback: ({ name }) => name,
-    },
-    {
-      callback: ({ code }) => code,
-    },
-    {
-      callback: ({ lastUpdate }) => new Date(lastUpdate).toLocaleString(),
+      cells: [
+        {
+          callback: ({ name }) => name,
+        },
+        {
+          callback: ({ code }) => code,
+        },
+        {
+          callback: ({ lastUpdate }) => new Date(lastUpdate).toLocaleString(),
+        },
+      ],
+      headers: [
+        {
+          label: 'Name',
+        },
+        {
+          label: 'Code',
+        },
+        {
+          label: 'Last Update',
+        },
+      ],
+      open: true,
+      title: 'Results Table',
     },
   ];
-
-  const tableHeaders: TableHeader[] = [
-    {
-      label: 'Name',
-    },
-    {
-      label: 'Code',
-    },
-    {
-      label: 'Last Update',
-    },
-  ];
-
-  const resultsContent = (
-    <>
-      <Details
-        open
-        summary="Results Table"
-      >
-        <Table
-          cells={tableCells}
-          headers={tableHeaders}
-          items={taxaLocaleCodes}
-        />
-      </Details>
-    </>
-  );
 
   return (
-    <BasePage<EbirdTaxaLocaleCode[]>
-      onLoad={setTaxaLocaleCodes}
+    <BasePageTable<EbirdTaxaLocaleCode>
       request={getTaxaLocaleCodes}
       requiresApiKey
-      resultsContent={resultsContent}
+      tables={tables}
       title="Taxa Locale Codes"
     />
   );
