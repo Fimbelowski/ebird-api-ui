@@ -338,6 +338,20 @@ export default function useEbirdApi() {
     });
   }
 
+  async function getTaxonomicForms(speciesCode: string) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'speciesCode',
+        value: speciesCode,
+      },
+    ];
+
+    return await baseRequest<string[]>({
+      endpoint: 'ref/taxon/forms/{{speciesCode}}',
+      urlParams,
+    });
+  }
+
   async function getTaxonomicGroups(
     speciesGrouping: EbirdSpeciesGrouping,
     groupNameLocale: EbirdGroupNameLocale
@@ -427,6 +441,7 @@ export default function useEbirdApi() {
     getSpeciesListForRegion,
     getSubregionList,
     getTaxaLocaleCodes,
+    getTaxonomicForms,
     getTaxonomicGroups,
     getTaxonomyVersions,
     getTop100,
