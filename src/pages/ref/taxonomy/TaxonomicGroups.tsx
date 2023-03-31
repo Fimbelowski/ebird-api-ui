@@ -1,16 +1,10 @@
 import { useState } from 'react';
 
-import { BasePage } from '../../../components/BasePage';
-import Details from '../../../components/Details';
+import { BasePageTable, type Tables } from '../../../components/BasePageTable';
 import type EbirdTaxonomicGroup from '../../../types/EbirdTaxonomicGroup';
 import type EbirdGroupNameLocale from '../../../types/EbirdGroupNameLocale';
 import type EbirdSpeciesGrouping from '../../../types/EbirdSpeciesGrouping';
 import { Select, type SelectOptionArray } from '../../../components/Select';
-import {
-  Table,
-  type TableCellArray,
-  type TableHeader,
-} from '../../../components/Table';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function TaxonomicGroups() {
@@ -20,9 +14,35 @@ export default function TaxonomicGroups() {
     useState<EbirdGroupNameLocale>('en');
   const [speciesGrouping, setSpeciesGrouping] =
     useState<EbirdSpeciesGrouping>('ebird');
-  const [taxonomicGroups, setTaxonomicGroups] = useState<EbirdTaxonomicGroup[]>(
-    []
-  );
+
+  const tables: Tables<EbirdTaxonomicGroup> = [
+    {
+      cells: [
+        {
+          callback: ({ groupName }) => groupName,
+        },
+        {
+          callback: ({ groupOrder }) => groupOrder.toString(),
+        },
+        {
+          callback: ({ taxonOrderBounds }) => taxonOrderBounds[0].join(', '),
+        },
+      ],
+      headers: [
+        {
+          label: 'Name',
+        },
+        {
+          label: 'Order',
+        },
+        {
+          label: 'Taxon Order Bounds',
+        },
+      ],
+      open: true,
+      title: 'Results Table',
+    },
+  ];
 
   const groupNameLocaleOptions: SelectOptionArray<EbirdGroupNameLocale> = [
     {
@@ -130,30 +150,6 @@ export default function TaxonomicGroups() {
     },
   ];
 
-  const tableCells: TableCellArray<EbirdTaxonomicGroup> = [
-    {
-      callback: ({ groupName }) => groupName,
-    },
-    {
-      callback: ({ groupOrder }) => groupOrder.toString(),
-    },
-    {
-      callback: ({ taxonOrderBounds }) => taxonOrderBounds[0].join(', '),
-    },
-  ];
-
-  const tableHeaders: TableHeader[] = [
-    {
-      label: 'Name',
-    },
-    {
-      label: 'Order',
-    },
-    {
-      label: 'Taxon Order Bounds',
-    },
-  ];
-
   async function request() {
     return await getTaxonomicGroups(speciesGrouping, groupNameLocale);
   }
@@ -177,26 +173,12 @@ export default function TaxonomicGroups() {
     </>
   );
 
-  const resultsContent = (
-    <Details
-      open
-      summary="Results Table"
-    >
-      <Table
-        cells={tableCells}
-        headers={tableHeaders}
-        items={taxonomicGroups}
-      />
-    </Details>
-  );
-
   return (
-    <BasePage<EbirdTaxonomicGroup[]>
+    <BasePageTable<EbirdTaxonomicGroup>
       formContent={formContent}
-      onLoad={setTaxonomicGroups}
       request={request}
       requiresApiKey
-      resultsContent={resultsContent}
+      tables={tables}
       title="Taxonomic Groups"
     />
   );
