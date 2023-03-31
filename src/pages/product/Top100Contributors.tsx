@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import BasePage from '../../components/BasePage';
+import { BasePage } from '../../components/BasePage';
 import Details from '../../components/Details';
 import type EbirdContributor from '../../types/EbirdContributor';
 import EbirdProfileLink from '../../components/ebirdProfileLink';
