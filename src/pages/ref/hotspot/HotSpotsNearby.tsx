@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import BackInput from '../../../components/BackInput';
-import BasePage from '../../../components/BasePage';
+import { BasePage } from '../../../components/BasePage';
 import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
 import Details from '../../../components/Details';

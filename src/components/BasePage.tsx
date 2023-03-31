@@ -6,7 +6,7 @@ import type EbirdApiClientResponse from '../types/EbirdApiClientResponse';
 import Form from './Form';
 import useLoading from '../hooks/useLoading';
 
-interface Props<T> {
+export interface BasePageProps<T> {
   disableSubmit?: boolean;
   formContent?: ReactNode;
   onLoad: (results: T) => void;
@@ -17,7 +17,7 @@ interface Props<T> {
   title: string;
 }
 
-export default function BasePage<T>({
+export function BasePage<T>({
   disableSubmit = false,
   formContent,
   onLoad,
@@ -26,7 +26,7 @@ export default function BasePage<T>({
   requiresApiKey = false,
   resultsContent,
   title,
-}: Props<T>) {
+}: BasePageProps<T>) {
   const { loading, setLoading } = useLoading();
 
   const [hasQueried, setHasQueried] = useState(false);

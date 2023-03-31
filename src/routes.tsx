@@ -11,6 +11,7 @@ import Root from './pages/Root';
 import SpeciesListRegion from './pages/product/SpeciesListRegion';
 import SubregionList from './pages/ref/region/SubregionList';
 import TaxaLocaleCodes from './pages/ref/taxonomy/TaxaLocaleCodes';
+import TaxonomicForms from './pages/ref/taxonomy/TaxonomicForms';
 import TaxonomicGroups from './pages/ref/taxonomy/TaxonomicGroups';
 import TaxonomyVersions from './pages/ref/taxonomy/TaxonomyVersions';
 import Top100Contributors from './pages/product/Top100Contributors';
@@ -59,6 +60,10 @@ const ROUTES: RouteObject[] = [
       {
         path: 'taxa-locale-codes',
         element: <TaxaLocaleCodes />,
+      },
+      {
+        path: 'taxonomic-forms',
+        element: <TaxonomicForms />,
       },
       {
         path: 'taxonomic-groups',
