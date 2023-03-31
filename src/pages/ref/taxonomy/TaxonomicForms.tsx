@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-import BasePage from '../../../components/BasePage';
-import Details from '../../../components/Details';
+import BasePageList from '../../../components/BasePageList';
 import TextInput from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
@@ -9,13 +8,6 @@ export default function TaxonomicForms() {
   const { getTaxonomicForms } = useEbirdApi();
 
   const [speciesCode, setSpeciesCode] = useState('');
-  const [taxonomicForms, setTaxonomicForms] = useState<string[]>([]);
-
-  function ResultsList() {
-    const listItems = taxonomicForms.map((form) => <li key={form}>{form}</li>);
-
-    return <ul className="taxonomic-forms__list">{listItems}</ul>;
-  }
 
   async function request() {
     return await getTaxonomicForms(speciesCode);
@@ -30,22 +22,11 @@ export default function TaxonomicForms() {
     />
   );
 
-  const resultsContent = (
-    <Details
-      open
-      summary="Results"
-    >
-      <ResultsList />
-    </Details>
-  );
-
   return (
-    <BasePage<string[]>
+    <BasePageList
       formContent={formContent}
-      onLoad={setTaxonomicForms}
       request={request}
       requiresApiKey
-      resultsContent={resultsContent}
       title="Taxonomic Forms"
     />
   );
