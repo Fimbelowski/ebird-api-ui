@@ -11,7 +11,10 @@ type ModifiedTableProps<T> = Omit<TableProps<T>, 'items'> & {
 
 export type Tables<T> = Array<ModifiedTableProps<T>>;
 
-type Props<T> = Omit<BasePageProps<T[]>, 'onLoad' | 'resultsContent'> & {
+export type BasePageTableProps<T> = Omit<
+  BasePageProps<T[]>,
+  'onLoad' | 'resultsContent'
+> & {
   onLoad?: (results: T[]) => void;
   tables: Array<ModifiedTableProps<T>>;
 };
@@ -20,7 +23,7 @@ export function BasePageTable<T>({
   onLoad: onLoadProp,
   tables,
   ...rest
-}: Props<T>) {
+}: BasePageTableProps<T>) {
   const [parsedResults, setParsedResults] = useState<T[]>([]);
 
   function onLoad(results: T[]) {

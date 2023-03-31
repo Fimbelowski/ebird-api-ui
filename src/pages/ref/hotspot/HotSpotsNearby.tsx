@@ -1,15 +1,11 @@
 import { useState } from 'react';
 
 import BackInput from '../../../components/BackInput';
-import { BasePage } from '../../../components/BasePage';
+import BasePageTableEbirdHotspot from '../../../components/BasePageTableEbirdHotspot';
 import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
-import Details from '../../../components/Details';
 import type EbirdFormat from '../../../types/EbirdFormat';
-import EbirdHotspotTableDetailed from '../../../components/EbirdHotspotTableDetailed';
-import EbirdHotspotTableSimple from '../../../components/EbirdHotspotTableSimple';
 import FormatSelect from '../../../components/FormatSelect';
-import type EbirdHotspot from '../../../types/EbirdHotspot';
 import NumberInput from '../../../components/NumberInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
@@ -19,7 +15,6 @@ export default function HotspotsNearby() {
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('25');
   const [format, setFormat] = useState<EbirdFormat>('csv');
-  const [hotspots, setHotspots] = useState<EbirdHotspot[]>([]);
   const [loadingPosition, setLoadingPosition] = useState(false);
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
@@ -120,27 +115,11 @@ export default function HotspotsNearby() {
     </>
   );
 
-  const resultsContent = (
-    <>
-      <Details summary="Detailed Table">
-        <EbirdHotspotTableDetailed hotspots={hotspots} />
-      </Details>
-      <Details
-        open
-        summary="Simplified Table"
-      >
-        <EbirdHotspotTableSimple hotspots={hotspots} />
-      </Details>
-    </>
-  );
-
   return (
-    <BasePage<EbirdHotspot[]>
+    <BasePageTableEbirdHotspot
       disableSubmit={loadingPosition}
       formContent={formContent}
-      onLoad={setHotspots}
       request={request}
-      resultsContent={resultsContent}
       title="Nearby hotspots"
     />
   );
