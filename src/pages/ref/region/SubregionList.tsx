@@ -1,10 +1,7 @@
 import { useState } from 'react';
 
-import { BasePage } from '../../../components/BasePage';
-import Details from '../../../components/Details';
+import BasePageTableEbirdRegion from '../../../components/BasePageTableEbirdRegion';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
-import type EbirdRegion from '../../../types/EbirdRegion';
-import EbirdRegionTable from '../../../components/EbirdRegionTable';
 import type EbirdRegionType from '../../../types/EbirdRegionType';
 import { Select, type SelectOptionArray } from '../../../components/Select';
 import useEbirdApi from '../../../hooks/useEbirdApi';
@@ -16,7 +13,6 @@ export default function SubregionList() {
 
   const [parentRegionCode, setParentRegionCode] = useState('');
   const [regionType, setRegionType] = useState<EbirdRegionType>('country');
-  const [subregions, setSubregions] = useState<EbirdRegion[]>([]);
 
   const regionTypeOptions: SelectOptionArray<EbirdRegionType> = [
     {
@@ -60,22 +56,11 @@ export default function SubregionList() {
     </>
   );
 
-  const resultsContent = (
-    <Details
-      open
-      summary="Results Table"
-    >
-      <EbirdRegionTable regions={subregions} />
-    </Details>
-  );
-
   return (
-    <BasePage<EbirdRegion[]>
+    <BasePageTableEbirdRegion
       formContent={formContent}
-      onLoad={setSubregions}
       request={request}
       requiresApiKey
-      resultsContent={resultsContent}
       title="Sub-region List"
     />
   );
