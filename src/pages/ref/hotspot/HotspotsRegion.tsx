@@ -26,7 +26,6 @@ export default function HotspotsRegion() {
         value={regionCode}
       />
       <BackInput
-        id="back"
         onChange={setBack}
         value={back}
       />

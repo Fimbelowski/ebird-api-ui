@@ -1,7 +1,6 @@
-import type CommonInputProps from '../types/CommonInputProps';
-import TextInput from './TextInput';
+import { TextInput, type TextInputProps } from './TextInput';
 
-type Props = Omit<CommonInputProps, 'id' | 'label' | 'placeholder'> & {
+type Props = Omit<TextInputProps, 'id' | 'label' | 'placeholder'> & {
   label?: string;
 };
 

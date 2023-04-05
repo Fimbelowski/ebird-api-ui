@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import BaseInput from './BaseInput';
+import { BaseInput } from './BaseInput';
 import Button from './Button';
 import useApiKey from '../hooks/useApiKey';
 

@@ -1,7 +1,11 @@
-import BaseInput from './BaseInput';
-import type CommonInputProps from '../types/CommonInputProps';
+import { BaseInput, type BaseInputProps } from './BaseInput';
 
-export default function TextInput(props: CommonInputProps) {
+export type TextInputProps = Omit<
+  BaseInputProps,
+  'hideStepper' | 'max' | 'min' | 'noScroll' | 'step' | 'type'
+>;
+
+export function TextInput(props: TextInputProps) {
   return (
     <BaseInput
       {...props}
