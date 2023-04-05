@@ -186,7 +186,7 @@ export default function useEbirdApi() {
     );
   }
 
-  async function getRecentChecklists(regionCode: string, maxResults?: number) {
+  async function getRecentChecklists(regionCode: string, maxResults?: string) {
     const urlParams: UrlParam[] = [
       {
         name: 'regionCode',
@@ -202,7 +202,7 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await makeRequest({
+    return await baseRequest<EbirdChecklist[]>({
       endpoint: 'product/lists/{{regionCode}}',
       queryParams,
       urlParams,
