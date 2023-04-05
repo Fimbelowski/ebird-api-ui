@@ -6,6 +6,7 @@ import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
 import HotspotsNearby from './pages/ref/hotspot/HotSpotsNearby';
 import HotspotsRegion from './pages/ref/hotspot/HotspotsRegion';
 import RecentChecklists from './pages/obs/RecentChecklists';
+import RecentObservationsRegion from './pages/obs/RecentObservationsRegion';
 import RegionInfo from './pages/ref/region/RegionInfo';
 import RegionalStatsOnDate from './pages/product/RegionalStatsOnDate';
 import Root from './pages/Root';
@@ -41,6 +42,10 @@ const ROUTES: RouteObject[] = [
       {
         path: 'recent-checklists',
         element: <RecentChecklists />,
+      },
+      {
+        path: 'recent-observations-region',
+        element: <RecentObservationsRegion />,
       },
       {
         path: 'region-hotspots',
