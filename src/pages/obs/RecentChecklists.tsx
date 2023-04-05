@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import BasePageTableEbirdChecklist from '../../components/BasePageTableEbirdChecklist';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
-import NumberInput from '../../components/NumberInput';
+import { NumberInput } from '../../components/NumberInput';
 import useEbirdApi from '../../hooks/useEbirdApi';
 
 export default function RecentChecklists() {

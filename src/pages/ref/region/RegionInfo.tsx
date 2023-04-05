@@ -11,7 +11,7 @@ import {
   type TableCellArray,
   type TableHeader,
 } from '../../../components/Table';
-import TextInput from '../../../components/TextInput';
+import { TextInput } from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function RegionInfo() {

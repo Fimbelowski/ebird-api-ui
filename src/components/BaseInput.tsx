@@ -1,17 +1,32 @@
 import { type ChangeEvent } from 'react';
 
 import classNames from '../utilities/classNames';
-import type CommonInputProps from '../types/CommonInputProps';
 import getValueFromChangeEvent from '../utilities/getValueFromChangeEvent';
-import type NumberInputProps from '../types/NumberInputProps';
 import useLoading from '../hooks/useLoading';
 
-type BaseInputProps = CommonInputProps & NumberInputProps & { type: string };
+export interface BaseInputProps {
+  className?: string;
+  disabled?: boolean;
+  hideStepper?: boolean;
+  id: string;
+  label: string;
+  max?: number;
+  maxLength?: number;
+  min?: number;
+  minLength?: number;
+  noScroll?: boolean;
+  onChange: (value: string) => void;
+  pattern?: string;
+  placeholder?: string;
+  required?: boolean;
+  step?: number | 'any';
+  type: 'date' | 'number' | 'password' | 'text';
+  value?: string;
+}
 
-export default function BaseInput({
+export function BaseInput({
   className = '',
   disabled = false,
-  form,
   hideStepper = false,
   id,
   label,
@@ -90,7 +105,6 @@ export default function BaseInput({
       <input
         className={inputClasses()}
         disabled={disabled || loading}
-        form={form}
         id={id}
         max={max}
         maxLength={maxLength}

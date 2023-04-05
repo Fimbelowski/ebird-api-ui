@@ -1,7 +1,11 @@
-import BaseInput from './BaseInput';
-import type NumberInputProps from '../types/NumberInputProps';
+import { BaseInput, type BaseInputProps } from './BaseInput';
 
-export default function NumberInput(props: NumberInputProps) {
+export type NumberInputProps = Omit<
+  BaseInputProps,
+  'maxLength' | 'minLength' | 'type'
+>;
+
+export function NumberInput(props: NumberInputProps) {
   return (
     <BaseInput
       {...props}

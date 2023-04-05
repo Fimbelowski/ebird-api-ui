@@ -1,7 +1,11 @@
-import BaseInput from './BaseInput';
-import type CommonInputProps from '../types/CommonInputProps';
+import { BaseInput, type BaseInputProps } from './BaseInput';
 
-export default function PasswordInput(props: CommonInputProps) {
+type Props = Omit<
+  BaseInputProps,
+  'hideStepper' | 'max' | 'min' | 'noScroll' | 'step' | 'type'
+>;
+
+export default function PasswordInput(props: Props) {
   return (
     <BaseInput
       {...props}
