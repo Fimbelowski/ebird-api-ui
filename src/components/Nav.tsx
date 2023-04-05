@@ -28,6 +28,13 @@ export default function Nav() {
     },
   ];
 
+  const observationMenuItems: NavMenuItem[] = [
+    {
+      label: 'Recent Checklists',
+      path: 'recent-checklists',
+    },
+  ];
+
   const productMenuItems: NavMenuItem[] = [
     {
       label: 'Checklist Feed on a Date',
@@ -82,6 +89,10 @@ export default function Nav() {
       <NavMenu
         items={hotspotMenuItems}
         label="Hotspots"
+      />
+      <NavMenu
+        items={observationMenuItems}
+        label="Observations"
       />
       <NavMenu
         items={productMenuItems}
