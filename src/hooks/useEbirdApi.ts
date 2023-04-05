@@ -1,3 +1,4 @@
+import csvToArray from '../utilities/csvToArray';
 import type EbirdApiClientResponse from '../types/EbirdApiClientResponse';
 import type EbirdApiParams from '../types/EbirdApiParams';
 import type EbirdChecklist from '../types/EbirdChecklist';
@@ -17,14 +18,12 @@ import type EbirdSpeciesGrouping from '../types/EbirdSpeciesGrouping';
 import type EbirdTaxaLocaleCode from '../types/EbirdTaxaLocaleCode';
 import type EbirdTaxonomicGroup from '../types/EbirdTaxonomicGroup';
 import type EbirdTaxonomyVersion from '../types/EbirdTaxonomyVersion';
+import EBIRD_HOTSPOT_CSV_HEADERS from '../utilities/ebirdHotspotCsvHeaders';
+import isJson from '../utilities/isJson';
 import makeRequest from '../utilities/ebirdApiClient';
 import type QueryParam from '../types/QueryParam';
 import type UrlParam from '../types/UrlParam';
 import useApiKey from './useApiKey';
-
-import EBIRD_HOTSPOT_CSV_HEADERS from '../utilities/ebirdHotspotCsvHeaders';
-import isJson from '../utilities/isJson';
-import csvToArray from '../utilities/csvToArray';
 
 interface CsvOptions {
   headers: string[];
@@ -185,6 +184,29 @@ export default function useEbirdApi() {
         headers: EBIRD_HOTSPOT_CSV_HEADERS,
       }
     );
+  }
+
+  async function getRecentChecklists(regionCode: string, maxResults?: number) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+    ];
+
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: '10',
+        name: 'maxResults',
+        value: maxResults?.toString(),
+      },
+    ];
+
+    return await makeRequest({
+      endpoint: 'product/lists/{{regionCode}}',
+      queryParams,
+      urlParams,
+    });
   }
 
   async function getRegionHotspots(
@@ -435,6 +457,7 @@ export default function useEbirdApi() {
     getChecklistFeedOnDate,
     getHotspotInfo,
     getNearbyHotspots,
+    getRecentChecklists,
     getRegionHotspots,
     getRegionInfo,
     getRegionStatsOnDate,
