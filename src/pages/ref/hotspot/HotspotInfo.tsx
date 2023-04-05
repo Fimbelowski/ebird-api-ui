@@ -5,7 +5,7 @@ import Details from '../../../components/Details';
 import type EbirdLocation from '../../../types/EbirdLocation';
 import EbirdLocationTableDetailed from '../../../components/EbirdLocationTableDetailed';
 import EbirdLocationTableSimple from '../../../components/EbirdLocationTableSimple';
-import TextInput from '../../../components/TextInput';
+import { TextInput } from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function HotspotInfo() {

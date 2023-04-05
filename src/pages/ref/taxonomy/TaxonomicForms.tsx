@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import BasePageList from '../../../components/BasePageList';
-import TextInput from '../../../components/TextInput';
+import { TextInput } from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function TaxonomicForms() {

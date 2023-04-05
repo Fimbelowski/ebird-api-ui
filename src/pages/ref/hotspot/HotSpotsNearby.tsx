@@ -6,7 +6,7 @@ import Button from '../../../components/Button';
 import CoordinateInput from '../../../components/CoordinateInput';
 import type EbirdFormat from '../../../types/EbirdFormat';
 import FormatSelect from '../../../components/FormatSelect';
-import NumberInput from '../../../components/NumberInput';
+import { NumberInput } from '../../../components/NumberInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function HotspotsNearby() {
@@ -102,7 +102,6 @@ export default function HotspotsNearby() {
       <BackInput
         className="hotspots-nearby__back-input"
         disabled={loadingPosition}
-        id="back"
         onChange={setBack}
         value={back}
       />

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import BasePageTableEbirdChecklist from '../../components/BasePageTableEbirdChecklist';
 import type EbirdChecklistSortKey from '../../types/EbirdChecklistSortKey';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
-import NumberInput from '../../components/NumberInput';
+import { NumberInput } from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select';
 import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
