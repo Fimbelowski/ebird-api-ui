@@ -1,1 +1,3 @@
-export default function RecentChecklists() {}
+export default function RecentChecklists() {
+  return <></>;
+}
