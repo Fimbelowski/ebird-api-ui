@@ -1,6 +1,6 @@
 import { type ChangeEvent } from 'react';
 
-interface Props {
+export interface TextareaProps {
   cols?: number;
   disabled?: boolean;
   id: string;
@@ -11,7 +11,7 @@ interface Props {
   value: string;
 }
 
-export default function Textarea({
+export function Textarea({
   cols,
   disabled = false,
   id,
@@ -20,7 +20,7 @@ export default function Textarea({
   placeholder,
   rows,
   value,
-}: Props) {
+}: TextareaProps) {
   function onChange(event: ChangeEvent<HTMLTextAreaElement>) {
     const {
       target: { value },
