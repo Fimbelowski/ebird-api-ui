@@ -1,0 +1,18 @@
+.textarea {
+  &__label {
+    display: block;
+    padding-bottom: 0.2rem;
+  }
+
+  &__textarea {
+    display: block;
+    border: 1px solid #444;
+    border-radius: 0.4rem;
+    font-size: 1.6rem;
+
+    padding: 1rem;
+
+    resize: vertical;
+    width: 100%;
+  }
+}
