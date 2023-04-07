@@ -1,5 +1,7 @@
+import type QueryParamValue from './QueryParamValue';
+
 export default interface QueryParam {
-  defaultValue?: string;
+  defaultValue?: QueryParamValue;
   name: string;
-  value?: string;
+  value?: QueryParamValue;
 }
