@@ -1,4 +1,5 @@
 import csvToArray from '../utilities/csvToArray';
+import dateToUrlParamArray from '../utilities/dateToUrlParamArray';
 import type EbirdApiClientResponse from '../types/EbirdApiClientResponse';
 import type EbirdApiParams from '../types/EbirdApiParams';
 import type EbirdChecklist from '../types/EbirdChecklist';
@@ -84,29 +85,16 @@ export default function useEbirdApi() {
 
   async function getChecklistFeedOnDate(
     regionCode: string,
-    year: string,
-    month: string,
-    day: string,
+    date: Date,
     sortKey: EbirdChecklistSortKey = 'obs_dt',
-    maxResults = '10'
+    maxResults = 10
   ) {
     const urlParams: UrlParam[] = [
       {
         name: 'regionCode',
         value: regionCode,
       },
-      {
-        name: 'y',
-        value: year,
-      },
-      {
-        name: 'm',
-        value: month,
-      },
-      {
-        name: 'd',
-        value: day,
-      },
+      ...dateToUrlParamArray(date),
     ];
 
     const queryParams: QueryParam[] = [
@@ -144,11 +132,11 @@ export default function useEbirdApi() {
   }
 
   async function getNearbyHotspots(
-    lat: string,
-    lng: string,
+    lat: number,
+    lng: number,
     fmt: EbirdFormat = 'csv',
-    back?: string,
-    dist?: string
+    back?: number,
+    dist?: number
   ) {
     const queryParams: QueryParam[] = [
       {
@@ -186,7 +174,7 @@ export default function useEbirdApi() {
     );
   }
 
-  async function getRecentChecklists(regionCode: string, maxResults?: string) {
+  async function getRecentChecklists(regionCode: string, maxResults?: number) {
     const urlParams: UrlParam[] = [
       {
         name: 'regionCode',
@@ -211,7 +199,7 @@ export default function useEbirdApi() {
 
   async function getRegionHotspots(
     regionCode: string,
-    back?: string,
+    back?: number,
     fmt: EbirdFormat = 'csv'
   ) {
     const urlParams: UrlParam[] = [
@@ -275,29 +263,13 @@ export default function useEbirdApi() {
     });
   }
 
-  async function getRegionStatsOnDate(
-    regionCode: string,
-    year: string,
-    month: string,
-    day: string
-  ) {
+  async function getRegionStatsOnDate(regionCode: string, date: Date) {
     const urlParams: UrlParam[] = [
       {
         name: 'regionCode',
         value: regionCode,
       },
-      {
-        name: 'y',
-        value: year,
-      },
-      {
-        name: 'm',
-        value: month,
-      },
-      {
-        name: 'd',
-        value: day,
-      },
+      ...dateToUrlParamArray(date),
     ];
 
     return await baseRequest<EbirdRegionStats>({
@@ -408,29 +380,16 @@ export default function useEbirdApi() {
 
   async function getTop100(
     regionCode: string,
-    year: string,
-    month: string,
-    day: string,
+    date: Date,
     rankedBy: EbirdRankedBy,
-    maxResults: string
+    maxResults?: number
   ) {
     const urlParams: UrlParam[] = [
       {
         name: 'regionCode',
         value: regionCode,
       },
-      {
-        name: 'y',
-        value: year,
-      },
-      {
-        name: 'm',
-        value: month,
-      },
-      {
-        name: 'd',
-        value: day,
-      },
+      ...dateToUrlParamArray(date),
     ];
 
     const queryParams: QueryParam[] = [
@@ -458,6 +417,7 @@ export default function useEbirdApi() {
     getHotspotInfo,
     getNearbyHotspots,
     getRecentChecklists,
+    getRecentObservationsInARegion,
     getRegionHotspots,
     getRegionInfo,
     getRegionStatsOnDate,
