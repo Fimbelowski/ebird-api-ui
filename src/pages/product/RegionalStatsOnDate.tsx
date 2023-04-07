@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { BasePage } from '../../components/BasePage';
+import DateInput from '../../components/DateInput';
 import Details from '../../components/Details';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import type EbirdRegionStats from '../../types/EbirdRegionStats';
@@ -9,13 +10,12 @@ import {
   type TableCellArray,
   type TableHeader,
 } from '../../components/Table';
-import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
 
 export default function RegionalStatsOnDate() {
-  const { DateInput, day, month, onChange: onDateChange, year } = useDate();
   const { getRegionStatsOnDate } = useEbirdApi();
 
+  const [date, setDate] = useState<Date>();
   const [regionCode, setRegionCode] = useState('');
   const [stats, setStats] = useState<EbirdRegionStats>();
 
@@ -50,7 +50,7 @@ export default function RegionalStatsOnDate() {
   ];
 
   async function request() {
-    return await getRegionStatsOnDate(regionCode, year, month, day);
+    return await getRegionStatsOnDate(regionCode, date as Date);
   }
 
   const formContent = (
@@ -62,7 +62,7 @@ export default function RegionalStatsOnDate() {
       />
       <DateInput
         id="date"
-        onChange={onDateChange}
+        onChange={setDate}
         required
       />
     </>
