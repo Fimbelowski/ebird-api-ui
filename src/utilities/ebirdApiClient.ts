@@ -30,7 +30,15 @@ function buildQueryString(queryParams: QueryParam[]) {
     .filter((param): param is QueryParam & { value: QueryParamValue } => {
       const { defaultValue, value } = param;
 
-      return value !== undefined && value !== '' && value !== defaultValue;
+      if (value === undefined || value === defaultValue) {
+        return false;
+      }
+
+      if (typeof value === 'string' || Array.isArray(value)) {
+        return value.length !== 0;
+      }
+
+      return true;
     })
     .map(({ name, value }) => {
       return `${name}=${value.toString()}`;
