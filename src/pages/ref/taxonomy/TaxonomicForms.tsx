@@ -19,6 +19,7 @@ export default function TaxonomicForms() {
       label="Species Code"
       onChange={setSpeciesCode}
       placeholder="virrai"
+      value={speciesCode}
     />
   );
 
