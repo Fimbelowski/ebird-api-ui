@@ -3,7 +3,7 @@ import { BaseInput, type BaseInputProps } from './BaseInput';
 export type NumberInputProps = Omit<
   BaseInputProps,
   'onChange' | 'maxLength' | 'minLength' | 'type' | 'value'
-> & { onChange: (value: number) => void; value?: number };
+> & { onChange: (value: number) => void; value: number | undefined };
 
 export function NumberInput({
   onChange: onChangeProp,
