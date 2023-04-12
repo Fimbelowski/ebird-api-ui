@@ -15,7 +15,14 @@ export default function EbirdLocationTableSimple({
       callback: ({ countryName }) => countryName,
     },
     {
-      callback: (item) => <GoogleMapsLink location={item} />,
+      callback: ({ lat, lng }) => (
+        <GoogleMapsLink
+          latitude={lat}
+          longitude={lng}
+        >
+          Link
+        </GoogleMapsLink>
+      ),
     },
   ];
 

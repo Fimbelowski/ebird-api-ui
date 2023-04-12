@@ -8,7 +8,7 @@ import useEbirdApi from '../../hooks/useEbirdApi';
 export default function RecentChecklists() {
   const { getRecentChecklists } = useEbirdApi();
 
-  const [maxResults, setMaxResults] = useState('10');
+  const [maxResults, setMaxResults] = useState(10);
   const [regionCode, setRegionCode] = useState('');
 
   async function request() {
@@ -20,6 +20,7 @@ export default function RecentChecklists() {
       <EbirdRegionCodeInput
         onChange={setRegionCode}
         required
+        value={regionCode}
       />
       <NumberInput
         id="max-results"

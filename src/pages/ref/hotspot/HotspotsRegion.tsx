@@ -10,7 +10,7 @@ import useEbirdApi from '../../../hooks/useEbirdApi';
 export default function HotspotsRegion() {
   const { getRegionHotspots } = useEbirdApi();
 
-  const [back, setBack] = useState('');
+  const [back, setBack] = useState<number>();
   const [format, setFormat] = useState<EbirdFormat>('csv');
   const [regionCode, setRegionCode] = useState('');
 

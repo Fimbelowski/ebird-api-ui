@@ -12,12 +12,12 @@ import useEbirdApi from '../../../hooks/useEbirdApi';
 export default function HotspotsNearby() {
   const { getNearbyHotspots } = useEbirdApi();
 
-  const [back, setBack] = useState('');
-  const [distance, setDistance] = useState('25');
+  const [back, setBack] = useState<number>();
+  const [distance, setDistance] = useState(25);
   const [format, setFormat] = useState<EbirdFormat>('csv');
   const [loadingPosition, setLoadingPosition] = useState(false);
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
+  const [latitude, setLatitude] = useState<number>();
+  const [longitude, setLongitude] = useState<number>();
   const [showPositionError, setShowPositionError] = useState(false);
 
   function getUserPosition() {
@@ -39,13 +39,19 @@ export default function HotspotsNearby() {
     const { coords } = position;
     const { latitude, longitude } = coords;
 
-    setLatitude(latitude.toString());
-    setLongitude(longitude.toString());
+    setLatitude(latitude);
+    setLongitude(longitude);
     setLoadingPosition(false);
   }
 
   async function request() {
-    return await getNearbyHotspots(latitude, longitude, format, back, distance);
+    return await getNearbyHotspots(
+      latitude as number,
+      longitude as number,
+      format,
+      back,
+      distance
+    );
   }
 
   const formContent = (

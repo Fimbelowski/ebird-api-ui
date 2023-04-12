@@ -1,5 +1,6 @@
 import type EbirdApiParams from '../types/EbirdApiParams';
 import type QueryParam from '../types/QueryParam';
+import type QueryParamValue from '../types/QueryParamValue';
 import type UrlParam from '../types/UrlParam';
 
 const BASE_URL = 'https://api.ebird.org/v2/';
@@ -14,7 +15,7 @@ function buildEndpointString(endpoint: string, urlParams: UrlParam[] = []) {
       throw Error(`Merge tag "${mergeTag}" not found.`);
     }
 
-    builtEndpoint = builtEndpoint.replace(`{{${name}}}`, value);
+    builtEndpoint = builtEndpoint.replace(`{{${name}}}`, value.toString());
   });
 
   return builtEndpoint;
@@ -25,23 +26,26 @@ function buildQueryString(queryParams: QueryParam[]) {
     return '';
   }
 
-  const queryParamsAsStrings = queryParams
-    .map(({ defaultValue, name, value }) => {
-      if (value === defaultValue) {
-        return '';
+  const queryString = queryParams
+    .filter((param): param is QueryParam & { value: QueryParamValue } => {
+      const { defaultValue, value } = param;
+
+      if (value === undefined || value === defaultValue) {
+        return false;
       }
 
-      const computedValue = value ?? defaultValue ?? '';
-
-      if (computedValue === '') {
-        return computedValue;
+      if (typeof value === 'string' || Array.isArray(value)) {
+        return value.length !== 0;
       }
 
-      return `${name}=${computedValue}`;
+      return true;
     })
-    .filter((queryParamAsString) => queryParamAsString !== '');
+    .map(({ name, value }) => {
+      return `${name}=${value.toString()}`;
+    })
+    .join('&');
 
-  return `?${queryParamsAsStrings.join('&')}`;
+  return `?${queryString}`;
 }
 
 export default async function makeRequest({

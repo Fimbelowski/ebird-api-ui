@@ -1,17 +1,21 @@
-import type EbirdHotspot from '../types/EbirdHotspot';
-import type EbirdLocation from '../types/EbirdLocation';
+import { type ReactNode } from 'react';
+
 import NewTabLink from './NewTabLink';
 
 interface Props {
-  location: EbirdHotspot | EbirdLocation;
+  children?: ReactNode;
+  latitude: number;
+  longitude: number;
 }
 
-export default function GoogleMapsLink({ location }: Props) {
-  const { lat, lng } = location;
-
+export default function GoogleMapsLink({
+  children,
+  latitude,
+  longitude,
+}: Props) {
   return (
-    <NewTabLink href={`https://maps.google.com/?q=${lat},${lng}`}>
-      Link
+    <NewTabLink href={`https://maps.google.com/?q=${latitude},${longitude}`}>
+      {children}
     </NewTabLink>
   );
 }

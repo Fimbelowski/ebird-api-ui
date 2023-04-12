@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { BasePageTable, type Tables } from '../../components/BasePageTable';
+import DateInput from '../../components/DateInput';
 import type EbirdContributor from '../../types/EbirdContributor';
 import EbirdProfileLink from '../../components/EbirdProfileLink';
 import type EbirdRankedBy from '../../types/EbirdRankedBy';
@@ -8,15 +9,14 @@ import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import getOrdinalNumber from '../../utilities/getOrdinalNumber';
 import { NumberInput } from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select';
-import useDate from '../../hooks/useDate';
 import useEbirdApi from '../../hooks/useEbirdApi';
 
 export default function Top100() {
-  const { DateInput, day, month, onChange: onDateChange, year } = useDate();
   const { getTop100 } = useEbirdApi();
 
+  const [date, setDate] = useState<Date>();
   const [lastRankedBy, setLastRankedBy] = useState<EbirdRankedBy>('spp');
-  const [maxResults, setMaxResults] = useState('');
+  const [maxResults, setMaxResults] = useState<number>();
   const [rankedBy, setRankedBy] = useState<EbirdRankedBy>('spp');
   const [regionCode, setRegionCode] = useState('');
 
@@ -128,7 +128,7 @@ export default function Top100() {
   }
 
   async function request() {
-    return await getTop100(regionCode, year, month, day, rankedBy, maxResults);
+    return await getTop100(regionCode, date as Date, rankedBy, maxResults);
   }
 
   const formContent = (
@@ -140,7 +140,7 @@ export default function Top100() {
       />
       <DateInput
         id="date"
-        onChange={onDateChange}
+        onChange={setDate}
         required
       />
       <Select<EbirdRankedBy>

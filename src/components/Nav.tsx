@@ -33,6 +33,10 @@ export default function Nav() {
       label: 'Recent Checklists',
       path: 'recent-checklists',
     },
+    {
+      label: 'Recent Observations in a Region',
+      path: 'recent-observations-region',
+    },
   ];
 
   const productMenuItems: NavMenuItem[] = [

@@ -81,8 +81,14 @@ export default function BasePageTableEbirdHotspot(props: Props) {
     {
       cells: [
         {
-          callback: ({ locName }) => locName,
-          wrap: true,
+          callback: ({ lat, lng, locName }) => (
+            <GoogleMapsLink
+              latitude={lat}
+              longitude={lng}
+            >
+              {locName}
+            </GoogleMapsLink>
+          ),
         },
         {
           align: 'right',
@@ -97,9 +103,6 @@ export default function BasePageTableEbirdHotspot(props: Props) {
               <time>{new Date(latestObsDt).toLocaleString()}</time>
             ),
         },
-        {
-          callback: (item) => <GoogleMapsLink location={item} />,
-        },
       ],
       headers: [
         {
@@ -111,9 +114,6 @@ export default function BasePageTableEbirdHotspot(props: Props) {
         },
         {
           label: 'Latest Observation',
-        },
-        {
-          label: 'View on Google Maps',
         },
       ],
       open: true,
