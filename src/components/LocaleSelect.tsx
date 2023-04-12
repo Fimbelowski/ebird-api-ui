@@ -3,6 +3,7 @@ import { useContext, useState } from 'react';
 import Button from './Button';
 import LocaleOptionsContext from '../context/LocaleOptionsContext';
 import { Select, type SelectProps } from './Select';
+import Tooltip from './Tooltip';
 import useApiKey from '../hooks/useApiKey';
 import useEbirdApi from '../hooks/useEbirdApi';
 
@@ -14,11 +15,14 @@ export default function LocaleSelect({ disabled, ...rest }: Props) {
   const { apiKey } = useApiKey();
   const { getTaxaLocaleCodes } = useEbirdApi();
 
-  const [hasQueried, setHasQueried] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   function hasApiKey() {
     return apiKey !== '';
+  }
+
+  function hasQueried() {
+    return localeOptions.length > 1;
   }
 
   function loadMoreButtonLabel() {
@@ -33,7 +37,6 @@ export default function LocaleSelect({ disabled, ...rest }: Props) {
         setLocaleOptions(
           parsedResponse.map(({ code, name }) => ({ label: name, value: code }))
         );
-        setHasQueried(true);
       })
       .catch((error) => {
         console.error(error);
@@ -48,20 +51,25 @@ export default function LocaleSelect({ disabled, ...rest }: Props) {
       <div className="locale-select__select">
         <Select<string>
           {...rest}
-          disabled={(disabled ?? false) || !hasQueried}
+          disabled={(disabled ?? false) || !hasQueried()}
           id="locale"
           label="Locale"
           options={localeOptions}
         />
       </div>
-      {hasQueried ? null : (
-        <Button
-          disabled={!hasApiKey() || isLoading}
-          onClick={onLoadMoreClick}
-          type="button"
+      {hasQueried() ? null : (
+        <Tooltip
+          disabled={hasApiKey()}
+          text="An API key is required to load additional locales."
         >
-          {loadMoreButtonLabel()}
-        </Button>
+          <Button
+            disabled={!hasApiKey() || isLoading}
+            onClick={onLoadMoreClick}
+            type="button"
+          >
+            {loadMoreButtonLabel()}
+          </Button>
+        </Tooltip>
       )}
     </div>
   );
