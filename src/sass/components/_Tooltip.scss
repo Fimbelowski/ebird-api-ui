@@ -1,0 +1,25 @@
+.tooltip {
+  position: relative;
+
+  &:hover .tooltip__text {
+    visibility: visible;
+  }
+
+  &__text {
+    visibility: hidden;
+    position: absolute;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40rem;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid black;
+    border-radius: 0.2rem;
+    padding: 1rem;
+
+    &--disabled {
+      display: none;
+    }
+  }
+}
