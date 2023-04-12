@@ -7,6 +7,7 @@ import type EbirdObservation from '../../types/EbirdObservation';
 import type EbirdTaxonomyCategory from '../../types/EbirdTaxonomyCategory';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import EbirdTaxonomyCategorySelect from '../../components/EbirdTaxonomyCategorySelect';
+import GoogleMapsLink from '../../components/GoogleMapsLink';
 import LocaleSelect from '../../components/LocaleSelect';
 import LocationTextarea from '../../components/LocationTextarea';
 import { NumberInput } from '../../components/NumberInput';
@@ -123,8 +124,41 @@ export default function RecentObservationsRegion() {
       title: 'Detailed Table',
     },
     {
-      cells: [],
-      headers: [],
+      cells: [
+        {
+          callback: ({ comName }) => comName,
+        },
+        {
+          callback: ({ howMany }) => howMany?.toLocaleString(),
+        },
+        {
+          callback: ({ lat, lng, locName }) => (
+            <GoogleMapsLink
+              latitude={lat}
+              longitude={lng}
+            >
+              {locName}
+            </GoogleMapsLink>
+          ),
+        },
+        {
+          callback: ({ obsDt }) => new Date(obsDt).toLocaleString(),
+        },
+      ],
+      headers: [
+        {
+          label: 'Species',
+        },
+        {
+          label: 'Quantity',
+        },
+        {
+          label: 'Location',
+        },
+        {
+          label: 'Date',
+        },
+      ],
       open: true,
       title: 'Simple Table',
     },
