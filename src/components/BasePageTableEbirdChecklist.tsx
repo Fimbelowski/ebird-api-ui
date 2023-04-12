@@ -67,11 +67,18 @@ export default function BasePageTableEbirdChecklist(props: Props) {
           callback: ({ userDisplayName }) => userDisplayName,
         },
         {
-          callback: ({ loc: { locName } }) => locName,
-        },
-        {
           align: 'right',
           callback: ({ numSpecies }) => numSpecies,
+        },
+        {
+          callback: ({ loc: { lat, lng, locName } }) => (
+            <GoogleMapsLink
+              latitude={lat}
+              longitude={lng}
+            >
+              {locName}
+            </GoogleMapsLink>
+          ),
         },
         {
           callback: ({ obsDt, obsTime = '' }) => {
@@ -82,26 +89,20 @@ export default function BasePageTableEbirdChecklist(props: Props) {
               : date.toLocaleString();
           },
         },
-        {
-          callback: ({ loc }) => <GoogleMapsLink location={loc} />,
-        },
       ],
       headers: [
         {
           label: 'Contributor',
         },
         {
-          label: 'Location',
-        },
-        {
           align: 'right',
           label: '# Species',
         },
         {
-          label: 'Date of Observation',
+          label: 'Location',
         },
         {
-          label: 'View on Google Maps',
+          label: 'Date of Observation',
         },
       ],
       open: true,
