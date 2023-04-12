@@ -10,6 +10,7 @@ import type EbirdFormat from '../types/EbirdFormat';
 import type EbirdGroupNameLocale from '../types/EbirdGroupNameLocale';
 import type EbirdHotspot from '../types/EbirdHotspot';
 import type EbirdLocation from '../types/EbirdLocation';
+import type EbirdObservation from '../types/EbirdObservation';
 import type EbirdRankedBy from '../types/EbirdRankedBy';
 import type EbirdRegion from '../types/EbirdRegion';
 import type EbirdRegionInfo from '../types/EbirdRegionInfo';
@@ -19,6 +20,7 @@ import type EbirdSpeciesGrouping from '../types/EbirdSpeciesGrouping';
 import type EbirdTaxaLocaleCode from '../types/EbirdTaxaLocaleCode';
 import type EbirdTaxonomicGroup from '../types/EbirdTaxonomicGroup';
 import type EbirdTaxonomyVersion from '../types/EbirdTaxonomyVersion';
+import type EbirdTaxonomyCategory from '../types/EbirdTaxonomyCategory';
 import EBIRD_HOTSPOT_CSV_HEADERS from '../utilities/ebirdHotspotCsvHeaders';
 import isJson from '../utilities/isJson';
 import makeRequest from '../utilities/ebirdApiClient';
@@ -194,6 +196,63 @@ export default function useEbirdApi() {
       endpoint: 'product/lists/{{regionCode}}',
       queryParams,
       urlParams,
+    });
+  }
+
+  async function getRecentObservationsInARegion(
+    regionCode: string,
+    back?: number,
+    category?: EbirdTaxonomyCategory,
+    hotspot = false,
+    includeProvisional = false,
+    maxResults?: number,
+    r?: string[],
+    locale?: string
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+    ];
+
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: '14',
+        name: 'back',
+        value: back,
+      },
+      {
+        defaultValue: '',
+        name: 'cat',
+        value: category,
+      },
+      {
+        name: 'hotspot',
+        value: hotspot,
+      },
+      {
+        name: 'includeProvisional',
+        value: includeProvisional,
+      },
+      {
+        name: 'maxResults',
+        value: maxResults,
+      },
+      {
+        name: 'r',
+        value: r,
+      },
+      {
+        name: 'locale',
+        value: locale,
+      },
+    ];
+
+    return await baseRequest<EbirdObservation[]>({
+      endpoint: 'data/obs/{{regionCode}}/recent',
+      urlParams,
+      queryParams,
     });
   }
 
