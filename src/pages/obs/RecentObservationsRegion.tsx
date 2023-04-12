@@ -164,10 +164,6 @@ export default function RecentObservationsRegion() {
     },
   ];
 
-  function onLoad(results: EbirdObservation[]) {
-    console.log(results);
-  }
-
   async function request() {
     return await getRecentObservationsInARegion(
       regionCode,
@@ -230,7 +226,6 @@ export default function RecentObservationsRegion() {
   return (
     <BasePageTable<EbirdObservation>
       formContent={formContent}
-      onLoad={onLoad}
       requiresApiKey
       request={request}
       tables={tables}
