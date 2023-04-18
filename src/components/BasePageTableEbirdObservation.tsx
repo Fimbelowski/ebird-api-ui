@@ -113,6 +113,7 @@ export default function BasePageTableEbirdObservation(props: Props) {
           callback: ({ comName }) => comName,
         },
         {
+          align: 'right',
           callback: ({ howMany }) => howMany?.toLocaleString(),
         },
         {
