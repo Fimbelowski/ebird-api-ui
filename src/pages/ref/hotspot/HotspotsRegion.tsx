@@ -14,7 +14,7 @@ export default function HotspotsRegion() {
   const [format, setFormat] = useState<EbirdFormat>('csv');
   const [regionCode, setRegionCode] = useState('');
 
-  async function request() {
+  async function onSubmit() {
     return await getRegionHotspots(regionCode, back, format);
   }
 
@@ -40,7 +40,7 @@ export default function HotspotsRegion() {
   return (
     <BasePageTableEbirdHotspot
       formContent={formContent}
-      request={request}
+      onSubmit={onSubmit}
       title="Hotspots in a Region"
     />
   );

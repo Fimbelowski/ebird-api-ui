@@ -86,7 +86,7 @@ export default function RegionInfo() {
     },
   ];
 
-  async function request() {
+  async function onSubmit() {
     return await getRegionInfo(regionCode, regionNameFormat, delimiter);
   }
 
@@ -133,7 +133,7 @@ export default function RegionInfo() {
     <BasePage<EbirdRegionInfo>
       formContent={formContent}
       onLoad={setRegionInfo}
-      request={request}
+      onSubmit={onSubmit}
       requiresApiKey
       resultsContent={resultsContent}
       title="Region Info"

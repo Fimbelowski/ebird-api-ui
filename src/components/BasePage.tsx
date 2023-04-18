@@ -10,7 +10,7 @@ export interface BasePageProps<T> {
   disableSubmit?: boolean;
   formContent?: ReactNode;
   onLoad: (results: T) => void;
-  request: () => EbirdApiClientResponse<T>;
+  onSubmit: () => EbirdApiClientResponse<T>;
   requestOnMount?: boolean;
   requiresApiKey?: boolean;
   resultsContent?: ReactNode;
@@ -21,7 +21,7 @@ export function BasePage<T>({
   disableSubmit = false,
   formContent,
   onLoad,
-  request,
+  onSubmit: onSubmitProp,
   requestOnMount = false,
   requiresApiKey = false,
   resultsContent,
@@ -43,7 +43,7 @@ export function BasePage<T>({
     setLoading(true);
     setIsError(false);
 
-    request()
+    onSubmitProp()
       .then(({ parsedResponse, rawResponse }) => {
         setHasQueried(true);
         setRawResponse(rawResponse);

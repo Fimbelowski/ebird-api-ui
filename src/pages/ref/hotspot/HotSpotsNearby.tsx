@@ -44,7 +44,7 @@ export default function HotspotsNearby() {
     setLoadingPosition(false);
   }
 
-  async function request() {
+  async function onSubmit() {
     return await getNearbyHotspots(
       latitude as number,
       longitude as number,
@@ -124,7 +124,7 @@ export default function HotspotsNearby() {
     <BasePageTableEbirdHotspot
       disableSubmit={loadingPosition}
       formContent={formContent}
-      request={request}
+      onSubmit={onSubmit}
       title="Nearby hotspots"
     />
   );

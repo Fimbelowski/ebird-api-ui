@@ -9,7 +9,7 @@ export default function SpeciesListRegion() {
 
   const [regionCode, setRegionCode] = useState('');
 
-  async function request() {
+  async function onSubmit() {
     return await getSpeciesListForRegion(regionCode);
   }
 
@@ -23,7 +23,7 @@ export default function SpeciesListRegion() {
   return (
     <BasePageList
       formContent={formContent}
-      request={request}
+      onSubmit={onSubmit}
       requiresApiKey
       title="Species List for a Region"
     />

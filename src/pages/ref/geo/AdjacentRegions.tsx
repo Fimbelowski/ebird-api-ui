@@ -9,7 +9,7 @@ export default function AdjacentRegions() {
 
   const [regionCode, setRegionCode] = useState('');
 
-  async function request() {
+  async function onSubmit() {
     return await getAdjacentRegions(regionCode);
   }
 
@@ -23,7 +23,7 @@ export default function AdjacentRegions() {
 
   return (
     <BasePageTableEbirdRegion
-      request={request}
+      onSubmit={onSubmit}
       formContent={formContent}
       requiresApiKey
       title="Adjacent Regions"

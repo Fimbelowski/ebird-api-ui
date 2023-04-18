@@ -27,7 +27,7 @@ export default function ChecklistFeedOnDate() {
     },
   ];
 
-  async function request() {
+  async function onSubmit() {
     return await getChecklistFeedOnDate(
       regionCode,
       date as Date,
@@ -67,7 +67,7 @@ export default function ChecklistFeedOnDate() {
   return (
     <BasePageTableEbirdChecklist
       formContent={formContent}
-      request={request}
+      onSubmit={onSubmit}
       requiresApiKey
       title="Checklist Feed on a Date"
     />

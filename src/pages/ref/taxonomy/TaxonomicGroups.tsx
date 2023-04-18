@@ -150,7 +150,7 @@ export default function TaxonomicGroups() {
     },
   ];
 
-  async function request() {
+  async function onSubmit() {
     return await getTaxonomicGroups(speciesGrouping, groupNameLocale);
   }
 
@@ -176,7 +176,7 @@ export default function TaxonomicGroups() {
   return (
     <BasePageTable<EbirdTaxonomicGroup>
       formContent={formContent}
-      request={request}
+      onSubmit={onSubmit}
       requiresApiKey
       tables={tables}
       title="Taxonomic Groups"

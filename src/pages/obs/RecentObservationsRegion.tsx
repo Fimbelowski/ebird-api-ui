@@ -164,7 +164,7 @@ export default function RecentObservationsRegion() {
     },
   ];
 
-  async function request() {
+  async function onSubmit() {
     return await getRecentObservationsInARegion(
       regionCode,
       back,
@@ -226,8 +226,8 @@ export default function RecentObservationsRegion() {
   return (
     <BasePageTable<EbirdObservation>
       formContent={formContent}
+      onSubmit={onSubmit}
       requiresApiKey
-      request={request}
       tables={tables}
       title="Recent Observations in a Region"
     />
