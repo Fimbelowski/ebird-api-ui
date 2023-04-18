@@ -27,19 +27,23 @@ function buildQueryString(queryParams: QueryParam[]) {
   }
 
   const queryString = queryParams
-    .filter((param): param is QueryParam & { value: QueryParamValue } => {
-      const { defaultValue, value } = param;
+    .filter(
+      (
+        param
+      ): param is QueryParam & { value: NonNullable<QueryParamValue> } => {
+        const { defaultValue, value } = param;
 
-      if (value === undefined || value === defaultValue) {
-        return false;
+        if (value === undefined || value === defaultValue) {
+          return false;
+        }
+
+        if (typeof value === 'string' || Array.isArray(value)) {
+          return value.length !== 0;
+        }
+
+        return true;
       }
-
-      if (typeof value === 'string' || Array.isArray(value)) {
-        return value.length !== 0;
-      }
-
-      return true;
-    })
+    )
     .map(({ name, value }) => {
       return `${name}=${value.toString()}`;
     })
