@@ -11,6 +11,7 @@ import type EbirdGroupNameLocale from '../types/EbirdGroupNameLocale';
 import type EbirdHotspot from '../types/EbirdHotspot';
 import type EbirdLocation from '../types/EbirdLocation';
 import type EbirdObservation from '../types/EbirdObservation';
+import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
 import type EbirdRankedBy from '../types/EbirdRankedBy';
 import type EbirdRegion from '../types/EbirdRegion';
 import type EbirdRegionInfo from '../types/EbirdRegionInfo';
@@ -201,7 +202,7 @@ export default function useEbirdApi() {
 
   async function getRecentNotableObservationsInAregion(
     regionCode: string,
-    detail: 'simple' | 'full',
+    detail: EbirdObservationDetailLevel,
     onlyObsFromHotspots = false,
     back = 14,
     maxResults?: number,
