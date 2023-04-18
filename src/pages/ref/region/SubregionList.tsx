@@ -29,7 +29,7 @@ export default function SubregionList() {
     },
   ];
 
-  async function request() {
+  async function onSubmit() {
     return await getSubregionList(regionType, parentRegionCode, format);
   }
 
@@ -59,7 +59,7 @@ export default function SubregionList() {
   return (
     <BasePageTableEbirdRegion
       formContent={formContent}
-      request={request}
+      onSubmit={onSubmit}
       requiresApiKey
       title="Sub-region List"
     />

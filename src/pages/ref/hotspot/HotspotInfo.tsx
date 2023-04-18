@@ -14,7 +14,7 @@ export default function HotspotInfo() {
   const [hotspot, setHotspot] = useState<EbirdLocation>();
   const [locationId, setLocationId] = useState('');
 
-  async function request() {
+  async function onSubmit() {
     return await getHotspotInfo(locationId);
   }
 
@@ -48,7 +48,7 @@ export default function HotspotInfo() {
     <BasePage<EbirdLocation>
       formContent={formContent}
       onLoad={setHotspot}
-      request={request}
+      onSubmit={onSubmit}
       resultsContent={resultsContent}
       title="Hotspot Info"
     />

@@ -49,7 +49,7 @@ export default function RegionalStatsOnDate() {
     },
   ];
 
-  async function request() {
+  async function onSubmit() {
     return await getRegionStatsOnDate(regionCode, date as Date);
   }
 
@@ -86,7 +86,7 @@ export default function RegionalStatsOnDate() {
     <BasePage<EbirdRegionStats>
       formContent={formContent}
       onLoad={setStats}
-      request={request}
+      onSubmit={onSubmit}
       requiresApiKey
       resultsContent={resultsContent}
       title="Regional Statistics on a Date"

@@ -9,7 +9,7 @@ export default function TaxonomicForms() {
 
   const [speciesCode, setSpeciesCode] = useState('');
 
-  async function request() {
+  async function onSubmit() {
     return await getTaxonomicForms(speciesCode);
   }
 
@@ -26,7 +26,7 @@ export default function TaxonomicForms() {
   return (
     <BasePageList
       formContent={formContent}
-      request={request}
+      onSubmit={onSubmit}
       requiresApiKey
       title="Taxonomic Forms"
     />

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { BasePageTable, type Tables } from '../../components/BasePageTable';
 import DateInput from '../../components/DateInput';
 import type EbirdContributor from '../../types/EbirdContributor';
-import EbirdProfileLink from '../../components/EbirdProfileLink';
+import EbirdProfileLink from '../../components/ebirdProfileLink';
 import type EbirdRankedBy from '../../types/EbirdRankedBy';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import getOrdinalNumber from '../../utilities/getOrdinalNumber';
@@ -127,7 +127,7 @@ export default function Top100() {
     setLastRankedBy(rankedBy);
   }
 
-  async function request() {
+  async function onSubmit() {
     return await getTop100(regionCode, date as Date, rankedBy, maxResults);
   }
 
@@ -166,7 +166,7 @@ export default function Top100() {
     <BasePageTable<EbirdContributor>
       formContent={formContent}
       onLoad={onLoad}
-      request={request}
+      onSubmit={onSubmit}
       requiresApiKey
       tables={tables}
       title="Top 100 Contributors"

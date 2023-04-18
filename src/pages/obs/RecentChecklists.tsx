@@ -11,7 +11,7 @@ export default function RecentChecklists() {
   const [maxResults, setMaxResults] = useState(10);
   const [regionCode, setRegionCode] = useState('');
 
-  async function request() {
+  async function onSubmit() {
     return await getRecentChecklists(regionCode, maxResults);
   }
 
@@ -37,7 +37,7 @@ export default function RecentChecklists() {
   return (
     <BasePageTableEbirdChecklist
       formContent={formContent}
-      request={request}
+      onSubmit={onSubmit}
       requiresApiKey
       title="Recent Checklists"
     />

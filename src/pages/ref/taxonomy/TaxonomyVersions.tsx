@@ -30,7 +30,7 @@ export default function TaxonomyVersions() {
 
   return (
     <BasePageTable<EbirdTaxonomyVersion>
-      request={getTaxonomyVersions}
+      onSubmit={getTaxonomyVersions}
       requestOnMount
       tables={tables}
       title="Taxonomy Versions"

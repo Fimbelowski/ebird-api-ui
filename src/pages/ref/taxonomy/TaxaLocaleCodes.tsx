@@ -36,7 +36,7 @@ export default function TaxaLocaleCodes() {
 
   return (
     <BasePageTable<EbirdTaxaLocaleCode>
-      request={getTaxaLocaleCodes}
+      onSubmit={getTaxaLocaleCodes}
       requiresApiKey
       tables={tables}
       title="Taxa Locale Codes"
