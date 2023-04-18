@@ -199,15 +199,14 @@ export default function useEbirdApi() {
     });
   }
 
-  async function getRecentObservationsInARegion(
+  async function getRecentNotableObservationsInAregion(
     regionCode: string,
-    back?: number,
-    category?: EbirdTaxonomyCategory,
-    hotspot = false,
-    includeProvisional = false,
+    detail: 'simple' | 'full',
+    onlyObsFromHotspots = false,
+    back = 14,
     maxResults?: number,
-    r?: string[],
-    locale?: string
+    obsLocations?: string[],
+    locale = 'en'
   ) {
     const urlParams: UrlParam[] = [
       {
@@ -218,7 +217,62 @@ export default function useEbirdApi() {
 
     const queryParams: QueryParam[] = [
       {
-        defaultValue: '14',
+        defaultValue: 14,
+        name: 'back',
+        value: back,
+      },
+      {
+        defaultValue: 'simple',
+        name: 'detail',
+        value: detail,
+      },
+      {
+        defaultValue: false,
+        name: 'hotspot',
+        value: onlyObsFromHotspots,
+      },
+      {
+        name: 'maxResults',
+        value: maxResults,
+      },
+      {
+        name: 'r',
+        value: obsLocations,
+      },
+      {
+        defaultValue: 'en',
+        name: 'sppLocale',
+        value: locale,
+      },
+    ];
+
+    return await baseRequest<EbirdObservation[]>({
+      endpoint: 'data/obs/{{regionCode}}/recent/notable',
+      urlParams,
+      queryParams,
+    });
+  }
+
+  async function getRecentObservationsInARegion(
+    regionCode: string,
+    back = 14,
+    category?: EbirdTaxonomyCategory,
+    onlyObsFromHotspots = false,
+    includeProvisional = false,
+    maxResults?: number,
+    obsLocations?: string[],
+    locale = 'en'
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+    ];
+
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: 14,
         name: 'back',
         value: back,
       },
@@ -229,7 +283,7 @@ export default function useEbirdApi() {
       },
       {
         name: 'hotspot',
-        value: hotspot,
+        value: onlyObsFromHotspots,
       },
       {
         name: 'includeProvisional',
@@ -241,7 +295,7 @@ export default function useEbirdApi() {
       },
       {
         name: 'r',
-        value: r,
+        value: obsLocations,
       },
       {
         name: 'locale',
@@ -476,6 +530,7 @@ export default function useEbirdApi() {
     getHotspotInfo,
     getNearbyHotspots,
     getRecentChecklists,
+    getRecentNotableObservationsInAregion,
     getRecentObservationsInARegion,
     getRegionHotspots,
     getRegionInfo,
