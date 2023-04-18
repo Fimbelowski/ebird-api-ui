@@ -8,7 +8,7 @@ import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import EbirdTaxonomyCategorySelect from '../../components/EbirdTaxonomyCategorySelect';
 import LocaleSelect from '../../components/LocaleSelect';
 import LocationTextarea from '../../components/LocationTextarea';
-import { NumberInput } from '../../components/NumberInput';
+import MaxResultsInput from '../../components/MaxResultsInput';
 import useEbirdApi from '../../hooks/useEbirdApi';
 
 export default function RecentObservationsRegion() {
@@ -62,13 +62,8 @@ export default function RecentObservationsRegion() {
         onChange={setIncludeProvisionalObs}
         value={includeProvisionalObs}
       />
-      <NumberInput
-        id="max-results"
-        label="Max Results"
-        max={10000}
-        min={1}
+      <MaxResultsInput
         onChange={setMaxResults}
-        placeholder="100"
         value={maxResults}
       />
       <LocationTextarea
