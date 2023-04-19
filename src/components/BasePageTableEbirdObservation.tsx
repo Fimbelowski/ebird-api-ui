@@ -4,14 +4,148 @@ import {
   type Tables,
 } from './BasePageTable';
 import type EbirdObservation from '../types/EbirdObservation';
+import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
 import GoogleMapsLink from './GoogleMapsLink';
+import { type TableCell, type TableHeader } from './Table';
 
 type Props = Omit<
   BasePageTableProps<EbirdObservation>,
   'requiresApiKey' | 'tables'
->;
+> & { detailLevel?: EbirdObservationDetailLevel };
 
-export default function BasePageTableEbirdObservation(props: Props) {
+export default function BasePageTableEbirdObservation({
+  detailLevel = 'simple',
+  ...rest
+}: Props) {
+  function detailedTableHeaders() {
+    const headers: Array<
+      TableHeader & {
+        detailLevel: EbirdObservationDetailLevel;
+        label: keyof EbirdObservation;
+      }
+    > = [
+      {
+        detailLevel: 'full',
+        label: 'checklistId',
+      },
+      {
+        detailLevel: 'simple',
+        label: 'comName',
+      },
+      {
+        detailLevel: 'full',
+        label: 'countryCode',
+      },
+      {
+        detailLevel: 'full',
+        label: 'countryName',
+      },
+      {
+        detailLevel: 'full',
+        label: 'evidence',
+      },
+      {
+        detailLevel: 'simple',
+        label: 'exoticCategory',
+      },
+      {
+        detailLevel: 'full',
+        label: 'firstName',
+      },
+      {
+        detailLevel: 'full',
+        label: 'hasComments',
+      },
+      {
+        detailLevel: 'full',
+        label: 'hasRichMedia',
+      },
+      {
+        align: 'right',
+        detailLevel: 'simple',
+        label: 'howMany',
+      },
+      {
+        detailLevel: 'full',
+        label: 'lastName',
+      },
+      {
+        align: 'right',
+        detailLevel: 'simple',
+        label: 'lat',
+      },
+      {
+        align: 'right',
+        detailLevel: 'simple',
+        label: 'lng',
+      },
+      {
+        detailLevel: 'simple',
+        label: 'locId',
+      },
+      {
+        detailLevel: 'simple',
+        label: 'locName',
+      },
+      {
+        detailLevel: 'simple',
+        label: 'locationPrivate',
+      },
+      {
+        detailLevel: 'simple',
+        label: 'obsDt',
+      },
+      {
+        detailLevel: 'simple',
+        label: 'obsReviewed',
+      },
+      {
+        detailLevel: 'simple',
+        label: 'obsValid',
+      },
+      {
+        detailLevel: 'full',
+        label: 'presenceNoted',
+      },
+      {
+        detailLevel: 'simple',
+        label: 'sciName',
+      },
+      {
+        detailLevel: 'simple',
+        label: 'speciesCode',
+      },
+      {
+        detailLevel: 'simple',
+        label: 'subId',
+      },
+      {
+        detailLevel: 'full',
+        label: 'subnational1Code',
+      },
+      {
+        detailLevel: 'full',
+        label: 'subnational1Name',
+      },
+      {
+        detailLevel: 'full',
+        label: 'subnational2Code',
+      },
+      {
+        detailLevel: 'full',
+        label: 'subnational2Name',
+      },
+      {
+        detailLevel: 'full',
+        label: 'userDisplayName',
+      },
+    ];
+
+    return headers.filter(
+      (header) => detailLevel === 'simple' && header.detailLevel === 'simple'
+    );
+  }
+
   const tables: Tables<EbirdObservation> = [
     {
       cells: [
@@ -154,7 +288,7 @@ export default function BasePageTableEbirdObservation(props: Props) {
 
   return (
     <BasePageTable
-      {...props}
+      {...rest}
       requiresApiKey
       tables={tables}
     />
