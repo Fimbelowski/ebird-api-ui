@@ -17,6 +17,8 @@ export default function RecentNotableObservationsRegion() {
   const [back, setBack] = useState(14);
   const [detailLevel, setDetailLevel] =
     useState<EbirdObservationDetailLevel>('simple');
+  const [lastDetailLevel, setLastDetailLevel] =
+    useState<EbirdObservationDetailLevel>();
   const [locale, setLocale] = useState('en');
   const [maxResults, setMaxResults] = useState<number>();
   const [obsLocations, setObsLocations] = useState<string[]>([]);
@@ -24,6 +26,8 @@ export default function RecentNotableObservationsRegion() {
   const [regionCode, setRegionCode] = useState('');
 
   async function onSubmit() {
+    setLastDetailLevel(detailLevel);
+
     return await getRecentNotableObservationsInAregion(
       regionCode,
       back,
@@ -71,6 +75,7 @@ export default function RecentNotableObservationsRegion() {
 
   return (
     <BasePageTableEbirdObservation
+      detailLevel={lastDetailLevel}
       formContent={formContent}
       onSubmit={onSubmit}
       title="Recent Notable Observations in a Region"
