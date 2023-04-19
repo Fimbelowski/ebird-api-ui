@@ -202,9 +202,9 @@ export default function useEbirdApi() {
 
   async function getRecentNotableObservationsInAregion(
     regionCode: string,
-    detail?: EbirdObservationDetailLevel,
-    onlyObsFromHotspots = false,
     back = 14,
+    detail: EbirdObservationDetailLevel = 'simple',
+    onlyObsFromHotspots = false,
     maxResults?: number,
     obsLocations?: string[],
     locale = 'en'
