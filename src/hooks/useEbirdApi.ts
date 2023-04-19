@@ -311,6 +311,65 @@ export default function useEbirdApi() {
     });
   }
 
+  async function getRecentObservationsOfSpeciesInRegion(
+    regionCode: string,
+    speciesCode: string,
+    back = 14,
+    onlyObsFromHotspots = false,
+    includeProvisional = false,
+    maxResults?: number,
+    obsLocations?: string[],
+    locale = 'en'
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+      {
+        name: 'speciesCode',
+        value: speciesCode,
+      },
+    ];
+
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: 14,
+        name: 'back',
+        value: back,
+      },
+      {
+        defaultValue: false,
+        name: 'hotspot',
+        value: onlyObsFromHotspots,
+      },
+      {
+        defaultValue: false,
+        name: 'includeProvisional',
+        value: includeProvisional,
+      },
+      {
+        name: 'maxResults',
+        value: maxResults,
+      },
+      {
+        name: 'r',
+        value: obsLocations,
+      },
+      {
+        defaultValue: 'en',
+        name: 'sppLocale',
+        value: locale,
+      },
+    ];
+
+    return await baseRequest({
+      endpoint: 'data/obs/{{regionCode}}/recent/{{speciesCode}}',
+      urlParams,
+      queryParams,
+    });
+  }
+
   async function getRegionHotspots(
     regionCode: string,
     back?: number,
@@ -533,6 +592,7 @@ export default function useEbirdApi() {
     getRecentChecklists,
     getRecentNotableObservationsInAregion,
     getRecentObservationsInARegion,
+    getRecentObservationsOfSpeciesInRegion,
     getRegionHotspots,
     getRegionInfo,
     getRegionStatsOnDate,
