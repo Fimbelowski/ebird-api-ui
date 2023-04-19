@@ -41,6 +41,10 @@ export default function Nav() {
       label: 'Recent Observations in a Region',
       path: 'recent-observations-region',
     },
+    {
+      label: 'Recent Observations of a Species in a Region',
+      path: 'recent-observations-of-species-in-region',
+    },
   ];
 
   const productMenuItems: NavMenuItem[] = [

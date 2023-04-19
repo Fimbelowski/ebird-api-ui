@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import BasePageList from '../../../components/BasePageList';
-import { TextInput } from '../../../components/TextInput';
+import EbirdSpeciesCodeInput from '../../../components/EbirdSpeciesCodeInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function TaxonomicForms() {
@@ -14,11 +14,8 @@ export default function TaxonomicForms() {
   }
 
   const formContent = (
-    <TextInput
-      id="species-code"
-      label="Species Code"
+    <EbirdSpeciesCodeInput
       onChange={setSpeciesCode}
-      placeholder="virrai"
       value={speciesCode}
     />
   );
