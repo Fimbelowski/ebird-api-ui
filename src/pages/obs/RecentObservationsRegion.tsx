@@ -2,9 +2,10 @@ import { useState } from 'react';
 
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 import BackInput from '../../components/BackInput';
-import CheckboxInput from '../../components/CheckboxInput';
-import type EbirdTaxonomyCategory from '../../types/EbirdTaxonomyCategory';
+import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
+import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
+import type EbirdTaxonomyCategory from '../../types/EbirdTaxonomyCategory';
 import EbirdTaxonomyCategorySelect from '../../components/EbirdTaxonomyCategorySelect';
 import LocaleSelect from '../../components/LocaleSelect';
 import LocationTextarea from '../../components/LocationTextarea';
@@ -50,15 +51,11 @@ export default function RecentObservationsRegion() {
         onChange={setCategory}
         value={category}
       />
-      <CheckboxInput
-        id="hotspot"
-        label="Only Fetch Observations From Hotspots"
+      <EbirdOnlyObsFromHotspotsInput
         onChange={setOnlyObsFromHotspots}
         value={onlyObsFromHotspots}
       />
-      <CheckboxInput
-        id="include-provisional"
-        label="Include Provisional Observations"
+      <EbirdIncludeProvisionalInput
         onChange={setIncludeProvisionalObs}
         value={includeProvisionalObs}
       />
@@ -81,7 +78,6 @@ export default function RecentObservationsRegion() {
     <BasePageTableEbirdObservation
       formContent={formContent}
       onSubmit={onSubmit}
-      requiresApiKey
       title="Recent Observations in a Region"
     />
   );
