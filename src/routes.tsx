@@ -6,7 +6,7 @@ import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
 import HotspotsNearby from './pages/ref/hotspot/HotSpotsNearby';
 import HotspotsRegion from './pages/ref/hotspot/HotspotsRegion';
 import RecentChecklists from './pages/obs/RecentChecklists';
-import RecentNotableObservationsRegion from './pages/obs/RecentNotablesObservationsRegion';
+import RecentNotableObservationsRegion from './pages/obs/RecentNotableObservationsRegion';
 import RecentObservationsRegion from './pages/obs/RecentObservationsRegion';
 import RegionInfo from './pages/ref/region/RegionInfo';
 import RegionalStatsOnDate from './pages/product/RegionalStatsOnDate';
