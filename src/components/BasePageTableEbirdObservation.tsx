@@ -6,7 +6,10 @@ import {
 import type EbirdObservation from '../types/EbirdObservation';
 import GoogleMapsLink from './GoogleMapsLink';
 
-type Props = Omit<BasePageTableProps<EbirdObservation>, 'tables'>;
+type Props = Omit<
+  BasePageTableProps<EbirdObservation>,
+  'requiresApiKey' | 'tables'
+>;
 
 export default function BasePageTableEbirdObservation(props: Props) {
   const tables: Tables<EbirdObservation> = [
@@ -152,6 +155,7 @@ export default function BasePageTableEbirdObservation(props: Props) {
   return (
     <BasePageTable
       {...props}
+      requiresApiKey
       tables={tables}
     />
   );
