@@ -363,7 +363,7 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest({
+    return await baseRequest<EbirdObservation[]>({
       endpoint: 'data/obs/{{regionCode}}/recent/{{speciesCode}}',
       urlParams,
       queryParams,
