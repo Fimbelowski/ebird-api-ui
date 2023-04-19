@@ -1,38 +1,41 @@
 import { useState } from 'react';
 
-import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 import BackInput from '../../components/BackInput';
-import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
+import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
+import type EbirdObservationDetailLevel from '../../types/EbirdObservationDetailLevel';
+import EbirdObservationDetailLevelSelect from '../../components/EbirdObservationDetailLevelSelect';
 import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
-import type EbirdTaxonomyCategory from '../../types/EbirdTaxonomyCategory';
-import EbirdTaxonomyCategorySelect from '../../components/EbirdTaxonomyCategorySelect';
 import LocaleSelect from '../../components/LocaleSelect';
 import LocationTextarea from '../../components/LocationTextarea';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import useEbirdApi from '../../hooks/useEbirdApi';
 
-export default function RecentObservationsRegion() {
-  const { getRecentObservationsInARegion } = useEbirdApi();
+export default function RecentNotableObservationsRegion() {
+  const { getRecentNotableObservationsInAregion } = useEbirdApi();
 
   const [back, setBack] = useState(14);
-  const [category, setCategory] = useState<EbirdTaxonomyCategory>('');
-  const [includeProvisionalObs, setIncludeProvisionalObs] = useState(false);
+  const [detailLevel, setDetailLevel] =
+    useState<EbirdObservationDetailLevel>('simple');
+  const [lastDetailLevel, setLastDetailLevel] =
+    useState<EbirdObservationDetailLevel>();
   const [locale, setLocale] = useState('en');
-  const [locations, setLocations] = useState<string[]>([]);
   const [maxResults, setMaxResults] = useState<number>();
+  const [obsLocations, setObsLocations] = useState<string[]>([]);
   const [onlyObsFromHotspots, setOnlyObsFromHotspots] = useState(false);
   const [regionCode, setRegionCode] = useState('');
 
   async function onSubmit() {
-    return await getRecentObservationsInARegion(
+    setLastDetailLevel(detailLevel);
+
+    return await getRecentNotableObservationsInAregion(
       regionCode,
       back,
-      category,
+      detailLevel,
       onlyObsFromHotspots,
-      includeProvisionalObs,
       maxResults,
-      locations
+      obsLocations,
+      locale
     );
   }
 
@@ -47,25 +50,21 @@ export default function RecentObservationsRegion() {
         onChange={setBack}
         value={back}
       />
-      <EbirdTaxonomyCategorySelect
-        onChange={setCategory}
-        value={category}
+      <EbirdObservationDetailLevelSelect
+        onChange={setDetailLevel}
+        value={detailLevel}
       />
       <EbirdOnlyObsFromHotspotsInput
         onChange={setOnlyObsFromHotspots}
         value={onlyObsFromHotspots}
-      />
-      <EbirdIncludeProvisionalInput
-        onChange={setIncludeProvisionalObs}
-        value={includeProvisionalObs}
       />
       <MaxResultsInput
         onChange={setMaxResults}
         value={maxResults}
       />
       <LocationTextarea
-        onChange={setLocations}
-        value={locations}
+        onChange={setObsLocations}
+        value={obsLocations}
       />
       <LocaleSelect
         onChange={setLocale}
@@ -76,9 +75,10 @@ export default function RecentObservationsRegion() {
 
   return (
     <BasePageTableEbirdObservation
+      detailLevel={lastDetailLevel}
       formContent={formContent}
       onSubmit={onSubmit}
-      title="Recent Observations in a Region"
+      title="Recent Notable Observations in a Region"
     />
   );
 }

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { BasePageTable, type Tables } from '../../components/BasePageTable';
 import DateInput from '../../components/DateInput';
 import type EbirdContributor from '../../types/EbirdContributor';
-import EbirdProfileLink from '../../components/ebirdProfileLink';
+import EbirdProfileLink from '../../components/EbirdProfileLink';
 import type EbirdRankedBy from '../../types/EbirdRankedBy';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import getOrdinalNumber from '../../utilities/getOrdinalNumber';

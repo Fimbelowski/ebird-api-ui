@@ -34,6 +34,10 @@ export default function Nav() {
       path: 'recent-checklists',
     },
     {
+      label: 'Recent Notable Observations in a Region',
+      path: 'recent-notable-observations-region',
+    },
+    {
       label: 'Recent Observations in a Region',
       path: 'recent-observations-region',
     },

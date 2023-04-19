@@ -11,6 +11,7 @@ import type EbirdGroupNameLocale from '../types/EbirdGroupNameLocale';
 import type EbirdHotspot from '../types/EbirdHotspot';
 import type EbirdLocation from '../types/EbirdLocation';
 import type EbirdObservation from '../types/EbirdObservation';
+import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
 import type EbirdRankedBy from '../types/EbirdRankedBy';
 import type EbirdRegion from '../types/EbirdRegion';
 import type EbirdRegionInfo from '../types/EbirdRegionInfo';
@@ -199,15 +200,14 @@ export default function useEbirdApi() {
     });
   }
 
-  async function getRecentObservationsInARegion(
+  async function getRecentNotableObservationsInAregion(
     regionCode: string,
-    back?: number,
-    category?: EbirdTaxonomyCategory,
-    hotspot = false,
-    includeProvisional = false,
+    back = 14,
+    detail: EbirdObservationDetailLevel = 'simple',
+    onlyObsFromHotspots = false,
     maxResults?: number,
-    r?: string[],
-    locale?: string
+    obsLocations?: string[],
+    locale = 'en'
   ) {
     const urlParams: UrlParam[] = [
       {
@@ -218,7 +218,62 @@ export default function useEbirdApi() {
 
     const queryParams: QueryParam[] = [
       {
-        defaultValue: '14',
+        defaultValue: 14,
+        name: 'back',
+        value: back,
+      },
+      {
+        defaultValue: 'simple',
+        name: 'detail',
+        value: detail,
+      },
+      {
+        defaultValue: false,
+        name: 'hotspot',
+        value: onlyObsFromHotspots,
+      },
+      {
+        name: 'maxResults',
+        value: maxResults,
+      },
+      {
+        name: 'r',
+        value: obsLocations,
+      },
+      {
+        defaultValue: 'en',
+        name: 'sppLocale',
+        value: locale,
+      },
+    ];
+
+    return await baseRequest<EbirdObservation[]>({
+      endpoint: 'data/obs/{{regionCode}}/recent/notable',
+      urlParams,
+      queryParams,
+    });
+  }
+
+  async function getRecentObservationsInARegion(
+    regionCode: string,
+    back = 14,
+    category?: EbirdTaxonomyCategory,
+    onlyObsFromHotspots = false,
+    includeProvisional = false,
+    maxResults?: number,
+    obsLocations?: string[],
+    locale = 'en'
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+    ];
+
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: 14,
         name: 'back',
         value: back,
       },
@@ -229,7 +284,7 @@ export default function useEbirdApi() {
       },
       {
         name: 'hotspot',
-        value: hotspot,
+        value: onlyObsFromHotspots,
       },
       {
         name: 'includeProvisional',
@@ -241,7 +296,7 @@ export default function useEbirdApi() {
       },
       {
         name: 'r',
-        value: r,
+        value: obsLocations,
       },
       {
         name: 'locale',
@@ -476,6 +531,7 @@ export default function useEbirdApi() {
     getHotspotInfo,
     getNearbyHotspots,
     getRecentChecklists,
+    getRecentNotableObservationsInAregion,
     getRecentObservationsInARegion,
     getRegionHotspots,
     getRegionInfo,

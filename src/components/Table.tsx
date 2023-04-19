@@ -1,7 +1,8 @@
 import { type ReactNode } from 'react';
 
 import classNames from '../utilities/classNames';
-interface TableCell<T> {
+
+export interface TableCell<T> {
   align?: 'left' | 'center' | 'right';
   callback: (item: T) => string | ReactNode;
   wrap?: boolean;

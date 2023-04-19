@@ -1,6 +1,6 @@
 import { type ChangeEvent } from 'react';
 
-interface Props {
+export interface CheckboxInputProps {
   disabled?: boolean;
   id: string;
   label: string;
@@ -8,13 +8,13 @@ interface Props {
   value: boolean;
 }
 
-export default function CheckboxInput({
+export function CheckboxInput({
   disabled = false,
   id,
   label,
   onChange: onChangeProp,
   value,
-}: Props) {
+}: CheckboxInputProps) {
   function onChange(event: ChangeEvent<HTMLInputElement>) {
     const {
       target: { checked },
