@@ -12,6 +12,7 @@ import RecentObservationsRegion from './pages/obs/RecentObservationsRegion';
 import RegionInfo from './pages/ref/region/RegionInfo';
 import RegionalStatsOnDate from './pages/product/RegionalStatsOnDate';
 import Root from './pages/Root';
+import type RouteName from './types/RouteName';
 import SpeciesListRegion from './pages/product/SpeciesListRegion';
 import SubregionList from './pages/ref/region/SubregionList';
 import TaxaLocaleCodes from './pages/ref/taxonomy/TaxaLocaleCodes';
@@ -20,7 +21,9 @@ import TaxonomicGroups from './pages/ref/taxonomy/TaxonomicGroups';
 import TaxonomyVersions from './pages/ref/taxonomy/TaxonomyVersions';
 import Top100Contributors from './pages/product/Top100Contributors';
 
-const ROUTES: RouteObject[] = [
+const ROUTES: [
+  RouteObject & { children: Array<RouteObject & { path: RouteName }> }
+] = [
   {
     path: '',
     element: <Root />,
