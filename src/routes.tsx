@@ -33,7 +33,7 @@ const ROUTES: [
         element: <AdjacentRegions />,
       },
       {
-        path: 'checklist-feed-on-date',
+        path: 'checklist-feed',
         element: <ChecklistFeedOnDate />,
       },
       {
@@ -53,7 +53,7 @@ const ROUTES: [
         element: <RecentNotableObservationsRegion />,
       },
       {
-        path: 'recent-observations-of-species-in-region',
+        path: 'recent-observations-species-region',
         element: <RecentObservationsOfSpeciesInRegion />,
       },
       {
@@ -69,7 +69,7 @@ const ROUTES: [
         element: <RegionInfo />,
       },
       {
-        path: 'region-stats-on-date',
+        path: 'region-stats',
         element: <RegionalStatsOnDate />,
       },
       {
