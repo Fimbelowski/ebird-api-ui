@@ -1,16 +1,16 @@
 import { type RouteObject } from 'react-router-dom';
 
 import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
-import ChecklistFeedOnDate from './pages/product/ChecklistFeedOnDate';
+import ChecklistFeed from './pages/product/ChecklistFeed';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
 import HotspotsNearby from './pages/ref/hotspot/HotSpotsNearby';
 import HotspotsRegion from './pages/ref/hotspot/HotspotsRegion';
 import RecentChecklists from './pages/obs/RecentChecklists';
 import RecentNotableObservationsRegion from './pages/obs/RecentNotableObservationsRegion';
-import RecentObservationsOfSpeciesInRegion from './pages/obs/RecentObservationsOfSpeciesInRegion';
+import RecentObservationsSpeciesRegion from './pages/obs/RecentObservationsSpeciesRegion';
 import RecentObservationsRegion from './pages/obs/RecentObservationsRegion';
 import RegionInfo from './pages/ref/region/RegionInfo';
-import RegionalStatsOnDate from './pages/product/RegionalStatsOnDate';
+import RegionStats from './pages/product/RegionStats';
 import Root from './pages/Root';
 import type RouteName from './types/RouteName';
 import SpeciesListRegion from './pages/product/SpeciesListRegion';
@@ -34,7 +34,7 @@ const ROUTES: [
       },
       {
         path: 'checklist-feed',
-        element: <ChecklistFeedOnDate />,
+        element: <ChecklistFeed />,
       },
       {
         path: 'hotspot-info',
@@ -54,7 +54,7 @@ const ROUTES: [
       },
       {
         path: 'recent-observations-species-region',
-        element: <RecentObservationsOfSpeciesInRegion />,
+        element: <RecentObservationsSpeciesRegion />,
       },
       {
         path: 'recent-observations-region',
@@ -70,7 +70,7 @@ const ROUTES: [
       },
       {
         path: 'region-stats',
-        element: <RegionalStatsOnDate />,
+        element: <RegionStats />,
       },
       {
         path: 'species-list-region',

@@ -11,7 +11,7 @@ import LocationTextarea from '../../components/LocationTextarea';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import useEbirdApi from '../../hooks/useEbirdApi';
 
-export default function RecentObservationsOfSpeciesInRegion() {
+export default function RecentObservationsSpeciesRegion() {
   const { getRecentObservationsOfSpeciesInRegion } = useEbirdApi();
 
   const [back, setBack] = useState(14);
