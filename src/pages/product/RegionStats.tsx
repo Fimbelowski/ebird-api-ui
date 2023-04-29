@@ -12,7 +12,7 @@ import {
 } from '../../components/Table';
 import useEbirdApi from '../../hooks/useEbirdApi';
 
-export default function RegionalStatsOnDate() {
+export default function RegionStats() {
   const { getRegionStatsOnDate } = useEbirdApi();
 
   const [date, setDate] = useState<Date>();

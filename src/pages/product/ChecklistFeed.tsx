@@ -8,7 +8,7 @@ import { NumberInput } from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select';
 import useEbirdApi from '../../hooks/useEbirdApi';
 
-export default function ChecklistFeedOnDate() {
+export default function ChecklistFeed() {
   const { getChecklistFeedOnDate } = useEbirdApi();
 
   const [date, setDate] = useState<Date>();

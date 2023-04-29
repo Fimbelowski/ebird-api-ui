@@ -1,17 +1,18 @@
 import { type RouteObject } from 'react-router-dom';
 
 import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
-import ChecklistFeedOnDate from './pages/product/ChecklistFeedOnDate';
+import ChecklistFeed from './pages/product/ChecklistFeed';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
 import HotspotsNearby from './pages/ref/hotspot/HotSpotsNearby';
 import HotspotsRegion from './pages/ref/hotspot/HotspotsRegion';
 import RecentChecklists from './pages/obs/RecentChecklists';
 import RecentNotableObservationsRegion from './pages/obs/RecentNotableObservationsRegion';
-import RecentObservationsOfSpeciesInRegion from './pages/obs/RecentObservationsOfSpeciesInRegion';
+import RecentObservationsSpeciesRegion from './pages/obs/RecentObservationsSpeciesRegion';
 import RecentObservationsRegion from './pages/obs/RecentObservationsRegion';
 import RegionInfo from './pages/ref/region/RegionInfo';
-import RegionalStatsOnDate from './pages/product/RegionalStatsOnDate';
+import RegionStats from './pages/product/RegionStats';
 import Root from './pages/Root';
+import type RouteName from './types/RouteName';
 import SpeciesListRegion from './pages/product/SpeciesListRegion';
 import SubregionList from './pages/ref/region/SubregionList';
 import TaxaLocaleCodes from './pages/ref/taxonomy/TaxaLocaleCodes';
@@ -20,7 +21,9 @@ import TaxonomicGroups from './pages/ref/taxonomy/TaxonomicGroups';
 import TaxonomyVersions from './pages/ref/taxonomy/TaxonomyVersions';
 import Top100Contributors from './pages/product/Top100Contributors';
 
-const ROUTES: RouteObject[] = [
+const ROUTES: [
+  RouteObject & { children: Array<RouteObject & { path: RouteName }> }
+] = [
   {
     path: '',
     element: <Root />,
@@ -30,8 +33,8 @@ const ROUTES: RouteObject[] = [
         element: <AdjacentRegions />,
       },
       {
-        path: 'checklist-feed-on-date',
-        element: <ChecklistFeedOnDate />,
+        path: 'checklist-feed',
+        element: <ChecklistFeed />,
       },
       {
         path: 'hotspot-info',
@@ -50,8 +53,8 @@ const ROUTES: RouteObject[] = [
         element: <RecentNotableObservationsRegion />,
       },
       {
-        path: 'recent-observations-of-species-in-region',
-        element: <RecentObservationsOfSpeciesInRegion />,
+        path: 'recent-observations-species-region',
+        element: <RecentObservationsSpeciesRegion />,
       },
       {
         path: 'recent-observations-region',
@@ -66,8 +69,8 @@ const ROUTES: RouteObject[] = [
         element: <RegionInfo />,
       },
       {
-        path: 'region-stats-on-date',
-        element: <RegionalStatsOnDate />,
+        path: 'region-stats',
+        element: <RegionStats />,
       },
       {
         path: 'species-list-region',
