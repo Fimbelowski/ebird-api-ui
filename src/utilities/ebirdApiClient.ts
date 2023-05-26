@@ -52,12 +52,10 @@ function buildQueryString(queryParams: QueryParam[]) {
   return `?${queryString}`;
 }
 
-export default async function makeRequest({
-  endpoint,
-  apiKey = '',
-  urlParams = [],
-  queryParams = [],
-}: EbirdApiParams) {
+export default async function makeRequest(
+  endpoint: string,
+  { apiKey = '', urlParams = [], queryParams = [] }: EbirdApiParams
+) {
   return await fetch(
     `${BASE_URL}${buildEndpointString(endpoint, urlParams)}${buildQueryString(
       queryParams
