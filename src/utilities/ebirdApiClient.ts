@@ -57,18 +57,18 @@ export default async function makeRequest(
   });
 }
 
-function mergeUrlParams(endpoint: string, urlParams: UrlParam[] = []) {
-  let builtEndpoint = endpoint;
+function mergeUrlParams(endpoint: string, urlParams: UrlParam[]) {
+  let mergedUrl = endpoint;
 
   urlParams.forEach(({ name, value }) => {
     const mergeTag = `{{${name}}}`;
 
-    if (!builtEndpoint.includes(mergeTag)) {
+    if (!mergedUrl.includes(mergeTag)) {
       throw Error(`Merge tag "${mergeTag}" not found.`);
     }
 
-    builtEndpoint = builtEndpoint.replace(`{{${name}}}`, value.toString());
+    mergedUrl = mergedUrl.replace(`{{${name}}}`, value.toString());
   });
 
-  return builtEndpoint;
+  return mergedUrl;
 }
