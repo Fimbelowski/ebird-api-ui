@@ -3,22 +3,6 @@ import type QueryParam from '../types/QueryParam';
 import type QueryParamValue from '../types/QueryParamValue';
 import type UrlParam from '../types/UrlParam';
 
-function buildEndpointString(endpoint: string, urlParams: UrlParam[] = []) {
-  let builtEndpoint = endpoint;
-
-  urlParams.forEach(({ name, value }) => {
-    const mergeTag = `{{${name}}}`;
-
-    if (!builtEndpoint.includes(mergeTag)) {
-      throw Error(`Merge tag "${mergeTag}" not found.`);
-    }
-
-    builtEndpoint = builtEndpoint.replace(`{{${name}}}`, value.toString());
-  });
-
-  return builtEndpoint;
-}
-
 function buildQueryString(queryParams: QueryParam[]) {
   if (queryParams.length === 0) {
     return '';
@@ -59,7 +43,7 @@ export default async function makeRequest(
   let requestUrl = `https://api.ebird.org/v2/${endpoint}`;
 
   if (urlParams !== undefined) {
-    requestUrl = buildEndpointString(requestUrl, urlParams);
+    requestUrl = mergeUrlParams(requestUrl, urlParams);
   }
 
   if (queryParams !== undefined) {
@@ -71,4 +55,20 @@ export default async function makeRequest(
       'x-ebirdapitoken': apiKey ?? '',
     },
   });
+}
+
+function mergeUrlParams(endpoint: string, urlParams: UrlParam[] = []) {
+  let builtEndpoint = endpoint;
+
+  urlParams.forEach(({ name, value }) => {
+    const mergeTag = `{{${name}}}`;
+
+    if (!builtEndpoint.includes(mergeTag)) {
+      throw Error(`Merge tag "${mergeTag}" not found.`);
+    }
+
+    builtEndpoint = builtEndpoint.replace(`{{${name}}}`, value.toString());
+  });
+
+  return builtEndpoint;
 }
