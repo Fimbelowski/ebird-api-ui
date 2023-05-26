@@ -39,10 +39,10 @@ export default function useEbirdApi() {
 
   async function baseRequest<T>(
     endpoint: string,
-    { queryParams = [], urlParams = [] }: Omit<EbirdApiParams, 'apiKey'>,
+    options: Omit<EbirdApiParams, 'apiKey'> = {},
     csvOptions?: CsvOptions
   ): EbirdApiClientResponse<T> {
-    return await makeRequest(endpoint, { apiKey, queryParams, urlParams })
+    return await makeRequest(endpoint, { ...options, apiKey })
       .then(async (response) => await response.text())
       .then((rawResponse) => {
         let parsedResponse: T;
