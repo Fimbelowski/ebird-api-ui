@@ -3,8 +3,6 @@ import type QueryParam from '../types/QueryParam';
 import type QueryParamValue from '../types/QueryParamValue';
 import type UrlParam from '../types/UrlParam';
 
-const BASE_URL = 'https://api.ebird.org/v2/';
-
 function buildEndpointString(endpoint: string, urlParams: UrlParam[] = []) {
   let builtEndpoint = endpoint;
 
@@ -54,16 +52,23 @@ function buildQueryString(queryParams: QueryParam[]) {
 
 export default async function makeRequest(
   endpoint: string,
-  { apiKey = '', urlParams = [], queryParams = [] }: EbirdApiParams
+  options: EbirdApiParams = {}
 ) {
-  return await fetch(
-    `${BASE_URL}${buildEndpointString(endpoint, urlParams)}${buildQueryString(
-      queryParams
-    )}`,
-    {
-      headers: {
-        'x-ebirdapitoken': apiKey,
-      },
-    }
-  );
+  const { apiKey, queryParams, urlParams } = options;
+
+  let requestUrl = `https://api.ebird.org/v2/${endpoint}`;
+
+  if (urlParams !== undefined) {
+    requestUrl = buildEndpointString(requestUrl, urlParams);
+  }
+
+  if (queryParams !== undefined) {
+    requestUrl += buildQueryString(queryParams);
+  }
+
+  return await fetch(requestUrl, {
+    headers: {
+      'x-ebirdapitoken': apiKey ?? '',
+    },
+  });
 }
