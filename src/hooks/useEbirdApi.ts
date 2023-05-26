@@ -505,11 +505,7 @@ export default function useEbirdApi() {
   }
 
   async function getTaxaLocaleCodes() {
-    // TODO: Shouldn't need two arguments here.
-    return await baseRequest<EbirdTaxaLocaleCode[]>(
-      'ref/taxa-locales/ebird',
-      {}
-    );
+    return await baseRequest<EbirdTaxaLocaleCode[]>('ref/taxa-locales/ebird');
   }
 
   async function getTaxonomicForms(speciesCode: string) {
@@ -554,10 +550,7 @@ export default function useEbirdApi() {
   }
 
   async function getTaxonomyVersions() {
-    return await baseRequest<EbirdTaxonomyVersion[]>(
-      'ref/taxonomy/versions',
-      {}
-    );
+    return await baseRequest<EbirdTaxonomyVersion[]>('ref/taxonomy/versions');
   }
 
   async function getTop100(
