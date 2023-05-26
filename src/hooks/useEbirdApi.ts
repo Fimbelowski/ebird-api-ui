@@ -38,14 +38,11 @@ export default function useEbirdApi() {
   const { apiKey } = useApiKey();
 
   async function baseRequest<T>(
-    {
-      endpoint,
-      queryParams = [],
-      urlParams = [],
-    }: Omit<EbirdApiParams, 'apiKey'>,
+    endpoint: string,
+    { queryParams = [], urlParams = [] }: Omit<EbirdApiParams, 'apiKey'>,
     csvOptions?: CsvOptions
   ): EbirdApiClientResponse<T> {
-    return await makeRequest({ endpoint, apiKey, queryParams, urlParams })
+    return await makeRequest(endpoint, { apiKey, queryParams, urlParams })
       .then(async (response) => await response.text())
       .then((rawResponse) => {
         let parsedResponse: T;
@@ -80,8 +77,7 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest<EbirdRegion[]>({
-      endpoint: 'ref/adjacent/{{regionCode}}',
+    return await baseRequest<EbirdRegion[]>('ref/adjacent/{{regionCode}}', {
       urlParams,
     });
   }
@@ -113,11 +109,13 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest<EbirdChecklist[]>({
-      endpoint: 'product/lists/{{regionCode}}/{{y}}/{{m}}/{{d}}',
-      urlParams,
-      queryParams,
-    });
+    return await baseRequest<EbirdChecklist[]>(
+      'product/lists/{{regionCode}}/{{y}}/{{m}}/{{d}}',
+      {
+        urlParams,
+        queryParams,
+      }
+    );
   }
 
   async function getHotspotInfo(locId: string) {
@@ -128,8 +126,7 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest<EbirdLocation>({
-      endpoint: 'ref/hotspot/info/{{locId}}',
+    return await baseRequest<EbirdLocation>('ref/hotspot/info/{{locId}}', {
       urlParams,
     });
   }
@@ -167,8 +164,8 @@ export default function useEbirdApi() {
     ];
 
     return await baseRequest<EbirdHotspot[]>(
+      'ref/hotspot/geo',
       {
-        endpoint: 'ref/hotspot/geo',
         queryParams,
       },
       {
@@ -193,8 +190,7 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest<EbirdChecklist[]>({
-      endpoint: 'product/lists/{{regionCode}}',
+    return await baseRequest<EbirdChecklist[]>('product/lists/{{regionCode}}', {
       queryParams,
       urlParams,
     });
@@ -247,11 +243,13 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest<EbirdObservation[]>({
-      endpoint: 'data/obs/{{regionCode}}/recent/notable',
-      urlParams,
-      queryParams,
-    });
+    return await baseRequest<EbirdObservation[]>(
+      'data/obs/{{regionCode}}/recent/notable',
+      {
+        urlParams,
+        queryParams,
+      }
+    );
   }
 
   async function getRecentObservationsInARegion(
@@ -304,11 +302,13 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest<EbirdObservation[]>({
-      endpoint: 'data/obs/{{regionCode}}/recent',
-      urlParams,
-      queryParams,
-    });
+    return await baseRequest<EbirdObservation[]>(
+      'data/obs/{{regionCode}}/recent',
+      {
+        urlParams,
+        queryParams,
+      }
+    );
   }
 
   async function getRecentObservationsOfSpeciesInRegion(
@@ -363,11 +363,13 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest<EbirdObservation[]>({
-      endpoint: 'data/obs/{{regionCode}}/recent/{{speciesCode}}',
-      urlParams,
-      queryParams,
-    });
+    return await baseRequest<EbirdObservation[]>(
+      'data/obs/{{regionCode}}/recent/{{speciesCode}}',
+      {
+        urlParams,
+        queryParams,
+      }
+    );
   }
 
   async function getRegionHotspots(
@@ -395,8 +397,8 @@ export default function useEbirdApi() {
     ];
 
     return await baseRequest<EbirdHotspot[]>(
+      'ref/hotspot/{{regionCode}}',
       {
-        endpoint: 'ref/hotspot/{{regionCode}}',
         urlParams,
         queryParams,
       },
@@ -429,11 +431,13 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest<EbirdRegionInfo>({
-      endpoint: 'ref/region/info/{{regionCode}}',
-      urlParams,
-      queryParams,
-    });
+    return await baseRequest<EbirdRegionInfo>(
+      'ref/region/info/{{regionCode}}',
+      {
+        urlParams,
+        queryParams,
+      }
+    );
   }
 
   async function getRegionStatsOnDate(regionCode: string, date: Date) {
@@ -445,10 +449,12 @@ export default function useEbirdApi() {
       ...dateToUrlParamArray(date),
     ];
 
-    return await baseRequest<EbirdRegionStats>({
-      endpoint: 'product/stats/{{regionCode}}/{{y}}/{{m}}/{{d}}',
-      urlParams,
-    });
+    return await baseRequest<EbirdRegionStats>(
+      'product/stats/{{regionCode}}/{{y}}/{{m}}/{{d}}',
+      {
+        urlParams,
+      }
+    );
   }
 
   async function getSpeciesListForRegion(regionCode: string) {
@@ -459,8 +465,7 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest<string[]>({
-      endpoint: 'product/spplist/{{regionCode}}',
+    return await baseRequest<string[]>('product/spplist/{{regionCode}}', {
       urlParams,
     });
   }
@@ -490,8 +495,8 @@ export default function useEbirdApi() {
     ];
 
     return await baseRequest<EbirdRegion[]>(
+      'ref/region/list/{{regionType}}/{{parentRegionCode}}',
       {
-        endpoint: 'ref/region/list/{{regionType}}/{{parentRegionCode}}',
         urlParams,
         queryParams,
       },
@@ -500,9 +505,11 @@ export default function useEbirdApi() {
   }
 
   async function getTaxaLocaleCodes() {
-    return await baseRequest<EbirdTaxaLocaleCode[]>({
-      endpoint: 'ref/taxa-locales/ebird',
-    });
+    // TODO: Shouldn't need two arguments here.
+    return await baseRequest<EbirdTaxaLocaleCode[]>(
+      'ref/taxa-locales/ebird',
+      {}
+    );
   }
 
   async function getTaxonomicForms(speciesCode: string) {
@@ -513,8 +520,7 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest<string[]>({
-      endpoint: 'ref/taxon/forms/{{speciesCode}}',
+    return await baseRequest<string[]>('ref/taxon/forms/{{speciesCode}}', {
       urlParams,
     });
   }
@@ -538,17 +544,20 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest<EbirdTaxonomicGroup[]>({
-      endpoint: 'ref/sppgroup/{{speciesGrouping}}',
-      urlParams,
-      queryParams,
-    });
+    return await baseRequest<EbirdTaxonomicGroup[]>(
+      'ref/sppgroup/{{speciesGrouping}}',
+      {
+        urlParams,
+        queryParams,
+      }
+    );
   }
 
   async function getTaxonomyVersions() {
-    return await baseRequest<EbirdTaxonomyVersion[]>({
-      endpoint: 'ref/taxonomy/versions',
-    });
+    return await baseRequest<EbirdTaxonomyVersion[]>(
+      'ref/taxonomy/versions',
+      {}
+    );
   }
 
   async function getTop100(
@@ -577,11 +586,13 @@ export default function useEbirdApi() {
       },
     ];
 
-    return await baseRequest<EbirdContributor[]>({
-      endpoint: 'product/top100/{{regionCode}}/{{y}}/{{m}}/{{d}}',
-      urlParams,
-      queryParams,
-    });
+    return await baseRequest<EbirdContributor[]>(
+      'product/top100/{{regionCode}}/{{y}}/{{m}}/{{d}}',
+      {
+        urlParams,
+        queryParams,
+      }
+    );
   }
 
   return {
