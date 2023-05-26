@@ -70,5 +70,9 @@ function mergeUrlParams(endpoint: string, urlParams: UrlParam[]) {
     mergedUrl = mergedUrl.replace(`{{${name}}}`, value.toString());
   });
 
+  if (/{{.*}}/.test(mergedUrl)) {
+    throw Error(`Unresolved URL params within ${mergedUrl}`);
+  }
+
   return mergedUrl;
 }
