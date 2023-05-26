@@ -1,11 +1,18 @@
-export default interface EbirdHotspot {
-  countryCode: string;
-  lat: number;
+import type EbirdLocation from './EbirdLocation';
+
+interface EbirdHotspot
+  extends Pick<
+    EbirdLocation,
+    | 'countryCode'
+    | 'lat'
+    | 'lng'
+    | 'locId'
+    | 'locName'
+    | 'subnational1Code'
+    | 'subnational2Code'
+  > {
   latestObsDt?: string;
-  lng: number;
-  locId: string;
-  locName: string;
   numSpeciesAllTime?: number;
-  subnational1Code: string;
-  subnational2Code: string;
 }
+
+export default EbirdHotspot;
