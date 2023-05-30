@@ -5,7 +5,7 @@ import type UrlParam from '../types/UrlParam';
 
 function buildQueryString(queryParams: QueryParam[]) {
   if (queryParams.length === 0) {
-    return '';
+    throw Error('No query params provided.');
   }
 
   const queryString = queryParams
@@ -58,6 +58,10 @@ export default async function makeRequest(
 }
 
 function mergeUrlParams(endpoint: string, urlParams: UrlParam[]) {
+  if (urlParams.length === 0) {
+    throw Error('No URL params provided.');
+  }
+
   let mergedUrl = endpoint;
 
   urlParams.forEach(({ name, value }) => {
