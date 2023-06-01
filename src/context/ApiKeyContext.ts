@@ -5,7 +5,7 @@ interface IApiKeyContext {
   setApiKey: (newValue: string) => void;
 }
 
-export const ApiKeyContext = createContext<IApiKeyContext>({
+export default createContext<IApiKeyContext>({
   apiKey: '',
   setApiKey: () => {},
 });
