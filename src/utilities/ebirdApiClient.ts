@@ -1,4 +1,8 @@
-import type EbirdApiParams from '../types/EbirdApiParams';
+export interface EbirdApiParams {
+  apiKey?: string;
+  queryParams?: QueryParam[];
+  urlParams?: UrlParam[];
+}
 
 export interface QueryParam {
   defaultValue?: NonNullable<QueryParamValue>;

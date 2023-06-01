@@ -1,6 +1,5 @@
 import csvToArray from '../utilities/csvToArray';
 import dateToUrlParamArray from '../utilities/dateToUrlParamArray';
-import type EbirdApiParams from '../types/EbirdApiParams';
 import type EbirdChecklist from '../types/EbirdChecklist';
 import type EbirdChecklistSortKey from '../types/EbirdChecklistSortKey';
 import type EbirdContributor from '../types/EbirdContributor';
@@ -24,6 +23,7 @@ import type EbirdTaxonomyCategory from '../types/EbirdTaxonomyCategory';
 import EBIRD_HOTSPOT_CSV_HEADERS from '../utilities/ebirdHotspotCsvHeaders';
 import isJson from '../utilities/isJson';
 import {
+  type EbirdApiParams,
   makeRequest,
   type QueryParam,
   type UrlParam,
