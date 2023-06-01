@@ -1,7 +1,11 @@
 import type EbirdApiParams from '../types/EbirdApiParams';
 import type QueryParam from '../types/QueryParam';
 import type QueryParamValue from '../types/QueryParamValue';
-import type UrlParam from '../types/UrlParam';
+
+export interface UrlParam {
+  name: string;
+  value: string | number;
+}
 
 function buildQueryString(queryParams: QueryParam[]) {
   if (queryParams.length === 0) {
@@ -34,7 +38,7 @@ function buildQueryString(queryParams: QueryParam[]) {
   return `?${queryString}`;
 }
 
-export default async function makeRequest(
+export async function makeRequest(
   endpoint: string,
   options: EbirdApiParams = {}
 ) {
