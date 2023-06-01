@@ -3,7 +3,6 @@
 @import 'base/reset';
 @import 'base/typography';
 
-@import 'layout/BasePageList';
 @import 'layout/Header';
 @import 'layout/HotspotsNearby';
 @import 'layout/HotspotsRegion';
@@ -12,6 +11,7 @@
 @import '../components/ApiKeyInput/ApiKeyInput';
 @import '../components/BaseInput/BaseInput';
 @import '../components/BasePage/BasePage';
+@import '../components/BasePageList/BasePageList';
 @import '../components/Button/Button';
 @import '../components/CheckboxInput/CheckboxInput';
 @import '../components/Details/Details';

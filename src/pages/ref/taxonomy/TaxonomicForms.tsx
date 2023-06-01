@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import BasePageList from '../../../components/BasePageList';
+import BasePageList from '../../../components/BasePageList/BasePageList';
 import EbirdSpeciesCodeInput from '../../../components/EbirdSpeciesCodeInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 

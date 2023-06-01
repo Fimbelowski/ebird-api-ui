@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { BasePage, type BasePageProps } from './BasePage/BasePage';
-import Details from './Details/Details';
+import { BasePage, type BasePageProps } from '../BasePage/BasePage';
+import Details from '../Details/Details';
 
 type Props = Omit<BasePageProps<string[]>, 'onLoad' | 'resultsContent'>;
 
