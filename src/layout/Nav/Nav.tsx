@@ -1,5 +1,5 @@
-import NavMenu from './NavMenu/NavMenu';
-import type NavMenuItem from '../types/NavMenuItem';
+import NavMenu from '../../components/NavMenu/NavMenu';
+import type NavMenuItem from '../../types/NavMenuItem';
 
 export default function Nav() {
   const geographyMenuItems: NavMenuItem[] = [
