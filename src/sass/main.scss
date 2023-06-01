@@ -4,9 +4,10 @@
 @import 'base/typography';
 
 @import '../layout/Header/Header';
-@import 'layout/HotspotsNearby';
 @import 'layout/HotspotsRegion';
 @import '../layout/Nav/Nav';
+
+@import '../pages/ref/hotspot/HotspotNearby/HotspotsNearby';
 
 @import '../components/ApiKeyInput/ApiKeyInput';
 @import '../components/BaseInput/BaseInput';

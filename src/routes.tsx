@@ -3,7 +3,7 @@ import { type RouteObject } from 'react-router-dom';
 import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
 import ChecklistFeed from './pages/product/ChecklistFeed';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
-import HotspotsNearby from './pages/ref/hotspot/HotSpotsNearby';
+import HotspotsNearby from './pages/ref/hotspot/HotspotNearby/HotSpotsNearby';
 import HotspotsRegion from './pages/ref/hotspot/HotspotsRegion';
 import RecentChecklists from './pages/obs/RecentChecklists';
 import RecentNotableObservationsRegion from './pages/obs/RecentNotableObservationsRegion';
