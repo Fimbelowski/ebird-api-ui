@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-import classNames from '../utilities/classNames';
-import type NavMenuItem from '../types/NavMenuItem';
+import classNames from '../../utilities/classNames';
+import type NavMenuItem from '../../types/NavMenuItem';
 
 interface Props {
   items: NavMenuItem[];

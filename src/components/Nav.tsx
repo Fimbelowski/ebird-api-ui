@@ -1,4 +1,4 @@
-import NavMenu from './NavMenu';
+import NavMenu from './NavMenu/NavMenu';
 import type NavMenuItem from '../types/NavMenuItem';
 
 export default function Nav() {
