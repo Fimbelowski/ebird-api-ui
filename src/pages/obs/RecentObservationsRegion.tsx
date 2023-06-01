@@ -7,7 +7,7 @@ import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHots
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import type EbirdTaxonomyCategory from '../../types/EbirdTaxonomyCategory';
 import EbirdTaxonomyCategorySelect from '../../components/EbirdTaxonomyCategorySelect';
-import LocaleSelect from '../../components/LocaleSelect';
+import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
 import LocationTextarea from '../../components/LocationTextarea';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import useEbirdApi from '../../hooks/useEbirdApi';
