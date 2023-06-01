@@ -43,18 +43,18 @@ export default function Nav() {
     },
     {
       label: 'Recent Observations of a Species in a Region',
-      path: 'recent-observations-of-species-in-region',
+      path: 'recent-observations-species-region',
     },
   ];
 
   const productMenuItems: NavMenuItem[] = [
     {
       label: 'Checklist Feed on a Date',
-      path: 'checklist-feed-on-date',
+      path: 'checklist-feed',
     },
     {
       label: 'Regional Statistics on a Date',
-      path: 'region-stats-on-date',
+      path: 'region-stats',
     },
     {
       label: 'Species List for a Region',
