@@ -8,7 +8,7 @@ import type EbirdRankedBy from '../../types/EbirdRankedBy';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import getOrdinalNumber from '../../utilities/getOrdinalNumber';
 import { NumberInput } from '../../components/NumberInput';
-import { Select, type SelectOptionArray } from '../../components/Select';
+import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import useEbirdApi from '../../hooks/useEbirdApi';
 
 export default function Top100() {

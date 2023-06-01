@@ -3,7 +3,10 @@ import { useState } from 'react';
 import BasePageTableEbirdRegion from '../../../components/BasePageTableEbirdRegion';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import type EbirdRegionType from '../../../types/EbirdRegionType';
-import { Select, type SelectOptionArray } from '../../../components/Select';
+import {
+  Select,
+  type SelectOptionArray,
+} from '../../../components/Select/Select';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 import useEbirdFormat from '../../../hooks/useEbirdFormat';
 

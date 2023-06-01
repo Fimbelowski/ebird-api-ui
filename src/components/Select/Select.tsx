@@ -1,8 +1,8 @@
 import { type ChangeEvent } from 'react';
 
-import classNames from '../utilities/classNames';
-import getValueFromChangeEvent from '../utilities/getValueFromChangeEvent';
-import useLoading from '../hooks/useLoading';
+import classNames from '../../utilities/classNames';
+import getValueFromChangeEvent from '../../utilities/getValueFromChangeEvent';
+import useLoading from '../../hooks/useLoading';
 
 interface SelectOption<T> {
   label: string;

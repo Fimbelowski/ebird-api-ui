@@ -5,7 +5,7 @@ import DateInput from '../../components/DateInput';
 import type EbirdChecklistSortKey from '../../types/EbirdChecklistSortKey';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import { NumberInput } from '../../components/NumberInput';
-import { Select, type SelectOptionArray } from '../../components/Select';
+import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import useEbirdApi from '../../hooks/useEbirdApi';
 
 export default function ChecklistFeed() {

@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 
 import Button from '../Button/Button';
 import LocaleOptionsContext from '../../context/LocaleOptionsContext';
-import { Select, type SelectProps } from '../Select';
+import { Select, type SelectProps } from '../Select/Select';
 import Tooltip from '../Tooltip';
 import useApiKey from '../../hooks/useApiKey';
 import useEbirdApi from '../../hooks/useEbirdApi';

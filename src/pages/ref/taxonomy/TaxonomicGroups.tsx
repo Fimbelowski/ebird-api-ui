@@ -4,7 +4,10 @@ import { BasePageTable, type Tables } from '../../../components/BasePageTable';
 import type EbirdTaxonomicGroup from '../../../types/EbirdTaxonomicGroup';
 import type EbirdGroupNameLocale from '../../../types/EbirdGroupNameLocale';
 import type EbirdSpeciesGrouping from '../../../types/EbirdSpeciesGrouping';
-import { Select, type SelectOptionArray } from '../../../components/Select';
+import {
+  Select,
+  type SelectOptionArray,
+} from '../../../components/Select/Select';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 
 export default function TaxonomicGroups() {

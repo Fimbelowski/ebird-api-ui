@@ -5,7 +5,10 @@ import Details from '../../../components/Details/Details';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import type EbirdRegionInfo from '../../../types/EbirdRegionInfo';
 import type EbirdRegionNameFormat from '../../../types/EbirdRegionNameFormat';
-import { Select, type SelectOptionArray } from '../../../components/Select';
+import {
+  Select,
+  type SelectOptionArray,
+} from '../../../components/Select/Select';
 import {
   Table,
   type TableCellArray,

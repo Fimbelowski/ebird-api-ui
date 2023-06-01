@@ -1,5 +1,9 @@
 import type EbirdTaxonomyCategory from '../types/EbirdTaxonomyCategory';
-import { Select, type SelectProps, type SelectOptionArray } from './Select';
+import {
+  Select,
+  type SelectProps,
+  type SelectOptionArray,
+} from './Select/Select';
 
 type Props = Omit<
   SelectProps<EbirdTaxonomyCategory>,
