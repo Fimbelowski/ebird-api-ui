@@ -23,8 +23,11 @@ import type EbirdTaxonomyVersion from '../types/EbirdTaxonomyVersion';
 import type EbirdTaxonomyCategory from '../types/EbirdTaxonomyCategory';
 import EBIRD_HOTSPOT_CSV_HEADERS from '../utilities/ebirdHotspotCsvHeaders';
 import isJson from '../utilities/isJson';
-import { makeRequest, type UrlParam } from '../utilities/ebirdApiClient';
-import type QueryParam from '../types/QueryParam';
+import {
+  makeRequest,
+  type QueryParam,
+  type UrlParam,
+} from '../utilities/ebirdApiClient';
 import useApiKey from './useApiKey';
 
 interface CsvOptions {
