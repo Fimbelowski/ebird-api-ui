@@ -1,7 +1,7 @@
 import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 
 import ApiKeyInput from './ApiKeyInput/ApiKeyInput';
-import Details from './Details';
+import Details from './Details/Details';
 import type EbirdApiClientResponse from '../types/EbirdApiClientResponse';
 import Form from './Form';
 import useLoading from '../hooks/useLoading';
