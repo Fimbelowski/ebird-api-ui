@@ -1,11 +1,11 @@
 import { createContext } from 'react';
 
-interface IApiKeyContext {
+interface ApiKeyContext {
   apiKey: string;
   setApiKey: (newValue: string) => void;
 }
 
-export default createContext<IApiKeyContext>({
+export default createContext<ApiKeyContext>({
   apiKey: '',
   setApiKey: () => {},
 });
