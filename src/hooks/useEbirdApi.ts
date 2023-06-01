@@ -1,6 +1,5 @@
 import csvToArray from '../utilities/csvToArray';
 import dateToUrlParamArray from '../utilities/dateToUrlParamArray';
-import type EbirdApiClientResponse from '../types/EbirdApiClientResponse';
 import type EbirdApiParams from '../types/EbirdApiParams';
 import type EbirdChecklist from '../types/EbirdChecklist';
 import type EbirdChecklistSortKey from '../types/EbirdChecklistSortKey';
@@ -34,6 +33,11 @@ interface CsvOptions {
   ignoreFirstLine?: boolean;
 }
 
+export type EbirdApiParsedResponse<T> = Promise<{
+  parsedResponse: T;
+  rawResponse: string;
+}>;
+
 export default function useEbirdApi() {
   const { apiKey } = useApiKey();
 
@@ -41,7 +45,7 @@ export default function useEbirdApi() {
     endpoint: string,
     options: Omit<EbirdApiParams, 'apiKey'> = {},
     csvOptions?: CsvOptions
-  ): EbirdApiClientResponse<T> {
+  ): EbirdApiParsedResponse<T> {
     return await makeRequest(endpoint, { ...options, apiKey })
       .then(async (response) => await response.text())
       .then((rawResponse) => {

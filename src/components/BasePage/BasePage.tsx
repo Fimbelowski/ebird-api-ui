@@ -3,14 +3,14 @@ import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 import ApiKeyInput from '../ApiKeyInput/ApiKeyInput';
 import Button from '../Button/Button';
 import Details from '../Details/Details';
-import type EbirdApiClientResponse from '../../types/EbirdApiClientResponse';
+import { type EbirdApiParsedResponse } from '../../hooks/useEbirdApi';
 import useLoading from '../../hooks/useLoading';
 
 export interface BasePageProps<T> {
   disableSubmit?: boolean;
   formContent?: ReactNode;
   onLoad: (results: T) => void;
-  onSubmit: () => EbirdApiClientResponse<T>;
+  onSubmit: () => EbirdApiParsedResponse<T>;
   requestOnMount?: boolean;
   requiresApiKey?: boolean;
   resultsContent?: ReactNode;
