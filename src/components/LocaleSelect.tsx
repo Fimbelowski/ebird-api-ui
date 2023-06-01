@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 
-import Button from './Button';
+import Button from './Button/Button';
 import LocaleOptionsContext from '../context/LocaleOptionsContext';
 import { Select, type SelectProps } from './Select';
 import Tooltip from './Tooltip';

@@ -1,6 +1,6 @@
 import { type FormEvent, type ReactNode } from 'react';
 
-import Button from './Button';
+import Button from './Button/Button';
 
 interface Props {
   children?: ReactNode;

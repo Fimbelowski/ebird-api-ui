@@ -1,6 +1,6 @@
 import { type MouseEvent, type ReactNode } from 'react';
 
-import classNames from '../utilities/classNames';
+import classNames from '../../utilities/classNames';
 
 interface Props {
   children?: ReactNode;
