@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { BasePage, type BasePageProps } from './BasePage';
+import { BasePage, type BasePageProps } from './BasePage/BasePage';
 import Details from './Details/Details';
 import { Table, type TableProps } from './Table/Table';
 

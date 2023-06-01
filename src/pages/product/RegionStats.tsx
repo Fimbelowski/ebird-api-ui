@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { BasePage } from '../../components/BasePage';
+import { BasePage } from '../../components/BasePage/BasePage';
 import DateInput from '../../components/DateInput';
 import Details from '../../components/Details/Details';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';

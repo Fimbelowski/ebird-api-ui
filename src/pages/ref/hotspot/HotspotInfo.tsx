@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { BasePage } from '../../../components/BasePage';
+import { BasePage } from '../../../components/BasePage/BasePage';
 import Details from '../../../components/Details/Details';
 import type EbirdLocation from '../../../types/EbirdLocation';
 import EbirdLocationTableDetailed from '../../../components/EbirdLocationTableDetailed';

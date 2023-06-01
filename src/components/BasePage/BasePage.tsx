@@ -1,10 +1,10 @@
 import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 
-import ApiKeyInput from './ApiKeyInput/ApiKeyInput';
-import Button from './Button/Button';
-import Details from './Details/Details';
-import type EbirdApiClientResponse from '../types/EbirdApiClientResponse';
-import useLoading from '../hooks/useLoading';
+import ApiKeyInput from '../ApiKeyInput/ApiKeyInput';
+import Button from '../Button/Button';
+import Details from '../Details/Details';
+import type EbirdApiClientResponse from '../../types/EbirdApiClientResponse';
+import useLoading from '../../hooks/useLoading';
 
 export interface BasePageProps<T> {
   disableSubmit?: boolean;
