@@ -1,11 +1,12 @@
 import type EbirdApiParams from '../types/EbirdApiParams';
-import type QueryParamValue from '../types/QueryParamValue';
 
 export interface QueryParam {
   defaultValue?: NonNullable<QueryParamValue>;
   name: string;
   value: QueryParamValue;
 }
+
+export type QueryParamValue = boolean | number | string | string[] | undefined;
 
 export interface UrlParam {
   name: string;
