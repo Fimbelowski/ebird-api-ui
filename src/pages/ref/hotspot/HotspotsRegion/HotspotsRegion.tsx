@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import BackInput from '../../../components/BaseInput/BackInput';
-import BasePageTableEbirdHotspot from '../../../components/BasePageTableEbirdHotspot';
-import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
-import type EbirdFormat from '../../../types/EbirdFormat';
-import FormatSelect from '../../../components/FormatSelect';
-import useEbirdApi from '../../../hooks/useEbirdApi';
+import BackInput from '../../../../components/BaseInput/BackInput';
+import BasePageTableEbirdHotspot from '../../../../components/BasePageTableEbirdHotspot';
+import EbirdRegionCodeInput from '../../../../components/EbirdRegionCodeInput';
+import type EbirdFormat from '../../../../types/EbirdFormat';
+import FormatSelect from '../../../../components/FormatSelect';
+import useEbirdApi from '../../../../hooks/useEbirdApi';
 
 export default function HotspotsRegion() {
   const { getRegionHotspots } = useEbirdApi();
