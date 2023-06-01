@@ -13,7 +13,7 @@ import {
   Table,
   type TableCellArray,
   type TableHeader,
-} from '../../../components/Table';
+} from '../../../components/Table/Table';
 import { TextInput } from '../../../components/TextInput';
 import useEbirdApi from '../../../hooks/useEbirdApi';
 

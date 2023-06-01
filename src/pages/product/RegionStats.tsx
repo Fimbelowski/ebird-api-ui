@@ -9,7 +9,7 @@ import {
   Table,
   type TableCellArray,
   type TableHeader,
-} from '../../components/Table';
+} from '../../components/Table/Table';
 import useEbirdApi from '../../hooks/useEbirdApi';
 
 export default function RegionStats() {

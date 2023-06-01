@@ -6,7 +6,7 @@ import {
 import type EbirdObservation from '../types/EbirdObservation';
 import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
 import GoogleMapsLink from './GoogleMapsLink';
-import { type TableCell, type TableHeader } from './Table';
+import { type TableCell, type TableHeader } from './Table/Table';
 
 type Props = Omit<
   BasePageTableProps<EbirdObservation>,

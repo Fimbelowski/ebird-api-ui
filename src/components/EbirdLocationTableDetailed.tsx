@@ -1,6 +1,6 @@
 import type EbirdLocation from '../types/EbirdLocation';
 import type LocationTableProps from '../types/LocationTableProps';
-import { Table, type TableCellArray, type TableHeader } from './Table';
+import { Table, type TableCellArray, type TableHeader } from './Table/Table';
 
 export default function DetailedLocationTable({
   locations,

@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 
-import classNames from '../utilities/classNames';
+import classNames from '../../utilities/classNames';
 
 export interface TableCell<T> {
   align?: 'left' | 'center' | 'right';
