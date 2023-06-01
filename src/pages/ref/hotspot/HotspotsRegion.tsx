@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import BackInput from '../../../components/BackInput';
+import BackInput from '../../../components/BaseInput/BackInput';
 import BasePageTableEbirdHotspot from '../../../components/BasePageTableEbirdHotspot';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import type EbirdFormat from '../../../types/EbirdFormat';

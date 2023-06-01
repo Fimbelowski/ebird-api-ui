@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import BackInput from '../../components/BackInput';
+import BackInput from '../../components/BaseInput/BackInput';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 import type EbirdObservationDetailLevel from '../../types/EbirdObservationDetailLevel';
 import EbirdObservationDetailLevelSelect from '../../components/EbirdObservationDetailLevelSelect';
