@@ -1,9 +1,9 @@
 import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 
 import ApiKeyInput from './ApiKeyInput/ApiKeyInput';
+import Button from './Button/Button';
 import Details from './Details/Details';
 import type EbirdApiClientResponse from '../types/EbirdApiClientResponse';
-import Form from './Form';
 import useLoading from '../hooks/useLoading';
 
 export interface BasePageProps<T> {
@@ -81,14 +81,20 @@ export function BasePage<T>({
     <section className="base-page">
       <h2 className="base-page__title">{title}</h2>
       {renderForm() ? (
-        <Form
-          disableSubmit={disableSubmit}
-          loading={loading}
+        <form
+          className="base-page__form"
           onSubmit={onSubmit}
         >
           {requiresApiKey ? <ApiKeyInput /> : null}
           {formContent}
-        </Form>
+          <Button
+            disabled={disableSubmit}
+            loading={loading}
+            type="submit"
+          >
+            Submit
+          </Button>
+        </form>
       ) : null}
       {loading ? (
         'Loading...'

@@ -7,6 +7,18 @@
   flex-direction: column;
   align-items: center;
 
+  &__form {
+    width: 100%;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0.2rem 0.2rem 0.6rem rgba(0, 0, 0, 0.3);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: min-content;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
   &__results-container {
     width: 100%;
     display: flex;
