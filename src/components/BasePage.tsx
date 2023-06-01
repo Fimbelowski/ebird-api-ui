@@ -1,6 +1,6 @@
 import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 
-import ApiKeyInput from './ApiKeyInput';
+import ApiKeyInput from './ApiKeyInput/ApiKeyInput';
 import Details from './Details';
 import type EbirdApiClientResponse from '../types/EbirdApiClientResponse';
 import Form from './Form';

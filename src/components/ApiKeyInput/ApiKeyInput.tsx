@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { BaseInput } from './BaseInput';
-import Button from './Button';
-import useApiKey from '../hooks/useApiKey';
+import { BaseInput } from '../BaseInput';
+import Button from '../Button';
+import useApiKey from '../../hooks/useApiKey';
 
 export default function ApiKeyInput() {
   const { apiKey, setApiKey } = useApiKey();
