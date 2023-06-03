@@ -4,13 +4,13 @@ import { BasePage } from '../../components/BasePage/BasePage';
 import DateInput from '../../components/DateInput';
 import Details from '../../components/Details/Details';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
-import type EbirdRegionStats from '../../types/EbirdRegionStats';
+import type EbirdRegionStats from '../../services/ebird/types/EbirdRegionStats';
 import {
   Table,
   type TableCellArray,
   type TableHeader,
 } from '../../components/Table/Table';
-import useEbirdApi from '../../hooks/useEbirdApi';
+import useEbirdApi from '../../services/ebird/useEbirdApi';
 
 export default function RegionStats() {
   const { getRegionStatsOnDate } = useEbirdApi();

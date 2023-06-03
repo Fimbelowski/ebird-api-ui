@@ -2,14 +2,14 @@ import { useState } from 'react';
 
 import BackInput from '../../components/BaseInput/BackInput';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
-import type EbirdObservationDetailLevel from '../../types/EbirdObservationDetailLevel';
+import type EbirdObservationDetailLevel from '../../services/ebird/types/EbirdObservationDetailLevel';
 import EbirdObservationDetailLevelSelect from '../../components/EbirdObservationDetailLevelSelect';
 import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
 import LocationTextarea from '../../components/LocationTextarea';
 import MaxResultsInput from '../../components/MaxResultsInput';
-import useEbirdApi from '../../hooks/useEbirdApi';
+import useEbirdApi from '../../services/ebird/useEbirdApi';
 
 export default function RecentNotableObservationsRegion() {
   const { getRecentNotableObservationsInAregion } = useEbirdApi();

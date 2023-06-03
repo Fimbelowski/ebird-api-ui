@@ -5,7 +5,7 @@ import LocaleOptionsContext from '../../context/LocaleOptionsContext';
 import { Select, type SelectProps } from '../Select/Select';
 import Tooltip from '../Tooltip/Tooltip';
 import useApiKey from '../../hooks/useApiKey';
-import useEbirdApi from '../../hooks/useEbirdApi';
+import useEbirdApi from '../../services/ebird/useEbirdApi';
 
 type Props = Omit<SelectProps<string>, 'id' | 'label' | 'options'>;
 

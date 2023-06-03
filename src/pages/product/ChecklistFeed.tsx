@@ -2,11 +2,11 @@ import { useState } from 'react';
 
 import BasePageTableEbirdChecklist from '../../components/BasePageTableEbirdChecklist';
 import DateInput from '../../components/DateInput';
-import type EbirdChecklistSortKey from '../../types/EbirdChecklistSortKey';
+import type EbirdChecklistSortKey from '../../services/ebird/types/EbirdChecklistSortKey';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import { NumberInput } from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
-import useEbirdApi from '../../hooks/useEbirdApi';
+import useEbirdApi from '../../services/ebird/useEbirdApi';
 
 export default function ChecklistFeed() {
   const { getChecklistFeedOnDate } = useEbirdApi();

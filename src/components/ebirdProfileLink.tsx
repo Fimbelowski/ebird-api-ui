@@ -1,4 +1,4 @@
-import type EbirdContributor from '../types/EbirdContributor';
+import type EbirdContributor from '../services/ebird/types/EbirdContributor';
 
 type Props = Pick<EbirdContributor, 'userDisplayName'> & {
   profileHandle: string;

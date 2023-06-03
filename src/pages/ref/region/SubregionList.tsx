@@ -1,15 +1,15 @@
 import { useState } from 'react';
 
 import BasePageTableEbirdRegion from '../../../components/BasePageTableEbirdRegion';
-import type EbirdFormat from '../../../types/EbirdFormat';
+import type EbirdFormat from '../../../services/ebird/types/EbirdFormat';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
-import type EbirdRegionType from '../../../types/EbirdRegionType';
+import type EbirdRegionType from '../../../services/ebird/types/EbirdRegionType';
 import FormatSelect from '../../../components/FormatSelect';
 import {
   Select,
   type SelectOptionArray,
 } from '../../../components/Select/Select';
-import useEbirdApi from '../../../hooks/useEbirdApi';
+import useEbirdApi from '../../../services/ebird/useEbirdApi';
 
 export default function SubregionList() {
   const { getSubregionList } = useEbirdApi();

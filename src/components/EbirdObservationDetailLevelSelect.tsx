@@ -1,4 +1,4 @@
-import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
+import type EbirdObservationDetailLevel from '../services/ebird/types/EbirdObservationDetailLevel';
 import {
   Select,
   type SelectOptionArray,

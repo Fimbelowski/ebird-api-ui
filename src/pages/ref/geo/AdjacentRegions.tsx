@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import BasePageTableEbirdRegion from '../../../components/BasePageTableEbirdRegion';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
-import useEbirdApi from '../../../hooks/useEbirdApi';
+import useEbirdApi from '../../../services/ebird/useEbirdApi';
 
 export default function AdjacentRegions() {
   const { getAdjacentRegions } = useEbirdApi();

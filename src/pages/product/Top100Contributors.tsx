@@ -2,14 +2,14 @@ import { useState } from 'react';
 
 import { BasePageTable, type Tables } from '../../components/BasePageTable';
 import DateInput from '../../components/DateInput';
-import type EbirdContributor from '../../types/EbirdContributor';
+import type EbirdContributor from '../../services/ebird/types/EbirdContributor';
 import EbirdProfileLink from '../../components/EbirdProfileLink';
-import type EbirdRankedBy from '../../types/EbirdRankedBy';
+import type EbirdRankedBy from '../../services/ebird/types/EbirdRankedBy';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import getOrdinalNumber from '../../utilities/getOrdinalNumber';
 import { NumberInput } from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
-import useEbirdApi from '../../hooks/useEbirdApi';
+import useEbirdApi from '../../services/ebird/useEbirdApi';
 
 export default function Top100() {
   const { getTop100 } = useEbirdApi();

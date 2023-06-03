@@ -4,10 +4,10 @@ import BackInput from '../../../../components/BaseInput/BackInput';
 import BasePageTableEbirdHotspot from '../../../../components/BasePageTableEbirdHotspot';
 import Button from '../../../../components/Button/Button';
 import CoordinateInput from '../../../../components/CoordinateInput';
-import type EbirdFormat from '../../../../types/EbirdFormat';
+import type EbirdFormat from '../../../../services/ebird/types/EbirdFormat';
 import FormatSelect from '../../../../components/FormatSelect';
 import { NumberInput } from '../../../../components/NumberInput';
-import useEbirdApi from '../../../../hooks/useEbirdApi';
+import useEbirdApi from '../../../../services/ebird/useEbirdApi';
 
 export default function HotspotsNearby() {
   const { getNearbyHotspots } = useEbirdApi();

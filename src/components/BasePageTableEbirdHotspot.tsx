@@ -3,7 +3,7 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
-import type EbirdHotspot from '../types/EbirdHotspot';
+import type EbirdHotspot from '../services/ebird/types/EbirdHotspot';
 import GoogleMapsLink from './GoogleMapsLink';
 
 type Props = Omit<BasePageTableProps<EbirdHotspot>, 'tables'>;

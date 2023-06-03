@@ -1,6 +1,6 @@
 import { BasePageTable, type Tables } from '../../../components/BasePageTable';
-import type EbirdTaxaLocaleCode from '../../../types/EbirdTaxaLocaleCode';
-import useEbirdApi from '../../../hooks/useEbirdApi';
+import type EbirdTaxaLocaleCode from '../../../services/ebird/types/EbirdTaxaLocaleCode';
+import useEbirdApi from '../../../services/ebird/useEbirdApi';
 
 export default function TaxaLocaleCodes() {
   const { getTaxaLocaleCodes } = useEbirdApi();

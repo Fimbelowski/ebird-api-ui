@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import BasePageList from '../../components/BasePageList/BasePageList';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
-import useEbirdApi from '../../hooks/useEbirdApi';
+import useEbirdApi from '../../services/ebird/useEbirdApi';
 
 export default function SpeciesListRegion() {
   const { getSpeciesListForRegion } = useEbirdApi();

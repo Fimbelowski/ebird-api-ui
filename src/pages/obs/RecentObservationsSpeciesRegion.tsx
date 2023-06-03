@@ -9,7 +9,7 @@ import EbirdSpeciesCodeInput from '../../components/EbirdSpeciesCodeInput';
 import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
 import LocationTextarea from '../../components/LocationTextarea';
 import MaxResultsInput from '../../components/MaxResultsInput';
-import useEbirdApi from '../../hooks/useEbirdApi';
+import useEbirdApi from '../../services/ebird/useEbirdApi';
 
 export default function RecentObservationsSpeciesRegion() {
   const { getRecentObservationsOfSpeciesInRegion } = useEbirdApi();

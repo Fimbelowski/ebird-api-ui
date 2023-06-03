@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
 import { BasePageTable, type Tables } from '../../../components/BasePageTable';
-import type EbirdTaxonomicGroup from '../../../types/EbirdTaxonomicGroup';
-import type EbirdGroupNameLocale from '../../../types/EbirdGroupNameLocale';
-import type EbirdSpeciesGrouping from '../../../types/EbirdSpeciesGrouping';
+import type EbirdTaxonomicGroup from '../../../services/ebird/types/EbirdTaxonomicGroup';
+import type EbirdGroupNameLocale from '../../../services/ebird/types/EbirdGroupNameLocale';
+import type EbirdSpeciesGrouping from '../../../services/ebird/types/EbirdSpeciesGrouping';
 import {
   Select,
   type SelectOptionArray,
 } from '../../../components/Select/Select';
-import useEbirdApi from '../../../hooks/useEbirdApi';
+import useEbirdApi from '../../../services/ebird/useEbirdApi';
 
 export default function TaxonomicGroups() {
   const { getTaxonomicGroups } = useEbirdApi();

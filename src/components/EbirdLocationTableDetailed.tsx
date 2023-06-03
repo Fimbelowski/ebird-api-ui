@@ -1,4 +1,4 @@
-import type EbirdLocation from '../types/EbirdLocation';
+import type EbirdLocation from '../services/ebird/types/EbirdLocation';
 import type LocationTableProps from '../types/LocationTableProps';
 import { Table, type TableCellArray, type TableHeader } from './Table/Table';
 

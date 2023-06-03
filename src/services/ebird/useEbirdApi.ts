@@ -1,34 +1,34 @@
-import csvToArray from '../utilities/csvToArray';
-import dateToUrlParamArray from '../utilities/dateToUrlParamArray';
-import type EbirdChecklist from '../types/EbirdChecklist';
-import type EbirdChecklistSortKey from '../types/EbirdChecklistSortKey';
-import type EbirdContributor from '../types/EbirdContributor';
-import type EbirdRegionType from '../types/EbirdRegionType';
-import type EbirdFormat from '../types/EbirdFormat';
-import type EbirdGroupNameLocale from '../types/EbirdGroupNameLocale';
-import type EbirdHotspot from '../types/EbirdHotspot';
-import type EbirdLocation from '../types/EbirdLocation';
-import type EbirdObservation from '../types/EbirdObservation';
-import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
-import type EbirdRankedBy from '../types/EbirdRankedBy';
-import type EbirdRegion from '../types/EbirdRegion';
-import type EbirdRegionInfo from '../types/EbirdRegionInfo';
-import type EbirdRegionNameFormat from '../types/EbirdRegionNameFormat';
-import type EbirdRegionStats from '../types/EbirdRegionStats';
-import type EbirdSpeciesGrouping from '../types/EbirdSpeciesGrouping';
-import type EbirdTaxaLocaleCode from '../types/EbirdTaxaLocaleCode';
-import type EbirdTaxonomicGroup from '../types/EbirdTaxonomicGroup';
-import type EbirdTaxonomyVersion from '../types/EbirdTaxonomyVersion';
-import type EbirdTaxonomyCategory from '../types/EbirdTaxonomyCategory';
-import EBIRD_HOTSPOT_CSV_HEADERS from '../utilities/ebirdHotspotCsvHeaders';
-import isJson from '../utilities/isJson';
+import csvToArray from '../../utilities/csvToArray';
+import dateToUrlParamArray from '../../utilities/dateToUrlParamArray';
+import type EbirdChecklist from './types/EbirdChecklist';
+import type EbirdChecklistSortKey from './types/EbirdChecklistSortKey';
+import type EbirdContributor from './types/EbirdContributor';
+import type EbirdRegionType from './types/EbirdRegionType';
+import type EbirdFormat from './types/EbirdFormat';
+import type EbirdGroupNameLocale from './types/EbirdGroupNameLocale';
+import type EbirdHotspot from './types/EbirdHotspot';
+import type EbirdLocation from './types/EbirdLocation';
+import type EbirdObservation from './types/EbirdObservation';
+import type EbirdObservationDetailLevel from './types/EbirdObservationDetailLevel';
+import type EbirdRankedBy from './types/EbirdRankedBy';
+import type EbirdRegion from './types/EbirdRegion';
+import type EbirdRegionInfo from './types/EbirdRegionInfo';
+import type EbirdRegionNameFormat from './types/EbirdRegionNameFormat';
+import type EbirdRegionStats from './types/EbirdRegionStats';
+import type EbirdSpeciesGrouping from './types/EbirdSpeciesGrouping';
+import type EbirdTaxaLocaleCode from './types/EbirdTaxaLocaleCode';
+import type EbirdTaxonomicGroup from './types/EbirdTaxonomicGroup';
+import type EbirdTaxonomyVersion from './types/EbirdTaxonomyVersion';
+import type EbirdTaxonomyCategory from './types/EbirdTaxonomyCategory';
+import EBIRD_HOTSPOT_CSV_HEADERS from '../../utilities/ebirdHotspotCsvHeaders';
+import isJson from '../../utilities/isJson';
 import {
   type EbirdApiParams,
   makeRequest,
   type QueryParam,
   type UrlParam,
-} from '../utilities/ebirdApiClient';
-import useApiKey from './useApiKey';
+} from './ebirdApiClient';
+import useApiKey from '../../hooks/useApiKey';
 
 interface CsvOptions {
   headers: string[];

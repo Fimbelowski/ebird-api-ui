@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { BasePage } from '../../../components/BasePage/BasePage';
 import Details from '../../../components/Details/Details';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
-import type EbirdRegionInfo from '../../../types/EbirdRegionInfo';
-import type EbirdRegionNameFormat from '../../../types/EbirdRegionNameFormat';
+import type EbirdRegionInfo from '../../../services/ebird/types/EbirdRegionInfo';
+import type EbirdRegionNameFormat from '../../../services/ebird/types/EbirdRegionNameFormat';
 import {
   Select,
   type SelectOptionArray,
@@ -15,7 +15,7 @@ import {
   type TableHeader,
 } from '../../../components/Table/Table';
 import { TextInput } from '../../../components/TextInput';
-import useEbirdApi from '../../../hooks/useEbirdApi';
+import useEbirdApi from '../../../services/ebird/useEbirdApi';
 
 export default function RegionInfo() {
   const { getRegionInfo } = useEbirdApi();

@@ -3,7 +3,7 @@ import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 import ApiKeyInput from '../ApiKeyInput/ApiKeyInput';
 import Button from '../Button/Button';
 import Details from '../Details/Details';
-import { type EbirdApiParsedResponse } from '../../hooks/useEbirdApi';
+import { type EbirdApiParsedResponse } from '../../services/ebird/useEbirdApi';
 import useLoading from '../../hooks/useLoading';
 
 export interface BasePageProps<T> {
