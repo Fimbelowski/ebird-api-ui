@@ -4,7 +4,7 @@ import useApiKey from '../../../hooks/useApiKey';
 
 export default async function useEbirdApi(
   endpoint: string,
-  options: Omit<EbirdApiParams, 'apiKey'>
+  options?: Omit<EbirdApiParams, 'apiKey'>
 ) {
   const { apiKey } = useApiKey();
 
