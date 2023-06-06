@@ -4,7 +4,7 @@ import type EbirdChecklist from './types/EbirdChecklist';
 import type EbirdChecklistSortKey from './types/EbirdChecklistSortKey';
 import type EbirdContributor from './types/EbirdContributor';
 import type EbirdRegionType from './types/EbirdRegionType';
-import type EbirdFormat from './types/EbirdRecordFormat';
+import type EbirdRecordFormat from './types/EbirdRecordFormat';
 import type EbirdGroupNameLocale from './types/EbirdGroupNameLocale';
 import type EbirdHotspot from './types/EbirdHotspot';
 import type EbirdLocation from './types/EbirdLocation';
@@ -140,7 +140,7 @@ export default function useEbirdApi() {
   async function getNearbyHotspots(
     lat: number,
     lng: number,
-    fmt: EbirdFormat = 'csv',
+    fmt: EbirdRecordFormat = 'csv',
     back?: number,
     dist?: number
   ) {
@@ -381,7 +381,7 @@ export default function useEbirdApi() {
   async function getRegionHotspots(
     regionCode: string,
     back?: number,
-    fmt: EbirdFormat = 'csv'
+    fmt: EbirdRecordFormat = 'csv'
   ) {
     const urlParams: UrlParam[] = [
       {
@@ -479,7 +479,7 @@ export default function useEbirdApi() {
   async function getSubregionList(
     regionType: EbirdRegionType,
     parentRegionCode: string,
-    fmt: EbirdFormat = 'csv'
+    fmt: EbirdRecordFormat = 'csv'
   ) {
     const urlParams: UrlParam[] = [
       {

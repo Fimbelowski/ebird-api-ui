@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import BasePageTableEbirdRegion from '../../../components/BasePageTableEbirdRegion';
-import type EbirdFormat from '../../../services/ebird/types/EbirdRecordFormat';
+import type EbirdRecordFormat from '../../../services/ebird/types/EbirdRecordFormat';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import type EbirdRegionType from '../../../services/ebird/types/EbirdRegionType';
 import FormatSelect from '../../../components/FormatSelect';
@@ -14,7 +14,7 @@ import useEbirdApi from '../../../services/ebird/useEbirdApi';
 export default function SubregionList() {
   const { getSubregionList } = useEbirdApi();
 
-  const [format, setFormat] = useState<EbirdFormat>('csv');
+  const [format, setFormat] = useState<EbirdRecordFormat>('csv');
   const [parentRegionCode, setParentRegionCode] = useState('');
   const [regionType, setRegionType] = useState<EbirdRegionType>('country');
 
