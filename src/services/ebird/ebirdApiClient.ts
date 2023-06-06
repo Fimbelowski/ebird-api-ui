@@ -16,7 +16,7 @@ export type QueryParam =
   | BaseQueryParam<string>
   | BaseQueryParam<string[]>;
 
-export type QueryParamValue = boolean | number | string | string[];
+type QueryParamValue = boolean | number | string | string[];
 
 export interface UrlParam {
   name: string;
