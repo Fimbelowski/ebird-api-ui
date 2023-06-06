@@ -1,4 +1,4 @@
-import { useEbirdApi } from '../../../useEbirdApi';
+import useEbirdApi from '../../../useEbirdApi';
 import { type UrlParam } from '../../../../ebirdApiClient';
 
 export default async function useAdjacentRegions(regionCode: string) {
