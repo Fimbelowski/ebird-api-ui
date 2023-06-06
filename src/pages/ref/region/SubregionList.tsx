@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import BasePageTableEbirdRegion from '../../../components/BasePageTableEbirdRegion';
-import type EbirdFormat from '../../../services/ebird/types/EbirdFormat';
+import type EbirdFormat from '../../../services/ebird/types/EbirdRecordFormat';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import type EbirdRegionType from '../../../services/ebird/types/EbirdRegionType';
 import FormatSelect from '../../../components/FormatSelect';

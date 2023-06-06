@@ -4,7 +4,7 @@ import type EbirdChecklist from './types/EbirdChecklist';
 import type EbirdChecklistSortKey from './types/EbirdChecklistSortKey';
 import type EbirdContributor from './types/EbirdContributor';
 import type EbirdRegionType from './types/EbirdRegionType';
-import type EbirdFormat from './types/EbirdFormat';
+import type EbirdFormat from './types/EbirdRecordFormat';
 import type EbirdGroupNameLocale from './types/EbirdGroupNameLocale';
 import type EbirdHotspot from './types/EbirdHotspot';
 import type EbirdLocation from './types/EbirdLocation';
