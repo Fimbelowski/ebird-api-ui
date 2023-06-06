@@ -4,7 +4,7 @@ export interface EbirdApiParams {
   urlParams?: UrlParam[];
 }
 
-interface BaseQueryParam<T extends QueryParamValue> {
+export interface BaseQueryParam<T extends QueryParamValue> {
   defaultValue?: T;
   name: string;
   value: T | undefined;
