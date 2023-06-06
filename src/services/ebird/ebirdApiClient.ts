@@ -4,13 +4,19 @@ export interface EbirdApiParams {
   urlParams?: UrlParam[];
 }
 
-export interface QueryParam {
-  defaultValue?: NonNullable<QueryParamValue>;
+interface BaseQueryParam<T extends QueryParamValue> {
+  defaultValue?: T;
   name: string;
-  value: QueryParamValue;
+  value: T | undefined;
 }
 
-export type QueryParamValue = boolean | number | string | string[] | undefined;
+export type QueryParam =
+  | BaseQueryParam<boolean>
+  | BaseQueryParam<number>
+  | BaseQueryParam<string>
+  | BaseQueryParam<string[]>;
+
+export type QueryParamValue = boolean | number | string | string[];
 
 export interface UrlParam {
   name: string;
@@ -23,23 +29,19 @@ function buildQueryString(queryParams: QueryParam[]) {
   }
 
   const queryString = queryParams
-    .filter(
-      (
-        param
-      ): param is QueryParam & { value: NonNullable<QueryParamValue> } => {
-        const { defaultValue, value } = param;
+    .filter((param): param is QueryParam & { value: QueryParamValue } => {
+      const { defaultValue, value } = param;
 
-        if (value === undefined || value === defaultValue) {
-          return false;
-        }
-
-        if (typeof value === 'string' || Array.isArray(value)) {
-          return value.length !== 0;
-        }
-
-        return true;
+      if (value === undefined || value === defaultValue) {
+        return false;
       }
-    )
+
+      if (typeof value === 'string' || Array.isArray(value)) {
+        return value.length !== 0;
+      }
+
+      return true;
+    })
     .map(({ name, value }) => {
       return `${name}=${value.toString()}`;
     })
