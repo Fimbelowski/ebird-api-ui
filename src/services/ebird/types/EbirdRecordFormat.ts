@@ -1,3 +1,3 @@
-type EbirdFormat = 'csv' | 'json';
+type EbirdRecordFormat = 'csv' | 'json';
 
-export default EbirdFormat;
+export default EbirdRecordFormat;
