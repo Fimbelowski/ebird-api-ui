@@ -1,4 +1,4 @@
-import useEbirdApi from '../../../useEbirdApi';
+import { useEbirdApi } from '../../../useEbirdApi';
 import { type QueryParam, type UrlParam } from '../../../../ebirdApiClient';
 
 type EbirdRegionNameFormat =
