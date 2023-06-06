@@ -109,7 +109,7 @@ export default function useEbirdApi() {
         value: sortKey,
       },
       {
-        defaultValue: '10',
+        defaultValue: 10,
         name: 'maxResults',
         value: maxResults,
       },
@@ -163,7 +163,7 @@ export default function useEbirdApi() {
         value: back,
       },
       {
-        defaultValue: '25',
+        defaultValue: 25,
         name: 'dist',
         value: dist,
       },
