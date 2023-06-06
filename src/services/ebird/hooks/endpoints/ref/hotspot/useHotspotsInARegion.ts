@@ -18,7 +18,11 @@ export default async function useHotspotsInARegion(
     },
   ];
 
-  // Without specifying EbirdRecordFormat here, defaultValue and value are allowed to be any two strings.
+  /* 
+    For query parameters that use a union type of literals, the union type must be
+    specified as a generic argument, otherwise defaultValue and value are allowed
+    to be anything as long as their types match and they extend QueryParamValue.
+  */
   const formatQueryParam: BaseQueryParam<EbirdRecordFormat> = {
     defaultValue: 'csv',
     name: 'fmt',
