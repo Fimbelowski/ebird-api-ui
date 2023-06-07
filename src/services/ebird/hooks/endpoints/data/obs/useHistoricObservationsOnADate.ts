@@ -8,7 +8,7 @@ import {
 import yearMonthDayToUrlParams from '../../../../helpers/yearMonthDayToUrlParams';
 import type EbirdObservationDetailLevel from '../../../../types/EbirdObservationDetailLevel';
 
-type Rank = 'mrec' | 'create';
+export type EbirdHistoricalObservationRank = 'mrec' | 'create';
 
 export default async function useHistoricObservationsOnADate(
   regionCode: string,
@@ -20,7 +20,7 @@ export default async function useHistoricObservationsOnADate(
   hotspot = false,
   includeProvisional = false,
   maxResults?: number,
-  rank: Rank = 'mrec',
+  rank: EbirdHistoricalObservationRank = 'mrec',
   locations?: string[],
   speciesCommonNameLocale = 'en'
 ) {
@@ -43,7 +43,7 @@ export default async function useHistoricObservationsOnADate(
     value: detailLevel,
   };
 
-  const rankQueryParam: BaseQueryParam<Rank> = {
+  const rankQueryParam: BaseQueryParam<EbirdHistoricalObservationRank> = {
     defaultValue: 'mrec',
     name: 'rank',
     value: rank,

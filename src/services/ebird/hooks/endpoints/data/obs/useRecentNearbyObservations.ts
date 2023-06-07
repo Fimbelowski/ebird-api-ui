@@ -5,7 +5,7 @@ import {
   type BaseQueryParam,
 } from '../../../../ebirdApiClient';
 
-type Sort = 'date' | 'species';
+export type EbirdRecentNearbyObservationsSortBy = 'date' | 'species';
 
 export default async function useRecentNearbyObservations(
   latitude: number,
@@ -16,7 +16,7 @@ export default async function useRecentNearbyObservations(
   hotspot = false,
   includeProvisional = false,
   maxResults?: number,
-  sort: Sort = 'date',
+  sort: EbirdRecentNearbyObservationsSortBy = 'date',
   speciesCommonNameLocale = 'en'
 ) {
   const categoryQueryParam: BaseQueryParam<EbirdTaxonomyCategory> = {
@@ -24,7 +24,7 @@ export default async function useRecentNearbyObservations(
     value: category,
   };
 
-  const sortQueryParam: BaseQueryParam<Sort> = {
+  const sortQueryParam: BaseQueryParam<EbirdRecentNearbyObservationsSortBy> = {
     defaultValue: 'date',
     name: 'sort',
     value: sort,

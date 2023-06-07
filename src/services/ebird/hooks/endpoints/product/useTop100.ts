@@ -6,14 +6,14 @@ import {
 } from '../../../ebirdApiClient';
 import yearMonthDayToUrlParams from '../../../helpers/yearMonthDayToUrlParams';
 
-type RankedBy = 'cl' | 'spp';
+export type EbirdTop100RankedBy = 'cl' | 'spp';
 
 export default async function useTop100(
   regionCode: string,
   year: number,
   month: number,
   day: number,
-  rankedBy: RankedBy = 'spp',
+  rankedBy: EbirdTop100RankedBy = 'spp',
   maxResults?: number
 ) {
   const urlParams: UrlParam[] = [
@@ -24,7 +24,7 @@ export default async function useTop100(
     ...yearMonthDayToUrlParams(year, month, day),
   ];
 
-  const rankedByQueryParam: BaseQueryParam<RankedBy> = {
+  const rankedByQueryParam: BaseQueryParam<EbirdTop100RankedBy> = {
     defaultValue: 'spp',
     name: 'rankedBy',
     value: rankedBy,

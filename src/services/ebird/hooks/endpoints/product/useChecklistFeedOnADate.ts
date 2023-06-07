@@ -6,14 +6,14 @@ import {
 } from '../../../ebirdApiClient';
 import yearMonthDayToUrlParams from '../../../helpers/yearMonthDayToUrlParams';
 
-type SortKey = 'obs_dt' | 'creation_dt';
+export type EbirdChecklistFeedOnADateSortBy = 'obs_dt' | 'creation_dt';
 
 export default async function useChecklistFeedOnADate(
   regionCode: string,
   year: number,
   month: number,
   day: number,
-  sortKey: SortKey = 'obs_dt',
+  sortKey: EbirdChecklistFeedOnADateSortBy = 'obs_dt',
   maxResults = 10
 ) {
   const urlParams: UrlParam[] = [
@@ -24,7 +24,7 @@ export default async function useChecklistFeedOnADate(
     ...yearMonthDayToUrlParams(year, month, day),
   ];
 
-  const sortKeyQueryParam: BaseQueryParam<SortKey> = {
+  const sortKeyQueryParam: BaseQueryParam<EbirdChecklistFeedOnADateSortBy> = {
     defaultValue: 'obs_dt',
     name: 'sortKey',
     value: sortKey,

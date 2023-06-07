@@ -1,8 +1,8 @@
 import useEbirdApi from '../../../useEbirdApi';
 import { type UrlParam, type BaseQueryParam } from '../../../../ebirdApiClient';
 
-export type SpeciesGrouping = 'ebird' | 'merlin';
-export type GroupNameLocale =
+export type EbirdSpeciesGrouping = 'ebird' | 'merlin';
+export type EbirdGroupNameLocale =
   | 'bg'
   | 'cs'
   | 'da'
@@ -29,8 +29,8 @@ export type GroupNameLocale =
   | 'zh';
 
 export async function useTaxonomicGroups(
-  speciesGrouping: SpeciesGrouping,
-  groupNameLocale: GroupNameLocale = 'en'
+  speciesGrouping: EbirdSpeciesGrouping,
+  groupNameLocale: EbirdGroupNameLocale = 'en'
 ) {
   const urlParams: UrlParam[] = [
     {
@@ -39,7 +39,7 @@ export async function useTaxonomicGroups(
     },
   ];
 
-  const groupNameLocaleQueryParam: BaseQueryParam<GroupNameLocale> = {
+  const groupNameLocaleQueryParam: BaseQueryParam<EbirdGroupNameLocale> = {
     defaultValue: 'en',
     name: 'groupNameLocale',
     value: groupNameLocale,
