@@ -19,7 +19,7 @@ export default function Nav() {
     },
     {
       label: 'Hotspots in a Region',
-      path: 'region-hotspots',
+      path: 'hotspots-in-a-region',
     },
     {
       label: 'Hotspot Info',
@@ -29,35 +29,35 @@ export default function Nav() {
 
   const observationMenuItems: Item[] = [
     {
-      label: 'Recent Checklists',
-      path: 'recent-checklists',
+      label: 'Recent Checklists Feed',
+      path: 'recent-checklists-feed',
     },
     {
       label: 'Recent Notable Observations in a Region',
-      path: 'recent-notable-observations-region',
+      path: 'recent-notable-observations-in-a-region',
     },
     {
       label: 'Recent Observations in a Region',
-      path: 'recent-observations-region',
+      path: 'recent-observations-in-a-region',
     },
     {
       label: 'Recent Observations of a Species in a Region',
-      path: 'recent-observations-species-region',
+      path: 'recent-observations-of-a-species-in-a-region',
     },
   ];
 
   const productMenuItems: Item[] = [
     {
       label: 'Checklist Feed on a Date',
-      path: 'checklist-feed',
+      path: 'checklist-feed-on-a-date',
     },
     {
       label: 'Regional Statistics on a Date',
-      path: 'region-stats',
+      path: 'regional-statistics-on-a-date',
     },
     {
       label: 'Species List for a Region',
-      path: 'species-list-region',
+      path: 'species-list-for-a-region',
     },
     {
       label: 'Top 100 Contributors',
