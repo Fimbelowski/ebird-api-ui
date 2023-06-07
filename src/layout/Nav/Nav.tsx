@@ -1,8 +1,7 @@
-import NavMenu from '../../components/NavMenu/NavMenu';
-import type NavMenuItem from '../../types/NavMenuItem';
+import { NavMenu, type Item } from '../../components/NavMenu/NavMenu';
 
 export default function Nav() {
-  const geographyMenuItems: NavMenuItem[] = [
+  const geographyMenuItems: Item[] = [
     {
       label: 'Adjacent Regions',
       path: 'adjacent-regions',
@@ -13,7 +12,7 @@ export default function Nav() {
     },
   ];
 
-  const hotspotMenuItems: NavMenuItem[] = [
+  const hotspotMenuItems: Item[] = [
     {
       label: 'Nearby Hotspots',
       path: 'nearby-hotspots',
@@ -28,7 +27,7 @@ export default function Nav() {
     },
   ];
 
-  const observationMenuItems: NavMenuItem[] = [
+  const observationMenuItems: Item[] = [
     {
       label: 'Recent Checklists',
       path: 'recent-checklists',
@@ -47,7 +46,7 @@ export default function Nav() {
     },
   ];
 
-  const productMenuItems: NavMenuItem[] = [
+  const productMenuItems: Item[] = [
     {
       label: 'Checklist Feed on a Date',
       path: 'checklist-feed',
@@ -66,14 +65,14 @@ export default function Nav() {
     },
   ];
 
-  const regionMenuItems: NavMenuItem[] = [
+  const regionMenuItems: Item[] = [
     {
       label: 'Sub-region List',
       path: 'sub-region-list',
     },
   ];
 
-  const taxonomyMenuItems: NavMenuItem[] = [
+  const taxonomyMenuItems: Item[] = [
     {
       label: 'Taxa Locale Codes',
       path: 'taxa-locale-codes',

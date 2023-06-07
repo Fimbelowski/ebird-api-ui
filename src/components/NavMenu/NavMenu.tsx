@@ -2,19 +2,20 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 import classNames from '../../utilities/classNames';
-import type NavMenuItem from '../../types/NavMenuItem';
+import type RouteName from '../../types/RouteName';
+
+export interface Item {
+  label: string;
+  path: RouteName;
+}
 
 interface Props {
-  items: NavMenuItem[];
+  items: Item[];
   label: string;
   menuAlignment?: 'left' | 'right';
 }
 
-export default function NavMenu({
-  items,
-  label,
-  menuAlignment = 'left',
-}: Props) {
+export function NavMenu({ items, label, menuAlignment = 'left' }: Props) {
   const [isHovered, setIsHovered] = useState(false);
 
   function menuClasses() {
