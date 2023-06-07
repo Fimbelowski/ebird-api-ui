@@ -23,7 +23,7 @@ import type EbirdTaxonomyCategory from './types/EbirdTaxonomyCategory';
 import EBIRD_HOTSPOT_CSV_HEADERS from '../../utilities/ebirdHotspotCsvHeaders';
 import isJson from '../../utilities/isJson';
 import {
-  type EbirdApiParams,
+  type EbirdApiOptions,
   makeRequest,
   type QueryParam,
   type UrlParam,
@@ -45,7 +45,7 @@ export default function useEbirdApi() {
 
   async function baseRequest<T>(
     endpoint: string,
-    options: Omit<EbirdApiParams, 'apiKey'> = {},
+    options: Omit<EbirdApiOptions, 'apiKey'> = {},
     csvOptions?: CsvOptions
   ): EbirdApiParsedResponse<T> {
     return await makeRequest(endpoint, { ...options, apiKey })

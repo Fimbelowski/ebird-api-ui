@@ -1,10 +1,10 @@
-import type { EbirdApiParams } from '../ebirdApiClient';
+import type { EbirdApiOptions } from '../ebirdApiClient';
 import { makeRequest } from '../ebirdApiClient';
 import useApiKey from '../../../hooks/useApiKey';
 
 export default async function useEbirdApi(
   endpoint: string,
-  options?: Omit<EbirdApiParams, 'apiKey'>
+  options?: Omit<EbirdApiOptions, 'apiKey'>
 ) {
   const { apiKey } = useApiKey();
 

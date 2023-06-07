@@ -1,4 +1,4 @@
-export interface EbirdApiParams {
+export interface EbirdApiOptions {
   apiKey?: string;
   queryParams?: QueryParam[];
   urlParams?: UrlParam[];
@@ -52,7 +52,7 @@ function buildQueryString(queryParams: QueryParam[]) {
 
 export async function makeRequest(
   endpoint: string,
-  options: EbirdApiParams = {}
+  options: EbirdApiOptions = {}
 ) {
   const { apiKey, queryParams, urlParams } = options;
 
