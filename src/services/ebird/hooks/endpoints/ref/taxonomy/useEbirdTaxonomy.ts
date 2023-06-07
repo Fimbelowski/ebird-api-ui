@@ -4,16 +4,7 @@ import {
   type QueryParam,
   type BaseQueryParam,
 } from '../../../../ebirdApiClient';
-
-export type EbirdTaxonomyCategory =
-  | 'spuh'
-  | 'slash'
-  | 'species'
-  | 'issf'
-  | 'hybrid'
-  | 'intergrade'
-  | 'domestic'
-  | 'form';
+import type EbirdTaxonomyCategory from '../../../../types/EbirdTaxonomyCategory';
 
 export async function useEbirdTaxonomy(
   category: EbirdTaxonomyCategory,

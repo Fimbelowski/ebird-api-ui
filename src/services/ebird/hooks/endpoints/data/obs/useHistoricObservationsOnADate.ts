@@ -1,5 +1,4 @@
 import useEbirdApi from '../../../useEbirdApi';
-import { type EbirdTaxonomyCategory } from '../../ref/taxonomy/useEbirdTaxonomy';
 import {
   type UrlParam,
   type QueryParam,
@@ -7,6 +6,7 @@ import {
 } from '../../../../ebirdApiClient';
 import yearMonthDayToUrlParams from '../../../../helpers/yearMonthDayToUrlParams';
 import type EbirdObservationDetailLevel from '../../../../types/EbirdObservationDetailLevel';
+import type EbirdTaxonomyCategory from '../../../../types/EbirdTaxonomyCategory';
 
 export type EbirdHistoricalObservationRank = 'mrec' | 'create';
 

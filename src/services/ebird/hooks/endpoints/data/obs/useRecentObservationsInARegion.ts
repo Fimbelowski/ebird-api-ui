@@ -1,10 +1,10 @@
 import useEbirdApi from '../../../useEbirdApi';
-import { type EbirdTaxonomyCategory } from '../../ref/taxonomy/useEbirdTaxonomy';
 import {
   type UrlParam,
   type QueryParam,
   type BaseQueryParam,
 } from '../../../../ebirdApiClient';
+import type EbirdTaxonomyCategory from '../../../../types/EbirdTaxonomyCategory';
 
 export default async function useRecentObservationsInARegion(
   regionCode: string,
