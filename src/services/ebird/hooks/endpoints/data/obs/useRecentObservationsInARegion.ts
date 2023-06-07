@@ -13,7 +13,7 @@ export default async function useRecentObservationsInARegion(
   hotspot = false,
   includeProvisional = false,
   maxResults?: number,
-  locations: string[] = [],
+  locations?: string[],
   speciesCommonNameLocale = 'en'
 ) {
   const urlParams: UrlParam[] = [
