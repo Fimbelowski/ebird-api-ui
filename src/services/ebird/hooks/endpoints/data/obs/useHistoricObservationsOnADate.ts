@@ -5,6 +5,7 @@ import {
   type QueryParam,
   type BaseQueryParam,
 } from '../../../../ebirdApiClient';
+import yearMonthDayToUrlParams from '../../../../helpers/yearMonthDayToUrlParams';
 
 type DetailLevel = 'simple' | 'full';
 
@@ -29,18 +30,7 @@ export default async function useHistoricObservationsOnADate(
       name: 'regionCode',
       value: regionCode,
     },
-    {
-      name: 'y',
-      value: year,
-    },
-    {
-      name: 'm',
-      value: month,
-    },
-    {
-      name: 'd',
-      value: day,
-    },
+    ...yearMonthDayToUrlParams(year, month, day),
   ];
 
   const categoryQueryParam: BaseQueryParam<EbirdTaxonomyCategory> = {

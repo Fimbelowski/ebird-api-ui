@@ -1,5 +1,6 @@
 import useEbirdApi from '../../useEbirdApi';
 import { type UrlParam } from '../../../ebirdApiClient';
+import yearMonthDayToUrlParams from '../../../helpers/yearMonthDayToUrlParams';
 
 export default async function useRegionalStatisticsOnADate(
   regionCode: string,
@@ -12,18 +13,7 @@ export default async function useRegionalStatisticsOnADate(
       name: 'regionCode',
       value: regionCode,
     },
-    {
-      name: 'y',
-      value: year,
-    },
-    {
-      name: 'm',
-      value: month,
-    },
-    {
-      name: 'd',
-      value: day,
-    },
+    ...yearMonthDayToUrlParams(year, month, day),
   ];
 
   return await useEbirdApi('product/stats/{{regionCode}}/{{y}}/{{m}}/{{d}}', {

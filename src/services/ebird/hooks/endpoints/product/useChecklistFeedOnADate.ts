@@ -4,6 +4,7 @@ import {
   type QueryParam,
   type BaseQueryParam,
 } from '../../../ebirdApiClient';
+import yearMonthDayToUrlParams from '../../../helpers/yearMonthDayToUrlParams';
 
 type SortKey = 'obs_dt' | 'creation_dt';
 
@@ -20,18 +21,7 @@ export default async function useChecklistFeedOnADate(
       name: 'regionCode',
       value: regionCode,
     },
-    {
-      name: 'y',
-      value: year,
-    },
-    {
-      name: 'm',
-      value: month,
-    },
-    {
-      name: 'd',
-      value: day,
-    },
+    ...yearMonthDayToUrlParams(year, month, day),
   ];
 
   const sortKeyQueryParam: BaseQueryParam<SortKey> = {
