@@ -6,8 +6,7 @@ import {
   type BaseQueryParam,
 } from '../../../../ebirdApiClient';
 import yearMonthDayToUrlParams from '../../../../helpers/yearMonthDayToUrlParams';
-
-type DetailLevel = 'simple' | 'full';
+import type EbirdObservationDetailLevel from '../../../../types/EbirdObservationDetailLevel';
 
 type Rank = 'mrec' | 'create';
 
@@ -17,7 +16,7 @@ export default async function useHistoricObservationsOnADate(
   month: number,
   day: number,
   category?: EbirdTaxonomyCategory,
-  detailLevel: DetailLevel = 'simple',
+  detailLevel: EbirdObservationDetailLevel = 'simple',
   hotspot = false,
   includeProvisional = false,
   maxResults?: number,
@@ -38,7 +37,7 @@ export default async function useHistoricObservationsOnADate(
     value: category,
   };
 
-  const detailLevelQueryParam: BaseQueryParam<DetailLevel> = {
+  const detailLevelQueryParam: BaseQueryParam<EbirdObservationDetailLevel> = {
     defaultValue: 'simple',
     name: 'detail',
     value: detailLevel,

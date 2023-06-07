@@ -4,13 +4,12 @@ import {
   type QueryParam,
   type BaseQueryParam,
 } from '../../../../ebirdApiClient';
-
-type DetailLevel = 'simple' | 'full';
+import type EbirdObservationDetailLevel from '../../../../types/EbirdObservationDetailLevel';
 
 export default async function useRecentNotableObservationsInARegion(
   regionCode: string,
   back = 14,
-  detail: DetailLevel = 'simple',
+  detail: EbirdObservationDetailLevel = 'simple',
   hotspot = false,
   maxResults?: number,
   locations?: string[],
@@ -23,7 +22,7 @@ export default async function useRecentNotableObservationsInARegion(
     },
   ];
 
-  const detailLevelQueryParam: BaseQueryParam<DetailLevel> = {
+  const detailLevelQueryParam: BaseQueryParam<EbirdObservationDetailLevel> = {
     defaultValue: 'simple',
     name: 'detail',
     value: detail,
