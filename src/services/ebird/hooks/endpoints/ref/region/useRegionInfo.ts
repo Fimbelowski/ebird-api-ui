@@ -1,9 +1,9 @@
 import useEbirdApi from '../../../useEbirdApi';
-import {
-  type QueryParam,
-  type BaseQueryParam,
-} from '../../../../ebirdApiClient';
-import { type UrlParam } from '../../../../types/EbirdApiParams';
+import type {
+  UrlParam,
+  QueryParam,
+  BaseQueryParam,
+} from '../../../../types/EbirdApiParams';
 
 type EbirdRegionNameFormat =
   | 'detailed'

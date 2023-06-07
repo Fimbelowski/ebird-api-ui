@@ -1,9 +1,9 @@
 import useEbirdApi from '../../../useEbirdApi';
-import {
-  type QueryParam,
-  type BaseQueryParam,
-} from '../../../../ebirdApiClient';
 import type EbirdObservationDetailLevel from '../../../../types/EbirdObservationDetailLevel';
+import type {
+  QueryParam,
+  BaseQueryParam,
+} from '../../../../types/EbirdApiParams';
 
 export default async function useRecentNearbyNotableObservations(
   latitude: number,

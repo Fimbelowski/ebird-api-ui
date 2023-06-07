@@ -1,24 +1,14 @@
-import type { UrlParam } from './types/EbirdApiParams';
+import type {
+  UrlParam,
+  QueryParam,
+  QueryParamValue,
+} from './types/EbirdApiParams';
 
 export interface EbirdApiOptions {
   apiKey?: string;
   queryParams?: QueryParam[];
   urlParams?: UrlParam[];
 }
-
-export interface BaseQueryParam<T extends QueryParamValue> {
-  defaultValue?: T;
-  name: string;
-  value: T | undefined;
-}
-
-export type QueryParam =
-  | BaseQueryParam<boolean>
-  | BaseQueryParam<number>
-  | BaseQueryParam<string>
-  | BaseQueryParam<string[]>;
-
-type QueryParamValue = boolean | number | string | string[];
 
 function buildQueryString(queryParams: QueryParam[]) {
   if (queryParams.length === 0) {

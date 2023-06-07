@@ -1,6 +1,8 @@
 import useEbirdApi from '../../../useEbirdApi';
-import { type BaseQueryParam } from '../../../../ebirdApiClient';
-import { type UrlParam } from '../../../../types/EbirdApiParams';
+import type {
+  UrlParam,
+  BaseQueryParam,
+} from '../../../../types/EbirdApiParams';
 
 export type EbirdSpeciesGrouping = 'ebird' | 'merlin';
 export type EbirdGroupNameLocale =

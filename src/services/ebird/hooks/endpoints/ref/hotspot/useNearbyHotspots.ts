@@ -1,9 +1,9 @@
 import type EbirdRecordFormat from '../../../../types/EbirdRecordFormat';
 import useEbirdApi from '../../../useEbirdApi';
-import {
-  type QueryParam,
-  type BaseQueryParam,
-} from '../../../../ebirdApiClient';
+import type {
+  QueryParam,
+  BaseQueryParam,
+} from '../../../../types/EbirdApiParams';
 
 export default async function useNearbyHotspots(
   latitude: number,

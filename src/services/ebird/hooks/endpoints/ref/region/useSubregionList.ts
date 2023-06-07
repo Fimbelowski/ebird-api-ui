@@ -1,6 +1,5 @@
 import type EbirdRecordFormat from '../../../../types/EbirdRecordFormat';
-import { type QueryParam } from '../../../../ebirdApiClient';
-import { type UrlParam } from '../../../../types/EbirdApiParams';
+import type { UrlParam, QueryParam } from '../../../../types/EbirdApiParams';
 import useEbirdApi from '../../../useEbirdApi';
 
 export type EbirdRegionType = 'country' | 'subnational1' | 'subnational2';

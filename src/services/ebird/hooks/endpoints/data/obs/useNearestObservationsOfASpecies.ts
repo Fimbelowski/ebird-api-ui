@@ -1,6 +1,5 @@
 import useEbirdApi from '../../../useEbirdApi';
-import { type UrlParam } from '../../../../types/EbirdApiParams';
-import { type QueryParam } from '../../../../ebirdApiClient';
+import type { UrlParam, QueryParam } from '../../../../types/EbirdApiParams';
 
 export default async function useNearestObservationsOfASpecies(
   speciesCode: string,

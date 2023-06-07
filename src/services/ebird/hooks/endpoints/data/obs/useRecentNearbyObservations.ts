@@ -1,9 +1,9 @@
 import useEbirdApi from '../../../useEbirdApi';
-import {
-  type QueryParam,
-  type BaseQueryParam,
-} from '../../../../ebirdApiClient';
 import type EbirdTaxonomyCategory from '../../../../types/EbirdTaxonomyCategory';
+import type {
+  QueryParam,
+  BaseQueryParam,
+} from '../../../../types/EbirdApiParams';
 
 export type EbirdRecentNearbyObservationsSortBy = 'date' | 'species';
 
