@@ -1,4 +1,4 @@
-import { type UrlParam } from '../services/ebird/ebirdApiClient';
+import { type UrlParam } from '../services/ebird/types/EbirdApiParams';
 
 export default function dateToUrlParamArray(date: Date): UrlParam[] {
   return [

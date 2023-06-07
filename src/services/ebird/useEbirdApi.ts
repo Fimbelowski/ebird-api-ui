@@ -26,9 +26,9 @@ import {
   type EbirdApiOptions,
   makeRequest,
   type QueryParam,
-  type UrlParam,
 } from './ebirdApiClient';
 import useApiKey from '../../hooks/useApiKey';
+import { type UrlParam } from './types/EbirdApiParams';
 
 interface CsvOptions {
   headers: string[];

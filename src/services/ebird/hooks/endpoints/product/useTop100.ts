@@ -1,10 +1,7 @@
 import useEbirdApi from '../../useEbirdApi';
-import {
-  type UrlParam,
-  type QueryParam,
-  type BaseQueryParam,
-} from '../../../ebirdApiClient';
+import { type QueryParam, type BaseQueryParam } from '../../../ebirdApiClient';
 import yearMonthDayToUrlParams from '../../../helpers/yearMonthDayToUrlParams';
+import { type UrlParam } from '../../../types/EbirdApiParams';
 
 export type EbirdTop100RankedBy = 'cl' | 'spp';
 

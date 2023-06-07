@@ -1,12 +1,12 @@
 import useEbirdApi from '../../../useEbirdApi';
 import {
-  type UrlParam,
   type QueryParam,
   type BaseQueryParam,
 } from '../../../../ebirdApiClient';
 import yearMonthDayToUrlParams from '../../../../helpers/yearMonthDayToUrlParams';
 import type EbirdObservationDetailLevel from '../../../../types/EbirdObservationDetailLevel';
 import type EbirdTaxonomyCategory from '../../../../types/EbirdTaxonomyCategory';
+import { type UrlParam } from '../../../../types/EbirdApiParams';
 
 export type EbirdHistoricalObservationRank = 'mrec' | 'create';
 

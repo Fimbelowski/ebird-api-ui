@@ -2,9 +2,9 @@ import type EbirdRecordFormat from '../../../../types/EbirdRecordFormat';
 import useEbirdApi from '../../../useEbirdApi';
 import {
   type BaseQueryParam,
-  type UrlParam,
   type QueryParam,
 } from '../../../../ebirdApiClient';
+import { type UrlParam } from '../../../../types/EbirdApiParams';
 
 export default async function useHotspotsInARegion(
   regionCode: string,

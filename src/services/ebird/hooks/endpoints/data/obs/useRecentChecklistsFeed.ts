@@ -1,5 +1,6 @@
 import useEbirdApi from '../../../useEbirdApi';
-import { type UrlParam, type QueryParam } from '../../../../ebirdApiClient';
+import { type QueryParam } from '../../../../ebirdApiClient';
+import { type UrlParam } from '../../../../types/EbirdApiParams';
 
 export default async function useChecklistsFeed(
   regionCode: string,

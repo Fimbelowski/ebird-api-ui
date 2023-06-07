@@ -1,3 +1,5 @@
+import type { UrlParam } from './types/EbirdApiParams';
+
 export interface EbirdApiOptions {
   apiKey?: string;
   queryParams?: QueryParam[];
@@ -17,11 +19,6 @@ export type QueryParam =
   | BaseQueryParam<string[]>;
 
 type QueryParamValue = boolean | number | string | string[];
-
-export interface UrlParam {
-  name: string;
-  value: string | number;
-}
 
 function buildQueryString(queryParams: QueryParam[]) {
   if (queryParams.length === 0) {
