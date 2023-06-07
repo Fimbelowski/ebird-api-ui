@@ -6,32 +6,48 @@ export default function Nav() {
       label: 'Adjacent Regions',
       path: 'adjacent-regions',
     },
-    {
-      label: 'Region Info',
-      path: 'region-info',
-    },
   ];
 
   const hotspotMenuItems: Item[] = [
     {
-      label: 'Nearby Hotspots',
-      path: 'nearby-hotspots',
+      label: 'Hotspot Info',
+      path: 'hotspot-info',
     },
     {
       label: 'Hotspots in a Region',
       path: 'hotspots-in-a-region',
     },
     {
-      label: 'Hotspot Info',
-      path: 'hotspot-info',
+      label: 'Nearby Hotspots',
+      path: 'nearby-hotspots',
     },
   ];
 
   const observationMenuItems: Item[] = [
+    // {
+    //   label: 'Historic Observations on a Date',
+    //   path: 'historic-observations-on-a-date',
+    // },
+    // {
+    //   label: 'Nearest Observations of a Species',
+    //   path: 'nearest-observations-of-a-species',
+    // },
     {
       label: 'Recent Checklists Feed',
       path: 'recent-checklists-feed',
     },
+    // {
+    //   label: 'Recent Nearby Notable Observations',
+    //   path: 'recent-nearby-notable-observations',
+    // },
+    // {
+    //   label: 'Recent Nearby Observations',
+    //   path: 'recent-nearby-observations',
+    // },
+    // {
+    //   label: 'Recent Nearby Observations of a Species',
+    //   path: 'recent-nearby-observations-of-a-species',
+    // },
     {
       label: 'Recent Notable Observations in a Region',
       path: 'recent-notable-observations-in-a-region',
@@ -63,9 +79,17 @@ export default function Nav() {
       label: 'Top 100 Contributors',
       path: 'top-100',
     },
+    // {
+    //   label: 'View Checklist',
+    //   path: 'view-checklist',
+    // },
   ];
 
   const regionMenuItems: Item[] = [
+    {
+      label: 'Region Info',
+      path: 'region-info',
+    },
     {
       label: 'Sub-region List',
       path: 'sub-region-list',
@@ -73,6 +97,10 @@ export default function Nav() {
   ];
 
   const taxonomyMenuItems: Item[] = [
+    // {
+    //   label: 'eBird Taxonomy',
+    //   path: 'ebird-taxonomy',
+    // },
     {
       label: 'Taxa Locale Codes',
       path: 'taxa-locale-codes',
