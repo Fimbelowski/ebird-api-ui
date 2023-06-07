@@ -1,4 +1,4 @@
-import useEbirdApi from '../../../useEbirdApi';
+import useEbirdApiRefFolder from '../useEbirdApiRefFolder';
 import { type UrlParam } from '../../../../ebirdApiClient';
 
 export default async function useAdjacentRegions(regionCode: string) {
@@ -9,7 +9,7 @@ export default async function useAdjacentRegions(regionCode: string) {
     },
   ];
 
-  return await useEbirdApi('ref/adjacent/{{regionCode}}', {
+  return await useEbirdApiRefFolder('adjacent/{{regionCode}}', {
     urlParams,
   });
 }

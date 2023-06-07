@@ -1,4 +1,4 @@
-import useEbirdApi from '../../../useEbirdApi';
+import useEbirdApiRegionSubfolder from './useEbirdApiRegionSubfolder';
 import { type QueryParam, type UrlParam } from '../../../../ebirdApiClient';
 
 type EbirdRegionNameFormat =
@@ -18,7 +18,7 @@ export default async function useRegionInfo(
 
   const queryParams: QueryParam[] = [];
 
-  return await useEbirdApi('ref/region/info/{{regionCode}}', {
+  return await useEbirdApiRegionSubfolder('info/{{regionCode}}', {
     urlParams,
     queryParams,
   });
