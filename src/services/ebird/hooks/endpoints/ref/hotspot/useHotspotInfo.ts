@@ -1,4 +1,4 @@
-import useEbirdApiHotspotSubfolder from './useEbirdApiHotspotSubfolder';
+import useEbirdApi from '../../../useEbirdApi';
 import { type UrlParam } from '../../../../ebirdApiClient';
 
 export default async function useHotspotInfo(locationId: string) {
@@ -9,5 +9,5 @@ export default async function useHotspotInfo(locationId: string) {
     },
   ];
 
-  return await useEbirdApiHotspotSubfolder('info/{{locId}}', { urlParams });
+  return await useEbirdApi('ref/hotspot/info/{{locId}}', { urlParams });
 }

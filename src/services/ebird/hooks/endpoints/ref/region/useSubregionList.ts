@@ -1,6 +1,6 @@
 import type EbirdRecordFormat from '../../../../types/EbirdRecordFormat';
 import { type QueryParam, type UrlParam } from '../../../../ebirdApiClient';
-import useEbirdApiRegionSubfolder from './useEbirdApiRegionSubfolder';
+import useEbirdApi from '../../../useEbirdApi';
 
 export type EbirdRegionType = 'country' | 'subnational1' | 'subnational2';
 
@@ -28,8 +28,8 @@ export async function useSubregionList(
     },
   ];
 
-  return await useEbirdApiRegionSubfolder(
-    'list/{{regionType}}/{{parentRegionCode}}',
+  return await useEbirdApi(
+    'ref/region/list/{{regionType}}/{{parentRegionCode}}',
     { urlParams, queryParams }
   );
 }

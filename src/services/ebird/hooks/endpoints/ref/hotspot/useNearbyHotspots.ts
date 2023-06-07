@@ -1,5 +1,5 @@
 import type EbirdRecordFormat from '../../../../types/EbirdRecordFormat';
-import useEbirdApiHotspotSubfolder from './useEbirdApiHotspotSubfolder';
+import useEbirdApi from '../../../useEbirdApi';
 import {
   type QueryParam,
   type BaseQueryParam,
@@ -44,7 +44,7 @@ export default async function useNearbyHotspots(
     formatQueryParam,
   ];
 
-  return await useEbirdApiHotspotSubfolder('geo?lat={{lat}}&lng={{lng}}', {
+  return await useEbirdApi('ref/hotspot/geo?lat={{lat}}&lng={{lng}}', {
     queryParams,
   });
 }
