@@ -22,7 +22,7 @@ export default function Root() {
   return (
     <>
       <Header></Header>
-      <main>
+      <main className="main">
         <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
           <LoadingContext.Provider value={{ loading, setLoading }}>
             <LocaleOptionsContext.Provider
