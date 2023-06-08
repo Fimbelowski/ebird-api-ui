@@ -9,10 +9,10 @@ import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import getOrdinalNumber from '../../utilities/getOrdinalNumber';
 import { NumberInput } from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
-import useEbirdApi from '../../services/ebird/useEbirdApi';
+import useTop100 from '../../services/ebird/hooks/endpoints/product/useTop100';
 
 export default function Top100() {
-  const { getTop100 } = useEbirdApi();
+  const getTop100 = useTop100();
 
   const [date, setDate] = useState<Date>();
   const [lastRankedBy, setLastRankedBy] = useState<EbirdRankedBy>('spp');
@@ -128,7 +128,18 @@ export default function Top100() {
   }
 
   async function onSubmit() {
-    return await getTop100(regionCode, date as Date, rankedBy, maxResults);
+    if (date === undefined) {
+      throw Error('A valid date is required.');
+    }
+
+    return await getTop100(
+      regionCode,
+      date.getFullYear(),
+      date.getMonth() + 1,
+      date.getDate(),
+      rankedBy,
+      maxResults
+    );
   }
 
   const formContent = (
