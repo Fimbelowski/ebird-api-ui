@@ -1,7 +1,7 @@
 import useEbirdApi from '../../../useEbirdApi';
 import { type UrlParam } from '../../../../types/EbirdApiParams';
 
-export default function useTaxonomicForms(speciesCode: string) {
+export default function useTaxonomicForms() {
   const curriedMakeRequest = useEbirdApi();
 
   return async function getTaxonomicForms(speciesCode: string) {
