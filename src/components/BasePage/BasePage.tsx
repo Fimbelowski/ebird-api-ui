@@ -3,14 +3,14 @@ import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 import ApiKeyInput from '../ApiKeyInput/ApiKeyInput';
 import Button from '../Button/Button';
 import Details from '../Details/Details';
-import { type EbirdApiParsedResponse } from '../../services/ebird/useEbirdApi';
 import useLoading from '../../hooks/useLoading';
 
 export interface BasePageProps<T> {
   disableSubmit?: boolean;
   formContent?: ReactNode;
   onLoad: (results: T) => void;
-  onSubmit: () => EbirdApiParsedResponse<T>;
+  onSubmit: () => Promise<Response>;
+  parser?: (rawResponse: string) => T;
   requestOnMount?: boolean;
   requiresApiKey?: boolean;
   resultsContent?: ReactNode;
@@ -22,6 +22,7 @@ export function BasePage<T>({
   formContent,
   onLoad,
   onSubmit: onSubmitProp,
+  parser = (rawResponse) => JSON.parse(rawResponse) as T,
   requestOnMount = false,
   requiresApiKey = false,
   resultsContent,
@@ -44,10 +45,14 @@ export function BasePage<T>({
     setIsError(false);
 
     onSubmitProp()
-      .then(({ parsedResponse, rawResponse }) => {
-        setHasQueried(true);
+      .then(async (response) => await response.text())
+      .then((rawResponse) => {
         setRawResponse(rawResponse);
+
+        const parsedResponse = parser(rawResponse);
         onLoad(parsedResponse);
+
+        setHasQueried(true);
       })
       .catch((error) => {
         console.error(error);
