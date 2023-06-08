@@ -7,7 +7,7 @@ export default function useEbirdApi() {
 
   return async function curriedMakeRequest(
     endpoint: string,
-    options: Omit<EbirdApiOptions, 'apiKey'>
+    options?: Omit<EbirdApiOptions, 'apiKey'>
   ) {
     return await makeRequest(endpoint, { ...options, apiKey });
   };
