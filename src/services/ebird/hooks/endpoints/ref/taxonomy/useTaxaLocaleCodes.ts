@@ -1,5 +1,9 @@
 import useEbirdApi from '../../../useEbirdApi';
 
-export default async function useTaxaLocaleCodes() {
-  return await useEbirdApi('ref/taxa-locales/ebird');
+export default function useTaxaLocaleCodes() {
+  const curriedMakeRequest = useEbirdApi();
+
+  return async function getTaxaLocaleCodes() {
+    return await curriedMakeRequest('ref/taxa-locales/ebird');
+  };
 }
