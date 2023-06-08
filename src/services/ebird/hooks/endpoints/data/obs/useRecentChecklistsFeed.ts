@@ -1,27 +1,31 @@
 import useEbirdApi from '../../../useEbirdApi';
 import type { UrlParam, QueryParam } from '../../../../types/EbirdApiParams';
 
-export default async function useChecklistsFeed(
-  regionCode: string,
-  maxResults = 10
-) {
-  const urlParams: UrlParam[] = [
-    {
-      name: 'regionCode',
-      value: regionCode,
-    },
-  ];
+export default function useChecklistsFeed() {
+  const curriedMakeRequest = useEbirdApi();
 
-  const queryParams: QueryParam[] = [
-    {
-      defaultValue: 10,
-      name: 'maxResults',
-      value: maxResults,
-    },
-  ];
+  return async function getRecentChecklists(
+    regionCode: string,
+    maxResults = 10
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+    ];
 
-  return await useEbirdApi('product/lists/{{regionCode}}', {
-    urlParams,
-    queryParams,
-  });
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: 10,
+        name: 'maxResults',
+        value: maxResults,
+      },
+    ];
+
+    return await curriedMakeRequest('product/lists/{{regionCode}}', {
+      urlParams,
+      queryParams,
+    });
+  };
 }
