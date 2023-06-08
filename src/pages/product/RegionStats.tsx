@@ -10,10 +10,10 @@ import {
   type TableCellArray,
   type TableHeader,
 } from '../../components/Table/Table';
-import useEbirdApi from '../../services/ebird/useEbirdApi';
+import useRegionalStatisticsOnADate from '../../services/ebird/hooks/endpoints/product/useRegionalStatisticsOnADate';
 
 export default function RegionStats() {
-  const { getRegionStatsOnDate } = useEbirdApi();
+  const getRegionalStatisticsOnADate = useRegionalStatisticsOnADate();
 
   const [date, setDate] = useState<Date>();
   const [regionCode, setRegionCode] = useState('');
@@ -50,7 +50,16 @@ export default function RegionStats() {
   ];
 
   async function onSubmit() {
-    return await getRegionStatsOnDate(regionCode, date as Date);
+    if (date === undefined) {
+      throw Error('A valid date is required.');
+    }
+
+    return await getRegionalStatisticsOnADate(
+      regionCode,
+      date.getFullYear(),
+      date.getMonth() + 1,
+      date.getDate()
+    );
   }
 
   const formContent = (
