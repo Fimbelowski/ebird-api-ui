@@ -6,39 +6,38 @@ import type {
   QueryParam,
 } from '../../../../types/EbirdApiParams';
 
-export default async function useHotspotsInARegion(
-  regionCode: string,
-  back?: number,
-  format: EbirdRecordFormat = 'csv'
-) {
-  const urlParams: UrlParam[] = [
-    {
-      name: 'regionCode',
-      value: regionCode,
-    },
-  ];
+export default function useHotspotsInARegion() {
+  const curriedMakeRequest = useEbirdApi();
 
-  /* 
-    For query parameters that use a union type of literals, the union type must be
-    specified as a generic argument, otherwise defaultValue and value are allowed
-    to be anything as long as their types match and they extend QueryParamValue.
-  */
-  const formatQueryParam: BaseQueryParam<EbirdRecordFormat> = {
-    defaultValue: 'csv',
-    name: 'fmt',
-    value: format,
+  return async function getHotspotsInARegion(
+    regionCode: string,
+    back?: number,
+    format: EbirdRecordFormat = 'csv'
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+    ];
+
+    const formatQueryParam: BaseQueryParam<EbirdRecordFormat> = {
+      defaultValue: 'csv',
+      name: 'fmt',
+      value: format,
+    };
+
+    const queryParams: QueryParam[] = [
+      {
+        name: 'back',
+        value: back,
+      },
+      formatQueryParam,
+    ];
+
+    return await curriedMakeRequest('ref/hotspot/{{regionCode}}', {
+      urlParams,
+      queryParams,
+    });
   };
-
-  const queryParams: QueryParam[] = [
-    {
-      name: 'back',
-      value: back,
-    },
-    formatQueryParam,
-  ];
-
-  return await useEbirdApi('ref/hotspot/{{regionCode}}', {
-    urlParams,
-    queryParams,
-  });
 }
