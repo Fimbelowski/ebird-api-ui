@@ -1,7 +1,7 @@
 import useEbirdApi from '../../../useEbirdApi';
 import type { UrlParam, QueryParam } from '../../../../types/EbirdApiParams';
 
-export default function useChecklistsFeed() {
+export default function useRecentChecklistsFeed() {
   const curriedMakeRequest = useEbirdApi();
 
   return async function getRecentChecklists(
