@@ -8,10 +8,10 @@ import {
   Select,
   type SelectOptionArray,
 } from '../../../components/Select/Select';
-import useEbirdApi from '../../../services/ebird/useEbirdApi';
+import { useTaxonomicGroups } from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomicGroups';
 
 export default function TaxonomicGroups() {
-  const { getTaxonomicGroups } = useEbirdApi();
+  const getTaxonomicGroups = useTaxonomicGroups();
 
   const [groupNameLocale, setGroupNameLocale] =
     useState<EbirdGroupNameLocale>('en');
