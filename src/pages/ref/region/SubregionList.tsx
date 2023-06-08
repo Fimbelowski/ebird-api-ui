@@ -9,10 +9,10 @@ import {
   Select,
   type SelectOptionArray,
 } from '../../../components/Select/Select';
-import useEbirdApi from '../../../services/ebird/useEbirdApi';
+import { useSubregionList } from '../../../services/ebird/hooks/endpoints/ref/region/useSubregionList';
 
 export default function SubregionList() {
-  const { getSubregionList } = useEbirdApi();
+  const getSubregionList = useSubregionList();
 
   const [format, setFormat] = useState<EbirdRecordFormat>('csv');
   const [parentRegionCode, setParentRegionCode] = useState('');
