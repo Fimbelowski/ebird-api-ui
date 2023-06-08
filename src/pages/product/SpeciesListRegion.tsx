@@ -2,15 +2,15 @@ import { useState } from 'react';
 
 import BasePageList from '../../components/BasePageList/BasePageList';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
-import useEbirdApi from '../../services/ebird/useEbirdApi';
+import useSpeciesListForARegion from '../../services/ebird/hooks/endpoints/product/useSpeciesListForARegion';
 
 export default function SpeciesListRegion() {
-  const { getSpeciesListForRegion } = useEbirdApi();
+  const getSpeciesListForARegion = useSpeciesListForARegion();
 
   const [regionCode, setRegionCode] = useState('');
 
   async function onSubmit() {
-    return await getSpeciesListForRegion(regionCode);
+    return await getSpeciesListForARegion(regionCode);
   }
 
   const formContent = (
