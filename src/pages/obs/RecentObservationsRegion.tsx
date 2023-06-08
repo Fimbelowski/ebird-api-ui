@@ -10,10 +10,10 @@ import EbirdTaxonomyCategorySelect from '../../components/EbirdTaxonomyCategoryS
 import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
 import LocationTextarea from '../../components/LocationTextarea';
 import MaxResultsInput from '../../components/MaxResultsInput';
-import useEbirdApi from '../../services/ebird/useEbirdApi';
+import useRecentObservationsInARegion from '../../services/ebird/hooks/endpoints/data/obs/useRecentObservationsInARegion';
 
 export default function RecentObservationsRegion() {
-  const { getRecentObservationsInARegion } = useEbirdApi();
+  const getRecentObservationsInARegion = useRecentObservationsInARegion();
 
   const [back, setBack] = useState(14);
   const [category, setCategory] = useState<EbirdTaxonomyCategory>('');
