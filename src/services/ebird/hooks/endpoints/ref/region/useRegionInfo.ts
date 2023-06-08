@@ -13,35 +13,39 @@ type EbirdRegionNameFormat =
   | 'nameonly'
   | 'revdetailed';
 
-export default async function useRegionInfo(
-  regionCode: string,
-  regionNameFormat: EbirdRegionNameFormat = 'full',
-  delimiter = ', '
-) {
-  const urlParams: UrlParam[] = [
-    {
-      name: 'regionCode',
-      value: regionCode,
-    },
-  ];
+export default function useRegionInfo() {
+  const curriedMakeRequest = useEbirdApi();
 
-  const regionNameFormatQueryParam: BaseQueryParam<EbirdRegionNameFormat> = {
-    defaultValue: 'full',
-    name: 'regionNameFormat',
-    value: regionNameFormat,
+  return async function getRegionInfo(
+    regionCode: string,
+    regionNameFormat: EbirdRegionNameFormat = 'full',
+    delimiter = ', '
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+    ];
+
+    const regionNameFormatQueryParam: BaseQueryParam<EbirdRegionNameFormat> = {
+      defaultValue: 'full',
+      name: 'regionNameFormat',
+      value: regionNameFormat,
+    };
+
+    const queryParams: QueryParam[] = [
+      regionNameFormatQueryParam,
+      {
+        defaultValue: ', ',
+        name: 'delim',
+        value: delimiter,
+      },
+    ];
+
+    return await curriedMakeRequest('ref/region/info/{{regionCode}}', {
+      urlParams,
+      queryParams,
+    });
   };
-
-  const queryParams: QueryParam[] = [
-    regionNameFormatQueryParam,
-    {
-      defaultValue: ', ',
-      name: 'delim',
-      value: delimiter,
-    },
-  ];
-
-  return await useEbirdApi('ref/region/info/{{regionCode}}', {
-    urlParams,
-    queryParams,
-  });
 }
