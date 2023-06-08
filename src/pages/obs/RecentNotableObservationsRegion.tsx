@@ -9,10 +9,11 @@ import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
 import LocationTextarea from '../../components/LocationTextarea';
 import MaxResultsInput from '../../components/MaxResultsInput';
-import useEbirdApi from '../../services/ebird/useEbirdApi';
+import useRecentNotableObservationsInARegion from '../../services/ebird/hooks/endpoints/data/obs/useRecentNotableObservationsInARegion';
 
 export default function RecentNotableObservationsRegion() {
-  const { getRecentNotableObservationsInAregion } = useEbirdApi();
+  const getRecentNotableObservationsInAregion =
+    useRecentNotableObservationsInARegion();
 
   const [back, setBack] = useState(14);
   const [detailLevel, setDetailLevel] =
