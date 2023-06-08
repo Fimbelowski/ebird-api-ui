@@ -9,10 +9,11 @@ import EbirdSpeciesCodeInput from '../../components/EbirdSpeciesCodeInput';
 import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
 import LocationTextarea from '../../components/LocationTextarea';
 import MaxResultsInput from '../../components/MaxResultsInput';
-import useEbirdApi from '../../services/ebird/useEbirdApi';
+import useRecentObservationsOfASpeciesInARegion from '../../services/ebird/hooks/endpoints/data/obs/useRecentObservationsOfASpeciesInARegion';
 
 export default function RecentObservationsSpeciesRegion() {
-  const { getRecentObservationsOfSpeciesInRegion } = useEbirdApi();
+  const getRecentObservationsOfASpeciesInARegion =
+    useRecentObservationsOfASpeciesInARegion();
 
   const [back, setBack] = useState(14);
   const [includeProvisionalObs, setIncludeProvisionalObs] = useState(false);
@@ -24,7 +25,7 @@ export default function RecentObservationsSpeciesRegion() {
   const [speciesCode, setSpeciesCode] = useState('');
 
   async function onSubmit() {
-    return await getRecentObservationsOfSpeciesInRegion(
+    return await getRecentObservationsOfASpeciesInARegion(
       regionCode,
       speciesCode,
       back,
