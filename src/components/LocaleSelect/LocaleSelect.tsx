@@ -5,7 +5,8 @@ import LocaleOptionsContext from '../../context/LocaleOptionsContext';
 import { Select, type SelectProps } from '../Select/Select';
 import Tooltip from '../Tooltip/Tooltip';
 import useApiKey from '../../hooks/useApiKey';
-import useEbirdApi from '../../services/ebird/useEbirdApi';
+import useTaxaLocaleCodes from '../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxaLocaleCodes';
+import type EbirdTaxaLocaleCode from '../../services/ebird/types/EbirdTaxaLocaleCode';
 
 type Props = Omit<SelectProps<string>, 'id' | 'label' | 'options'>;
 
@@ -13,7 +14,7 @@ export default function LocaleSelect({ disabled, ...rest }: Props) {
   const { localeOptions, setLocaleOptions } = useContext(LocaleOptionsContext);
 
   const { apiKey } = useApiKey();
-  const { getTaxaLocaleCodes } = useEbirdApi();
+  const getTaxaLocaleCodes = useTaxaLocaleCodes();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,9 +34,12 @@ export default function LocaleSelect({ disabled, ...rest }: Props) {
     setIsLoading(true);
 
     getTaxaLocaleCodes()
-      .then(({ parsedResponse }) => {
+      .then(
+        async (response) => (await response.json()) as EbirdTaxaLocaleCode[]
+      )
+      .then((jsonResponse) => {
         setLocaleOptions(
-          parsedResponse.map(({ code, name }) => ({ label: name, value: code }))
+          jsonResponse.map(({ code, name }) => ({ label: name, value: code }))
         );
       })
       .catch((error) => {
