@@ -42,7 +42,7 @@ export default function useNearbyHotspots() {
       formatQueryParam,
     ];
 
-    return await curriedMakeRequest('ref/hotspot/geo?lat={{lat}}&lng={{lng}}', {
+    return await curriedMakeRequest('ref/hotspot/geo', {
       queryParams,
     });
   };
