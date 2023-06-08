@@ -6,10 +6,10 @@ import type EbirdChecklistSortKey from '../../services/ebird/types/EbirdChecklis
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import { NumberInput } from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
-import useEbirdApi from '../../services/ebird/useEbirdApi';
+import useChecklistFeedOnADate from '../../services/ebird/hooks/endpoints/product/useChecklistFeedOnADate';
 
 export default function ChecklistFeed() {
-  const { getChecklistFeedOnDate } = useEbirdApi();
+  const getChecklistFeedOnADate = useChecklistFeedOnADate();
 
   const [date, setDate] = useState<Date>();
   const [maxResults, setMaxResults] = useState(10);
@@ -28,9 +28,15 @@ export default function ChecklistFeed() {
   ];
 
   async function onSubmit() {
-    return await getChecklistFeedOnDate(
+    if (date === undefined) {
+      throw Error('A valid date is required.');
+    }
+
+    return await getChecklistFeedOnADate(
       regionCode,
-      date as Date,
+      date.getFullYear(),
+      date.getMonth() + 1,
+      date.getDate(),
       sortKey,
       maxResults
     );
