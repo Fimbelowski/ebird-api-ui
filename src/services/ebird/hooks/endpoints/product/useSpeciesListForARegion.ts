@@ -1,13 +1,19 @@
 import useEbirdApi from '../../useEbirdApi';
 import { type UrlParam } from '../../../types/EbirdApiParams';
 
-export default async function useSpeciesListForARegion(regionCode: string) {
-  const urlParams: UrlParam[] = [
-    {
-      name: 'regionCode',
-      value: regionCode,
-    },
-  ];
+export default function useSpeciesListForARegion() {
+  const curriedMakeRequest = useEbirdApi();
 
-  return await useEbirdApi('product/spplist/{{regionCode}}', { urlParams });
+  return async function getSpeciesListForARegion(regionCode: string) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionCode',
+        value: regionCode,
+      },
+    ];
+
+    return await curriedMakeRequest('product/spplist/{{regionCode}}', {
+      urlParams,
+    });
+  };
 }
