@@ -89,7 +89,6 @@ export function BasePage<T>({
           {formContent}
           <Button
             disabled={disableSubmit}
-            loading={loading}
             type="submit"
           >
             Submit
