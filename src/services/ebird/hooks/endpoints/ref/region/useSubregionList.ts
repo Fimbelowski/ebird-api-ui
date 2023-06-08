@@ -4,32 +4,36 @@ import useEbirdApi from '../../../useEbirdApi';
 
 export type EbirdRegionType = 'country' | 'subnational1' | 'subnational2';
 
-export async function useSubregionList(
-  regionType: EbirdRegionType,
-  parentRegionCode: string,
-  format: EbirdRecordFormat = 'json'
-) {
-  const urlParams: UrlParam[] = [
-    {
-      name: 'regionType',
-      value: regionType,
-    },
-    {
-      name: 'parentRegionCode',
-      value: parentRegionCode,
-    },
-  ];
+export function useSubregionList() {
+  const curriedMakeRequest = useEbirdApi();
 
-  const queryParams: QueryParam[] = [
-    {
-      defaultValue: 'json',
-      name: 'fmt',
-      value: format,
-    },
-  ];
+  return async function getSubregionList(
+    regionType: EbirdRegionType,
+    parentRegionCode: string,
+    format: EbirdRecordFormat = 'json'
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'regionType',
+        value: regionType,
+      },
+      {
+        name: 'parentRegionCode',
+        value: parentRegionCode,
+      },
+    ];
 
-  return await useEbirdApi(
-    'ref/region/list/{{regionType}}/{{parentRegionCode}}',
-    { urlParams, queryParams }
-  );
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: 'json',
+        name: 'fmt',
+        value: format,
+      },
+    ];
+
+    return await curriedMakeRequest(
+      'ref/region/list/{{regionType}}/{{parentRegionCode}}',
+      { urlParams, queryParams }
+    );
+  };
 }
