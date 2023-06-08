@@ -15,10 +15,10 @@ import {
   type TableHeader,
 } from '../../../components/Table/Table';
 import { TextInput } from '../../../components/TextInput';
-import useEbirdApi from '../../../services/ebird/useEbirdApi';
+import useRegionInfo from '../../../services/ebird/hooks/endpoints/ref/region/useRegionInfo';
 
 export default function RegionInfo() {
-  const { getRegionInfo } = useEbirdApi();
+  const getRegionInfo = useRegionInfo();
 
   const [delimiter, setDelimiter] = useState(', ');
   const [regionCode, setRegionCode] = useState('');
