@@ -31,25 +31,29 @@ export type EbirdGroupNameLocale =
   | 'tr'
   | 'zh';
 
-export async function useTaxonomicGroups(
-  speciesGrouping: EbirdSpeciesGrouping,
-  groupNameLocale: EbirdGroupNameLocale = 'en'
-) {
-  const urlParams: UrlParam[] = [
-    {
-      name: 'speciesGrouping',
-      value: speciesGrouping,
-    },
-  ];
+export function useTaxonomicGroups() {
+  const curriedMakeRequest = useEbirdApi();
 
-  const groupNameLocaleQueryParam: BaseQueryParam<EbirdGroupNameLocale> = {
-    defaultValue: 'en',
-    name: 'groupNameLocale',
-    value: groupNameLocale,
+  return async function getTaxonomicGroups(
+    speciesGrouping: EbirdSpeciesGrouping,
+    groupNameLocale: EbirdGroupNameLocale = 'en'
+  ) {
+    const urlParams: UrlParam[] = [
+      {
+        name: 'speciesGrouping',
+        value: speciesGrouping,
+      },
+    ];
+
+    const groupNameLocaleQueryParam: BaseQueryParam<EbirdGroupNameLocale> = {
+      defaultValue: 'en',
+      name: 'groupNameLocale',
+      value: groupNameLocale,
+    };
+
+    return await curriedMakeRequest('ref/sppgroup/{{speciesGrouping}}', {
+      urlParams,
+      queryParams: [groupNameLocaleQueryParam],
+    });
   };
-
-  return await useEbirdApi('ref/sppgroup/{{speciesGrouping}}', {
-    urlParams,
-    queryParams: [groupNameLocaleQueryParam],
-  });
 }
