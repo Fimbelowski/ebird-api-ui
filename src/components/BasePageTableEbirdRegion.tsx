@@ -32,7 +32,7 @@ export default function BasePageTableEbirdRegion(props: Props) {
   ];
 
   return (
-    <BasePageTable
+    <BasePageTable<EbirdRegion>
       {...props}
       tables={tables}
     />
