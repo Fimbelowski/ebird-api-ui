@@ -5,10 +5,10 @@ import BasePageTableEbirdHotspot from '../../../components/BasePageTableEbirdHot
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import type EbirdRecordFormat from '../../../services/ebird/types/EbirdRecordFormat';
 import FormatSelect from '../../../components/FormatSelect';
-import useEbirdApi from '../../../services/ebird/useEbirdApi';
+import useHotspotsInARegion from '../../../services/ebird/hooks/endpoints/ref/hotspot/useHotspotsInARegion';
 
 export default function HotspotsRegion() {
-  const { getRegionHotspots } = useEbirdApi();
+  const getRegionHotspots = useHotspotsInARegion();
 
   const [back, setBack] = useState<number>();
   const [format, setFormat] = useState<EbirdRecordFormat>('csv');
