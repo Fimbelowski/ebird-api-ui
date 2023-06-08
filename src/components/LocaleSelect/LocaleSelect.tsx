@@ -7,7 +7,6 @@ import Tooltip from '../Tooltip/Tooltip';
 import useApiKey from '../../hooks/useApiKey';
 import useTaxaLocaleCodes from '../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxaLocaleCodes';
 import type EbirdTaxaLocaleCode from '../../services/ebird/types/EbirdTaxaLocaleCode';
-import parseResponseAsJson from '../../utilities/parseResponseAsJson';
 
 type Props = Omit<SelectProps<string>, 'id' | 'label' | 'options'>;
 
@@ -36,8 +35,7 @@ export default function LocaleSelect({ disabled, ...rest }: Props) {
 
     getTaxaLocaleCodes()
       .then(
-        async (response) =>
-          await parseResponseAsJson<EbirdTaxaLocaleCode[]>(response)
+        async (response) => (await response.json()) as EbirdTaxaLocaleCode[]
       )
       .then((jsonResponse) => {
         setLocaleOptions(
