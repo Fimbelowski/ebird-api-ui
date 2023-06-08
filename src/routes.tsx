@@ -33,7 +33,7 @@ const ROUTES: [
         element: <AdjacentRegions />,
       },
       {
-        path: 'checklist-feed',
+        path: 'checklist-feed-on-a-date',
         element: <ChecklistFeed />,
       },
       {
@@ -45,23 +45,23 @@ const ROUTES: [
         element: <HotspotsNearby />,
       },
       {
-        path: 'recent-checklists',
+        path: 'recent-checklists-feed',
         element: <RecentChecklists />,
       },
       {
-        path: 'recent-notable-observations-region',
+        path: 'recent-notable-observations-in-a-region',
         element: <RecentNotableObservationsRegion />,
       },
       {
-        path: 'recent-observations-species-region',
+        path: 'recent-observations-of-a-species-in-a-region',
         element: <RecentObservationsSpeciesRegion />,
       },
       {
-        path: 'recent-observations-region',
+        path: 'recent-observations-in-a-region',
         element: <RecentObservationsRegion />,
       },
       {
-        path: 'region-hotspots',
+        path: 'hotspots-in-a-region',
         element: <HotspotsRegion />,
       },
       {
@@ -69,11 +69,11 @@ const ROUTES: [
         element: <RegionInfo />,
       },
       {
-        path: 'region-stats',
+        path: 'regional-statistics-on-a-date',
         element: <RegionStats />,
       },
       {
-        path: 'species-list-region',
+        path: 'species-list-for-a-region',
         element: <SpeciesListRegion />,
       },
       {
