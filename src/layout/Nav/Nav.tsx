@@ -1,14 +1,14 @@
-import { NavMenu, type Item } from '../../components/NavMenu/NavMenu';
+import { NavMenu, type NavMenuItem } from '../../components/NavMenu/NavMenu';
 
 export default function Nav() {
-  const geographyMenuItems: Item[] = [
+  const geographyMenuItems: NavMenuItem[] = [
     {
       label: 'Adjacent Regions',
       path: 'adjacent-regions',
     },
   ];
 
-  const hotspotMenuItems: Item[] = [
+  const hotspotMenuItems: NavMenuItem[] = [
     {
       label: 'Hotspot Info',
       path: 'hotspot-info',
@@ -23,7 +23,7 @@ export default function Nav() {
     },
   ];
 
-  const observationMenuItems: Item[] = [
+  const observationMenuItems: NavMenuItem[] = [
     // {
     //   label: 'Historic Observations on a Date',
     //   path: 'historic-observations-on-a-date',
@@ -62,7 +62,7 @@ export default function Nav() {
     },
   ];
 
-  const productMenuItems: Item[] = [
+  const productMenuItems: NavMenuItem[] = [
     {
       label: 'Checklist Feed on a Date',
       path: 'checklist-feed-on-a-date',
@@ -85,7 +85,7 @@ export default function Nav() {
     // },
   ];
 
-  const regionMenuItems: Item[] = [
+  const regionMenuItems: NavMenuItem[] = [
     {
       label: 'Region Info',
       path: 'region-info',
@@ -96,7 +96,7 @@ export default function Nav() {
     },
   ];
 
-  const taxonomyMenuItems: Item[] = [
+  const taxonomyMenuItems: NavMenuItem[] = [
     // {
     //   label: 'eBird Taxonomy',
     //   path: 'ebird-taxonomy',

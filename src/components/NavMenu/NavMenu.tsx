@@ -4,13 +4,13 @@ import { useState } from 'react';
 import classNames from '../../utilities/classNames';
 import type RouteName from '../../types/RouteName';
 
-export interface Item {
+export interface NavMenuItem {
   label: string;
   path: RouteName;
 }
 
 interface Props {
-  items: Item[];
+  items: NavMenuItem[];
   label: string;
   menuAlignment?: 'left' | 'right';
 }
