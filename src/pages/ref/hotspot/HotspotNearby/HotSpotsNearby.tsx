@@ -7,10 +7,10 @@ import CoordinateInput from '../../../../components/CoordinateInput';
 import type EbirdRecordFormat from '../../../../services/ebird/types/EbirdRecordFormat';
 import FormatSelect from '../../../../components/FormatSelect';
 import { NumberInput } from '../../../../components/NumberInput';
-import useEbirdApi from '../../../../services/ebird/useEbirdApi';
+import useNearbyHotspots from '../../../../services/ebird/hooks/endpoints/ref/hotspot/useNearbyHotspots';
 
 export default function HotspotsNearby() {
-  const { getNearbyHotspots } = useEbirdApi();
+  const getNearbyHotspots = useNearbyHotspots();
 
   const [back, setBack] = useState<number>();
   const [distance, setDistance] = useState(25);
@@ -48,9 +48,9 @@ export default function HotspotsNearby() {
     return await getNearbyHotspots(
       latitude as number,
       longitude as number,
-      format,
       back,
-      distance
+      distance,
+      format
     );
   }
 
