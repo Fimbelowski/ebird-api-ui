@@ -1,9 +1,9 @@
 import { BasePageTable, type Tables } from '../../../components/BasePageTable';
 import type EbirdTaxonomyVersion from '../../../services/ebird/types/EbirdTaxonomyVersion';
-import useEbirdApi from '../../../services/ebird/useEbirdApi';
+import useTaxonomyVersions from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomyVersions';
 
 export default function TaxonomyVersions() {
-  const { getTaxonomyVersions } = useEbirdApi();
+  const getTaxonomyVersions = useTaxonomyVersions();
 
   const tables: Tables<EbirdTaxonomyVersion> = [
     {
