@@ -4,7 +4,6 @@ import { BasePage } from '../../components/BasePage/BasePage';
 import DateInput from '../../components/DateInput';
 import Details from '../../components/Details/Details';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
-import type EbirdRegionStats from '../../services/ebird/types/EbirdRegionStats';
 import {
   Table,
   type TableCellArray,
@@ -12,6 +11,12 @@ import {
 } from '../../components/Table/Table';
 import useRegionalStatisticsOnADate from '../../services/ebird/hooks/endpoints/product/useRegionalStatisticsOnADate';
 import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
+
+interface EbirdRegionStats {
+  numChecklists: number;
+  numContributors: number;
+  numSpecies: number;
+}
 
 export default function RegionalStatisticsOnADate() {
   const getRegionalStatisticsOnADate = useRegionalStatisticsOnADate();
