@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { BasePageTable, type Tables } from '../../../components/BasePageTable';
-import type EbirdTaxonomicGroup from '../../../services/ebird/types/EbirdTaxonomicGroup';
 import {
   Select,
   type SelectOptionArray,
@@ -11,6 +10,12 @@ import {
   type EbirdGroupNameLocale,
   type EbirdSpeciesGrouping,
 } from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomicGroups';
+
+interface EbirdTaxonomicGroup {
+  groupName: string;
+  groupOrder: number;
+  taxonOrderBounds: [[number, number]];
+}
 
 export default function TaxonomicGroups() {
   const getTaxonomicGroups = useTaxonomicGroups();
