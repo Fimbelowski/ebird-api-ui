@@ -4,7 +4,7 @@ import BasePageList from '../../components/BasePageList/BasePageList';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import useSpeciesListForARegion from '../../services/ebird/hooks/endpoints/product/useSpeciesListForARegion';
 
-export default function SpeciesListRegion() {
+export default function SpeciesListForARegion() {
   const getSpeciesListForARegion = useSpeciesListForARegion();
 
   const [regionCode, setRegionCode] = useState('');

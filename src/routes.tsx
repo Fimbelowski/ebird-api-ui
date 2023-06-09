@@ -13,7 +13,7 @@ import RegionInfo from './pages/ref/region/RegionInfo';
 import RegionalStatisticsOnADate from './pages/product/RegionalStatisticsOnADate';
 import Root from './pages/Root';
 import type RouteName from './types/RouteName';
-import SpeciesListRegion from './pages/product/SpeciesListRegion';
+import SpeciesListForARegion from './pages/product/SpeciesListForARegion';
 import SubregionList from './pages/ref/region/SubregionList';
 import TaxaLocaleCodes from './pages/ref/taxonomy/TaxaLocaleCodes';
 import TaxonomicForms from './pages/ref/taxonomy/TaxonomicForms';
@@ -74,7 +74,7 @@ const ROUTES: [
       },
       {
         path: 'species-list-for-a-region',
-        element: <SpeciesListRegion />,
+        element: <SpeciesListForARegion />,
       },
       {
         path: 'sub-region-list',
