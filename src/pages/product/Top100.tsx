@@ -10,11 +10,12 @@ import getOrdinalNumber from '../../utilities/getOrdinalNumber';
 import { NumberInput } from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import useTop100 from '../../services/ebird/hooks/endpoints/product/useTop100';
+import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
 
 export default function Top100() {
   const getTop100 = useTop100();
 
-  const [date, setDate] = useState<Date>();
+  const [date, setDate] = useState('');
   const [lastRankedBy, setLastRankedBy] = useState<EbirdRankedBy>('spp');
   const [maxResults, setMaxResults] = useState<number>();
   const [rankedBy, setRankedBy] = useState<EbirdRankedBy>('spp');
@@ -134,9 +135,7 @@ export default function Top100() {
 
     return await getTop100(
       regionCode,
-      date.getFullYear(),
-      date.getMonth() + 1,
-      date.getDate(),
+      ...dateStringToYearMonthDay(date),
       rankedBy,
       maxResults
     );
