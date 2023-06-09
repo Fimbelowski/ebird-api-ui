@@ -1,12 +1,12 @@
-export default function csvToArray(
+export default function csvToArray<T>(
   csv: string,
   headers: string[],
   ignoreFirstLine = false
-) {
+): T[] {
   const rows = csv.split(/\n(?=.)/);
 
   if (ignoreFirstLine) {
-    rows.splice(0, 1);
+    rows.shift();
   }
 
   return rows.map((row) => {
@@ -19,5 +19,5 @@ export default function csvToArray(
     });
 
     return rowObject;
-  });
+  }) as T[];
 }
