@@ -2,30 +2,14 @@ import { BaseInput, type BaseInputProps } from './BaseInput';
 
 export type NumberInputProps = Omit<
   BaseInputProps,
-  'onChange' | 'maxLength' | 'minLength' | 'type' | 'value'
-> & { onChange: (value: number) => void; value: number | undefined };
+  'maxLength' | 'minLength' | 'type'
+>;
 
-export function NumberInput({
-  onChange: onChangeProp,
-  value,
-  ...rest
-}: NumberInputProps) {
-  function onChange(value: string) {
-    const valueAsNumber = parseFloat(value);
-
-    onChangeProp(valueAsNumber);
-  }
-
-  function valueAsString() {
-    return value?.toString() ?? '';
-  }
-
+export function NumberInput(props: NumberInputProps) {
   return (
     <BaseInput
-      {...rest}
-      onChange={onChange}
+      {...props}
       type="number"
-      value={valueAsString()}
     />
   );
 }
