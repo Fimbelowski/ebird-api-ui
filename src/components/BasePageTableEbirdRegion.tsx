@@ -3,7 +3,11 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
-import type EbirdRegion from '../services/ebird/types/EbirdRegion';
+
+interface EbirdRegion {
+  code: string;
+  name: string;
+}
 
 type Props = Omit<BasePageTableProps<EbirdRegion>, 'tables'>;
 
