@@ -11,11 +11,12 @@ import {
   type TableHeader,
 } from '../../components/Table/Table';
 import useRegionalStatisticsOnADate from '../../services/ebird/hooks/endpoints/product/useRegionalStatisticsOnADate';
+import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
 
 export default function RegionalStatisticsOnADate() {
   const getRegionalStatisticsOnADate = useRegionalStatisticsOnADate();
 
-  const [date, setDate] = useState<Date>();
+  const [date, setDate] = useState('');
   const [regionCode, setRegionCode] = useState('');
   const [stats, setStats] = useState<EbirdRegionStats>();
 
@@ -56,9 +57,7 @@ export default function RegionalStatisticsOnADate() {
 
     return await getRegionalStatisticsOnADate(
       regionCode,
-      date.getFullYear(),
-      date.getMonth() + 1,
-      date.getDate()
+      ...dateStringToYearMonthDay(date)
     );
   }
 
