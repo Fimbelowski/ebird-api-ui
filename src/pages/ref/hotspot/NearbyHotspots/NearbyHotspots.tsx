@@ -4,7 +4,7 @@ import BackInput from '../../../../components/BaseInput/BackInput';
 import BasePageTableEbirdHotspot from '../../../../components/BasePageTableEbirdHotspot';
 import Button from '../../../../components/Button/Button';
 import CoordinateInput from '../../../../components/CoordinateInput';
-import type EbirdRecordFormat from '../../../../services/ebird/types/EbirdRecordFormat';
+import type EbirdRecordFormat from '../../../../types/EbirdRecordFormat';
 import FormatSelect from '../../../../components/FormatSelect';
 import { NumberInput } from '../../../../components/NumberInput';
 import useNearbyHotspots from '../../../../services/ebird/hooks/endpoints/ref/hotspot/useNearbyHotspots';

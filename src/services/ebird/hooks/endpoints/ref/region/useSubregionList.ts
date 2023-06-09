@@ -1,4 +1,4 @@
-import type EbirdRecordFormat from '../../../../types/EbirdRecordFormat';
+import type EbirdRecordFormat from '../../../../../../types/EbirdRecordFormat';
 import type { UrlParam, QueryParam } from '../../../../types/EbirdApiParams';
 import useEbirdApi from '../../../useEbirdApi';
 

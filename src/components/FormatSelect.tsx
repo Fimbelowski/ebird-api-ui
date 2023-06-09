@@ -1,4 +1,4 @@
-import type EbirdRecordFormat from '../services/ebird/types/EbirdRecordFormat';
+import type EbirdRecordFormat from '../types/EbirdRecordFormat';
 import {
   Select,
   type SelectProps,

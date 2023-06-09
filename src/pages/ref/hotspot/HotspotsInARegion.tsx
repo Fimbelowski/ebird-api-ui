@@ -3,7 +3,7 @@ import { useState } from 'react';
 import BackInput from '../../../components/BaseInput/BackInput';
 import BasePageTableEbirdHotspot from '../../../components/BasePageTableEbirdHotspot';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
-import type EbirdRecordFormat from '../../../services/ebird/types/EbirdRecordFormat';
+import type EbirdRecordFormat from '../../../types/EbirdRecordFormat';
 import FormatSelect from '../../../components/FormatSelect';
 import useHotspotsInARegion from '../../../services/ebird/hooks/endpoints/ref/hotspot/useHotspotsInARegion';
 
