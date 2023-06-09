@@ -5,7 +5,7 @@ import type {
   BaseQueryParam,
 } from '../../../../types/EbirdApiParams';
 
-type EbirdRegionNameFormat =
+export type EbirdRegionNameFormat =
   | 'detailed'
   | 'detailednoqual'
   | 'full'
@@ -13,7 +13,7 @@ type EbirdRegionNameFormat =
   | 'nameonly'
   | 'revdetailed';
 
-export default function useRegionInfo() {
+export function useRegionInfo() {
   const curriedMakeRequest = useEbirdApi();
 
   return async function getRegionInfo(

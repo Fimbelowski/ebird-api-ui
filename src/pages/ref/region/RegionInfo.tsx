@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { BasePage } from '../../../components/BasePage/BasePage';
 import Details from '../../../components/Details/Details';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
-import type EbirdRegionNameFormat from '../../../services/ebird/types/EbirdRegionNameFormat';
 import {
   Select,
   type SelectOptionArray,
@@ -14,7 +13,10 @@ import {
   type TableHeader,
 } from '../../../components/Table/Table';
 import { TextInput } from '../../../components/TextInput';
-import useRegionInfo from '../../../services/ebird/hooks/endpoints/ref/region/useRegionInfo';
+import {
+  useRegionInfo,
+  type EbirdRegionNameFormat,
+} from '../../../services/ebird/hooks/endpoints/ref/region/useRegionInfo';
 
 interface EbirdRegionInfo {
   bounds: {
