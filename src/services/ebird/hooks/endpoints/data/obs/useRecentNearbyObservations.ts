@@ -1,5 +1,5 @@
 import useEbirdApi from '../../../useEbirdApi';
-import type EbirdTaxonomyCategory from '../../../../types/EbirdTaxonomyCategory';
+import type EbirdTaxonomyCategory from '../../../../../../types/EbirdTaxonomyCategory';
 import type {
   QueryParam,
   BaseQueryParam,

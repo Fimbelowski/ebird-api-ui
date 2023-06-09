@@ -1,7 +1,7 @@
 import useEbirdApi from '../../../useEbirdApi';
 import yearMonthDayToUrlParams from '../../../../helpers/yearMonthDayToUrlParams';
 import type EbirdObservationDetailLevel from '../../../../../../types/EbirdObservationDetailLevel';
-import type EbirdTaxonomyCategory from '../../../../types/EbirdTaxonomyCategory';
+import type EbirdTaxonomyCategory from '../../../../../../types/EbirdTaxonomyCategory';
 import type {
   UrlParam,
   QueryParam,

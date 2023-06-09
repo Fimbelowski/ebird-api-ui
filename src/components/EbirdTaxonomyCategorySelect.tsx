@@ -1,4 +1,4 @@
-import type EbirdTaxonomyCategory from '../services/ebird/types/EbirdTaxonomyCategory';
+import type EbirdTaxonomyCategory from '../types/EbirdTaxonomyCategory';
 import {
   Select,
   type SelectProps,
