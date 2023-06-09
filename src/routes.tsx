@@ -7,7 +7,7 @@ import HotspotsNearby from './pages/ref/hotspot/HotspotNearby/HotSpotsNearby';
 import HotspotsRegion from './pages/ref/hotspot/HotspotsRegion';
 import RecentChecklistsFeed from './pages/obs/RecentChecklistsFeed';
 import RecentNotableObservationsInARegion from './pages/obs/RecentNotableObservationsInARegion';
-import RecentObservationsSpeciesRegion from './pages/obs/RecentObservationsSpeciesRegion';
+import RecentObservationsOfASpeciesInARegion from './pages/obs/RecentObservationsOfASpeciesInARegion';
 import RecentObservationsInARegion from './pages/obs/RecentObservationsInARegion';
 import RegionInfo from './pages/ref/region/RegionInfo';
 import RegionStats from './pages/product/RegionStats';
@@ -54,7 +54,7 @@ const ROUTES: [
       },
       {
         path: 'recent-observations-of-a-species-in-a-region',
-        element: <RecentObservationsSpeciesRegion />,
+        element: <RecentObservationsOfASpeciesInARegion />,
       },
       {
         path: 'recent-observations-in-a-region',
