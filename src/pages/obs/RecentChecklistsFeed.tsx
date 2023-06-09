@@ -5,7 +5,7 @@ import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import { NumberInput } from '../../components/NumberInput';
 import useRecentChecklistsFeed from '../../services/ebird/hooks/endpoints/data/obs/useRecentChecklistsFeed';
 
-export default function RecentChecklists() {
+export default function RecentChecklistsFeed() {
   const getRecentChecklists = useRecentChecklistsFeed();
 
   const [maxResults, setMaxResults] = useState(10);

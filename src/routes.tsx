@@ -5,7 +5,7 @@ import ChecklistFeed from './pages/product/ChecklistFeed';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
 import HotspotsNearby from './pages/ref/hotspot/HotspotNearby/HotSpotsNearby';
 import HotspotsRegion from './pages/ref/hotspot/HotspotsRegion';
-import RecentChecklists from './pages/obs/RecentChecklists';
+import RecentChecklists from './pages/obs/RecentChecklistsFeed';
 import RecentNotableObservationsRegion from './pages/obs/RecentNotableObservationsRegion';
 import RecentObservationsSpeciesRegion from './pages/obs/RecentObservationsSpeciesRegion';
 import RecentObservationsRegion from './pages/obs/RecentObservationsRegion';
