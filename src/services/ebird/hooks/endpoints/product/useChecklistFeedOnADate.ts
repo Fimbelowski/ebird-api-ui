@@ -6,9 +6,9 @@ import type {
   BaseQueryParam,
 } from '../../../types/EbirdApiParams';
 
-export type EbirdChecklistFeedOnADateSortBy = 'obs_dt' | 'creation_dt';
+export type EbirdChecklistSortBy = 'obs_dt' | 'creation_dt';
 
-export default function useChecklistFeedOnADate() {
+export function useChecklistFeedOnADate() {
   const curriedMakeRequest = useEbirdApi();
 
   return async function getChecklistFeedOnADate(
@@ -16,7 +16,7 @@ export default function useChecklistFeedOnADate() {
     year: string,
     month: string,
     day: string,
-    sortKey: EbirdChecklistFeedOnADateSortBy = 'obs_dt',
+    sortKey: EbirdChecklistSortBy = 'obs_dt',
     maxResults = '10'
   ) {
     const urlParams: UrlParam[] = [
@@ -27,7 +27,7 @@ export default function useChecklistFeedOnADate() {
       ...yearMonthDayToUrlParams(year, month, day),
     ];
 
-    const sortKeyQueryParam: BaseQueryParam<EbirdChecklistFeedOnADateSortBy> = {
+    const sortKeyQueryParam: BaseQueryParam<EbirdChecklistSortBy> = {
       defaultValue: 'obs_dt',
       name: 'sortKey',
       value: sortKey,

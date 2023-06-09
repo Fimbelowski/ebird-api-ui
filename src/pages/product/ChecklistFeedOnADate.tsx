@@ -2,11 +2,13 @@ import { useState } from 'react';
 
 import BasePageTableEbirdChecklist from '../../components/BasePageTableEbirdChecklist';
 import DateInput from '../../components/DateInput';
-import type EbirdChecklistSortKey from '../../services/ebird/types/EbirdChecklistSortKey';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import { NumberInput } from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
-import useChecklistFeedOnADate from '../../services/ebird/hooks/endpoints/product/useChecklistFeedOnADate';
+import {
+  useChecklistFeedOnADate,
+  type EbirdChecklistSortBy,
+} from '../../services/ebird/hooks/endpoints/product/useChecklistFeedOnADate';
 import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
 
 export default function ChecklistFeedOnADate() {
@@ -15,9 +17,9 @@ export default function ChecklistFeedOnADate() {
   const [date, setDate] = useState('');
   const [maxResults, setMaxResults] = useState('10');
   const [regionCode, setRegionCode] = useState('');
-  const [sortKey, setSortKey] = useState<EbirdChecklistSortKey>('obs_dt');
+  const [sortKey, setSortKey] = useState<EbirdChecklistSortBy>('obs_dt');
 
-  const sortKeyOptions: SelectOptionArray<EbirdChecklistSortKey> = [
+  const sortKeyOptions: SelectOptionArray<EbirdChecklistSortBy> = [
     {
       label: 'Observation Date',
       value: 'obs_dt',
@@ -53,7 +55,7 @@ export default function ChecklistFeedOnADate() {
         onChange={setDate}
         required
       />
-      <Select<EbirdChecklistSortKey>
+      <Select<EbirdChecklistSortBy>
         id="sort-key"
         label="Sort By"
         onChange={setSortKey}
