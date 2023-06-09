@@ -1,5 +1,5 @@
 import { BasePageTable, type Tables } from '../../../components/BasePageTable';
-import type EbirdTaxaLocaleCode from '../../../services/ebird/types/EbirdTaxaLocaleCode';
+import type EbirdTaxaLocaleCode from '../../../types/EbirdTaxaLocaleCode';
 import useTaxaLocaleCodes from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxaLocaleCodes';
 
 export default function TaxaLocaleCodes() {

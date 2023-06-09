@@ -6,7 +6,7 @@ import { Select, type SelectProps } from '../Select/Select';
 import Tooltip from '../Tooltip/Tooltip';
 import useApiKey from '../../hooks/useApiKey';
 import useTaxaLocaleCodes from '../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxaLocaleCodes';
-import type EbirdTaxaLocaleCode from '../../services/ebird/types/EbirdTaxaLocaleCode';
+import type EbirdTaxaLocaleCode from '../../types/EbirdTaxaLocaleCode';
 
 type Props = Omit<SelectProps<string>, 'id' | 'label' | 'options'>;
 
