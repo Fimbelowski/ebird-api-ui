@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { BasePage } from '../../../components/BasePage/BasePage';
 import Details from '../../../components/Details/Details';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
-import type EbirdRegionInfo from '../../../services/ebird/types/EbirdRegionInfo';
 import type EbirdRegionNameFormat from '../../../services/ebird/types/EbirdRegionNameFormat';
 import {
   Select,
@@ -16,6 +15,16 @@ import {
 } from '../../../components/Table/Table';
 import { TextInput } from '../../../components/TextInput';
 import useRegionInfo from '../../../services/ebird/hooks/endpoints/ref/region/useRegionInfo';
+
+interface EbirdRegionInfo {
+  bounds: {
+    maxX: number;
+    maxY: number;
+    minX: number;
+    minY: number;
+  };
+  result: string;
+}
 
 export default function RegionInfo() {
   const getRegionInfo = useRegionInfo();
