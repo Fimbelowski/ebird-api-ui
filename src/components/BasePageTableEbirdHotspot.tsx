@@ -4,7 +4,7 @@ import {
   type Tables,
 } from './BasePageTable';
 import GoogleMapsLink from './GoogleMapsLink';
-import type EbirdLocation from '../services/ebird/types/EbirdLocation';
+import type EbirdLocation from '../types/EbirdLocation';
 
 interface EbirdHotspot
   extends Pick<

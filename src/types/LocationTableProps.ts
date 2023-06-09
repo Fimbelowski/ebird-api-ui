@@ -1,4 +1,4 @@
-import type EbirdLocation from '../services/ebird/types/EbirdLocation';
+import type EbirdLocation from './EbirdLocation';
 
 export default interface LocationTableProps {
   locations: EbirdLocation[];
