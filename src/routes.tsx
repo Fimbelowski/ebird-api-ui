@@ -8,7 +8,7 @@ import HotspotsRegion from './pages/ref/hotspot/HotspotsRegion';
 import RecentChecklistsFeed from './pages/obs/RecentChecklistsFeed';
 import RecentNotableObservationsInARegion from './pages/obs/RecentNotableObservationsInARegion';
 import RecentObservationsSpeciesRegion from './pages/obs/RecentObservationsSpeciesRegion';
-import RecentObservationsRegion from './pages/obs/RecentObservationsRegion';
+import RecentObservationsInARegion from './pages/obs/RecentObservationsInARegion';
 import RegionInfo from './pages/ref/region/RegionInfo';
 import RegionStats from './pages/product/RegionStats';
 import Root from './pages/Root';
@@ -58,7 +58,7 @@ const ROUTES: [
       },
       {
         path: 'recent-observations-in-a-region',
-        element: <RecentObservationsRegion />,
+        element: <RecentObservationsInARegion />,
       },
       {
         path: 'hotspots-in-a-region',

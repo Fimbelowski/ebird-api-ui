@@ -12,7 +12,7 @@ import LocationTextarea from '../../components/LocationTextarea';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import useRecentObservationsInARegion from '../../services/ebird/hooks/endpoints/data/obs/useRecentObservationsInARegion';
 
-export default function RecentObservationsRegion() {
+export default function RecentObservationsInARegion() {
   const getRecentObservationsInARegion = useRecentObservationsInARegion();
 
   const [back, setBack] = useState(14);
