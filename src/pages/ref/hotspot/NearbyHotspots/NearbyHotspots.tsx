@@ -9,7 +9,7 @@ import FormatSelect from '../../../../components/FormatSelect';
 import { NumberInput } from '../../../../components/NumberInput';
 import useNearbyHotspots from '../../../../services/ebird/hooks/endpoints/ref/hotspot/useNearbyHotspots';
 
-export default function HotspotsNearby() {
+export default function NearbyHotspots() {
   const getNearbyHotspots = useNearbyHotspots();
 
   const [back, setBack] = useState<number>();

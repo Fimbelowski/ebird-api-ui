@@ -3,8 +3,8 @@ import { type RouteObject } from 'react-router-dom';
 import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
 import ChecklistFeedOnADate from './pages/product/ChecklistFeedOnADate';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
-import HotspotsNearby from './pages/ref/hotspot/HotspotNearby/HotSpotsNearby';
 import HotspotsRegion from './pages/ref/hotspot/HotspotsRegion';
+import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots/NearbyHotspots';
 import RecentChecklistsFeed from './pages/obs/RecentChecklistsFeed';
 import RecentNotableObservationsInARegion from './pages/obs/RecentNotableObservationsInARegion';
 import RecentObservationsOfASpeciesInARegion from './pages/obs/RecentObservationsOfASpeciesInARegion';
@@ -42,7 +42,7 @@ const ROUTES: [
       },
       {
         path: 'nearby-hotspots',
-        element: <HotspotsNearby />,
+        element: <NearbyHotspots />,
       },
       {
         path: 'recent-checklists-feed',
