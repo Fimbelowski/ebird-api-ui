@@ -4,7 +4,6 @@ import { BasePageTable, type Tables } from '../../components/BasePageTable';
 import DateInput from '../../components/DateInput';
 import type EbirdContributor from '../../types/EbirdContributor';
 import EbirdProfileLink from '../../components/EbirdProfileLink';
-import type EbirdRankedBy from '../../services/ebird/types/EbirdRankedBy';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import getOrdinalNumber from '../../utilities/getOrdinalNumber';
 import { NumberInput } from '../../components/NumberInput';
@@ -12,13 +11,16 @@ import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import useTop100 from '../../services/ebird/hooks/endpoints/product/useTop100';
 import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
 
+type EbirdContributorRankedBy = 'cl' | 'spp';
+
 export default function Top100() {
   const getTop100 = useTop100();
 
   const [date, setDate] = useState('');
-  const [lastRankedBy, setLastRankedBy] = useState<EbirdRankedBy>('spp');
+  const [lastRankedBy, setLastRankedBy] =
+    useState<EbirdContributorRankedBy>('spp');
   const [maxResults, setMaxResults] = useState('');
-  const [rankedBy, setRankedBy] = useState<EbirdRankedBy>('spp');
+  const [rankedBy, setRankedBy] = useState<EbirdContributorRankedBy>('spp');
   const [regionCode, setRegionCode] = useState('');
 
   const tables: Tables<EbirdContributor> = [
@@ -113,7 +115,7 @@ export default function Top100() {
     },
   ];
 
-  const rankedByOptions: SelectOptionArray<EbirdRankedBy> = [
+  const rankedByOptions: SelectOptionArray<EbirdContributorRankedBy> = [
     {
       label: 'Checklists',
       value: 'cl',
@@ -153,7 +155,7 @@ export default function Top100() {
         onChange={setDate}
         required
       />
-      <Select<EbirdRankedBy>
+      <Select<EbirdContributorRankedBy>
         id="ranked-by"
         label="Ranked By"
         onChange={setRankedBy}
