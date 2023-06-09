@@ -6,7 +6,7 @@ import {
 import GoogleMapsLink from './GoogleMapsLink';
 import type EbirdLocation from '../types/EbirdLocation';
 
-interface EbirdHotspot
+export interface EbirdHotspot
   extends Pick<
     EbirdLocation,
     | 'countryCode'
@@ -23,7 +23,7 @@ interface EbirdHotspot
 
 type Props = Omit<BasePageTableProps<EbirdHotspot>, 'tables'>;
 
-export default function BasePageTableEbirdHotspot(props: Props) {
+export function BasePageTableEbirdHotspot(props: Props) {
   const tables: Tables<EbirdHotspot> = [
     {
       cells: [
