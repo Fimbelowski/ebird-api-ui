@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { BasePageTable, type Tables } from '../../components/BasePageTable';
 import DateInput from '../../components/DateInput';
-import type EbirdContributor from '../../services/ebird/types/EbirdContributor';
+import type EbirdContributor from '../../types/EbirdContributor';
 import EbirdProfileLink from '../../components/EbirdProfileLink';
 import type EbirdRankedBy from '../../services/ebird/types/EbirdRankedBy';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
