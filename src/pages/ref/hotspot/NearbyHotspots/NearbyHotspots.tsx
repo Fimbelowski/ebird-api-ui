@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import BackInput from '../../../../components/BaseInput/BackInput';
-import BasePageTableEbirdHotspot from '../../../../components/BasePageTableEbirdHotspot';
+import { BasePageTableEbirdHotspot } from '../../../../components/BasePageTableEbirdHotspot';
 import Button from '../../../../components/Button/Button';
 import CoordinateInput from '../../../../components/CoordinateInput';
 import type EbirdRecordFormat from '../../../../types/EbirdRecordFormat';
