@@ -7,7 +7,7 @@ import type EbirdRecordFormat from '../../../services/ebird/types/EbirdRecordFor
 import FormatSelect from '../../../components/FormatSelect';
 import useHotspotsInARegion from '../../../services/ebird/hooks/endpoints/ref/hotspot/useHotspotsInARegion';
 
-export default function HotspotsRegion() {
+export default function HotspotsInARegion() {
   const getRegionHotspots = useHotspotsInARegion();
 
   const [back, setBack] = useState<number>();
