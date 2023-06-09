@@ -12,7 +12,7 @@ import {
 } from '../../components/Table/Table';
 import useRegionalStatisticsOnADate from '../../services/ebird/hooks/endpoints/product/useRegionalStatisticsOnADate';
 
-export default function RegionStats() {
+export default function RegionalStatisticsOnADate() {
   const getRegionalStatisticsOnADate = useRegionalStatisticsOnADate();
 
   const [date, setDate] = useState<Date>();

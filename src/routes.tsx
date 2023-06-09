@@ -10,7 +10,7 @@ import RecentNotableObservationsInARegion from './pages/obs/RecentNotableObserva
 import RecentObservationsOfASpeciesInARegion from './pages/obs/RecentObservationsOfASpeciesInARegion';
 import RecentObservationsInARegion from './pages/obs/RecentObservationsInARegion';
 import RegionInfo from './pages/ref/region/RegionInfo';
-import RegionStats from './pages/product/RegionStats';
+import RegionalStatisticsOnADate from './pages/product/RegionalStatisticsOnADate';
 import Root from './pages/Root';
 import type RouteName from './types/RouteName';
 import SpeciesListRegion from './pages/product/SpeciesListRegion';
@@ -70,7 +70,7 @@ const ROUTES: [
       },
       {
         path: 'regional-statistics-on-a-date',
-        element: <RegionStats />,
+        element: <RegionalStatisticsOnADate />,
       },
       {
         path: 'species-list-for-a-region',
