@@ -74,7 +74,7 @@ export default function SubregionList() {
     <BasePageTableEbirdRegion
       formContent={formContent}
       onSubmit={onSubmit}
-      parser={csvParser}
+      parser={format === 'csv' ? csvParser : undefined}
       requiresApiKey
       title="Sub-region List"
     />
