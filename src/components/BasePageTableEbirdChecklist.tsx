@@ -3,8 +3,19 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
-import type EbirdChecklist from '../services/ebird/types/EbirdChecklist';
 import GoogleMapsLink from './GoogleMapsLink';
+import type EbirdLocation from '../services/ebird/types/EbirdLocation';
+
+interface EbirdChecklist {
+  loc: EbirdLocation;
+  locId: string;
+  numSpecies: number;
+  obsDt: string;
+  obsTime?: string;
+  subID: string;
+  subId: string;
+  userDisplayName: string;
+}
 
 type Props = Omit<BasePageTableProps<EbirdChecklist>, 'tables'>;
 
