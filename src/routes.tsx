@@ -5,8 +5,8 @@ import ChecklistFeed from './pages/product/ChecklistFeed';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
 import HotspotsNearby from './pages/ref/hotspot/HotspotNearby/HotSpotsNearby';
 import HotspotsRegion from './pages/ref/hotspot/HotspotsRegion';
-import RecentChecklists from './pages/obs/RecentChecklistsFeed';
-import RecentNotableObservationsRegion from './pages/obs/RecentNotableObservationsRegion';
+import RecentChecklistsFeed from './pages/obs/RecentChecklistsFeed';
+import RecentNotableObservationsInARegion from './pages/obs/RecentNotableObservationsInARegion';
 import RecentObservationsSpeciesRegion from './pages/obs/RecentObservationsSpeciesRegion';
 import RecentObservationsRegion from './pages/obs/RecentObservationsRegion';
 import RegionInfo from './pages/ref/region/RegionInfo';
@@ -46,11 +46,11 @@ const ROUTES: [
       },
       {
         path: 'recent-checklists-feed',
-        element: <RecentChecklists />,
+        element: <RecentChecklistsFeed />,
       },
       {
         path: 'recent-notable-observations-in-a-region',
-        element: <RecentNotableObservationsRegion />,
+        element: <RecentNotableObservationsInARegion />,
       },
       {
         path: 'recent-observations-of-a-species-in-a-region',

@@ -11,7 +11,7 @@ import LocationTextarea from '../../components/LocationTextarea';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import useRecentNotableObservationsInARegion from '../../services/ebird/hooks/endpoints/data/obs/useRecentNotableObservationsInARegion';
 
-export default function RecentNotableObservationsRegion() {
+export default function RecentNotableObservationsInARegion() {
   const getRecentNotableObservationsInAregion =
     useRecentNotableObservationsInARegion();
 
