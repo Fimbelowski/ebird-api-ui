@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import BackInput from '../../components/BaseInput/BackInput';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
-import type EbirdObservationDetailLevel from '../../services/ebird/types/EbirdObservationDetailLevel';
+import type EbirdObservationDetailLevel from '../../types/EbirdObservationDetailLevel';
 import EbirdObservationDetailLevelSelect from '../../components/EbirdObservationDetailLevelSelect';
 import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';

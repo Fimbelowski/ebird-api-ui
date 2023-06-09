@@ -1,5 +1,5 @@
 import useEbirdApi from '../../../useEbirdApi';
-import type EbirdObservationDetailLevel from '../../../../types/EbirdObservationDetailLevel';
+import type EbirdObservationDetailLevel from '../../../../../../types/EbirdObservationDetailLevel';
 import type {
   QueryParam,
   BaseQueryParam,

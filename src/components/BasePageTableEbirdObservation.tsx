@@ -3,7 +3,7 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
-import type EbirdObservationDetailLevel from '../services/ebird/types/EbirdObservationDetailLevel';
+import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
 import GoogleMapsLink from './GoogleMapsLink';
 import { type TableCell, type TableHeader } from './Table/Table';
 
