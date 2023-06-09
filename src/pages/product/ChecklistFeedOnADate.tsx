@@ -7,11 +7,12 @@ import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import { NumberInput } from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import useChecklistFeedOnADate from '../../services/ebird/hooks/endpoints/product/useChecklistFeedOnADate';
+import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
 
 export default function ChecklistFeedOnADate() {
   const getChecklistFeedOnADate = useChecklistFeedOnADate();
 
-  const [date, setDate] = useState<Date>();
+  const [date, setDate] = useState('');
   const [maxResults, setMaxResults] = useState(10);
   const [regionCode, setRegionCode] = useState('');
   const [sortKey, setSortKey] = useState<EbirdChecklistSortKey>('obs_dt');
@@ -34,9 +35,7 @@ export default function ChecklistFeedOnADate() {
 
     return await getChecklistFeedOnADate(
       regionCode,
-      date.getFullYear(),
-      date.getMonth() + 1,
-      date.getDate(),
+      ...dateStringToYearMonthDay(date),
       sortKey,
       maxResults
     );
