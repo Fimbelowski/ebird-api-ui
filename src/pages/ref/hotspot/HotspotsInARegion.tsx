@@ -10,7 +10,7 @@ import useHotspotsInARegion from '../../../services/ebird/hooks/endpoints/ref/ho
 export default function HotspotsInARegion() {
   const getRegionHotspots = useHotspotsInARegion();
 
-  const [back, setBack] = useState<number>();
+  const [back, setBack] = useState('');
   const [format, setFormat] = useState<EbirdRecordFormat>('csv');
   const [regionCode, setRegionCode] = useState('');
 

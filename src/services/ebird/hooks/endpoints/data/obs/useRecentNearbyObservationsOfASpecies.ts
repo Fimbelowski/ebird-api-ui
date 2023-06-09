@@ -6,13 +6,13 @@ export default function useRecentNearbyObservationsOfASpecies() {
 
   return async function getRecentNearbyObservationsOfASpecies(
     speciesCode: string,
-    latitude: number,
-    longitude: number,
-    back = 14,
-    distance = 25,
+    latitude: string,
+    longitude: string,
+    back = '14',
+    distance = '25',
     hotspot = false,
     includeProvisional = false,
-    maxResults?: number,
+    maxResults?: string,
     speciesCommonNameLocale = 'en'
   ) {
     const urlParams: UrlParam[] = [
@@ -32,12 +32,12 @@ export default function useRecentNearbyObservationsOfASpecies() {
         value: longitude,
       },
       {
-        defaultValue: 14,
+        defaultValue: '14',
         name: 'back',
         value: back,
       },
       {
-        defaultValue: 25,
+        defaultValue: '25',
         name: 'dist',
         value: distance,
       },

@@ -11,7 +11,7 @@ export default function useHotspotsInARegion() {
 
   return async function getHotspotsInARegion(
     regionCode: string,
-    back?: number,
+    back?: string,
     format: EbirdRecordFormat = 'csv'
   ) {
     const urlParams: UrlParam[] = [

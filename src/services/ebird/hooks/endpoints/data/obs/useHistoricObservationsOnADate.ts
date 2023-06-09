@@ -15,14 +15,14 @@ export default function useHistoricObservationsOnADate() {
 
   return async function getHistoricObservationsOnADate(
     regionCode: string,
-    year: number,
-    month: number,
-    day: number,
+    year: string,
+    month: string,
+    day: string,
     category?: EbirdTaxonomyCategory,
     detailLevel: EbirdObservationDetailLevel = 'simple',
     hotspot = false,
     includeProvisional = false,
-    maxResults?: number,
+    maxResults?: string,
     rank: EbirdHistoricalObservationRank = 'mrec',
     locations?: string[],
     speciesCommonNameLocale = 'en'

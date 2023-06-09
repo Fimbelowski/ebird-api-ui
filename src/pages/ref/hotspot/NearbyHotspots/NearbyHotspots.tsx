@@ -12,12 +12,12 @@ import useNearbyHotspots from '../../../../services/ebird/hooks/endpoints/ref/ho
 export default function NearbyHotspots() {
   const getNearbyHotspots = useNearbyHotspots();
 
-  const [back, setBack] = useState<number>();
-  const [distance, setDistance] = useState(25);
+  const [back, setBack] = useState('');
+  const [distance, setDistance] = useState('25');
   const [format, setFormat] = useState<EbirdRecordFormat>('csv');
   const [loadingPosition, setLoadingPosition] = useState(false);
-  const [latitude, setLatitude] = useState<number>();
-  const [longitude, setLongitude] = useState<number>();
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
   const [showPositionError, setShowPositionError] = useState(false);
 
   function getUserPosition() {
@@ -39,19 +39,13 @@ export default function NearbyHotspots() {
     const { coords } = position;
     const { latitude, longitude } = coords;
 
-    setLatitude(latitude);
-    setLongitude(longitude);
+    setLatitude(latitude.toString());
+    setLongitude(longitude.toString());
     setLoadingPosition(false);
   }
 
   async function onSubmit() {
-    return await getNearbyHotspots(
-      latitude as number,
-      longitude as number,
-      back,
-      distance,
-      format
-    );
+    return await getNearbyHotspots(latitude, longitude, back, distance, format);
   }
 
   const formContent = (

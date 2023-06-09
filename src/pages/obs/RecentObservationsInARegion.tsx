@@ -15,12 +15,12 @@ import useRecentObservationsInARegion from '../../services/ebird/hooks/endpoints
 export default function RecentObservationsInARegion() {
   const getRecentObservationsInARegion = useRecentObservationsInARegion();
 
-  const [back, setBack] = useState(14);
+  const [back, setBack] = useState('14');
   const [category, setCategory] = useState<EbirdTaxonomyCategory>('');
   const [includeProvisionalObs, setIncludeProvisionalObs] = useState(false);
   const [locale, setLocale] = useState('en');
   const [locations, setLocations] = useState<string[]>([]);
-  const [maxResults, setMaxResults] = useState<number>();
+  const [maxResults, setMaxResults] = useState('');
   const [onlyObsFromHotspots, setOnlyObsFromHotspots] = useState(false);
   const [regionCode, setRegionCode] = useState('');
 

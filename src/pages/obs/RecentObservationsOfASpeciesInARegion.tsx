@@ -15,10 +15,10 @@ export default function RecentObservationsOfASpeciesInARegion() {
   const getRecentObservationsOfASpeciesInARegion =
     useRecentObservationsOfASpeciesInARegion();
 
-  const [back, setBack] = useState(14);
+  const [back, setBack] = useState('14');
   const [includeProvisionalObs, setIncludeProvisionalObs] = useState(false);
   const [locale, setLocale] = useState('en');
-  const [maxResults, setMaxResults] = useState<number>();
+  const [maxResults, setMaxResults] = useState('');
   const [obsLocations, setObsLocations] = useState<string[]>([]);
   const [onlyObsFromHotspots, setOnlyObsFromHotspots] = useState(false);
   const [regionCode, setRegionCode] = useState('');

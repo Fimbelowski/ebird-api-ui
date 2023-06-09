@@ -1,9 +1,9 @@
 export interface UrlParam {
   name: string;
-  value: string | number;
+  value: string;
 }
 
-export type QueryParamValue = boolean | number | string | string[];
+export type QueryParamValue = boolean | string | string[];
 
 export interface BaseQueryParam<T extends QueryParamValue> {
   defaultValue?: T;
@@ -13,6 +13,5 @@ export interface BaseQueryParam<T extends QueryParamValue> {
 
 export type QueryParam =
   | BaseQueryParam<boolean>
-  | BaseQueryParam<number>
   | BaseQueryParam<string>
   | BaseQueryParam<string[]>;

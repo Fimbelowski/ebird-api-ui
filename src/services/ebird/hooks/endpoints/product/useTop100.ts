@@ -13,11 +13,11 @@ export default function useTop100() {
 
   return async function getTop100(
     regionCode: string,
-    year: number,
-    month: number,
-    day: number,
+    year: string,
+    month: string,
+    day: string,
     rankedBy: EbirdTop100RankedBy = 'spp',
-    maxResults?: number
+    maxResults?: string
   ) {
     const urlParams: UrlParam[] = [
       {

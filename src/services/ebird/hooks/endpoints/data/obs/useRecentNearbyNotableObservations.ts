@@ -9,13 +9,13 @@ export default function useRecentNearbyNotableObservations() {
   const curriedMakeRequest = useEbirdApi();
 
   return async function getRecentNearbyNotableObservations(
-    latitude: number,
-    longitude: number,
-    back = 14,
+    latitude: string,
+    longitude: string,
+    back = '14',
     detailLevel: EbirdObservationDetailLevel = 'simple',
-    distance = 25,
+    distance = '25',
     hotspot = false,
-    maxResults?: number,
+    maxResults?: string,
     speciesCommonNameLocale = 'en'
   ) {
     const detailLevelQueryParam: BaseQueryParam<EbirdObservationDetailLevel> = {
@@ -34,13 +34,13 @@ export default function useRecentNearbyNotableObservations() {
         value: longitude,
       },
       {
-        defaultValue: 14,
+        defaultValue: '14',
         name: 'back',
         value: back,
       },
       detailLevelQueryParam,
       {
-        defaultValue: 25,
+        defaultValue: '25',
         name: 'dist',
         value: distance,
       },

@@ -9,10 +9,10 @@ export default function useNearbyHotspots() {
   const curriedMakeRequest = useEbirdApi();
 
   return async function getNearbyHotspots(
-    latitude: number,
-    longitude: number,
-    back?: number,
-    distance = 25,
+    latitude: string,
+    longitude: string,
+    back?: string,
+    distance = '25',
     format: EbirdRecordFormat = 'csv'
   ) {
     const formatQueryParam: BaseQueryParam<EbirdRecordFormat> = {
@@ -35,7 +35,7 @@ export default function useNearbyHotspots() {
         value: back,
       },
       {
-        defaultValue: 25,
+        defaultValue: '25',
         name: 'dist',
         value: distance,
       },

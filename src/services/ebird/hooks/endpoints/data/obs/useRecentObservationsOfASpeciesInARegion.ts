@@ -7,10 +7,10 @@ export default function useRecentObservationsOfASpeciesInARegion() {
   return async function getRecentObservationsOfASpeciesInARegion(
     regionCode: string,
     speciesCode: string,
-    back = 14,
+    back = '14',
     hotspot = false,
     includeProvisional = false,
-    maxResults?: number,
+    maxResults?: string,
     locations?: string[],
     speciesCommonNameLocale = 'en'
   ) {
@@ -27,7 +27,7 @@ export default function useRecentObservationsOfASpeciesInARegion() {
 
     const queryParams: QueryParam[] = [
       {
-        defaultValue: 14,
+        defaultValue: '14',
         name: 'back',
         value: back,
       },

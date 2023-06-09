@@ -11,14 +11,14 @@ export default function useRecentNearbyObservations() {
   const curriedMakeRequest = useEbirdApi();
 
   return async function getRecentNearbyObservations(
-    latitude: number,
-    longitude: number,
-    back = 14,
+    latitude: string,
+    longitude: string,
+    back = '14',
     category?: EbirdTaxonomyCategory,
-    distance = 25,
+    distance = '25',
     hotspot = false,
     includeProvisional = false,
-    maxResults?: number,
+    maxResults?: string,
     sort: EbirdRecentNearbyObservationsSortBy = 'date',
     speciesCommonNameLocale = 'en'
   ) {
@@ -44,13 +44,13 @@ export default function useRecentNearbyObservations() {
         value: longitude,
       },
       {
-        defaultValue: 14,
+        defaultValue: '14',
         name: 'back',
         value: back,
       },
       categoryQueryParam,
       {
-        defaultValue: 25,
+        defaultValue: '25',
         name: 'dist',
         value: distance,
       },

@@ -6,7 +6,7 @@ export default function useRecentChecklistsFeed() {
 
   return async function getRecentChecklists(
     regionCode: string,
-    maxResults = 10
+    maxResults = '10'
   ) {
     const urlParams: UrlParam[] = [
       {
@@ -17,7 +17,7 @@ export default function useRecentChecklistsFeed() {
 
     const queryParams: QueryParam[] = [
       {
-        defaultValue: 10,
+        defaultValue: '10',
         name: 'maxResults',
         value: maxResults,
       },

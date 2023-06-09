@@ -11,10 +11,10 @@ export default function useRecentNotableObservationsInARegion() {
 
   return async function getRecentNotableObservationsInARegion(
     regionCode: string,
-    back = 14,
+    back = '14',
     detail: EbirdObservationDetailLevel = 'simple',
     hotspot = false,
-    maxResults?: number,
+    maxResults?: string,
     locations?: string[],
     speciesCommonNameLocale = 'en'
   ) {
@@ -33,7 +33,7 @@ export default function useRecentNotableObservationsInARegion() {
 
     const queryParams: QueryParam[] = [
       {
-        defaultValue: 14,
+        defaultValue: '14',
         name: 'back',
         value: back,
       },

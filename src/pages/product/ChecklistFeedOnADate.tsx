@@ -13,7 +13,7 @@ export default function ChecklistFeedOnADate() {
   const getChecklistFeedOnADate = useChecklistFeedOnADate();
 
   const [date, setDate] = useState('');
-  const [maxResults, setMaxResults] = useState(10);
+  const [maxResults, setMaxResults] = useState('10');
   const [regionCode, setRegionCode] = useState('');
   const [sortKey, setSortKey] = useState<EbirdChecklistSortKey>('obs_dt');
 

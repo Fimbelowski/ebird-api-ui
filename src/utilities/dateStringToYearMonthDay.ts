@@ -1,9 +1,7 @@
 export default function dateStringToYearMonthDay(
   dateString: string
-): [number, number, number] {
-  const [year, month, day] = dateString
-    .split('-')
-    .map((fragment) => parseInt(fragment));
+): [string, string, string] {
+  const [year, month, day] = dateString.split('-');
 
   return [year, month, day];
 }

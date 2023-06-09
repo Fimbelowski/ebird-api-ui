@@ -14,7 +14,7 @@ export function useEbirdTaxonomy() {
     format: EbirdRecordFormat = 'csv',
     locale = 'en',
     species: string,
-    version: number
+    version: string
   ) {
     const categoryQueryParam: BaseQueryParam<EbirdTaxonomyCategory> = {
       name: 'cat',

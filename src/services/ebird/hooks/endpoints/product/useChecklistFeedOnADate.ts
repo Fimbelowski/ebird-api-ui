@@ -13,11 +13,11 @@ export default function useChecklistFeedOnADate() {
 
   return async function getChecklistFeedOnADate(
     regionCode: string,
-    year: number,
-    month: number,
-    day: number,
+    year: string,
+    month: string,
+    day: string,
     sortKey: EbirdChecklistFeedOnADateSortBy = 'obs_dt',
-    maxResults = 10
+    maxResults = '10'
   ) {
     const urlParams: UrlParam[] = [
       {
@@ -36,7 +36,7 @@ export default function useChecklistFeedOnADate() {
     const queryParams: QueryParam[] = [
       sortKeyQueryParam,
       {
-        defaultValue: 10,
+        defaultValue: '10',
         name: 'maxResults',
         value: maxResults,
       },

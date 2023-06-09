@@ -15,13 +15,13 @@ export default function RecentNotableObservationsInARegion() {
   const getRecentNotableObservationsInAregion =
     useRecentNotableObservationsInARegion();
 
-  const [back, setBack] = useState(14);
+  const [back, setBack] = useState('14');
   const [detailLevel, setDetailLevel] =
     useState<EbirdObservationDetailLevel>('simple');
   const [lastDetailLevel, setLastDetailLevel] =
     useState<EbirdObservationDetailLevel>();
   const [locale, setLocale] = useState('en');
-  const [maxResults, setMaxResults] = useState<number>();
+  const [maxResults, setMaxResults] = useState('');
   const [obsLocations, setObsLocations] = useState<string[]>([]);
   const [onlyObsFromHotspots, setOnlyObsFromHotspots] = useState(false);
   const [regionCode, setRegionCode] = useState('');

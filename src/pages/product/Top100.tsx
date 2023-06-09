@@ -17,7 +17,7 @@ export default function Top100() {
 
   const [date, setDate] = useState('');
   const [lastRankedBy, setLastRankedBy] = useState<EbirdRankedBy>('spp');
-  const [maxResults, setMaxResults] = useState<number>();
+  const [maxResults, setMaxResults] = useState('');
   const [rankedBy, setRankedBy] = useState<EbirdRankedBy>('spp');
   const [regionCode, setRegionCode] = useState('');
 
