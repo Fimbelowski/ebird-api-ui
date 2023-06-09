@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import { BasePageTable, type Tables } from '../../../components/BasePageTable';
 import type EbirdTaxonomicGroup from '../../../services/ebird/types/EbirdTaxonomicGroup';
-import type EbirdSpeciesGrouping from '../../../services/ebird/types/EbirdSpeciesGrouping';
 import {
   Select,
   type SelectOptionArray,
@@ -10,6 +9,7 @@ import {
 import {
   useTaxonomicGroups,
   type EbirdGroupNameLocale,
+  type EbirdSpeciesGrouping,
 } from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomicGroups';
 
 export default function TaxonomicGroups() {
