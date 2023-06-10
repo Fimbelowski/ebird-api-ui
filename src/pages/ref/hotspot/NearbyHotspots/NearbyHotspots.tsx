@@ -8,6 +8,7 @@ import type EbirdRecordFormat from '../../../../types/EbirdRecordFormat';
 import FormatSelect from '../../../../components/FormatSelect';
 import { NumberInput } from '../../../../components/NumberInput';
 import useNearbyHotspots from '../../../../services/ebird/hooks/endpoints/ref/hotspot/useNearbyHotspots';
+import ebirdHotspotCsvParser from '../ebirdHotspotCsvParser';
 
 export default function NearbyHotspots() {
   const getNearbyHotspots = useNearbyHotspots();
@@ -119,6 +120,7 @@ export default function NearbyHotspots() {
       disableSubmit={loadingPosition}
       formContent={formContent}
       onSubmit={onSubmit}
+      parser={format === 'csv' ? ebirdHotspotCsvParser : undefined}
       title="Nearby hotspots"
     />
   );
