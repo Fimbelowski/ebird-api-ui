@@ -1,16 +1,26 @@
 import { useState } from 'react';
 
-import BasePageTableEbirdRegion from '../../../components/BasePageTableEbirdRegion';
+import {
+  BasePageTableEbirdRegion,
+  type EbirdRegion,
+} from '../../../components/BasePageTableEbirdRegion';
+import type EbirdRecordFormat from '../../../types/EbirdRecordFormat';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
-import type EbirdRegionType from '../../../types/EbirdRegionType';
-import { Select, type SelectOptionArray } from '../../../components/Select';
-import useEbirdApi from '../../../hooks/useEbirdApi';
-import useEbirdFormat from '../../../hooks/useEbirdFormat';
+import FormatSelect from '../../../components/FormatSelect';
+import {
+  Select,
+  type SelectOptionArray,
+} from '../../../components/Select/Select';
+import {
+  useSubregionList,
+  type EbirdRegionType,
+} from '../../../services/ebird/hooks/endpoints/ref/region/useSubregionList';
+import csvToArray from '../../../utilities/csvToArray';
 
 export default function SubregionList() {
-  const { getSubregionList } = useEbirdApi();
-  const { format, FormatSelect, setFormat } = useEbirdFormat();
+  const getSubregionList = useSubregionList();
 
+  const [format, setFormat] = useState<EbirdRecordFormat>('csv');
   const [parentRegionCode, setParentRegionCode] = useState('');
   const [regionType, setRegionType] = useState<EbirdRegionType>('country');
 
@@ -31,6 +41,10 @@ export default function SubregionList() {
 
   async function onSubmit() {
     return await getSubregionList(regionType, parentRegionCode, format);
+  }
+
+  function csvParser(csv: string) {
+    return csvToArray<EbirdRegion>(csv, ['code', 'name'], true);
   }
 
   const formContent = (
@@ -60,6 +74,7 @@ export default function SubregionList() {
     <BasePageTableEbirdRegion
       formContent={formContent}
       onSubmit={onSubmit}
+      parser={format === 'csv' ? csvParser : undefined}
       requiresApiKey
       title="Sub-region List"
     />

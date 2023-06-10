@@ -1,4 +1,4 @@
-import { Textarea, type TextareaProps } from './Textarea';
+import { Textarea, type TextareaProps } from './Textarea/Textarea';
 
 type Props = Omit<
   TextareaProps,

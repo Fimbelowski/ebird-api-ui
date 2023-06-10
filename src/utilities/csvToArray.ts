@@ -1,23 +1,23 @@
-export default function csvToArray(
+export default function csvToArray<T>(
   csv: string,
-  headers: string[],
+  keys: Array<keyof T>,
   ignoreFirstLine = false
-) {
+): T[] {
   const rows = csv.split(/\n(?=.)/);
 
   if (ignoreFirstLine) {
-    rows.splice(0, 1);
+    rows.shift();
   }
 
   return rows.map((row) => {
     const values = row.split(/(?!\B"[^"]*),(?![^"]*"\B)/g);
 
-    const rowObject: Record<string, string> = {};
+    const rowObject: Partial<Record<keyof T, string>> = {};
 
-    headers.forEach((header, index) => {
-      rowObject[header] = values[index];
+    keys.forEach((key, index) => {
+      rowObject[key] = values[index];
     });
 
-    return rowObject;
+    return rowObject as T;
   });
 }

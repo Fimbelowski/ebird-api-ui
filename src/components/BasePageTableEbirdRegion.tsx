@@ -3,11 +3,15 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
-import type EbirdRegion from '../types/EbirdRegion';
+
+export interface EbirdRegion {
+  code: string;
+  name: string;
+}
 
 type Props = Omit<BasePageTableProps<EbirdRegion>, 'tables'>;
 
-export default function BasePageTableEbirdRegion(props: Props) {
+export function BasePageTableEbirdRegion(props: Props) {
   const tables: Tables<EbirdRegion> = [
     {
       cells: [
@@ -32,7 +36,7 @@ export default function BasePageTableEbirdRegion(props: Props) {
   ];
 
   return (
-    <BasePageTable
+    <BasePageTable<EbirdRegion>
       {...props}
       tables={tables}
     />

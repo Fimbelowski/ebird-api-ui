@@ -1,15 +1,15 @@
 import { useState } from 'react';
 
-import { BasePage } from '../../../components/BasePage';
-import Details from '../../../components/Details';
+import { BasePage } from '../../../components/BasePage/BasePage';
+import Details from '../../../components/Details/Details';
 import type EbirdLocation from '../../../types/EbirdLocation';
 import EbirdLocationTableDetailed from '../../../components/EbirdLocationTableDetailed';
 import EbirdLocationTableSimple from '../../../components/EbirdLocationTableSimple';
 import { TextInput } from '../../../components/TextInput';
-import useEbirdApi from '../../../hooks/useEbirdApi';
+import useHotspotInfo from '../../../services/ebird/hooks/endpoints/ref/hotspot/useHotspotInfo';
 
 export default function HotspotInfo() {
-  const { getHotspotInfo } = useEbirdApi();
+  const getHotspotInfo = useHotspotInfo();
 
   const [hotspot, setHotspot] = useState<EbirdLocation>();
   const [locationId, setLocationId] = useState('');

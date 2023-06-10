@@ -1,25 +1,25 @@
 import { type RouteObject } from 'react-router-dom';
 
 import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
-import ChecklistFeed from './pages/product/ChecklistFeed';
+import ChecklistFeedOnADate from './pages/product/ChecklistFeedOnADate';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
-import HotspotsNearby from './pages/ref/hotspot/HotSpotsNearby';
-import HotspotsRegion from './pages/ref/hotspot/HotspotsRegion';
-import RecentChecklists from './pages/obs/RecentChecklists';
-import RecentNotableObservationsRegion from './pages/obs/RecentNotableObservationsRegion';
-import RecentObservationsSpeciesRegion from './pages/obs/RecentObservationsSpeciesRegion';
-import RecentObservationsRegion from './pages/obs/RecentObservationsRegion';
+import HotspotsInARegion from './pages/ref/hotspot/HotspotsInARegion';
+import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots/NearbyHotspots';
+import RecentChecklistsFeed from './pages/obs/RecentChecklistsFeed';
+import RecentNotableObservationsInARegion from './pages/obs/RecentNotableObservationsInARegion';
+import RecentObservationsOfASpeciesInARegion from './pages/obs/RecentObservationsOfASpeciesInARegion';
+import RecentObservationsInARegion from './pages/obs/RecentObservationsInARegion';
 import RegionInfo from './pages/ref/region/RegionInfo';
-import RegionStats from './pages/product/RegionStats';
+import RegionalStatisticsOnADate from './pages/product/RegionalStatisticsOnADate';
 import Root from './pages/Root';
 import type RouteName from './types/RouteName';
-import SpeciesListRegion from './pages/product/SpeciesListRegion';
+import SpeciesListForARegion from './pages/product/SpeciesListForARegion';
 import SubregionList from './pages/ref/region/SubregionList';
 import TaxaLocaleCodes from './pages/ref/taxonomy/TaxaLocaleCodes';
 import TaxonomicForms from './pages/ref/taxonomy/TaxonomicForms';
 import TaxonomicGroups from './pages/ref/taxonomy/TaxonomicGroups';
 import TaxonomyVersions from './pages/ref/taxonomy/TaxonomyVersions';
-import Top100Contributors from './pages/product/Top100Contributors';
+import Top100 from './pages/product/Top100';
 
 const ROUTES: [
   RouteObject & { children: Array<RouteObject & { path: RouteName }> }
@@ -33,8 +33,8 @@ const ROUTES: [
         element: <AdjacentRegions />,
       },
       {
-        path: 'checklist-feed',
-        element: <ChecklistFeed />,
+        path: 'checklist-feed-on-a-date',
+        element: <ChecklistFeedOnADate />,
       },
       {
         path: 'hotspot-info',
@@ -42,39 +42,39 @@ const ROUTES: [
       },
       {
         path: 'nearby-hotspots',
-        element: <HotspotsNearby />,
+        element: <NearbyHotspots />,
       },
       {
-        path: 'recent-checklists',
-        element: <RecentChecklists />,
+        path: 'recent-checklists-feed',
+        element: <RecentChecklistsFeed />,
       },
       {
-        path: 'recent-notable-observations-region',
-        element: <RecentNotableObservationsRegion />,
+        path: 'recent-notable-observations-in-a-region',
+        element: <RecentNotableObservationsInARegion />,
       },
       {
-        path: 'recent-observations-species-region',
-        element: <RecentObservationsSpeciesRegion />,
+        path: 'recent-observations-of-a-species-in-a-region',
+        element: <RecentObservationsOfASpeciesInARegion />,
       },
       {
-        path: 'recent-observations-region',
-        element: <RecentObservationsRegion />,
+        path: 'recent-observations-in-a-region',
+        element: <RecentObservationsInARegion />,
       },
       {
-        path: 'region-hotspots',
-        element: <HotspotsRegion />,
+        path: 'hotspots-in-a-region',
+        element: <HotspotsInARegion />,
       },
       {
         path: 'region-info',
         element: <RegionInfo />,
       },
       {
-        path: 'region-stats',
-        element: <RegionStats />,
+        path: 'regional-statistics-on-a-date',
+        element: <RegionalStatisticsOnADate />,
       },
       {
-        path: 'species-list-region',
-        element: <SpeciesListRegion />,
+        path: 'species-list-for-a-region',
+        element: <SpeciesListForARegion />,
       },
       {
         path: 'sub-region-list',
@@ -98,7 +98,7 @@ const ROUTES: [
       },
       {
         path: 'top-100',
-        element: <Top100Contributors />,
+        element: <Top100 />,
       },
     ],
   },

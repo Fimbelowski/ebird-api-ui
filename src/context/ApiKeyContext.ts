@@ -1,6 +1,9 @@
 import { createContext } from 'react';
 
-import type ApiKeyContext from '../types/ApiKeyContext';
+interface ApiKeyContext {
+  apiKey: string;
+  setApiKey: (newValue: string) => void;
+}
 
 export default createContext<ApiKeyContext>({
   apiKey: '',

@@ -3,10 +3,40 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
-import type EbirdObservation from '../types/EbirdObservation';
 import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
 import GoogleMapsLink from './GoogleMapsLink';
-import { type TableCell, type TableHeader } from './Table';
+import { type TableCell, type TableHeader } from './Table/Table';
+
+interface EbirdObservation {
+  checklistId?: string;
+  comName: string;
+  countryCode?: string;
+  countryName?: string;
+  evidence?: string;
+  exoticCategory?: string;
+  firstName?: string;
+  hasComments?: boolean;
+  hasRichMedia?: boolean;
+  howMany?: number;
+  lastName?: string;
+  lat: number;
+  lng: number;
+  locId: string;
+  locName: string;
+  locationPrivate: boolean;
+  obsDt: string;
+  obsReviewed: boolean;
+  obsValid: boolean;
+  presenceNoted?: boolean;
+  sciName: string;
+  speciesCode: string;
+  subId: string;
+  subnational1Code?: string;
+  subnational1Name?: string;
+  subnational2Code?: string;
+  subnational2Name?: string;
+  userDisplayName?: string;
+}
 
 type Props = Omit<
   BasePageTableProps<EbirdObservation>,

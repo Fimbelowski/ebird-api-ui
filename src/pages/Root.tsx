@@ -2,10 +2,10 @@ import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
 
 import ApiKeyContext from '../context/ApiKeyContext';
-import Header from '../components/Header';
+import Header from '../layout/Header/Header';
 import LoadingContext from '../context/LoadingContext';
 import LocaleOptionsContext from '../context/LocaleOptionsContext';
-import { type SelectOptionArray } from '../components/Select';
+import { type SelectOptionArray } from '../components/Select/Select';
 
 export default function Root() {
   const [apiKey, setApiKey] = useState('');

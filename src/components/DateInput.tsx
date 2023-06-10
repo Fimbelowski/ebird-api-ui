@@ -6,7 +6,6 @@ type Props = Omit<
   | 'maxLength'
   | 'minLength'
   | 'noScroll'
-  | 'onChange'
   | 'pattern'
   | 'placeholder'
   | 'label'
@@ -14,25 +13,13 @@ type Props = Omit<
   | 'value'
 > & {
   label?: string;
-  onChange: (value: Date) => void;
 };
 
-export default function DateInput({
-  label = 'Date',
-  onChange: onChangeProp,
-  ...rest
-}: Props) {
-  function onChange(value: string) {
-    const valueAsDate = new Date(value);
-
-    onChangeProp(valueAsDate);
-  }
-
+export default function DateInput({ label = 'Date', ...rest }: Props) {
   return (
     <BaseInput
       {...rest}
       label={label}
-      onChange={onChange}
       type="date"
     />
   );

@@ -3,8 +3,23 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
-import type EbirdHotspot from '../types/EbirdHotspot';
 import GoogleMapsLink from './GoogleMapsLink';
+import type EbirdLocation from '../types/EbirdLocation';
+
+interface EbirdHotspot
+  extends Pick<
+    EbirdLocation,
+    | 'countryCode'
+    | 'lat'
+    | 'lng'
+    | 'locId'
+    | 'locName'
+    | 'subnational1Code'
+    | 'subnational2Code'
+  > {
+  latestObsDt?: string;
+  numSpeciesAllTime?: number;
+}
 
 type Props = Omit<BasePageTableProps<EbirdHotspot>, 'tables'>;
 

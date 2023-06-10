@@ -1,4 +1,7 @@
-import { CheckboxInput, type CheckboxInputProps } from './CheckboxInput';
+import {
+  CheckboxInput,
+  type CheckboxInputProps,
+} from './CheckboxInput/CheckboxInput';
 
 type Props = Omit<CheckboxInputProps, 'id' | 'label'>;
 

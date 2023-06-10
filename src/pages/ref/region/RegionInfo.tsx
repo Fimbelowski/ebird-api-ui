@@ -1,21 +1,35 @@
 import { useState } from 'react';
 
-import { BasePage } from '../../../components/BasePage';
-import Details from '../../../components/Details';
+import { BasePage } from '../../../components/BasePage/BasePage';
+import Details from '../../../components/Details/Details';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
-import type EbirdRegionInfo from '../../../types/EbirdRegionInfo';
-import type EbirdRegionNameFormat from '../../../types/EbirdRegionNameFormat';
-import { Select, type SelectOptionArray } from '../../../components/Select';
+import {
+  Select,
+  type SelectOptionArray,
+} from '../../../components/Select/Select';
 import {
   Table,
   type TableCellArray,
   type TableHeader,
-} from '../../../components/Table';
+} from '../../../components/Table/Table';
 import { TextInput } from '../../../components/TextInput';
-import useEbirdApi from '../../../hooks/useEbirdApi';
+import {
+  useRegionInfo,
+  type EbirdRegionNameFormat,
+} from '../../../services/ebird/hooks/endpoints/ref/region/useRegionInfo';
+
+interface EbirdRegionInfo {
+  bounds: {
+    maxX: number;
+    maxY: number;
+    minX: number;
+    minY: number;
+  };
+  result: string;
+}
 
 export default function RegionInfo() {
-  const { getRegionInfo } = useEbirdApi();
+  const getRegionInfo = useRegionInfo();
 
   const [delimiter, setDelimiter] = useState(', ');
   const [regionCode, setRegionCode] = useState('');

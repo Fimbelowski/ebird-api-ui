@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import BasePageList from '../../../components/BasePageList';
+import BasePageList from '../../../components/BasePageList/BasePageList';
 import EbirdSpeciesCodeInput from '../../../components/EbirdSpeciesCodeInput';
-import useEbirdApi from '../../../hooks/useEbirdApi';
+import useTaxonomicForms from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomicForms';
 
 export default function TaxonomicForms() {
-  const { getTaxonomicForms } = useEbirdApi();
+  const getTaxonomicForms = useTaxonomicForms();
 
   const [speciesCode, setSpeciesCode] = useState('');
 

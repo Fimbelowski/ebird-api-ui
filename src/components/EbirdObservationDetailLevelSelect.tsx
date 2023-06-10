@@ -1,5 +1,9 @@
 import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
-import { Select, type SelectOptionArray, type SelectProps } from './Select';
+import {
+  Select,
+  type SelectOptionArray,
+  type SelectProps,
+} from './Select/Select';
 
 type Props = Omit<
   SelectProps<EbirdObservationDetailLevel>,

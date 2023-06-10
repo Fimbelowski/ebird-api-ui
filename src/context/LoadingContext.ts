@@ -1,6 +1,9 @@
 import { createContext } from 'react';
 
-import type LoadingContext from '../types/LoadingContext';
+interface LoadingContext {
+  loading: boolean;
+  setLoading: (newValue: boolean) => void;
+}
 
 export default createContext<LoadingContext>({
   loading: false,

@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import { type SelectOptionArray } from '../components/Select';
+import { type SelectOptionArray } from '../components/Select/Select';
 
 interface LocaleOptionsContext {
   localeOptions: SelectOptionArray<string>;
