@@ -20,6 +20,7 @@ import TaxonomicForms from './pages/ref/taxonomy/TaxonomicForms';
 import TaxonomicGroups from './pages/ref/taxonomy/TaxonomicGroups';
 import TaxonomyVersions from './pages/ref/taxonomy/TaxonomyVersions';
 import Top100 from './pages/product/Top100';
+import ViewChecklist from './pages/product/ViewChecklist';
 
 const ROUTES: [
   RouteObject & { children: Array<RouteObject & { path: RouteName }> }
@@ -99,6 +100,10 @@ const ROUTES: [
       {
         path: 'top-100',
         element: <Top100 />,
+      },
+      {
+        path: 'view-checklist',
+        element: <ViewChecklist />,
       },
     ],
   },
