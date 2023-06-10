@@ -1,6 +1,6 @@
 export default function csvToArray<T>(
   csv: string,
-  headers: Array<keyof T>,
+  keys: Array<keyof T>,
   ignoreFirstLine = false
 ): T[] {
   const rows = csv.split(/\n(?=.)/);
@@ -14,8 +14,8 @@ export default function csvToArray<T>(
 
     const rowObject: Partial<Record<keyof T, string>> = {};
 
-    headers.forEach((header, index) => {
-      rowObject[header] = values[index];
+    keys.forEach((key, index) => {
+      rowObject[key] = values[index];
     });
 
     return rowObject as T;
