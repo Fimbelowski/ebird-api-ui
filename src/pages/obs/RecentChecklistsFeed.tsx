@@ -8,7 +8,7 @@ import useRecentChecklistsFeed from '../../services/ebird/hooks/endpoints/data/o
 export default function RecentChecklistsFeed() {
   const getRecentChecklists = useRecentChecklistsFeed();
 
-  const [maxResults, setMaxResults] = useState('10');
+  const [maxResults, setMaxResults] = useState('');
   const [regionCode, setRegionCode] = useState('');
 
   async function onSubmit() {

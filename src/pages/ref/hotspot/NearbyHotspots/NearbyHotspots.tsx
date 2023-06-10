@@ -14,7 +14,7 @@ export default function NearbyHotspots() {
   const getNearbyHotspots = useNearbyHotspots();
 
   const [back, setBack] = useState('');
-  const [distance, setDistance] = useState('25');
+  const [distance, setDistance] = useState('');
   const [format, setFormat] = useState<EbirdRecordFormat>('csv');
   const [loadingPosition, setLoadingPosition] = useState(false);
   const [latitude, setLatitude] = useState('');

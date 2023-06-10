@@ -15,7 +15,7 @@ export default function RecentObservationsOfASpeciesInARegion() {
   const getRecentObservationsOfASpeciesInARegion =
     useRecentObservationsOfASpeciesInARegion();
 
-  const [back, setBack] = useState('14');
+  const [back, setBack] = useState('');
   const [includeProvisionalObs, setIncludeProvisionalObs] = useState(false);
   const [locale, setLocale] = useState('en');
   const [maxResults, setMaxResults] = useState('');
@@ -51,6 +51,7 @@ export default function RecentObservationsOfASpeciesInARegion() {
       />
       <BackInput
         onChange={setBack}
+        placeholder="14"
         value={back}
       />
       <EbirdOnlyObsFromHotspotsInput

@@ -15,7 +15,7 @@ export default function RecentNotableObservationsInARegion() {
   const getRecentNotableObservationsInAregion =
     useRecentNotableObservationsInARegion();
 
-  const [back, setBack] = useState('14');
+  const [back, setBack] = useState('');
   const [detailLevel, setDetailLevel] =
     useState<EbirdObservationDetailLevel>('simple');
   const [lastDetailLevel, setLastDetailLevel] =
@@ -49,6 +49,7 @@ export default function RecentNotableObservationsInARegion() {
       />
       <BackInput
         onChange={setBack}
+        placeholder="14"
         value={back}
       />
       <EbirdObservationDetailLevelSelect

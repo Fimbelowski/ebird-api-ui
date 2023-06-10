@@ -31,7 +31,7 @@ interface EbirdRegionInfo {
 export default function RegionInfo() {
   const getRegionInfo = useRegionInfo();
 
-  const [delimiter, setDelimiter] = useState(', ');
+  const [delimiter, setDelimiter] = useState('');
   const [regionCode, setRegionCode] = useState('');
   const [regionInfo, setRegionInfo] = useState<EbirdRegionInfo>();
   const [regionNameFormat, setRegionNameFormat] =
@@ -122,7 +122,7 @@ export default function RegionInfo() {
         id="delimiter"
         label="Delimiter"
         maxLength={2}
-        placeholder="Any Characters"
+        placeholder=", "
         onChange={setDelimiter}
         value={delimiter}
       />

@@ -15,7 +15,7 @@ export default function ChecklistFeedOnADate() {
   const getChecklistFeedOnADate = useChecklistFeedOnADate();
 
   const [date, setDate] = useState('');
-  const [maxResults, setMaxResults] = useState('10');
+  const [maxResults, setMaxResults] = useState('');
   const [regionCode, setRegionCode] = useState('');
   const [sortKey, setSortKey] = useState<EbirdChecklistSortBy>('obs_dt');
 
@@ -66,6 +66,7 @@ export default function ChecklistFeedOnADate() {
         id="max-results"
         label="Max Results"
         onChange={setMaxResults}
+        placeholder="10"
         value={maxResults}
       />
     </>

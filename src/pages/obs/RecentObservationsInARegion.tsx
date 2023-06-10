@@ -15,7 +15,7 @@ import useRecentObservationsInARegion from '../../services/ebird/hooks/endpoints
 export default function RecentObservationsInARegion() {
   const getRecentObservationsInARegion = useRecentObservationsInARegion();
 
-  const [back, setBack] = useState('14');
+  const [back, setBack] = useState('');
   const [category, setCategory] = useState<EbirdTaxonomyCategory>('');
   const [includeProvisionalObs, setIncludeProvisionalObs] = useState(false);
   const [locale, setLocale] = useState('en');
@@ -45,6 +45,7 @@ export default function RecentObservationsInARegion() {
       />
       <BackInput
         onChange={setBack}
+        placeholder="14"
         value={back}
       />
       <EbirdTaxonomyCategorySelect
