@@ -5,6 +5,11 @@ import useViewChecklist from '../../services/ebird/hooks/endpoints/product/useVi
 import { TextInput } from '../../components/TextInput';
 import Details from '../../components/Details/Details';
 import KeyValuePairsList from '../../components/KeyValuePairsList/KeyValuePairsList';
+import {
+  Table,
+  type TableHeader,
+  type TableCellArray,
+} from '../../components/Table/Table';
 
 interface EbirdChecklist {
   allObsReported: boolean;
@@ -59,6 +64,8 @@ interface EbirdChecklistObservation {
   subId: string;
 }
 
+type PartialEbirdChecklist = Partial<EbirdChecklist>;
+
 export default function ViewChecklist() {
   const getChecklist = useViewChecklist();
 
@@ -80,26 +87,122 @@ export default function ViewChecklist() {
     />
   );
 
-  function ResultsContent() {
-    if (checklist === undefined) {
-      return null;
-    }
-
-    type PartialEbirdChecklist = Partial<EbirdChecklist>;
-
+  function DetailedChecklist() {
     const clonedChecklist: PartialEbirdChecklist = JSON.parse(
       JSON.stringify(checklist)
     );
+
+    const {
+      obs: observations = [],
+      // subAux = [],
+      // subAuxAi = [],
+    } = clonedChecklist;
 
     delete clonedChecklist.obs;
     delete clonedChecklist.subAux;
     delete clonedChecklist.subAuxAi;
 
+    // Observations Table
+    const tableHeaders: TableHeader[] = [
+      {
+        label: 'hideFlags',
+      },
+      {
+        label: 'howManyAtLeast',
+        align: 'right',
+      },
+      {
+        label: 'howManyAtMost',
+        align: 'right',
+      },
+      {
+        label: 'howManyStr',
+        align: 'right',
+      },
+      {
+        label: 'obsDt',
+      },
+      {
+        label: 'obsId',
+      },
+      {
+        label: 'present',
+      },
+      {
+        label: 'projId',
+      },
+      {
+        label: 'speciesCode',
+      },
+      {
+        label: 'subnational1Code',
+      },
+      {
+        label: 'subId',
+      },
+    ];
+
+    const tableCells: TableCellArray<EbirdChecklistObservation> = [
+      {
+        callback: ({ hideFlags }) => hideFlags.join(''),
+      },
+      {
+        align: 'right',
+        callback: ({ howManyAtLeast }) => howManyAtLeast,
+      },
+      {
+        align: 'right',
+        callback: ({ howManyAtMost }) => howManyAtMost,
+      },
+      {
+        align: 'right',
+        callback: ({ howManyStr }) => howManyStr,
+      },
+      {
+        callback: ({ obsDt }) => obsDt,
+      },
+      {
+        callback: ({ obsId }) => obsId,
+      },
+      {
+        callback: ({ present }) => present.toString(),
+      },
+      {
+        callback: ({ projId }) => projId,
+      },
+      {
+        callback: ({ speciesCode }) => speciesCode,
+      },
+      {
+        callback: ({ subnational1Code }) => subnational1Code,
+      },
+      {
+        callback: ({ subId }) => subId,
+      },
+    ];
+
+    // Checklist Aux Table
+
+    // Checklist Aux AI Table
+
     return (
       <Details summary="Detailed Checklist">
         <KeyValuePairsList<PartialEbirdChecklist> object={clonedChecklist} />
+        <Table<EbirdChecklistObservation>
+          cells={tableCells}
+          headers={tableHeaders}
+          items={observations}
+        />
       </Details>
     );
+  }
+
+  function ResultsContent() {
+    if (checklist === undefined) {
+      return null;
+    }
+
+    return <>{DetailedChecklist()}</>;
   }
 
   return (

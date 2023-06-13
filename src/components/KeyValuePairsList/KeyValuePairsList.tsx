@@ -7,7 +7,7 @@ export default function KeyValuePairsList<T extends object>({
 }: Props<T>) {
   function List() {
     const listItems = Object.entries(object).map(([key, value]) => {
-      if (typeof value === 'object' && value !== null) {
+      if (typeof value === 'object') {
         throw Error(
           'Object value found. Only objects with primitive values can be used.'
         );
@@ -16,12 +16,12 @@ export default function KeyValuePairsList<T extends object>({
       return (
         <div key={key}>
           <dt className="key-value-pairs-list__key">{key}: </dt>
-          <dd className="key-value-pairs-list__value">{value}</dd>
+          <dd className="key-value-pairs-list__value">{value.toString()}</dd>
         </div>
       );
     });
 
-    return <dl>{listItems}</dl>;
+    return <dl className="key-value-pairs-list">{listItems}</dl>;
   }
 
   return <List />;
