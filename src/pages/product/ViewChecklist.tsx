@@ -4,6 +4,7 @@ import { BasePage } from '../../components/BasePage/BasePage';
 import useViewChecklist from '../../services/ebird/hooks/endpoints/product/useViewChecklist';
 import { TextInput } from '../../components/TextInput';
 import Details from '../../components/Details/Details';
+import KeyValuePairsList from '../../components/KeyValuePairsList/KeyValuePairsList';
 
 interface EbirdChecklist {
   allObsReported: boolean;
@@ -79,14 +80,27 @@ export default function ViewChecklist() {
     />
   );
 
-  const resultsContent = (
-    <Details summary="Detailed Checklist">
-      <dl>
-        <dt>projId</dt>
-        <dd>{checklist?.projId}</dd>
-      </dl>
-    </Details>
-  );
+  function ResultsContent() {
+    if (checklist === undefined) {
+      return null;
+    }
+
+    type PartialEbirdChecklist = Partial<EbirdChecklist>;
+
+    const clonedChecklist: PartialEbirdChecklist = JSON.parse(
+      JSON.stringify(checklist)
+    );
+
+    delete clonedChecklist.obs;
+    delete clonedChecklist.subAux;
+    delete clonedChecklist.subAuxAi;
+
+    return (
+      <Details summary="Detailed Checklist">
+        <KeyValuePairsList<PartialEbirdChecklist> object={clonedChecklist} />
+      </Details>
+    );
+  }
 
   return (
     <BasePage<EbirdChecklist>
@@ -94,7 +108,7 @@ export default function ViewChecklist() {
       onLoad={setChecklist}
       onSubmit={onSubmit}
       requiresApiKey
-      resultsContent={resultsContent}
+      resultsContent={ResultsContent()}
       title="View Checklist"
     />
   );
