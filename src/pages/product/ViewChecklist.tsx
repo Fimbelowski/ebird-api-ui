@@ -4,7 +4,7 @@ import { BasePage } from '../../components/BasePage/BasePage';
 import useViewChecklist from '../../services/ebird/hooks/endpoints/product/useViewChecklist';
 import { TextInput } from '../../components/TextInput';
 import Details from '../../components/Details/Details';
-import KeyValuePairsList from '../../components/KeyValuePairsList/KeyValuePairsList';
+import { KeyValuePairsList } from '../../components/KeyValuePairsList/KeyValuePairsList';
 import {
   Table,
   type TableHeader,
@@ -64,7 +64,10 @@ interface EbirdChecklistObservation {
   subId: string;
 }
 
-type PartialEbirdChecklist = Partial<EbirdChecklist>;
+type EbirdChecklistWithoutArrays = Omit<
+  EbirdChecklist,
+  'obs' | 'subAux' | 'subAuxAi'
+>;
 
 export default function ViewChecklist() {
   const getChecklist = useViewChecklist();
@@ -87,23 +90,26 @@ export default function ViewChecklist() {
     />
   );
 
+  function getClonedChecklist(): EbirdChecklist {
+    return JSON.parse(JSON.stringify(checklist));
+  }
+
   function DetailedChecklist() {
-    const clonedChecklist: PartialEbirdChecklist = JSON.parse(
-      JSON.stringify(checklist)
-    );
+    if (checklist === undefined) {
+      return null;
+    }
 
     const {
       obs: observations = [],
-      // subAux = [],
-      // subAuxAi = [],
-    } = clonedChecklist;
+      subAux = [],
+      subAuxAi = [],
+      ...rest
+    } = getClonedChecklist();
 
-    delete clonedChecklist.obs;
-    delete clonedChecklist.subAux;
-    delete clonedChecklist.subAuxAi;
+    const clonedChecklist: EbirdChecklistWithoutArrays = { ...rest };
 
     // Observations Table
-    const tableHeaders: TableHeader[] = [
+    const observationsTableHeaders: TableHeader[] = [
       {
         label: 'hideFlags',
       },
@@ -142,7 +148,7 @@ export default function ViewChecklist() {
       },
     ];
 
-    const tableCells: TableCellArray<EbirdChecklistObservation> = [
+    const observationsTableCells: TableCellArray<EbirdChecklistObservation> = [
       {
         callback: ({ hideFlags }) => hideFlags.join(''),
       },
@@ -182,19 +188,118 @@ export default function ViewChecklist() {
     ];
 
     // Checklist Aux Table
+    const checklistAuxTableHeaders: TableHeader[] = [
+      {
+        label: 'auxCode',
+      },
+      {
+        label: 'entryMethodCode',
+      },
+      {
+        label: 'fieldName',
+      },
+      {
+        label: 'subId',
+      },
+    ];
+
+    const checklistAuxTableCells: TableCellArray<EbirdChecklistAux> = [
+      {
+        callback: ({ auxCode }) => auxCode,
+      },
+      {
+        callback: ({ entryMethodCode }) => entryMethodCode,
+      },
+      {
+        callback: ({ fieldName }) => fieldName,
+      },
+      {
+        callback: ({ subId }) => subId,
+      },
+    ];
 
     // Checklist Aux AI Table
+    const checklistAuxAiTableHeaders: TableHeader[] = [
+      {
+        label: 'aiType',
+      },
+      {
+        align: 'right',
+        label: 'eventId',
+      },
+      {
+        label: 'method',
+      },
+      {
+        label: 'source',
+      },
+      {
+        label: 'subId',
+      },
+    ];
+
+    const checklistAuxAiTableCells: TableCellArray<EbirdChecklistAuxAi> = [
+      {
+        callback: ({ aiType }) => aiType,
+      },
+      {
+        align: 'right',
+        callback: ({ eventId }) => eventId,
+      },
+      {
+        callback: ({ method }) => method,
+      },
+      {
+        callback: ({ source }) => source,
+      },
+      {
+        callback: ({ subId }) => subId,
+      },
+    ];
 
     return (
       <Details summary="Detailed Checklist">
-        <KeyValuePairsList<PartialEbirdChecklist> object={clonedChecklist} />
-        <Table<EbirdChecklistObservation>
-          cells={tableCells}
-          headers={tableHeaders}
-          items={observations}
-        />
+        <KeyValuePairsList keyValuePairs={Object.entries(clonedChecklist)} />
+        {observations.length > 0 ? (
+          <>
+            <h3>Observations</h3>
+            <Table<EbirdChecklistObservation>
+              cells={observationsTableCells}
+              headers={observationsTableHeaders}
+              items={observations}
+            />
+          </>
+        ) : null}
+        {subAux.length > 0 ? (
+          <>
+            <h3>Checklist Aux</h3>
+            <Table<EbirdChecklistAux>
+              cells={checklistAuxTableCells}
+              headers={checklistAuxTableHeaders}
+              items={subAux}
+            />
+          </>
+        ) : null}
+        {subAuxAi.length > 0 ? (
+          <>
+            <h3>Checklist Aux AI</h3>
+            <Table<EbirdChecklistAuxAi>
+              cells={checklistAuxAiTableCells}
+              headers={checklistAuxAiTableHeaders}
+              items={subAuxAi}
+            />
+          </>
+        ) : null}
       </Details>
     );
+  }
+
+  function SimplifiedChecklist() {
+    if (checklist === undefined) {
+      return null;
+    }
+
+    return <Details summary="Simplified Checklist"></Details>;
   }
 
   function ResultsContent() {
@@ -202,7 +307,12 @@ export default function ViewChecklist() {
       return null;
     }
 
-    return <>{DetailedChecklist()}</>;
+    return (
+      <>
+        {DetailedChecklist()}
+        {SimplifiedChecklist()}
+      </>
+    );
   }
 
   return (

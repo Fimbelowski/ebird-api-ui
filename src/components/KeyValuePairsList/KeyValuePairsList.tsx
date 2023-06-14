@@ -1,10 +1,12 @@
 interface Props {
-  object: Record<string, string | number | boolean>;
+  keyValuePairs: KeyValueTuple[];
 }
 
-export default function KeyValuePairsList({ object }: Props) {
+export type KeyValueTuple = [string, boolean | number | string];
+
+export function KeyValuePairsList({ keyValuePairs }: Props) {
   function List() {
-    const listItems = Object.entries(object).map(([key, value]) => {
+    const listItems = keyValuePairs.map(([key, value]) => {
       return (
         <div key={key}>
           <dt className="key-value-pairs-list__key">{key}: </dt>
