@@ -1,16 +1,10 @@
 interface Props {
-  object: Record<string, unknown>;
+  object: Record<string, string | number | boolean>;
 }
 
 export default function KeyValuePairsList({ object }: Props) {
   function List() {
-    const listItems = Object.entries(object).map(([key, value = '']) => {
-      if (typeof value === 'object') {
-        throw Error(
-          'Object value found. Only objects with primitive values can be used.'
-        );
-      }
-
+    const listItems = Object.entries(object).map(([key, value]) => {
       return (
         <div key={key}>
           <dt className="key-value-pairs-list__key">{key}: </dt>
