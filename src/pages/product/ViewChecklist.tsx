@@ -4,19 +4,24 @@ import { BasePage } from '../../components/BasePage/BasePage';
 import useViewChecklist from '../../services/ebird/hooks/endpoints/product/useViewChecklist';
 import { TextInput } from '../../components/TextInput';
 import Details from '../../components/Details/Details';
-import { KeyValuePairsList } from '../../components/KeyValuePairsList/KeyValuePairsList';
+import {
+  KeyValuePairsList,
+  type KeyValueTuple,
+} from '../../components/KeyValuePairsList/KeyValuePairsList';
 import {
   Table,
   type TableHeader,
   type TableCellArray,
 } from '../../components/Table/Table';
+import kilometersToMiles from '../../utilities/kilometersToMiles';
+import hoursToHoursAndMinutes from '../../utilities/hoursToHoursAndMinutes';
 
 interface EbirdChecklist {
   allObsReported: boolean;
   checklistId: string;
   creationDt: string;
   durationHrs: number;
-  effortDistanceEnteredUnit: string; // I suspect this is just 'km' | 'mi'
+  effortDistanceEnteredUnit: 'km' | 'mi';
   effortDistanceKm: number;
   lastEditedDt: string;
   numObservers: number;
@@ -299,7 +304,63 @@ export default function ViewChecklist() {
       return null;
     }
 
-    return <Details summary="Simplified Checklist"></Details>;
+    const {
+      allObsReported,
+      durationHrs,
+      effortDistanceEnteredUnit: distanceUnit,
+      effortDistanceKm: distance,
+      numObservers,
+      obs,
+      obsDt,
+      userDisplayName,
+    } = checklist;
+
+    const keyValuePairs: KeyValueTuple[] = [
+      ['Submitted By', userDisplayName],
+      ['Complete', allObsReported],
+      ['Observed On', new Date(obsDt).toLocaleString()],
+      ['Duration', hoursToHoursAndMinutes(durationHrs)],
+      [
+        'Distance',
+        `${
+          distanceUnit === 'km'
+            ? distance
+            : kilometersToMiles(distance).toFixed(2)
+        }${distanceUnit}`,
+      ],
+      ['# of Observers', numObservers],
+    ];
+
+    const tableHeaders: TableHeader[] = [
+      {
+        label: 'Species Code',
+      },
+      {
+        align: 'right',
+        label: 'Quantity',
+      },
+    ];
+
+    const tableCells: TableCellArray<EbirdChecklistObservation> = [
+      {
+        callback: ({ speciesCode }) => speciesCode,
+      },
+      {
+        align: 'right',
+        callback: ({ howManyStr, present }) => (present ? 'X' : howManyStr),
+      },
+    ];
+
+    return (
+      <Details summary="Simplified Checklist">
+        <KeyValuePairsList keyValuePairs={keyValuePairs} />
+        <Table<EbirdChecklistObservation>
+          cells={tableCells}
+          headers={tableHeaders}
+          items={obs}
+        />
+      </Details>
+    );
   }
 
   function ResultsContent() {
