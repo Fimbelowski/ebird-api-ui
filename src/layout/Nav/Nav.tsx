@@ -79,10 +79,10 @@ export default function Nav() {
       label: 'Top 100 Contributors',
       path: 'top-100',
     },
-    // {
-    //   label: 'View Checklist',
-    //   path: 'view-checklist',
-    // },
+    {
+      label: 'View Checklist',
+      path: 'view-checklist',
+    },
   ];
 
   const regionMenuItems: NavMenuItem[] = [

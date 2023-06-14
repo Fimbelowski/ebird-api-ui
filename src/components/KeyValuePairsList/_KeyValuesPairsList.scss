@@ -1,0 +1,12 @@
+.key-value-pairs-list {
+  line-height: 2rem;
+
+  &__key,
+  &__value {
+    display: inline;
+  }
+
+  &__key {
+    font-weight: bold;
+  }
+}
