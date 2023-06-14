@@ -1,12 +1,10 @@
-interface Props<T> {
-  object: T;
+interface Props {
+  object: Record<string, unknown>;
 }
 
-export default function KeyValuePairsList<T extends object>({
-  object,
-}: Props<T>) {
+export default function KeyValuePairsList({ object }: Props) {
   function List() {
-    const listItems = Object.entries(object).map(([key, value]) => {
+    const listItems = Object.entries(object).map(([key, value = '']) => {
       if (typeof value === 'object') {
         throw Error(
           'Object value found. Only objects with primitive values can be used.'
