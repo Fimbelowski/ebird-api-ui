@@ -14,12 +14,15 @@ export default function EbirdTaxonomy() {
   const [species, setSpecies] = useState('');
   const [version, setVersion] = useState('');
 
+  function onLoad(results: unknown[]) {}
+
   async function onSubmit() {
     return await getEbirdTaxonomy(category, format, locale, species, version);
   }
 
   return (
     <BasePage
+      onLoad={onLoad}
       onSubmit={onSubmit}
       requiresApiKey
       title="eBird Taxonomy"
