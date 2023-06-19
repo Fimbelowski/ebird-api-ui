@@ -8,7 +8,7 @@ import AsyncResourceSelect from '../AsyncResourceSelect/AsyncResourceSelect';
 
 type Props = Omit<SelectProps<string>, 'id' | 'label' | 'options'>;
 
-export default function LocaleSelect({ ...props }: Props) {
+export default function LocaleSelect(props: Props) {
   const { localeOptions, setLocaleOptions } = useContext(LocaleOptionsContext);
 
   const getTaxaLocaleCodes = useTaxaLocaleCodes();
