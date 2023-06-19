@@ -30,7 +30,6 @@ export default function EbirdTaxonomy() {
         value={category}
       />
       <FormatSelect
-        id="format"
         onChange={setFormat}
         value={format}
       />

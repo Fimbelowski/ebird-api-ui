@@ -63,7 +63,6 @@ export default function SubregionList() {
         value={parentRegionCode}
       />
       <FormatSelect
-        id="format"
         onChange={setFormat}
         value={format}
       />
