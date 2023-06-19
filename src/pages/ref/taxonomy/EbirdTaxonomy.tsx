@@ -4,6 +4,9 @@ import { BasePage } from '../../../components/BasePage/BasePage';
 import type EbirdTaxonomyCategory from '../../../types/EbirdTaxonomyCategory';
 import type EbirdRecordFormat from '../../../types/EbirdRecordFormat';
 import { useEbirdTaxonomy } from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useEbirdTaxonomy';
+import EbirdTaxonomyCategorySelect from '../../../components/EbirdTaxonomyCategorySelect';
+import FormatSelect from '../../../components/FormatSelect';
+import LocaleSelect from '../../../components/LocaleSelect/LocaleSelect';
 
 export default function EbirdTaxonomy() {
   const getEbirdTaxonomy = useEbirdTaxonomy();
@@ -20,8 +23,27 @@ export default function EbirdTaxonomy() {
     return await getEbirdTaxonomy(category, format, locale, species, version);
   }
 
+  const formContent = (
+    <>
+      <EbirdTaxonomyCategorySelect
+        onChange={setCategory}
+        value={category}
+      />
+      <FormatSelect
+        id="format"
+        onChange={setFormat}
+        value={format}
+      />
+      <LocaleSelect
+        onChange={setLocale}
+        value={locale}
+      />
+    </>
+  );
+
   return (
     <BasePage
+      formContent={formContent}
       onLoad={onLoad}
       onSubmit={onSubmit}
       requiresApiKey
