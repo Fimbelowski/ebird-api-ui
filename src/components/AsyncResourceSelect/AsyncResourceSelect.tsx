@@ -13,10 +13,11 @@ interface Props<T> extends SelectProps<string> {
 }
 
 export default function AsyncResourceSelect<T>({
-  disabled,
+  disabled = false,
   hasQueried,
   onLoad,
   onLoadMoreClick: onLoadMoreClickProp,
+  options,
   resourcePlural,
   ...rest
 }: Props<T>) {
@@ -48,13 +49,18 @@ export default function AsyncResourceSelect<T>({
       });
   }
 
+  function selectDisabled() {
+    return disabled || options.length === 1;
+  }
+
   return (
     <>
       <div className="async-resource-select">
         <div className="async-resource-select__select">
           <Select
             {...rest}
-            disabled={disabled}
+            disabled={selectDisabled()}
+            options={options}
           />
         </div>
         {hasQueried ? null : (
