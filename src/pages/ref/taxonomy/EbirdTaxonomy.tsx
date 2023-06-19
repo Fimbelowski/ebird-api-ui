@@ -7,6 +7,7 @@ import { useEbirdTaxonomy } from '../../../services/ebird/hooks/endpoints/ref/ta
 import EbirdTaxonomyCategorySelect from '../../../components/EbirdTaxonomyCategorySelect';
 import FormatSelect from '../../../components/FormatSelect';
 import LocaleSelect from '../../../components/LocaleSelect/LocaleSelect';
+import { TextInput } from '../../../components/TextInput';
 
 export default function EbirdTaxonomy() {
   const getEbirdTaxonomy = useEbirdTaxonomy();
@@ -36,6 +37,14 @@ export default function EbirdTaxonomy() {
       <LocaleSelect
         onChange={setLocale}
         value={locale}
+      />
+      <TextInput
+        id="species"
+        label="Species (Species Codes, Lowercase, Comma-separated)"
+        onChange={setSpecies}
+        pattern="^[a-z]{6}\d{0,1}(?:,\s*[a-z]{6}\d{0,1})*$"
+        placeholder="virrai, cangoo"
+        value={species}
       />
     </>
   );
