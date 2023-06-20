@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import { BasePage } from '../../../components/BasePage/BasePage';
 import type EbirdTaxonomyCategory from '../../../types/EbirdTaxonomyCategory';
 import type EbirdRecordFormat from '../../../types/EbirdRecordFormat';
 import { useEbirdTaxonomy } from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useEbirdTaxonomy';
@@ -9,6 +8,26 @@ import FormatSelect from '../../../components/FormatSelect';
 import LocaleSelect from '../../../components/LocaleSelect/LocaleSelect';
 import { TextInput } from '../../../components/TextInput';
 import VersionSelect from '../../../components/VersionSelect';
+import { BasePageTable, type Tables } from '../../../components/BasePageTable';
+import taxonomyCategoryToLabel from '../../../utilities/taxonomyCategoryToLabel';
+
+interface EbirdTaxonomyEntry {
+  bandingCodes: string[];
+  category: Exclude<EbirdTaxonomyCategory, ''>;
+  comName: string;
+  comNameCodes: string[];
+  extinct: boolean;
+  extinctYear: number;
+  familyCode?: string;
+  familyComName?: string;
+  familySciName?: string;
+  order?: string;
+  reportAs: string;
+  sciName: string;
+  sciNameCodes: string[];
+  speciesCode: string;
+  taxonOrder: number;
+}
 
 export default function EbirdTaxonomy() {
   const getEbirdTaxonomy = useEbirdTaxonomy();
@@ -19,7 +38,171 @@ export default function EbirdTaxonomy() {
   const [species, setSpecies] = useState('');
   const [version, setVersion] = useState('');
 
-  function onLoad(results: unknown[]) {}
+  const tables: Tables<EbirdTaxonomyEntry> = [
+    {
+      cells: [
+        {
+          callback: ({ bandingCodes }) => bandingCodes.join(', '),
+        },
+        {
+          callback: ({ category }) => category,
+        },
+        {
+          callback: ({ comName }) => comName,
+        },
+        {
+          callback: ({ comNameCodes }) => comNameCodes.join(', '),
+        },
+        {
+          callback: ({ extinct }) => extinct,
+        },
+        {
+          align: 'right',
+          callback: ({ extinctYear }) => extinctYear,
+        },
+        {
+          callback: ({ familyCode }) => familyCode,
+        },
+        {
+          callback: ({ familyComName }) => familyComName,
+        },
+        {
+          callback: ({ familySciName }) => familySciName,
+        },
+        {
+          callback: ({ order }) => order,
+        },
+        {
+          callback: ({ reportAs }) => reportAs,
+        },
+        {
+          callback: ({ sciName }) => sciName,
+        },
+        {
+          callback: ({ sciNameCodes }) => sciNameCodes.join(', '),
+        },
+        {
+          callback: ({ speciesCode }) => speciesCode,
+        },
+        {
+          callback: ({ taxonOrder }) => taxonOrder,
+        },
+      ],
+      headers: [
+        {
+          label: 'bandingCodes',
+        },
+        {
+          label: 'category',
+        },
+        {
+          label: 'comName',
+        },
+        {
+          label: 'comNameCodes',
+        },
+        {
+          label: 'extinct',
+        },
+        {
+          align: 'right',
+          label: 'extinctYear',
+        },
+        {
+          label: 'familyCode',
+        },
+        {
+          label: 'familyComName',
+        },
+        {
+          label: 'familySciName',
+        },
+        {
+          label: 'order',
+        },
+        {
+          label: 'reportAs',
+        },
+        {
+          label: 'sciName',
+        },
+        {
+          label: 'sciNameCodes',
+        },
+        {
+          label: 'speciesCode',
+        },
+        {
+          label: 'taxonOrder',
+        },
+      ],
+      title: 'Detailed Table',
+    },
+    {
+      cells: [
+        {
+          callback: ({ speciesCode }) => speciesCode,
+        },
+        {
+          callback: ({ category }) => taxonomyCategoryToLabel(category),
+        },
+        {
+          callback: ({ comName }) => comName,
+        },
+        {
+          callback: ({ sciName }) => sciName,
+        },
+        {
+          callback: ({ order }) => order,
+        },
+        {
+          callback: ({ familyComName }) => familyComName,
+        },
+        {
+          callback: ({ familySciName }) => familySciName,
+        },
+        {
+          callback: ({ extinct }) => (extinct ? 'Yes' : 'No'),
+        },
+        {
+          align: 'right',
+          callback: ({ extinctYear }) => extinctYear,
+        },
+      ],
+      headers: [
+        {
+          label: 'Species Code',
+        },
+        {
+          label: 'Category',
+        },
+        {
+          label: 'Common Name',
+        },
+        {
+          label: 'Scientific Name',
+        },
+        {
+          label: 'Order',
+        },
+        {
+          label: 'Family Common Name',
+        },
+        {
+          label: 'Family Scientific Name',
+        },
+        {
+          label: 'Extinct?',
+        },
+        {
+          align: 'right',
+          label: 'Declared Extinct',
+        },
+      ],
+      open: true,
+      title: 'Simplified Table',
+    },
+  ];
 
   async function onSubmit() {
     return await getEbirdTaxonomy(category, format, locale, species, version);
@@ -55,11 +238,11 @@ export default function EbirdTaxonomy() {
   );
 
   return (
-    <BasePage
+    <BasePageTable<EbirdTaxonomyEntry>
       formContent={formContent}
-      onLoad={onLoad}
       onSubmit={onSubmit}
       requiresApiKey
+      tables={tables}
       title="eBird Taxonomy"
     />
   );
