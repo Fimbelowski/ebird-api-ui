@@ -18,7 +18,7 @@ interface EbirdTaxonomyEntry {
   comName: string;
   comNameCodes: string[];
   extinct: boolean;
-  extinctYear: number;
+  extinctYear?: number;
   familyCode?: string;
   familyComName?: string;
   familySciName?: string;
@@ -210,9 +210,36 @@ export default function EbirdTaxonomy() {
   }
 
   function parser(rawResponse: string) {
-    console.log(rawResponse);
-
-    return [];
+    return csvToArray<EbirdTaxonomyEntry>(
+      rawResponse,
+      [
+        'sciName',
+        'comName',
+        'speciesCode',
+        'category',
+        'taxonOrder',
+        'comNameCodes',
+        'sciNameCodes',
+        'bandingCodes',
+        'order',
+        'familyComName',
+        'familySciName',
+        'reportAs',
+        'extinct',
+        'extinctYear',
+        'familyCode',
+      ],
+      {
+        bandingCodes: (stringValue: string) => [stringValue],
+        comNameCodes: (stringValue: string) => [stringValue],
+        extinct: (stringValue: string) => Boolean(stringValue),
+        extinctYear: (stringValue: string) =>
+          stringValue === '' ? undefined : parseInt(stringValue),
+        sciNameCodes: (stringValue: string) => [stringValue],
+        taxonOrder: (stringValue: string) => parseInt(stringValue),
+      },
+      true
+    );
   }
 
   const formContent = (
