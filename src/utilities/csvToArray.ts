@@ -19,13 +19,16 @@ export default function csvToArray<T>(
   return rows.map((row) => {
     const values = row.split(/(?!\B"[^"]*),(?![^"]*"\B)/g);
 
-    const rowObject: Partial<T> = {};
+    const rowObject: Partial<Record<keyof T, any>> = {};
 
     keys.forEach((key, index) => {
       const stringValue = values[index];
 
       if (key in keyToTransformerLookup) {
-        rowObject[key] = keyToTransformerLookup[key](stringValue);
+        rowObject[key] =
+          keyToTransformerLookup[key as keyof KeyToTransformerLookup<T>](
+            stringValue
+          );
         return;
       }
 
