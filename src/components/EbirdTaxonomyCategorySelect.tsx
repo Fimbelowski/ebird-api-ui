@@ -4,6 +4,7 @@ import {
   type SelectProps,
   type SelectOptionArray,
 } from './Select/Select';
+import taxonomyCategoryToLabel from '../utilities/taxonomyCategoryToLabel';
 
 type Props = Omit<
   SelectProps<EbirdTaxonomyCategory>,
@@ -11,44 +12,26 @@ type Props = Omit<
 >;
 
 export default function EbirdTaxonomyCategorySelect(props: Props) {
-  const options: SelectOptionArray<EbirdTaxonomyCategory> = [
-    {
-      label: 'All',
-      value: '',
-    },
-    {
-      label: 'Domestic',
-      value: 'domestic',
-    },
-    {
-      label: 'Form',
-      value: 'form',
-    },
-    {
-      label: 'Hybrid',
-      value: 'hybrid',
-    },
-    {
-      label: 'Intergrade',
-      value: 'intergrade',
-    },
-    {
-      label: 'Identifiable Sub-specific Group',
-      value: 'issf',
-    },
-    {
-      label: 'Slash',
-      value: 'slash',
-    },
-    {
-      label: 'Species',
-      value: 'species',
-    },
-    {
-      label: 'Spuh',
-      value: 'spuh',
-    },
+  const categories: EbirdTaxonomyCategory[] = [
+    '',
+    'domestic',
+    'form',
+    'hybrid',
+    'intergrade',
+    'issf',
+    'slash',
+    'species',
+    'spuh',
   ];
+
+  const options: SelectOptionArray<EbirdTaxonomyCategory> = categories.map(
+    (category) => {
+      return {
+        label: taxonomyCategoryToLabel(category),
+        value: category,
+      };
+    }
+  );
 
   return (
     <Select<EbirdTaxonomyCategory>

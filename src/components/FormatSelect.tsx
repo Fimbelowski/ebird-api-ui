@@ -7,7 +7,7 @@ import {
 
 type Props = Omit<
   SelectProps<EbirdRecordFormat>,
-  'label' | 'onChange' | 'options'
+  'id' | 'label' | 'onChange' | 'options'
 > & {
   onChange: (format: EbirdRecordFormat) => void;
 };
@@ -27,6 +27,7 @@ export default function FormatSelect(props: Props) {
   return (
     <Select<EbirdRecordFormat>
       {...props}
+      id="format"
       label="Format"
       options={options}
     />

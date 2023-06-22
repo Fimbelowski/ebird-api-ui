@@ -97,10 +97,10 @@ export default function Nav() {
   ];
 
   const taxonomyMenuItems: NavMenuItem[] = [
-    // {
-    //   label: 'eBird Taxonomy',
-    //   path: 'ebird-taxonomy',
-    // },
+    {
+      label: 'eBird Taxonomy',
+      path: 'ebird-taxonomy',
+    },
     {
       label: 'Taxa Locale Codes',
       path: 'taxa-locale-codes',

@@ -31,7 +31,6 @@ export default function HotspotsInARegion() {
         value={back}
       />
       <FormatSelect
-        id="format"
         onChange={setFormat}
         value={format}
       />

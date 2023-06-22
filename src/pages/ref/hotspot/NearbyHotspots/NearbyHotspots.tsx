@@ -108,7 +108,6 @@ export default function NearbyHotspots() {
       />
       <FormatSelect
         disabled={loadingPosition}
-        id="format"
         onChange={setFormat}
         value={format}
       />

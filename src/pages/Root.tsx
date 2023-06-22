@@ -6,6 +6,7 @@ import Header from '../layout/Header/Header';
 import LoadingContext from '../context/LoadingContext';
 import LocaleOptionsContext from '../context/LocaleOptionsContext';
 import { type SelectOptionArray } from '../components/Select/Select';
+import TaxonomyVersionOptionsContext from '../context/TaxonomyVersionOptionsContext';
 
 export default function Root() {
   const [apiKey, setApiKey] = useState('');
@@ -18,6 +19,9 @@ export default function Root() {
       },
     ]
   );
+  const [taxonomyVersionOptions, setTaxonomyVersionOptions] = useState<
+    SelectOptionArray<string>
+  >([{ label: 'Latest', value: '' }]);
 
   return (
     <>
@@ -28,7 +32,11 @@ export default function Root() {
             <LocaleOptionsContext.Provider
               value={{ localeOptions, setLocaleOptions }}
             >
-              <Outlet />
+              <TaxonomyVersionOptionsContext.Provider
+                value={{ taxonomyVersionOptions, setTaxonomyVersionOptions }}
+              >
+                <Outlet />
+              </TaxonomyVersionOptionsContext.Provider>
             </LocaleOptionsContext.Provider>
           </LoadingContext.Provider>
         </ApiKeyContext.Provider>
