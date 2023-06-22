@@ -1,6 +1,13 @@
+type KeyToTransformerLookup<T> = {
+  [K in keyof T as T[K] extends string ? never : K]: (
+    stringValue: string
+  ) => T[K];
+};
+
 export default function csvToArray<T>(
   csv: string,
   keys: Array<keyof T>,
+  keyToTransformerLookup: KeyToTransformerLookup<T>,
   ignoreFirstLine = false
 ): T[] {
   const rows = csv.split(/\n(?=.)/);
@@ -12,10 +19,17 @@ export default function csvToArray<T>(
   return rows.map((row) => {
     const values = row.split(/(?!\B"[^"]*),(?![^"]*"\B)/g);
 
-    const rowObject: Partial<Record<keyof T, string>> = {};
+    const rowObject: Partial<T> = {};
 
     keys.forEach((key, index) => {
-      rowObject[key] = values[index];
+      const stringValue = values[index];
+
+      if (key in keyToTransformerLookup) {
+        rowObject[key] = keyToTransformerLookup[key](stringValue);
+        return;
+      }
+
+      rowObject[key] = stringValue;
     });
 
     return rowObject as T;
