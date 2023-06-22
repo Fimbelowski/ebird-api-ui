@@ -10,6 +10,7 @@ import { TextInput } from '../../../components/TextInput';
 import VersionSelect from '../../../components/VersionSelect';
 import { BasePageTable, type Tables } from '../../../components/BasePageTable';
 import taxonomyCategoryToLabel from '../../../utilities/taxonomyCategoryToLabel';
+import csvToArray from '../../../utilities/csvToArray';
 
 interface EbirdTaxonomyEntry {
   bandingCodes: string[];
@@ -208,6 +209,12 @@ export default function EbirdTaxonomy() {
     return await getEbirdTaxonomy(category, format, locale, species, version);
   }
 
+  function parser(rawResponse: string) {
+    console.log(rawResponse);
+
+    return [];
+  }
+
   const formContent = (
     <>
       <EbirdTaxonomyCategorySelect
@@ -241,6 +248,7 @@ export default function EbirdTaxonomy() {
     <BasePageTable<EbirdTaxonomyEntry>
       formContent={formContent}
       onSubmit={onSubmit}
+      parser={format === 'csv' ? parser : undefined}
       requiresApiKey
       tables={tables}
       title="eBird Taxonomy"
