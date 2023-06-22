@@ -4,22 +4,7 @@ import {
   type Tables,
 } from './BasePageTable';
 import GoogleMapsLink from './GoogleMapsLink';
-import type EbirdLocation from '../types/EbirdLocation';
-
-interface EbirdHotspot
-  extends Pick<
-    EbirdLocation,
-    | 'countryCode'
-    | 'lat'
-    | 'lng'
-    | 'locId'
-    | 'locName'
-    | 'subnational1Code'
-    | 'subnational2Code'
-  > {
-  latestObsDt?: string;
-  numSpeciesAllTime?: number;
-}
+import type EbirdHotspot from '../types/EbirdHotspot';
 
 type Props = Omit<BasePageTableProps<EbirdHotspot>, 'tables'>;
 

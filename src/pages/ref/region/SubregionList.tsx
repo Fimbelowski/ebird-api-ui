@@ -44,7 +44,7 @@ export default function SubregionList() {
   }
 
   function csvParser(csv: string) {
-    return csvToArray<EbirdRegion>(csv, ['code', 'name'], true);
+    return csvToArray<EbirdRegion>(csv, ['code', 'name'], {}, true);
   }
 
   const formContent = (
