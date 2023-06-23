@@ -1,19 +1,19 @@
 import { NumberInput, type NumberInputProps } from './NumberInput';
 
-type Props = Omit<
-  NumberInputProps,
-  'id' | 'label' | 'max' | 'min' | 'placeholder'
->;
+type Props = Omit<NumberInputProps, 'id' | 'label' | 'max' | 'min'>;
 
-export default function MaxResultsInput(props: Props) {
+export default function MaxResultsInput({
+  placeholder = '100',
+  ...rest
+}: Props) {
   return (
     <NumberInput
-      {...props}
+      {...rest}
       id="max-results"
       label="Max Results"
       max={10000}
       min={1}
-      placeholder="100"
+      placeholder={placeholder}
     />
   );
 }

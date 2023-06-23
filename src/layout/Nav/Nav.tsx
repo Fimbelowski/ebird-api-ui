@@ -24,10 +24,10 @@ export default function Nav() {
   ];
 
   const observationMenuItems: NavMenuItem[] = [
-    // {
-    //   label: 'Historic Observations on a Date',
-    //   path: 'historic-observations-on-a-date',
-    // },
+    {
+      label: 'Historic Observations on a Date',
+      path: 'historic-observations-on-a-date',
+    },
     // {
     //   label: 'Nearest Observations of a Species',
     //   path: 'nearest-observations-of-a-species',
