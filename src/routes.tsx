@@ -3,6 +3,7 @@ import { type RouteObject } from 'react-router-dom';
 import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
 import ChecklistFeedOnADate from './pages/product/ChecklistFeedOnADate';
 import EbirdTaxonomy from './pages/ref/taxonomy/EbirdTaxonomy';
+import HistoricObservationsOnADate from './pages/obs/HistoricObservationsOnADate';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
 import HotspotsInARegion from './pages/ref/hotspot/HotspotsInARegion';
 import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots/NearbyHotspots';
@@ -41,6 +42,10 @@ const ROUTES: [
       {
         path: 'ebird-taxonomy',
         element: <EbirdTaxonomy />,
+      },
+      {
+        path: 'historic-observations-on-a-date',
+        element: <HistoricObservationsOnADate />,
       },
       {
         path: 'hotspot-info',
