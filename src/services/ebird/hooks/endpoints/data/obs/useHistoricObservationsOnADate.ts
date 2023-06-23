@@ -10,7 +10,7 @@ import type {
 
 export type EbirdHistoricalObservationRank = 'mrec' | 'create';
 
-export default function useHistoricObservationsOnADate() {
+export function useHistoricObservationsOnADate() {
   const curriedMakeRequest = useEbirdApi();
 
   return async function getHistoricObservationsOnADate(
