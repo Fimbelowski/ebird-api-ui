@@ -7,7 +7,7 @@ import type {
 
 export type EbirdRecentNearbyObservationsSortBy = 'date' | 'species';
 
-export default function useRecentNearbyObservations() {
+export function useRecentNearbyObservations() {
   const curriedMakeRequest = useEbirdApi();
 
   return async function getRecentNearbyObservations(
@@ -76,11 +76,8 @@ export default function useRecentNearbyObservations() {
       },
     ];
 
-    return await curriedMakeRequest(
-      'data/obs/geo/recent?lat={{lat}}&lng={{lng}}',
-      {
-        queryParams,
-      }
-    );
+    return await curriedMakeRequest('data/obs/geo/recent', {
+      queryParams,
+    });
   };
 }
