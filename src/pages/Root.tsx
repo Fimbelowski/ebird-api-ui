@@ -11,6 +11,7 @@ import TaxonomyVersionOptionsContext from '../context/TaxonomyVersionOptionsCont
 export default function Root() {
   const [apiKey, setApiKey] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loadingPosition, setLoadingPosition] = useState(false);
   const [localeOptions, setLocaleOptions] = useState<SelectOptionArray<string>>(
     [
       {
@@ -28,7 +29,9 @@ export default function Root() {
       <Header></Header>
       <main>
         <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
-          <LoadingContext.Provider value={{ loading, setLoading }}>
+          <LoadingContext.Provider
+            value={{ loading, loadingPosition, setLoading, setLoadingPosition }}
+          >
             <LocaleOptionsContext.Provider
               value={{ localeOptions, setLocaleOptions }}
             >
