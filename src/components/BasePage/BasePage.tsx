@@ -6,7 +6,6 @@ import Details from '../Details/Details';
 import useLoading from '../../hooks/useLoading';
 
 export interface BasePageProps<T> {
-  disableSubmit?: boolean;
   formContent?: ReactNode;
   onLoad: (results: T) => void;
   onSubmit: () => Promise<Response>;
@@ -18,7 +17,6 @@ export interface BasePageProps<T> {
 }
 
 export function BasePage<T>({
-  disableSubmit = false,
   formContent,
   onLoad,
   onSubmit: onSubmitProp,
@@ -92,12 +90,7 @@ export function BasePage<T>({
         >
           {requiresApiKey ? <ApiKeyInput /> : null}
           {formContent}
-          <Button
-            disabled={disableSubmit}
-            type="submit"
-          >
-            Submit
-          </Button>
+          <Button type="submit">Submit</Button>
         </form>
       ) : null}
       {loading ? (

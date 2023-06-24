@@ -43,7 +43,7 @@ export function BaseInput({
   type,
   value,
 }: BaseInputProps) {
-  const { loading } = useLoading();
+  const { loading, loadingPosition } = useLoading();
 
   function computedLabel() {
     return required ? `${label}*` : label;
@@ -57,7 +57,7 @@ export function BaseInput({
     return classNames([
       'base-input__input',
       { 'base-input__input--disabled': disabled },
-      { 'base-input__input--loading': loading },
+      { 'base-input__input--loading': loading || loadingPosition },
       { 'base-input__input--no-stepper': hideStepper },
     ]);
   }
@@ -104,7 +104,7 @@ export function BaseInput({
       </label>
       <input
         className={inputClasses()}
-        disabled={disabled || loading}
+        disabled={disabled || loading || loadingPosition}
         id={id}
         max={max}
         maxLength={maxLength}

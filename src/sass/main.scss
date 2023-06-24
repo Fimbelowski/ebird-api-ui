@@ -6,8 +6,6 @@
 @import '../layout/Header/Header';
 @import '../layout/Nav/Nav';
 
-@import '../pages/ref/hotspot/NearbyHotspots/NearbyHotspots';
-
 @import '../components/ApiKeyInput/ApiKeyInput';
 @import '../components/AsyncResourceSelect/AsyncResourceSelect';
 @import '../components/BaseInput/BaseInput';
@@ -18,6 +16,7 @@
 @import '../components/Details/Details';
 @import '../components/KeyValuePairsList/KeyValuesPairsList';
 @import '../components/LocaleSelect/LocaleSelect';
+@import '../components/LocationInputGroup/LocationInputGroup';
 @import '../components/NavMenu/NavMenu';
 @import '../components/Select/Select';
 @import '../components/Table/Table';

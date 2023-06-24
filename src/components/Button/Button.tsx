@@ -18,13 +18,13 @@ export default function Button({
   onClick,
   type,
 }: Props) {
-  const { loading } = useLoading();
+  const { loading, loadingPosition } = useLoading();
 
   function classes() {
     return classNames([
       'button',
       { 'button--disabled': disabled },
-      { 'button--loading': loading },
+      { 'button--loading': loading || loadingPosition },
       { 'button--submit': type === 'submit' },
       className,
     ]);
@@ -33,7 +33,7 @@ export default function Button({
   return (
     <button
       className={classes()}
-      disabled={disabled || loading}
+      disabled={disabled || loading || loadingPosition}
       onClick={onClick}
       type={type}
     >

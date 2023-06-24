@@ -30,7 +30,7 @@ export function Select<T extends string>({
   required = false,
   value,
 }: SelectProps<T>) {
-  const { loading } = useLoading();
+  const { loading, loadingPosition } = useLoading();
 
   function Options() {
     const listItems = options.map(({ label, value }, index) => {
@@ -57,7 +57,7 @@ export function Select<T extends string>({
     return classNames([
       'select__select',
       { 'select__select--disabled': disabled },
-      { 'select__select--loading': loading },
+      { 'select__select--loading': loading || loadingPosition },
     ]);
   }
 
@@ -71,7 +71,7 @@ export function Select<T extends string>({
       </label>
       <select
         className={selectClasses()}
-        disabled={disabled || loading}
+        disabled={disabled || loading || loadingPosition}
         id={id}
         onChange={onChange}
         required={required}

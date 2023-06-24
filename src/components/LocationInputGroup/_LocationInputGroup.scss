@@ -1,5 +1,12 @@
-.hotspots-nearby {
-  &__get-user-position {
+.location-input-group {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: min-content;
+  gap: 1rem;
+
+  &__button {
     grid-column: 1 / -1;
   }
 
@@ -11,9 +18,5 @@
 
   &__position-error {
     color: red;
-  }
-
-  &__submit {
-    grid-column-start: 1;
   }
 }

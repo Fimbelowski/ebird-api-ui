@@ -28,10 +28,10 @@ export default function Nav() {
       label: 'Historic Observations on a Date',
       path: 'historic-observations-on-a-date',
     },
-    // {
-    //   label: 'Nearest Observations of a Species',
-    //   path: 'nearest-observations-of-a-species',
-    // },
+    {
+      label: 'Nearest Observations of a Species',
+      path: 'nearest-observations-of-a-species',
+    },
     {
       label: 'Recent Checklists Feed',
       path: 'recent-checklists-feed',
