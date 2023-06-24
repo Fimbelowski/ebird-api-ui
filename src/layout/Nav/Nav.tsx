@@ -40,10 +40,10 @@ export default function Nav() {
       label: 'Recent Nearby Notable Observations',
       path: 'recent-nearby-notable-observations',
     },
-    // {
-    //   label: 'Recent Nearby Observations',
-    //   path: 'recent-nearby-observations',
-    // },
+    {
+      label: 'Recent Nearby Observations',
+      path: 'recent-nearby-observations',
+    },
     // {
     //   label: 'Recent Nearby Observations of a Species',
     //   path: 'recent-nearby-observations-of-a-species',
