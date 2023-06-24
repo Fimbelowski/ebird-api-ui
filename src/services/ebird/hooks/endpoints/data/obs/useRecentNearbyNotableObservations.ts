@@ -60,9 +60,8 @@ export default function useRecentNearbyNotableObservations() {
       },
     ];
 
-    return await curriedMakeRequest(
-      'data/obs/geo/recent/notable?lat={{lat}}&lng={{lng}}',
-      { queryParams }
-    );
+    return await curriedMakeRequest('data/obs/geo/recent/notable', {
+      queryParams,
+    });
   };
 }
