@@ -70,7 +70,7 @@ export default function LocationInputGroup({
         value={longitude}
       />
       <Button
-        className="hotspots-nearby__get-user-position"
+        className="location-input-group__button"
         disabled={loadingPosition}
         onClick={getUserPosition}
         type="button"
@@ -78,10 +78,12 @@ export default function LocationInputGroup({
         Use My Location
       </Button>
       {loadingPosition ? (
-        <p className="hotspots-nearby__loading-position">Getting position...</p>
+        <p className="location-input-group__loading-position">
+          Getting position...
+        </p>
       ) : null}
       {positionError ? (
-        <p className="hotspots-nearby__position-error">
+        <p className="location-input-group__position-error">
           Unable to get location. Please check permissions and try again.
         </p>
       ) : null}

@@ -5,4 +5,18 @@
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: min-content;
   gap: 1rem;
+
+  &__button {
+    grid-column: 1 / -1;
+  }
+
+  &__loading-position,
+  &__position-error {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  &__position-error {
+    color: red;
+  }
 }
