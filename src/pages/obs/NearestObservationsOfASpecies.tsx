@@ -3,6 +3,13 @@ import { useState } from 'react';
 import { BasePage } from '../../components/BasePage/BasePage';
 import useNearestObservationsOfASpecies from '../../services/ebird/hooks/endpoints/data/obs/useNearestObservationsOfASpecies';
 import EbirdSpeciesCodeInput from '../../components/EbirdSpeciesCodeInput';
+import LocationInputGroup from '../../components/LocationInputGroup/LocationInputGroup';
+import BackInput from '../../components/BaseInput/BackInput';
+import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
+import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
+import MaxResultsInput from '../../components/MaxResultsInput';
+import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
+import { NumberInput } from '../../components/NumberInput';
 
 export default function NearestObservationOfASpecies() {
   const getNearestObservationsOfASpecies = useNearestObservationsOfASpecies();
@@ -36,11 +43,48 @@ export default function NearestObservationOfASpecies() {
   }
 
   const formContent = (
-    <EbirdSpeciesCodeInput
-      onChange={setSpeciesCode}
-      required
-      value={speciesCode}
-    />
+    <>
+      <EbirdSpeciesCodeInput
+        onChange={setSpeciesCode}
+        required
+        value={speciesCode}
+      />
+      <LocationInputGroup
+        latitude={latitude}
+        longitude={longitude}
+        setLatitude={setLatitude}
+        setLongitude={setLongitude}
+      />
+      <BackInput
+        onChange={setBack}
+        placeholder="14"
+        value={back}
+      />
+      <EbirdOnlyObsFromHotspotsInput
+        onChange={setHotspot}
+        value={hotspot}
+      />
+      <EbirdIncludeProvisionalInput
+        onChange={setIncludeProvisional}
+        value={includeProvisional}
+      />
+      <MaxResultsInput
+        onChange={setMaxResults}
+        placeholder="3000"
+        value={maxResults}
+      />
+      <LocaleSelect
+        onChange={setLocale}
+        value={locale}
+      />
+      <NumberInput
+        id="distance"
+        label="Within Distance (km)"
+        onChange={setDistance}
+        placeholder="50"
+        value={distance}
+      />
+    </>
   );
 
   return (
