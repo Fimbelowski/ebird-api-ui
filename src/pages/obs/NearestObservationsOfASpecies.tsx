@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { BasePage } from '../../components/BasePage/BasePage';
 import useNearestObservationsOfASpecies from '../../services/ebird/hooks/endpoints/data/obs/useNearestObservationsOfASpecies';
+import EbirdSpeciesCodeInput from '../../components/EbirdSpeciesCodeInput';
 
 export default function NearestObservationOfASpecies() {
   const getNearestObservationsOfASpecies = useNearestObservationsOfASpecies();
@@ -34,8 +35,18 @@ export default function NearestObservationOfASpecies() {
     );
   }
 
+  const formContent = (
+    <EbirdSpeciesCodeInput
+      onChange={setSpeciesCode}
+      required
+      value={speciesCode}
+    />
+  );
+
   return (
     <BasePage
+      formContent={formContent}
+      onLoad={onLoad}
       onSubmit={onSubmit}
       requiresApiKey
       title="Nearest Observations of a Species"
