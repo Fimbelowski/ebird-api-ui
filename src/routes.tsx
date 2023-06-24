@@ -11,6 +11,7 @@ import NearestObservationOfASpecies from './pages/obs/NearestObservationsOfASpec
 import RecentChecklistsFeed from './pages/obs/RecentChecklistsFeed';
 import RecentNearbyNotableObservations from './pages/obs/RecentNearbyNotableObservations';
 import RecentNearbyObservations from './pages/obs/RecentNearbyObservations';
+import RecentNearbyObservationsOfASpecies from './pages/obs/RecentNearbyObservationsOfASpecies';
 import RecentNotableObservationsInARegion from './pages/obs/RecentNotableObservationsInARegion';
 import RecentObservationsOfASpeciesInARegion from './pages/obs/RecentObservationsOfASpeciesInARegion';
 import RecentObservationsInARegion from './pages/obs/RecentObservationsInARegion';
@@ -73,6 +74,10 @@ const ROUTES: [
       {
         path: 'recent-nearby-observations',
         element: <RecentNearbyObservations />,
+      },
+      {
+        path: 'recent-nearby-observations-of-a-species',
+        element: <RecentNearbyObservationsOfASpecies />,
       },
       {
         path: 'recent-notable-observations-in-a-region',
