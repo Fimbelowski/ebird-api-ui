@@ -6,7 +6,7 @@ import EbirdTaxonomy from './pages/ref/taxonomy/EbirdTaxonomy';
 import HistoricObservationsOnADate from './pages/obs/HistoricObservationsOnADate';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
 import HotspotsInARegion from './pages/ref/hotspot/HotspotsInARegion';
-import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots/NearbyHotspots';
+import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import NearestObservationOfASpecies from './pages/obs/NearestObservationsOfASpecies';
 import RecentChecklistsFeed from './pages/obs/RecentChecklistsFeed';
 import RecentNotableObservationsInARegion from './pages/obs/RecentNotableObservationsInARegion';

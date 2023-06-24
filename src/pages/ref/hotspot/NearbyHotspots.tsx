@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import BackInput from '../../../../components/BaseInput/BackInput';
-import BasePageTableEbirdHotspot from '../../../../components/BasePageTableEbirdHotspot';
-import type EbirdRecordFormat from '../../../../types/EbirdRecordFormat';
-import FormatSelect from '../../../../components/FormatSelect';
-import { NumberInput } from '../../../../components/NumberInput';
-import useNearbyHotspots from '../../../../services/ebird/hooks/endpoints/ref/hotspot/useNearbyHotspots';
-import ebirdHotspotCsvParser from '../ebirdHotspotCsvParser';
-import LocationInputGroup from '../../../../components/LocationInputGroup/LocationInputGroup';
+import BackInput from '../../../components/BaseInput/BackInput';
+import BasePageTableEbirdHotspot from '../../../components/BasePageTableEbirdHotspot';
+import type EbirdRecordFormat from '../../../types/EbirdRecordFormat';
+import FormatSelect from '../../../components/FormatSelect';
+import { NumberInput } from '../../../components/NumberInput';
+import useNearbyHotspots from '../../../services/ebird/hooks/endpoints/ref/hotspot/useNearbyHotspots';
+import ebirdHotspotCsvParser from './ebirdHotspotCsvParser';
+import LocationInputGroup from '../../../components/LocationInputGroup/LocationInputGroup';
 
 export default function NearbyHotspots() {
   const getNearbyHotspots = useNearbyHotspots();
