@@ -44,10 +44,10 @@ export default function Nav() {
       label: 'Recent Nearby Observations',
       path: 'recent-nearby-observations',
     },
-    // {
-    //   label: 'Recent Nearby Observations of a Species',
-    //   path: 'recent-nearby-observations-of-a-species',
-    // },
+    {
+      label: 'Recent Nearby Observations of a Species',
+      path: 'recent-nearby-observations-of-a-species',
+    },
     {
       label: 'Recent Notable Observations in a Region',
       path: 'recent-notable-observations-in-a-region',

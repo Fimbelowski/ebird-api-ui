@@ -62,9 +62,9 @@ export default function useRecentNearbyObservationsOfASpecies() {
       },
     ];
 
-    return await curriedMakeRequest(
-      'data/obs/geo/recent/{{speciesCode}}?lat={{lat}}&lng={{lng}}',
-      { urlParams, queryParams }
-    );
+    return await curriedMakeRequest('data/obs/geo/recent/{{speciesCode}}', {
+      urlParams,
+      queryParams,
+    });
   };
 }
