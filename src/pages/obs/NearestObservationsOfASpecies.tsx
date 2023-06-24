@@ -65,6 +65,7 @@ export default function NearestObservationOfASpecies() {
         value={includeProvisional}
       />
       <MaxResultsInput
+        max={3000}
         onChange={setMaxResults}
         placeholder="3000"
         value={maxResults}
@@ -76,6 +77,8 @@ export default function NearestObservationOfASpecies() {
       <NumberInput
         id="distance"
         label="Within Distance (km)"
+        max={50}
+        min={0}
         onChange={setDistance}
         placeholder="50"
         value={distance}
