@@ -36,10 +36,10 @@ export default function Nav() {
       label: 'Recent Checklists Feed',
       path: 'recent-checklists-feed',
     },
-    // {
-    //   label: 'Recent Nearby Notable Observations',
-    //   path: 'recent-nearby-notable-observations',
-    // },
+    {
+      label: 'Recent Nearby Notable Observations',
+      path: 'recent-nearby-notable-observations',
+    },
     // {
     //   label: 'Recent Nearby Observations',
     //   path: 'recent-nearby-observations',
