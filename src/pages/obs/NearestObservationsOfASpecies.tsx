@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import { BasePage } from '../../components/BasePage/BasePage';
 import useNearestObservationsOfASpecies from '../../services/ebird/hooks/endpoints/data/obs/useNearestObservationsOfASpecies';
 import EbirdSpeciesCodeInput from '../../components/EbirdSpeciesCodeInput';
 import LocationInputGroup from '../../components/LocationInputGroup/LocationInputGroup';
@@ -10,6 +9,7 @@ import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvision
 import MaxResultsInput from '../../components/MaxResultsInput';
 import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
 import { NumberInput } from '../../components/NumberInput';
+import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 
 export default function NearestObservationOfASpecies() {
   const getNearestObservationsOfASpecies = useNearestObservationsOfASpecies();
@@ -23,10 +23,6 @@ export default function NearestObservationOfASpecies() {
   const [longitude, setLongitude] = useState('');
   const [maxResults, setMaxResults] = useState('');
   const [speciesCode, setSpeciesCode] = useState('');
-
-  function onLoad(result: unknown) {
-    console.log(result);
-  }
 
   async function onSubmit() {
     return await getNearestObservationsOfASpecies(
@@ -88,11 +84,9 @@ export default function NearestObservationOfASpecies() {
   );
 
   return (
-    <BasePage
+    <BasePageTableEbirdObservation
       formContent={formContent}
-      onLoad={onLoad}
       onSubmit={onSubmit}
-      requiresApiKey
       title="Nearest Observations of a Species"
     />
   );
