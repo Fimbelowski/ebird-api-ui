@@ -65,6 +65,12 @@ export function BasePage<T>({
     return hasQueried && (rawResponse.length === 0 || rawResponse === '[]');
   }
 
+  function onCopyToClipboardClick() {
+    navigator.clipboard.writeText(rawResponse).catch((error) => {
+      console.error(error);
+    });
+  }
+
   function onSubmit(event: FormEvent) {
     event.preventDefault();
     setLoading(true);
@@ -103,7 +109,17 @@ export function BasePage<T>({
           {noData() ? 'No data' : null}
           {showResults() ? (
             <div className="base-page__results-container">
-              <Details summary="Raw Response">{rawResponse}</Details>
+              <Details summary="Raw Response">
+                <div className="base-page__copy-to-clipboard">
+                  <Button
+                    onClick={onCopyToClipboardClick}
+                    type="button"
+                  >
+                    Copy to Clipboard
+                  </Button>
+                </div>
+                <div>{rawResponse}</div>
+              </Details>
               {resultsContent}
             </div>
           ) : null}
