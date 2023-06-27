@@ -1,7 +1,7 @@
 import { type ReactNode, useState } from 'react';
 
 import classNames from '../../utilities/classNames';
-import PaginationControls from '../PaginationControls/PaginationControls';
+import Pagination from '../Pagination/Pagination';
 
 export interface TableCell<T> {
   align?: 'left' | 'center' | 'right';
@@ -19,10 +19,16 @@ export interface TableHeader {
 export interface TableProps<T> {
   cells: TableCellArray<T>;
   headers: TableHeader[];
+  hidePagination?: boolean;
   items: T[];
 }
 
-export function Table<T>({ cells, headers, items }: TableProps<T>) {
+export function Table<T>({
+  cells,
+  headers,
+  hidePagination = false,
+  items,
+}: TableProps<T>) {
   const [paginatedItems, setPaginatedItems] = useState<T[]>([]);
 
   function Headers() {
@@ -87,10 +93,12 @@ export function Table<T>({ cells, headers, items }: TableProps<T>) {
           <Rows />
         </tbody>
       </table>
-      <PaginationControls<T>
-        items={items}
-        onPaginatedItemsChange={setPaginatedItems}
-      />
+      {hidePagination ? null : (
+        <Pagination<T>
+          items={items}
+          onPaginatedItemsChange={setPaginatedItems}
+        />
+      )}
     </>
   );
 }

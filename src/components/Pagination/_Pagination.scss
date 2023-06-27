@@ -1,0 +1,12 @@
+.pagination {
+  margin-top: 0.5rem;
+
+  &__controls {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__info {
+    margin-bottom: 0.5rem;
+  }
+}
