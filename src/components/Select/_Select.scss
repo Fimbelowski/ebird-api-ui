@@ -2,6 +2,11 @@
   &__label {
     display: block;
     padding-bottom: 0.2rem;
+
+    &--inline {
+      display: inline;
+      padding-bottom: 0;
+    }
   }
 
   &__option {
@@ -15,6 +20,10 @@
 
     &--disabled {
       cursor: not-allowed;
+    }
+
+    &--inline {
+      display: inline;
     }
 
     &--loading {

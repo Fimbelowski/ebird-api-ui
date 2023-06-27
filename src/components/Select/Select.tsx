@@ -14,6 +14,7 @@ export type SelectOptionArray<T> = Array<SelectOption<T>>;
 export interface SelectProps<T> {
   disabled?: boolean;
   id: string;
+  inline?: boolean;
   label: string;
   onChange: (value: T) => void;
   options: Array<SelectOption<T>>;
@@ -24,6 +25,7 @@ export interface SelectProps<T> {
 export function Select<T extends string>({
   disabled = false,
   id,
+  inline = false,
   label,
   onChange: onChangeProp,
   options,
@@ -53,10 +55,15 @@ export function Select<T extends string>({
     onChangeProp(value as T);
   }
 
+  function labelClasses() {
+    return classNames(['select__label', { 'select__label--inline': inline }]);
+  }
+
   function selectClasses() {
     return classNames([
       'select__select',
       { 'select__select--disabled': disabled },
+      { 'select__select--inline': inline },
       { 'select__select--loading': loading || loadingPosition },
     ]);
   }
@@ -64,7 +71,7 @@ export function Select<T extends string>({
   return (
     <div>
       <label
-        className="select__label"
+        className={labelClasses()}
         htmlFor={id}
       >
         {label}

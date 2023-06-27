@@ -9,6 +9,7 @@ export interface BaseInputProps {
   disabled?: boolean;
   hideStepper?: boolean;
   id: string;
+  inline?: boolean;
   label: string;
   max?: number;
   maxLength?: number;
@@ -29,6 +30,7 @@ export function BaseInput({
   disabled = false,
   hideStepper = false,
   id,
+  inline = false,
   label,
   max,
   maxLength,
@@ -57,8 +59,16 @@ export function BaseInput({
     return classNames([
       'base-input__input',
       { 'base-input__input--disabled': disabled },
+      { 'base-input__input--inline': inline },
       { 'base-input__input--loading': loading || loadingPosition },
       { 'base-input__input--no-stepper': hideStepper },
+    ]);
+  }
+
+  function labelClasses() {
+    return classNames([
+      'base-input__label',
+      { 'base-input__label--inline': inline },
     ]);
   }
 
@@ -97,7 +107,7 @@ export function BaseInput({
   return (
     <div className={containerClasses()}>
       <label
-        className="base-input__label"
+        className={labelClasses()}
         htmlFor={id}
       >
         {computedLabel()}
