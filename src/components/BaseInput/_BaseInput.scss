@@ -11,6 +11,11 @@
       cursor: not-allowed;
     }
 
+    &--inline {
+      display: inline;
+      width: auto;
+    }
+
     &--loading {
       cursor: wait;
     }
@@ -29,5 +34,11 @@
   &__label {
     display: block;
     padding-bottom: 0.2rem;
+
+    &--inline {
+      display: inline;
+      padding-bottom: 0;
+      padding-right: 0.5rem;
+    }
   }
 }

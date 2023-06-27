@@ -1,6 +1,7 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, useState } from 'react';
 
 import classNames from '../../utilities/classNames';
+import Pagination from '../Pagination/Pagination';
 
 export interface TableCell<T> {
   align?: 'left' | 'center' | 'right';
@@ -18,10 +19,18 @@ export interface TableHeader {
 export interface TableProps<T> {
   cells: TableCellArray<T>;
   headers: TableHeader[];
+  hidePagination?: boolean;
   items: T[];
 }
 
-export function Table<T>({ cells, headers, items }: TableProps<T>) {
+export function Table<T>({
+  cells,
+  headers,
+  hidePagination = false,
+  items,
+}: TableProps<T>) {
+  const [paginatedItems, setPaginatedItems] = useState<T[]>([]);
+
   function Headers() {
     const listItems = headers.map(({ align, label }, index) => {
       const classes = classNames([
@@ -43,7 +52,7 @@ export function Table<T>({ cells, headers, items }: TableProps<T>) {
   }
 
   function Rows() {
-    const listItems = items.map((item, itemIndex) => {
+    const listItems = paginatedItems.map((item, itemIndex) => {
       const tds = cells.map(({ align, callback, wrap = false }, cellIndex) => {
         const classes = classNames([
           'table__td',
@@ -75,13 +84,21 @@ export function Table<T>({ cells, headers, items }: TableProps<T>) {
   }
 
   return (
-    <table className="table">
-      <thead className="table__thead">
-        <Headers />
-      </thead>
-      <tbody className="table__tbody">
-        <Rows />
-      </tbody>
-    </table>
+    <>
+      <table className="table">
+        <thead className="table__thead">
+          <Headers />
+        </thead>
+        <tbody className="table__tbody">
+          <Rows />
+        </tbody>
+      </table>
+      {hidePagination ? null : (
+        <Pagination<T>
+          items={items}
+          onPaginatedItemsChange={setPaginatedItems}
+        />
+      )}
+    </>
   );
 }

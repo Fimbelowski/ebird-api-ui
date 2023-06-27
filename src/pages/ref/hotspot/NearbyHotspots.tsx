@@ -31,7 +31,6 @@ export default function NearbyHotspots() {
         setLongitude={setLongitude}
       />
       <NumberInput
-        className="hotspots-nearby__distance-input"
         id="distance"
         label="Distance (km)"
         max={500}
@@ -41,7 +40,6 @@ export default function NearbyHotspots() {
         value={distance}
       />
       <BackInput
-        className="hotspots-nearby__back-input"
         onChange={setBack}
         value={back}
       />

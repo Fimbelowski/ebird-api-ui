@@ -5,16 +5,16 @@ import useLoading from '../../hooks/useLoading';
 
 interface Props {
   children?: ReactNode;
-  className?: string;
   disabled?: boolean;
+  fullWidth?: boolean;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   type: 'button' | 'submit' | 'reset' | undefined;
 }
 
 export default function Button({
   children,
-  className = '',
   disabled = false,
+  fullWidth = false,
   onClick,
   type,
 }: Props) {
@@ -24,9 +24,9 @@ export default function Button({
     return classNames([
       'button',
       { 'button--disabled': disabled },
+      { 'button--full-width': fullWidth },
       { 'button--loading': loading || loadingPosition },
       { 'button--submit': type === 'submit' },
-      className,
     ]);
   }
 
