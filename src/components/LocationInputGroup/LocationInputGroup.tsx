@@ -69,14 +69,16 @@ export default function LocationInputGroup({
         required
         value={longitude}
       />
-      <Button
-        className="location-input-group__button"
-        disabled={loadingPosition}
-        onClick={getUserPosition}
-        type="button"
-      >
-        Use My Location
-      </Button>
+      <div className="location-input-group__button">
+        <Button
+          disabled={loadingPosition}
+          fullWidth
+          onClick={getUserPosition}
+          type="button"
+        >
+          Use My Location
+        </Button>
+      </div>
       {loadingPosition ? (
         <p className="location-input-group__loading-position">
           Getting position...

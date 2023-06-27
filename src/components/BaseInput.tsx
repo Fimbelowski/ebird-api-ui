@@ -5,8 +5,8 @@ import getValueFromChangeEvent from '../utilities/getValueFromChangeEvent';
 import useLoading from '../hooks/useLoading';
 
 export interface BaseInputProps {
-  className?: string;
   disabled?: boolean;
+  hideRequiredAsterisk?: boolean;
   hideStepper?: boolean;
   id: string;
   inline?: boolean;
@@ -26,8 +26,8 @@ export interface BaseInputProps {
 }
 
 export function BaseInput({
-  className = '',
   disabled = false,
+  hideRequiredAsterisk = false,
   hideStepper = false,
   id,
   inline = false,
@@ -48,11 +48,7 @@ export function BaseInput({
   const { loading, loadingPosition } = useLoading();
 
   function computedLabel() {
-    return required ? `${label}*` : label;
-  }
-
-  function containerClasses() {
-    return classNames(['base-input', className]);
+    return required && !hideRequiredAsterisk ? `${label}*` : label;
   }
 
   function inputClasses() {
@@ -105,7 +101,7 @@ export function BaseInput({
   }
 
   return (
-    <div className={containerClasses()}>
+    <div>
       <label
         className={labelClasses()}
         htmlFor={id}
