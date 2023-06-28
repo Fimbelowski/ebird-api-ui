@@ -1,7 +1,8 @@
-import useEbirdApi from '../../../useEbirdApi';
-import type { BaseQueryParam } from '../../../../types/EbirdApiParams';
+import type EbirdGroupNameLocale from '../../../../../../types/EbirdGroupNameLocale';
 import type EbirdSpeciesGrouping from '../../../../../../types/EbirdSpeciesGrouping';
+import type QueryParam from '../../../../types/QueryParam';
 import type UrlParam from '../../../../types/UrlParam';
+import useEbirdApi from '../../../useEbirdApi';
 
 export function useTaxonomicGroups() {
   const curriedMakeRequest = useEbirdApi();
@@ -17,15 +18,17 @@ export function useTaxonomicGroups() {
       },
     ];
 
-    const groupNameLocaleQueryParam: BaseQueryParam<EbirdGroupNameLocale> = {
-      defaultValue: 'en',
-      name: 'groupNameLocale',
-      value: groupNameLocale,
-    };
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: 'en',
+        name: 'groupNameLocale',
+        value: groupNameLocale,
+      },
+    ];
 
     return await curriedMakeRequest('ref/sppgroup/{{speciesGrouping}}', {
       urlParams,
-      queryParams: [groupNameLocaleQueryParam],
+      queryParams,
     });
   };
 }
