@@ -3,8 +3,8 @@ import type {
   UrlParam,
   BaseQueryParam,
 } from '../../../../types/EbirdApiParams';
+import type EbirdSpeciesGrouping from '../../../../../../types/EbirdSpeciesGrouping';
 
-export type EbirdSpeciesGrouping = 'ebird' | 'merlin';
 export type EbirdGroupNameLocale =
   | 'bg'
   | 'cs'

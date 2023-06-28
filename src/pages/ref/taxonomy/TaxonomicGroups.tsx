@@ -8,8 +8,8 @@ import {
 import {
   useTaxonomicGroups,
   type EbirdGroupNameLocale,
-  type EbirdSpeciesGrouping,
 } from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomicGroups';
+import type EbirdSpeciesGrouping from '../../../types/EbirdSpeciesGrouping';
 
 interface EbirdTaxonomicGroup {
   groupName: string;
