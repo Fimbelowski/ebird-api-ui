@@ -1,10 +1,10 @@
 import type EbirdRecordFormat from '../../../../../../types/EbirdRecordFormat';
 import useEbirdApi from '../../../useEbirdApi';
 import type {
-  UrlParam,
   BaseQueryParam,
   QueryParam,
 } from '../../../../types/EbirdApiParams';
+import type UrlParam from '../../../../types/UrlParam';
 
 export default function useHotspotsInARegion() {
   const curriedMakeRequest = useEbirdApi();

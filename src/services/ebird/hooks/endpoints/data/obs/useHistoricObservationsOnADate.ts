@@ -3,10 +3,10 @@ import yearMonthDayToUrlParams from '../../../../helpers/yearMonthDayToUrlParams
 import type EbirdObservationDetailLevel from '../../../../../../types/EbirdObservationDetailLevel';
 import type EbirdTaxonomyCategory from '../../../../../../types/EbirdTaxonomyCategory';
 import type {
-  UrlParam,
   QueryParam,
   BaseQueryParam,
 } from '../../../../types/EbirdApiParams';
+import type UrlParam from '../../../../types/UrlParam';
 
 export type EbirdHistoricalObservationRank = 'mrec' | 'create';
 

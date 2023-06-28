@@ -1,10 +1,10 @@
 import useEbirdApi from '../../../useEbirdApi';
 import type EbirdTaxonomyCategory from '../../../../../../types/EbirdTaxonomyCategory';
 import type {
-  UrlParam,
   QueryParam,
   BaseQueryParam,
 } from '../../../../types/EbirdApiParams';
+import type UrlParam from '../../../../types/UrlParam';
 
 export default function useRecentObservationsInARegion() {
   const curriedMakeRequest = useEbirdApi();

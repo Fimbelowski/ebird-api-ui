@@ -1,4 +1,4 @@
-import type { UrlParam } from '../types/EbirdApiParams';
+import type UrlParam from '../types/UrlParam';
 
 export default function yearMonthDayToUrlParams(
   year: string,

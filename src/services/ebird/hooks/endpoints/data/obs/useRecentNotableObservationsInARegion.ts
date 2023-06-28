@@ -1,10 +1,10 @@
 import useEbirdApi from '../../../useEbirdApi';
 import type EbirdObservationDetailLevel from '../../../../../../types/EbirdObservationDetailLevel';
 import type {
-  UrlParam,
   QueryParam,
   BaseQueryParam,
 } from '../../../../types/EbirdApiParams';
+import type UrlParam from '../../../../types/UrlParam';
 
 export default function useRecentNotableObservationsInARegion() {
   const curriedMakeRequest = useEbirdApi();

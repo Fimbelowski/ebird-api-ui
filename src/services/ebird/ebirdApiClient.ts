@@ -1,8 +1,5 @@
-import type {
-  UrlParam,
-  QueryParam,
-  QueryParamValue,
-} from './types/EbirdApiParams';
+import type { QueryParam, QueryParamValue } from './types/EbirdApiParams';
+import type UrlParam from './types/UrlParam';
 
 export interface EbirdApiOptions {
   apiKey?: string;

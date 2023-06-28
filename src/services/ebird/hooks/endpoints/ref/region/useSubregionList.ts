@@ -1,7 +1,8 @@
 import type EbirdRecordFormat from '../../../../../../types/EbirdRecordFormat';
-import type { UrlParam, QueryParam } from '../../../../types/EbirdApiParams';
+import type { QueryParam } from '../../../../types/EbirdApiParams';
 import useEbirdApi from '../../../useEbirdApi';
 import type EbirdRegionType from '../../../../../../types/EbirdRegionType';
+import type UrlParam from '../../../../types/UrlParam';
 
 export function useSubregionList() {
   const curriedMakeRequest = useEbirdApi();
