@@ -8,8 +8,6 @@ import type {
 } from '../../../../types/EbirdApiParams';
 import type UrlParam from '../../../../types/UrlParam';
 
-export type EbirdHistoricalObservationRank = 'mrec' | 'create';
-
 export function useHistoricObservationsOnADate() {
   const curriedMakeRequest = useEbirdApi();
 

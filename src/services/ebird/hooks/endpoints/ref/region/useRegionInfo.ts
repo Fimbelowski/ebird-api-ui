@@ -5,14 +5,6 @@ import type {
 } from '../../../../types/EbirdApiParams';
 import type UrlParam from '../../../../types/UrlParam';
 
-export type EbirdRegionNameFormat =
-  | 'detailed'
-  | 'detailednoqual'
-  | 'full'
-  | 'namequal'
-  | 'nameonly'
-  | 'revdetailed';
-
 export function useRegionInfo() {
   const curriedMakeRequest = useEbirdApi();
 

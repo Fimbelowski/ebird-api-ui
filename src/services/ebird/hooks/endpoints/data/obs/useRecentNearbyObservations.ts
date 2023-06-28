@@ -5,8 +5,6 @@ import type {
   BaseQueryParam,
 } from '../../../../types/EbirdApiParams';
 
-export type EbirdRecentNearbyObservationsSortBy = 'date' | 'species';
-
 export function useRecentNearbyObservations() {
   const curriedMakeRequest = useEbirdApi();
 

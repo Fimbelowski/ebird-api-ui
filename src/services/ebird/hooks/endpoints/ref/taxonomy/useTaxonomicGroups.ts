@@ -3,32 +3,6 @@ import type { BaseQueryParam } from '../../../../types/EbirdApiParams';
 import type EbirdSpeciesGrouping from '../../../../../../types/EbirdSpeciesGrouping';
 import type UrlParam from '../../../../types/UrlParam';
 
-export type EbirdGroupNameLocale =
-  | 'bg'
-  | 'cs'
-  | 'da'
-  | 'de'
-  | 'en'
-  | 'es'
-  | 'es_AR'
-  | 'es_CL'
-  | 'es_CU'
-  | 'es_ES'
-  | 'es_MX'
-  | 'es_PA'
-  | 'fr'
-  | 'he'
-  | 'is'
-  | 'nl'
-  | 'no'
-  | 'pt_BR'
-  | 'pt_PT'
-  | 'ru'
-  | 'sr'
-  | 'th'
-  | 'tr'
-  | 'zh';
-
 export function useTaxonomicGroups() {
   const curriedMakeRequest = useEbirdApi();
 

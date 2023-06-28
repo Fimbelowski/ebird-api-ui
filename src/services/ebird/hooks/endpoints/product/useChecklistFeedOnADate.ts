@@ -3,8 +3,6 @@ import yearMonthDayToUrlParams from '../../../helpers/yearMonthDayToUrlParams';
 import type { QueryParam, BaseQueryParam } from '../../../types/EbirdApiParams';
 import type UrlParam from '../../../types/UrlParam';
 
-export type EbirdChecklistSortBy = 'obs_dt' | 'creation_dt';
-
 export function useChecklistFeedOnADate() {
   const curriedMakeRequest = useEbirdApi();
 
