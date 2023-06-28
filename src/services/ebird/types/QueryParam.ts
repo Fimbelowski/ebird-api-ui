@@ -7,6 +7,7 @@ import type EbirdRegionNameFormat from '../../../types/EbirdRegionNameFormat';
 import type EbirdContributorRankedBy from '../../../types/EbirdContributorRankedBy';
 import type EbirdRecentNearbyObservationsSortBy from '../../../types/EbirdRecentNearbyObservationsSortBy';
 import type EbirdChecklistSortBy from '../../../types/EbirdChecklistSortBy';
+import type QueryParamValue from './QueryParamValue';
 
 type BooleanQueryParamName = 'hotspot' | 'includeProvisional';
 
@@ -41,15 +42,13 @@ type QueryParamName =
   | StringQueryParamName
   | TypedQueryParamName;
 
-export type QueryParamValue = boolean | string | string[];
-
 interface BaseQueryParam<T extends QueryParamName, U extends QueryParamValue> {
   defaultValue?: U;
   name: T;
   value: U | undefined;
 }
 
-export type QueryParam =
+type QueryParam =
   | BaseQueryParam<BooleanQueryParamName, boolean>
   | BaseQueryParam<StringArrayQueryParamName, string[]>
   | BaseQueryParam<StringQueryParamName, string>
@@ -62,3 +61,5 @@ export type QueryParam =
   | BaseQueryParam<'regionNameFormat', EbirdRegionNameFormat>
   | BaseQueryParam<'sort', EbirdRecentNearbyObservationsSortBy>
   | BaseQueryParam<'sortKey', EbirdChecklistSortBy>;
+
+export default QueryParam;
