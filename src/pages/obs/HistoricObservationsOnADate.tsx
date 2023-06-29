@@ -1,9 +1,6 @@
 import { useState } from 'react';
 
-import {
-  useHistoricObservationsOnADate,
-  type EbirdHistoricalObservationRank,
-} from '../../services/ebird/hooks/endpoints/data/obs/useHistoricObservationsOnADate';
+import { useHistoricObservationsOnADate } from '../../services/ebird/hooks/endpoints/data/obs/useHistoricObservationsOnADate';
 import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
 import type EbirdTaxonomyCategory from '../../types/EbirdTaxonomyCategory';
 import type EbirdObservationDetailLevel from '../../types/EbirdObservationDetailLevel';
@@ -18,6 +15,7 @@ import LocationTextarea from '../../components/LocationTextarea';
 import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
+import type EbirdHistoricalObservationRank from '../../types/EbirdHistoricalObservationRank';
 
 export default function HistoricObservationsOnADate() {
   const getHistoricObservationsOnADate = useHistoricObservationsOnADate();

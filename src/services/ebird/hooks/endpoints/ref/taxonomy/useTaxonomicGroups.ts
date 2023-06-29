@@ -1,35 +1,8 @@
+import type EbirdGroupNameLocale from '../../../../../../types/EbirdGroupNameLocale';
+import type EbirdSpeciesGrouping from '../../../../../../types/EbirdSpeciesGrouping';
+import type QueryParam from '../../../../types/QueryParam';
+import type UrlParam from '../../../../types/UrlParam';
 import useEbirdApi from '../../../useEbirdApi';
-import type {
-  UrlParam,
-  BaseQueryParam,
-} from '../../../../types/EbirdApiParams';
-
-export type EbirdSpeciesGrouping = 'ebird' | 'merlin';
-export type EbirdGroupNameLocale =
-  | 'bg'
-  | 'cs'
-  | 'da'
-  | 'de'
-  | 'en'
-  | 'es'
-  | 'es_AR'
-  | 'es_CL'
-  | 'es_CU'
-  | 'es_ES'
-  | 'es_MX'
-  | 'es_PA'
-  | 'fr'
-  | 'he'
-  | 'is'
-  | 'nl'
-  | 'no'
-  | 'pt_BR'
-  | 'pt_PT'
-  | 'ru'
-  | 'sr'
-  | 'th'
-  | 'tr'
-  | 'zh';
 
 export function useTaxonomicGroups() {
   const curriedMakeRequest = useEbirdApi();
@@ -45,15 +18,17 @@ export function useTaxonomicGroups() {
       },
     ];
 
-    const groupNameLocaleQueryParam: BaseQueryParam<EbirdGroupNameLocale> = {
-      defaultValue: 'en',
-      name: 'groupNameLocale',
-      value: groupNameLocale,
-    };
+    const queryParams: QueryParam[] = [
+      {
+        defaultValue: 'en',
+        name: 'groupNameLocale',
+        value: groupNameLocale,
+      },
+    ];
 
     return await curriedMakeRequest('ref/sppgroup/{{speciesGrouping}}', {
       urlParams,
-      queryParams: [groupNameLocaleQueryParam],
+      queryParams,
     });
   };
 }

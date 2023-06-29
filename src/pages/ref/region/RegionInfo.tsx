@@ -13,10 +13,8 @@ import {
   type TableHeader,
 } from '../../../components/Table/Table';
 import { TextInput } from '../../../components/TextInput';
-import {
-  useRegionInfo,
-  type EbirdRegionNameFormat,
-} from '../../../services/ebird/hooks/endpoints/ref/region/useRegionInfo';
+import { useRegionInfo } from '../../../services/ebird/hooks/endpoints/ref/region/useRegionInfo';
+import type EbirdRegionNameFormat from '../../../types/EbirdRegionNameFormat';
 
 interface EbirdRegionInfo {
   bounds: {

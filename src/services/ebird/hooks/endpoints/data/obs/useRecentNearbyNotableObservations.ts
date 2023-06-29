@@ -1,9 +1,6 @@
 import useEbirdApi from '../../../useEbirdApi';
 import type EbirdObservationDetailLevel from '../../../../../../types/EbirdObservationDetailLevel';
-import type {
-  QueryParam,
-  BaseQueryParam,
-} from '../../../../types/EbirdApiParams';
+import type QueryParam from '../../../../types/QueryParam';
 
 export default function useRecentNearbyNotableObservations() {
   const curriedMakeRequest = useEbirdApi();
@@ -18,12 +15,6 @@ export default function useRecentNearbyNotableObservations() {
     maxResults?: string,
     speciesCommonNameLocale = 'en'
   ) {
-    const detailLevelQueryParam: BaseQueryParam<EbirdObservationDetailLevel> = {
-      defaultValue: 'simple',
-      name: 'detail',
-      value: detailLevel,
-    };
-
     const queryParams: QueryParam[] = [
       {
         name: 'lat',
@@ -38,7 +29,11 @@ export default function useRecentNearbyNotableObservations() {
         name: 'back',
         value: back,
       },
-      detailLevelQueryParam,
+      {
+        defaultValue: 'simple',
+        name: 'detail',
+        value: detailLevel,
+      },
       {
         defaultValue: '25',
         name: 'dist',

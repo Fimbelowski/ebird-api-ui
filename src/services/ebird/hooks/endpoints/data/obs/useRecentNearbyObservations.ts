@@ -1,11 +1,7 @@
 import useEbirdApi from '../../../useEbirdApi';
 import type EbirdTaxonomyCategory from '../../../../../../types/EbirdTaxonomyCategory';
-import type {
-  QueryParam,
-  BaseQueryParam,
-} from '../../../../types/EbirdApiParams';
-
-export type EbirdRecentNearbyObservationsSortBy = 'date' | 'species';
+import type QueryParam from '../../../../types/QueryParam';
+import type EbirdRecentNearbyObservationsSortBy from '../../../../../../types/EbirdRecentNearbyObservationsSortBy';
 
 export function useRecentNearbyObservations() {
   const curriedMakeRequest = useEbirdApi();
@@ -22,18 +18,6 @@ export function useRecentNearbyObservations() {
     sort: EbirdRecentNearbyObservationsSortBy = 'date',
     speciesCommonNameLocale = 'en'
   ) {
-    const categoryQueryParam: BaseQueryParam<EbirdTaxonomyCategory> = {
-      name: 'cat',
-      value: category,
-    };
-
-    const sortQueryParam: BaseQueryParam<EbirdRecentNearbyObservationsSortBy> =
-      {
-        defaultValue: 'date',
-        name: 'sort',
-        value: sort,
-      };
-
     const queryParams: QueryParam[] = [
       {
         name: 'lat',
@@ -48,7 +32,10 @@ export function useRecentNearbyObservations() {
         name: 'back',
         value: back,
       },
-      categoryQueryParam,
+      {
+        name: 'cat',
+        value: category,
+      },
       {
         defaultValue: '25',
         name: 'dist',
@@ -68,7 +55,11 @@ export function useRecentNearbyObservations() {
         name: 'maxResults',
         value: maxResults,
       },
-      sortQueryParam,
+      {
+        defaultValue: 'date',
+        name: 'sort',
+        value: sort,
+      },
       {
         defaultValue: 'en',
         name: 'sppLocale',

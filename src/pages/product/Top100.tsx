@@ -10,8 +10,7 @@ import { NumberInput } from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import useTop100 from '../../services/ebird/hooks/endpoints/product/useTop100';
 import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
-
-type EbirdContributorRankedBy = 'cl' | 'spp';
+import type EbirdContributorRankedBy from '../../types/EbirdContributorRankedBy';
 
 export default function Top100() {
   const getTop100 = useTop100();

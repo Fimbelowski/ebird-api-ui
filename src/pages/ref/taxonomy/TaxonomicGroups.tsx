@@ -5,11 +5,9 @@ import {
   Select,
   type SelectOptionArray,
 } from '../../../components/Select/Select';
-import {
-  useTaxonomicGroups,
-  type EbirdGroupNameLocale,
-  type EbirdSpeciesGrouping,
-} from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomicGroups';
+import { useTaxonomicGroups } from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomicGroups';
+import type EbirdSpeciesGrouping from '../../../types/EbirdSpeciesGrouping';
+import type EbirdGroupNameLocale from '../../../types/EbirdGroupNameLocale';
 
 interface EbirdTaxonomicGroup {
   groupName: string;

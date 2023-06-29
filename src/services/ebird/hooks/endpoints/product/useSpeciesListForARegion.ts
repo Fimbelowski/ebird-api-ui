@@ -1,5 +1,5 @@
 import useEbirdApi from '../../useEbirdApi';
-import { type UrlParam } from '../../../types/EbirdApiParams';
+import type UrlParam from '../../../types/UrlParam';
 
 export default function useSpeciesListForARegion() {
   const curriedMakeRequest = useEbirdApi();

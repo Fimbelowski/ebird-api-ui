@@ -1,6 +1,6 @@
 import useEbirdApi from '../../useEbirdApi';
 import yearMonthDayToUrlParams from '../../../helpers/yearMonthDayToUrlParams';
-import { type UrlParam } from '../../../types/EbirdApiParams';
+import type UrlParam from '../../../types/UrlParam';
 
 export default function useRegionalStatisticsOnADate() {
   const curriedMakeRequest = useEbirdApi();

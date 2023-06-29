@@ -5,11 +5,9 @@ import DateInput from '../../components/DateInput';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import { NumberInput } from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
-import {
-  useChecklistFeedOnADate,
-  type EbirdChecklistSortBy,
-} from '../../services/ebird/hooks/endpoints/product/useChecklistFeedOnADate';
+import { useChecklistFeedOnADate } from '../../services/ebird/hooks/endpoints/product/useChecklistFeedOnADate';
 import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
+import type EbirdChecklistSortBy from '../../types/EbirdChecklistSortBy';
 
 export default function ChecklistFeedOnADate() {
   const getChecklistFeedOnADate = useChecklistFeedOnADate();

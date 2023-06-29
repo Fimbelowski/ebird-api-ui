@@ -1,10 +1,7 @@
 import useEbirdApi from '../../../useEbirdApi';
 import type EbirdRecordFormat from '../../../../../../types/EbirdRecordFormat';
 import type EbirdTaxonomyCategory from '../../../../../../types/EbirdTaxonomyCategory';
-import type {
-  QueryParam,
-  BaseQueryParam,
-} from '../../../../types/EbirdApiParams';
+import type QueryParam from '../../../../types/QueryParam';
 
 export function useEbirdTaxonomy() {
   const curriedMakeRequest = useEbirdApi();
@@ -16,20 +13,16 @@ export function useEbirdTaxonomy() {
     species: string,
     version: string
   ) {
-    const categoryQueryParam: BaseQueryParam<EbirdTaxonomyCategory> = {
-      name: 'cat',
-      value: category,
-    };
-
-    const formatQueryParam: BaseQueryParam<EbirdRecordFormat> = {
-      defaultValue: 'csv',
-      name: 'fmt',
-      value: format,
-    };
-
     const queryParams: QueryParam[] = [
-      categoryQueryParam,
-      formatQueryParam,
+      {
+        name: 'cat',
+        value: category,
+      },
+      {
+        defaultValue: 'csv',
+        name: 'fmt',
+        value: format,
+      },
       {
         defaultValue: 'en',
         name: 'locale',

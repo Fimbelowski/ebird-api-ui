@@ -11,11 +11,9 @@ import {
   Select,
   type SelectOptionArray,
 } from '../../../components/Select/Select';
-import {
-  useSubregionList,
-  type EbirdRegionType,
-} from '../../../services/ebird/hooks/endpoints/ref/region/useSubregionList';
+import { useSubregionList } from '../../../services/ebird/hooks/endpoints/ref/region/useSubregionList';
 import csvToArray from '../../../utilities/csvToArray';
+import type EbirdRegionType from '../../../types/EbirdRegionType';
 
 export default function SubregionList() {
   const getSubregionList = useSubregionList();
