@@ -1,10 +1,7 @@
 import { useState } from 'react';
 
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
-import {
-  useRecentNearbyObservations,
-  type EbirdRecentNearbyObservationsSortBy,
-} from '../../services/ebird/hooks/endpoints/data/obs/useRecentNearbyObservations';
+import { useRecentNearbyObservations } from '../../services/ebird/hooks/endpoints/data/obs/useRecentNearbyObservations';
 import type EbirdTaxonomyCategory from '../../types/EbirdTaxonomyCategory';
 import LocationInputGroup from '../../components/LocationInputGroup/LocationInputGroup';
 import BackInput from '../../components/BaseInput/BackInput';
@@ -15,6 +12,7 @@ import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvision
 import MaxResultsInput from '../../components/MaxResultsInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
+import type EbirdRecentNearbyObservationsSortBy from '../../types/EbirdRecentNearbyObservationsSortBy';
 
 export default function RecentNearbyObservations() {
   const getRecentNearbyObservations = useRecentNearbyObservations();
