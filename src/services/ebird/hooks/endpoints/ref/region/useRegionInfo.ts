@@ -1,9 +1,7 @@
 import useEbirdApi from '../../../useEbirdApi';
-import type {
-  QueryParam,
-  BaseQueryParam,
-} from '../../../../types/EbirdApiParams';
 import type UrlParam from '../../../../types/UrlParam';
+import type QueryParam from '../../../../types/QueryParam';
+import type EbirdRegionNameFormat from '../../../../../../types/EbirdRegionNameFormat';
 
 export function useRegionInfo() {
   const curriedMakeRequest = useEbirdApi();
@@ -20,14 +18,12 @@ export function useRegionInfo() {
       },
     ];
 
-    const regionNameFormatQueryParam: BaseQueryParam<EbirdRegionNameFormat> = {
-      defaultValue: 'full',
-      name: 'regionNameFormat',
-      value: regionNameFormat,
-    };
-
     const queryParams: QueryParam[] = [
-      regionNameFormatQueryParam,
+      {
+        defaultValue: 'full',
+        name: 'regionNameFormat',
+        value: regionNameFormat,
+      },
       {
         defaultValue: ', ',
         name: 'delim',
