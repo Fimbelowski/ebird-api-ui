@@ -2,11 +2,9 @@ import useEbirdApi from '../../../useEbirdApi';
 import yearMonthDayToUrlParams from '../../../../helpers/yearMonthDayToUrlParams';
 import type EbirdObservationDetailLevel from '../../../../../../types/EbirdObservationDetailLevel';
 import type EbirdTaxonomyCategory from '../../../../../../types/EbirdTaxonomyCategory';
-import type {
-  QueryParam,
-  BaseQueryParam,
-} from '../../../../types/EbirdApiParams';
 import type UrlParam from '../../../../types/UrlParam';
+import type QueryParam from '../../../../types/QueryParam';
+import type EbirdHistoricalObservationRank from '../../../../../../types/EbirdHistoricalObservationRank';
 
 export function useHistoricObservationsOnADate() {
   const curriedMakeRequest = useEbirdApi();
@@ -33,26 +31,16 @@ export function useHistoricObservationsOnADate() {
       ...yearMonthDayToUrlParams(year, month, day),
     ];
 
-    const categoryQueryParam: BaseQueryParam<EbirdTaxonomyCategory> = {
-      name: 'cat',
-      value: category,
-    };
-
-    const detailLevelQueryParam: BaseQueryParam<EbirdObservationDetailLevel> = {
-      defaultValue: 'simple',
-      name: 'detail',
-      value: detailLevel,
-    };
-
-    const rankQueryParam: BaseQueryParam<EbirdHistoricalObservationRank> = {
-      defaultValue: 'mrec',
-      name: 'rank',
-      value: rank,
-    };
-
     const queryParams: QueryParam[] = [
-      categoryQueryParam,
-      detailLevelQueryParam,
+      {
+        name: 'cat',
+        value: category,
+      },
+      {
+        defaultValue: 'simple',
+        name: 'detail',
+        value: detailLevel,
+      },
       {
         defaultValue: false,
         name: 'hotspot',
@@ -67,7 +55,11 @@ export function useHistoricObservationsOnADate() {
         name: 'maxResults',
         value: maxResults,
       },
-      rankQueryParam,
+      {
+        defaultValue: 'mrec',
+        name: 'rank',
+        value: rank,
+      },
       {
         name: 'r',
         value: locations,
