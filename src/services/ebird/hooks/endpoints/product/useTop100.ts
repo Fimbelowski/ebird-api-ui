@@ -1,7 +1,7 @@
 import useEbirdApi from '../../useEbirdApi';
 import yearMonthDayToUrlParams from '../../../helpers/yearMonthDayToUrlParams';
-import type { QueryParam, BaseQueryParam } from '../../../types/EbirdApiParams';
 import type UrlParam from '../../../types/UrlParam';
+import type QueryParam from '../../../types/QueryParam';
 
 export type EbirdTop100RankedBy = 'cl' | 'spp';
 
@@ -24,14 +24,12 @@ export default function useTop100() {
       ...yearMonthDayToUrlParams(year, month, day),
     ];
 
-    const rankedByQueryParam: BaseQueryParam<EbirdTop100RankedBy> = {
-      defaultValue: 'spp',
-      name: 'rankedBy',
-      value: rankedBy,
-    };
-
     const queryParams: QueryParam[] = [
-      rankedByQueryParam,
+      {
+        defaultValue: 'spp',
+        name: 'rankedBy',
+        value: rankedBy,
+      },
       {
         name: 'maxResults',
         value: maxResults,
