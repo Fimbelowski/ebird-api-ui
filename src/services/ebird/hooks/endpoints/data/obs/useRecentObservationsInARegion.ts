@@ -1,10 +1,7 @@
 import useEbirdApi from '../../../useEbirdApi';
 import type EbirdTaxonomyCategory from '../../../../../../types/EbirdTaxonomyCategory';
-import type {
-  QueryParam,
-  BaseQueryParam,
-} from '../../../../types/EbirdApiParams';
 import type UrlParam from '../../../../types/UrlParam';
+import type QueryParam from '../../../../types/QueryParam';
 
 export default function useRecentObservationsInARegion() {
   const curriedMakeRequest = useEbirdApi();
@@ -26,18 +23,16 @@ export default function useRecentObservationsInARegion() {
       },
     ];
 
-    const categoryQueryParam: BaseQueryParam<EbirdTaxonomyCategory> = {
-      name: 'cat',
-      value: category,
-    };
-
     const queryParams: QueryParam[] = [
       {
         defaultValue: '14',
         name: 'back',
         value: back,
       },
-      categoryQueryParam,
+      {
+        name: 'cat',
+        value: category,
+      },
       {
         defaultValue: false,
         name: 'hotspot',
