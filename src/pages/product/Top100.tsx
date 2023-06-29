@@ -145,8 +145,10 @@ export default function Top100() {
   const formContent = (
     <>
       <EbirdRegionCodeInput
+        allowCountry
+        allowLocation
+        allowSubnational1
         onChange={setRegionCode}
-        required
         value={regionCode}
       />
       <DateInput
