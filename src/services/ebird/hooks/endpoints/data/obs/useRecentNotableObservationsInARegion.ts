@@ -1,10 +1,7 @@
 import useEbirdApi from '../../../useEbirdApi';
 import type EbirdObservationDetailLevel from '../../../../../../types/EbirdObservationDetailLevel';
-import type {
-  QueryParam,
-  BaseQueryParam,
-} from '../../../../types/EbirdApiParams';
 import type UrlParam from '../../../../types/UrlParam';
+import type QueryParam from '../../../../types/QueryParam';
 
 export default function useRecentNotableObservationsInARegion() {
   const curriedMakeRequest = useEbirdApi();
@@ -25,19 +22,17 @@ export default function useRecentNotableObservationsInARegion() {
       },
     ];
 
-    const detailLevelQueryParam: BaseQueryParam<EbirdObservationDetailLevel> = {
-      defaultValue: 'simple',
-      name: 'detail',
-      value: detail,
-    };
-
     const queryParams: QueryParam[] = [
       {
         defaultValue: '14',
         name: 'back',
         value: back,
       },
-      detailLevelQueryParam,
+      {
+        defaultValue: 'simple',
+        name: 'detail',
+        value: detail,
+      },
       {
         defaultValue: false,
         name: 'hotspot',
