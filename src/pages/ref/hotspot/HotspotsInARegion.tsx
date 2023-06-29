@@ -22,8 +22,10 @@ export default function HotspotsInARegion() {
   const formContent = (
     <>
       <EbirdRegionCodeInput
+        allowCountry
+        allowSubnational1
+        allowSubnational2
         onChange={setRegionCode}
-        required
         value={regionCode}
       />
       <BackInput
