@@ -110,12 +110,49 @@ export default function EbirdRegionCodeInput({
     return regexSources.map((regexSource) => `(?:${regexSource})`).join('|');
   }
 
+  function placeholder() {
+    const placeholders: string[] = [];
+
+    if (allowCountry) {
+      placeholders.push('US');
+    }
+
+    if (allowLocation) {
+      placeholders.push('L1379126');
+    }
+
+    if (allowMajorRegion) {
+      placeholders.push('AQ');
+    }
+
+    if (allowSubnational1) {
+      placeholders.push('ES-GA');
+    }
+
+    if (allowSubnational2) {
+      placeholders.push('US-HI-007');
+    }
+
+    if (allowUsfws) {
+      placeholders.push('USFWS_614');
+    }
+
+    if (allowWorld) {
+      placeholders.push('world');
+    }
+
+    const randomIndex = Math.floor(Math.random() * placeholders.length);
+
+    return placeholders[randomIndex];
+  }
+
   return (
     <TextInput
       {...rest}
       id="region-code"
       label={label()}
       pattern={pattern()}
+      placeholder={placeholder()}
       required
     />
   );
