@@ -1,7 +1,8 @@
 import useEbirdApi from '../../useEbirdApi';
 import yearMonthDayToUrlParams from '../../../helpers/yearMonthDayToUrlParams';
-import type { QueryParam, BaseQueryParam } from '../../../types/EbirdApiParams';
 import type UrlParam from '../../../types/UrlParam';
+import type QueryParam from '../../../types/QueryParam';
+import type EbirdChecklistSortBy from '../../../../../types/EbirdChecklistSortBy';
 
 export function useChecklistFeedOnADate() {
   const curriedMakeRequest = useEbirdApi();
@@ -22,14 +23,12 @@ export function useChecklistFeedOnADate() {
       ...yearMonthDayToUrlParams(year, month, day),
     ];
 
-    const sortKeyQueryParam: BaseQueryParam<EbirdChecklistSortBy> = {
-      defaultValue: 'obs_dt',
-      name: 'sortKey',
-      value: sortKey,
-    };
-
     const queryParams: QueryParam[] = [
-      sortKeyQueryParam,
+      {
+        defaultValue: 'obs_dt',
+        name: 'sortKey',
+        value: sortKey,
+      },
       {
         defaultValue: '10',
         name: 'maxResults',
