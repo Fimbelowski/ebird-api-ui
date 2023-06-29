@@ -1,13 +1,22 @@
 import { TextInput, type TextInputProps } from './TextInput';
 
-type Props = Omit<TextInputProps, 'id' | 'label' | 'required'> & {
+type RequireAtLeastOne<T> = {
+  [K in keyof T]-?: Required<Pick<T, K>> &
+    Partial<Pick<T, Exclude<keyof T, K>>>;
+}[keyof T];
+
+interface AllowLocationTypeProps {
   allowCountry?: boolean;
   allowLocation?: boolean;
   allowMajorRegion?: boolean;
   allowSubnational1?: boolean;
   allowSubnational2?: boolean;
   allowUsfws?: boolean;
-};
+  allowWorld?: boolean;
+}
+
+type Props = Omit<TextInputProps, 'id' | 'label' | 'required'> &
+  RequireAtLeastOne<AllowLocationTypeProps>;
 
 export default function EbirdRegionCodeInput({
   allowCountry = false,
@@ -16,10 +25,15 @@ export default function EbirdRegionCodeInput({
   allowSubnational1 = false,
   allowSubnational2 = false,
   allowUsfws = false,
+  allowWorld = false,
   ...rest
 }: Props) {
   function label() {
     const locationTypes: string[] = [];
+
+    if (allowWorld) {
+      locationTypes.push('"world"');
+    }
 
     if (allowMajorRegion) {
       locationTypes.push('Major Region');
@@ -46,6 +60,10 @@ export default function EbirdRegionCodeInput({
     }
 
     if (locationTypes.length === 1) {
+      if (locationTypes[0] === '"world"') {
+        return `Region Code (${locationTypes[0]})`;
+      }
+
       return `Region Code (${locationTypes[0]} Code)`;
     }
 
@@ -83,6 +101,10 @@ export default function EbirdRegionCodeInput({
 
     if (allowUsfws) {
       regexSources.push('^USFWS_\\d{1,3}$');
+    }
+
+    if (allowWorld) {
+      regexSources.push('^world$');
     }
 
     return regexSources.map((regexSource) => `(?:${regexSource})`).join('|');
