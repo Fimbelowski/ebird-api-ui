@@ -18,8 +18,11 @@ export default function RecentChecklistsFeed() {
   const formContent = (
     <>
       <EbirdRegionCodeInput
+        allowCountry
+        allowLocation
+        allowSubnational1
+        allowSubnational2
         onChange={setRegionCode}
-        required
         value={regionCode}
       />
       <NumberInput
