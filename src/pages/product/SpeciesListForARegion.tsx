@@ -15,6 +15,11 @@ export default function SpeciesListForARegion() {
 
   const formContent = (
     <EbirdRegionCodeInput
+      allowCountry
+      allowLocation
+      allowSubnational1
+      allowSubnational2
+      allowUsfws
       onChange={setRegionCode}
       value={regionCode}
     />
