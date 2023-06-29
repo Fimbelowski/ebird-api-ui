@@ -1,9 +1,6 @@
 import type EbirdRecordFormat from '../../../../../../types/EbirdRecordFormat';
 import useEbirdApi from '../../../useEbirdApi';
-import type {
-  QueryParam,
-  BaseQueryParam,
-} from '../../../../types/EbirdApiParams';
+import type QueryParam from '../../../../types/QueryParam';
 
 export default function useNearbyHotspots() {
   const curriedMakeRequest = useEbirdApi();
@@ -15,12 +12,6 @@ export default function useNearbyHotspots() {
     distance = '25',
     format: EbirdRecordFormat = 'csv'
   ) {
-    const formatQueryParam: BaseQueryParam<EbirdRecordFormat> = {
-      defaultValue: 'csv',
-      name: 'fmt',
-      value: format,
-    };
-
     const queryParams: QueryParam[] = [
       {
         name: 'lat',
@@ -39,7 +30,11 @@ export default function useNearbyHotspots() {
         name: 'dist',
         value: distance,
       },
-      formatQueryParam,
+      {
+        defaultValue: 'csv',
+        name: 'fmt',
+        value: format,
+      },
     ];
 
     return await curriedMakeRequest('ref/hotspot/geo', {
