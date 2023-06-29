@@ -1,6 +1,6 @@
 import useEbirdApi from '../../../useEbirdApi';
-import type { QueryParam } from '../../../../types/EbirdApiParams';
 import type UrlParam from '../../../../types/UrlParam';
+import type QueryParam from '../../../../types/QueryParam';
 
 export default function useNearestObservationsOfASpecies() {
   const curriedMakeRequest = useEbirdApi();
