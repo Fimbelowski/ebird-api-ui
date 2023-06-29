@@ -15,7 +15,7 @@ interface AllowLocationTypeProps {
   allowWorld?: boolean;
 }
 
-type Props = Omit<TextInputProps, 'id' | 'label' | 'required'> &
+type Props = Omit<TextInputProps, 'id' | 'label' | 'placeholder' | 'required'> &
   RequireAtLeastOne<AllowLocationTypeProps>;
 
 export default function EbirdRegionCodeInput({
