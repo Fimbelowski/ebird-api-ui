@@ -43,8 +43,11 @@ export default function RecentNotableObservationsInARegion() {
   const formContent = (
     <>
       <EbirdRegionCodeInput
+        allowCountry
+        allowLocation
+        allowSubnational1
+        allowSubnational2
         onChange={setRegionCode}
-        required
         value={regionCode}
       />
       <BackInput
