@@ -8,6 +8,7 @@ import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import { useChecklistFeedOnADate } from '../../services/ebird/hooks/endpoints/product/useChecklistFeedOnADate';
 import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
 import type EbirdChecklistSortBy from '../../types/EbirdChecklistSortBy';
+import MaxResultsInput from '../../components/MaxResultsInput';
 
 export default function ChecklistFeedOnADate() {
   const getChecklistFeedOnADate = useChecklistFeedOnADate();
@@ -63,9 +64,8 @@ export default function ChecklistFeedOnADate() {
         options={sortKeyOptions}
         value={sortKey}
       />
-      <NumberInput
-        id="max-results"
-        label="Max Results"
+      <MaxResultsInput
+        max={200}
         onChange={setMaxResults}
         placeholder="10"
         value={maxResults}
