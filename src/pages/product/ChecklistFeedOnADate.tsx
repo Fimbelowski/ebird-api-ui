@@ -3,7 +3,6 @@ import { useState } from 'react';
 import BasePageTableEbirdChecklist from '../../components/BasePageTableEbirdChecklist';
 import DateInput from '../../components/DateInput';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
-import { NumberInput } from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import { useChecklistFeedOnADate } from '../../services/ebird/hooks/endpoints/product/useChecklistFeedOnADate';
 import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
