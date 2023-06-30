@@ -20,7 +20,8 @@ export default function RecentNearbyObservations() {
   const [back, setBack] = useState('');
   const [category, setCategory] = useState<EbirdTaxonomyCategory>('');
   const [distance, setDistance] = useState('');
-  const [includeProvisional, setIncludeProvisional] = useState(false);
+  const [includeProvisionalObservations, setIncludeProvisionalObservations] =
+    useState(false);
   const [latitude, setLatitude] = useState('');
   const [locale, setLocale] = useState('en');
   const [longitude, setLongitude] = useState('');
@@ -50,7 +51,7 @@ export default function RecentNearbyObservations() {
       category,
       distance,
       onlyObservationsFromHotspots,
-      includeProvisional,
+      includeProvisionalObservations,
       maxResults,
       sortBy,
       locale
@@ -87,8 +88,8 @@ export default function RecentNearbyObservations() {
         value={onlyObservationsFromHotspots}
       />
       <IncludeProvisionalObservationsInput
-        onChange={setIncludeProvisional}
-        value={includeProvisional}
+        onChange={setIncludeProvisionalObservations}
+        value={includeProvisionalObservations}
       />
       <MaxResultsInput
         onChange={setMaxResults}
