@@ -24,12 +24,12 @@ export default function HistoricObservationsOnADate() {
   const [date, setDate] = useState('');
   const [detailLevel, setDetailLevel] =
     useState<EbirdObservationDetailLevel>('simple');
-  const [onlyObservationsFromHotspots, setOnlyObservationsFromHotspots] =
-    useState(false);
   const [includeProvisional, setIncludeProvisional] = useState(false);
   const [locale, setLocale] = useState('en');
   const [locations, setLocations] = useState<string[]>([]);
   const [maxResults, setMaxResults] = useState('');
+  const [onlyObservationsFromHotspots, setOnlyObservationsFromHotspots] =
+    useState(false);
   const [rank, setRank] = useState<EbirdHistoricalObservationRank>('mrec');
   const [regionCode, setRegionCode] = useState('');
 
