@@ -6,11 +6,11 @@ import type EbirdContributor from '../../types/EbirdContributor';
 import EbirdProfileLink from '../../components/EbirdProfileLink';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import getOrdinalNumber from '../../utilities/getOrdinalNumber';
-import { NumberInput } from '../../components/NumberInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import useTop100 from '../../services/ebird/hooks/endpoints/product/useTop100';
 import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
 import type EbirdContributorRankedBy from '../../types/EbirdContributorRankedBy';
+import MaxResultsInput from '../../components/MaxResultsInput';
 
 export default function Top100() {
   const getTop100 = useTop100();
@@ -163,11 +163,8 @@ export default function Top100() {
         options={rankedByOptions}
         value={rankedBy}
       />
-      <NumberInput
-        id="max-results"
-        label="Max Results"
+      <MaxResultsInput
         max={100}
-        min={1}
         onChange={setMaxResults}
         placeholder="100"
         value={maxResults}
