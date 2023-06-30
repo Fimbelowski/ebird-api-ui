@@ -6,10 +6,10 @@ import type EbirdObservationDetailLevel from '../../types/EbirdObservationDetail
 import LocationInputGroup from '../../components/LocationInputGroup/LocationInputGroup';
 import BackInput from '../../components/BaseInput/BackInput';
 import EbirdObservationDetailLevelSelect from '../../components/EbirdObservationDetailLevelSelect';
-import { NumberInput } from '../../components/NumberInput';
 import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
+import DistanceInput from '../../components/DistanceInput';
 
 export default function RecentNearbyNotableObservations() {
   const getRecentNearbyNotableObservations =
@@ -55,13 +55,8 @@ export default function RecentNearbyNotableObservations() {
         onChange={setDetailLevel}
         value={detailLevel}
       />
-      <NumberInput
-        id="distance"
-        label="Distance"
-        max={50}
-        min={0}
+      <DistanceInput
         onChange={setDistance}
-        placeholder="25"
         value={distance}
       />
       <EbirdOnlyObservationsFromHotspotsInput
