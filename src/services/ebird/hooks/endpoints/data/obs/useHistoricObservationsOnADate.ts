@@ -20,7 +20,7 @@ export function useHistoricObservationsOnADate() {
     includeProvisionalObservations = false,
     maxResults?: string,
     rank: EbirdHistoricalObservationRank = 'mrec',
-    locations?: string[],
+    locations?: string,
     speciesCommonNameLocale = 'en'
   ) {
     const urlParams: UrlParam[] = [
