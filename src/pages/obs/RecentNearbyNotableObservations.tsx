@@ -48,7 +48,6 @@ export default function RecentNearbyNotableObservations() {
       />
       <BackInput
         onChange={setBack}
-        placeholder="14"
         value={back}
       />
       <EbirdObservationDetailLevelSelect

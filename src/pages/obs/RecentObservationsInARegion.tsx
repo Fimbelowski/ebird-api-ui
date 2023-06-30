@@ -48,7 +48,6 @@ export default function RecentObservationsInARegion() {
       />
       <BackInput
         onChange={setBack}
-        placeholder="14"
         value={back}
       />
       <EbirdTaxonomyCategorySelect

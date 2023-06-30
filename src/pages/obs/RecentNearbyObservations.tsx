@@ -66,7 +66,6 @@ export default function RecentNearbyObservations() {
       />
       <BackInput
         onChange={setBack}
-        placeholder="14"
         value={back}
       />
       <EbirdTaxonomyCategorySelect

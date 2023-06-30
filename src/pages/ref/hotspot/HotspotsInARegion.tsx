@@ -30,6 +30,7 @@ export default function HotspotsInARegion() {
       />
       <BackInput
         onChange={setBack}
+        placeholder="7"
         value={back}
       />
       <FormatSelect

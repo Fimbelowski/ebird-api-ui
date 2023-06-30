@@ -54,7 +54,6 @@ export default function RecentObservationsOfASpeciesInARegion() {
       />
       <BackInput
         onChange={setBack}
-        placeholder="14"
         value={back}
       />
       <EbirdOnlyObsFromHotspotsInput

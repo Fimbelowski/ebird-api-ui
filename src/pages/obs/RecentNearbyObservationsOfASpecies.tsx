@@ -54,7 +54,6 @@ export default function RecentNearbyObservationsOfASpecies() {
       />
       <BackInput
         onChange={setBack}
-        placeholder="14"
         value={back}
       />
       <NumberInput

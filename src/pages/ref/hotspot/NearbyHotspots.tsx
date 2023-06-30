@@ -41,6 +41,7 @@ export default function NearbyHotspots() {
       />
       <BackInput
         onChange={setBack}
+        placeholder="7"
         value={back}
       />
       <FormatSelect

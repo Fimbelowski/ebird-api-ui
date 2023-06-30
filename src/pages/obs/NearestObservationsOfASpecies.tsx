@@ -53,7 +53,6 @@ export default function NearestObservationOfASpecies() {
       />
       <BackInput
         onChange={setBack}
-        placeholder="14"
         value={back}
       />
       <EbirdOnlyObsFromHotspotsInput
