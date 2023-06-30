@@ -5,11 +5,11 @@ import useRecentNearbyObservationsOfASpecies from '../../services/ebird/hooks/en
 import EbirdSpeciesCodeInput from '../../components/EbirdSpeciesCodeInput';
 import LocationInputGroup from '../../components/LocationInputGroup/LocationInputGroup';
 import BackInput from '../../components/BaseInput/BackInput';
-import { NumberInput } from '../../components/NumberInput';
 import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import IncludeProvisionalObservationsInput from '../../components/IncludeProvisionalObservationsInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
+import DistanceInput from '../../components/DistanceInput';
 
 export default function RecentNearbyObservationsOfASpecies() {
   const getRecentNearbyObservationsOfASpecies =
@@ -58,13 +58,8 @@ export default function RecentNearbyObservationsOfASpecies() {
         onChange={setBack}
         value={back}
       />
-      <NumberInput
-        id="distance"
-        label="Distance"
-        max={50}
-        min={0}
+      <DistanceInput
         onChange={setDistance}
-        placeholder="25"
         value={distance}
       />
       <EbirdOnlyObservationsFromHotspotsInput
