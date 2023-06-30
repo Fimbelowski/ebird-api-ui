@@ -21,6 +21,7 @@ type StringQueryParamName =
   | 'lng'
   | 'locale'
   | 'maxResults'
+  | 'r'
   | 'species'
   | 'sppLocale'
   | 'version';
@@ -50,7 +51,6 @@ interface BaseQueryParam<T extends QueryParamName, U extends QueryParamValue> {
 
 type QueryParam =
   | BaseQueryParam<BooleanQueryParamName, boolean>
-  | BaseQueryParam<StringArrayQueryParamName, string[]>
   | BaseQueryParam<StringQueryParamName, string>
   | BaseQueryParam<'cat', EbirdTaxonomyCategory>
   | BaseQueryParam<'detail', EbirdObservationDetailLevel>

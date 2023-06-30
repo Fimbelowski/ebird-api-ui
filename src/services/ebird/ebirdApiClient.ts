@@ -21,7 +21,7 @@ function buildQueryString(queryParams: QueryParam[]) {
         return false;
       }
 
-      if (typeof value === 'string' || Array.isArray(value)) {
+      if (typeof value === 'string') {
         return value.length !== 0;
       }
 
