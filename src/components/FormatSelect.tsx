@@ -5,12 +5,7 @@ import {
   type SelectOptionArray,
 } from './Select/Select';
 
-type Props = Omit<
-  SelectProps<EbirdRecordFormat>,
-  'id' | 'label' | 'onChange' | 'options'
-> & {
-  onChange: (format: EbirdRecordFormat) => void;
-};
+type Props = Omit<SelectProps<EbirdRecordFormat>, 'id' | 'label' | 'options'>;
 
 export default function FormatSelect(props: Props) {
   const options: SelectOptionArray<EbirdRecordFormat> = [
@@ -28,7 +23,7 @@ export default function FormatSelect(props: Props) {
     <Select<EbirdRecordFormat>
       {...props}
       id="format"
-      label="Format"
+      label="Response Format"
       options={options}
     />
   );
