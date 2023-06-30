@@ -8,8 +8,8 @@ import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyOb
 import IncludeProvisionalObservationsInput from '../../components/IncludeProvisionalObservationsInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
-import { NumberInput } from '../../components/NumberInput';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
+import DistanceInput from '../../components/DistanceInput';
 
 export default function NearestObservationOfASpecies() {
   const getNearestObservationsOfASpecies = useNearestObservationsOfASpecies();
@@ -75,11 +75,7 @@ export default function NearestObservationOfASpecies() {
         onChange={setLocale}
         value={locale}
       />
-      <NumberInput
-        id="distance"
-        label="Within Distance (km)"
-        max={50}
-        min={0}
+      <DistanceInput
         onChange={setDistance}
         placeholder="50"
         value={distance}
