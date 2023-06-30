@@ -7,7 +7,7 @@ import LocationInputGroup from '../../components/LocationInputGroup/LocationInpu
 import BackInput from '../../components/BaseInput/BackInput';
 import EbirdObservationDetailLevelSelect from '../../components/EbirdObservationDetailLevelSelect';
 import { NumberInput } from '../../components/NumberInput';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
+import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
 
@@ -63,7 +63,7 @@ export default function RecentNearbyNotableObservations() {
         placeholder="25"
         value={distance}
       />
-      <EbirdOnlyObsFromHotspotsInput
+      <EbirdOnlyObservationsFromHotspotsInput
         onChange={setHotspot}
         value={hotspot}
       />

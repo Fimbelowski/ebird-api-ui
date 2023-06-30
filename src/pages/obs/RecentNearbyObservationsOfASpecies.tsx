@@ -6,7 +6,7 @@ import EbirdSpeciesCodeInput from '../../components/EbirdSpeciesCodeInput';
 import LocationInputGroup from '../../components/LocationInputGroup/LocationInputGroup';
 import BackInput from '../../components/BaseInput/BackInput';
 import { NumberInput } from '../../components/NumberInput';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
+import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
@@ -65,7 +65,7 @@ export default function RecentNearbyObservationsOfASpecies() {
         placeholder="25"
         value={distance}
       />
-      <EbirdOnlyObsFromHotspotsInput
+      <EbirdOnlyObservationsFromHotspotsInput
         onChange={setHotspot}
         value={hotspot}
       />

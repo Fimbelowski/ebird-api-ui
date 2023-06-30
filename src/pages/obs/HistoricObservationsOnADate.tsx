@@ -8,7 +8,7 @@ import EbirdTaxonomyCategorySelect from '../../components/EbirdTaxonomyCategoryS
 import EbirdObservationDetailLevelSelect from '../../components/EbirdObservationDetailLevelSelect';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import DateInput from '../../components/DateInput';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
+import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import LocationTextarea from '../../components/LocationTextarea';
@@ -81,7 +81,7 @@ export default function HistoricObservationsOnADate() {
         onChange={setDetailLevel}
         value={detailLevel}
       />
-      <EbirdOnlyObsFromHotspotsInput
+      <EbirdOnlyObservationsFromHotspotsInput
         onChange={setHotspot}
         value={hotspot}
       />

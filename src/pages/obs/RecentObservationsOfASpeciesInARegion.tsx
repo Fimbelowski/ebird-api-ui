@@ -3,7 +3,7 @@ import { useState } from 'react';
 import BackInput from '../../components/BaseInput/BackInput';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
+import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import EbirdSpeciesCodeInput from '../../components/EbirdSpeciesCodeInput';
 import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
@@ -56,7 +56,7 @@ export default function RecentObservationsOfASpeciesInARegion() {
         onChange={setBack}
         value={back}
       />
-      <EbirdOnlyObsFromHotspotsInput
+      <EbirdOnlyObservationsFromHotspotsInput
         onChange={setOnlyObsFromHotspots}
         value={onlyObsFromHotspots}
       />
