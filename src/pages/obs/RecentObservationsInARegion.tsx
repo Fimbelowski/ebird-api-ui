@@ -21,7 +21,8 @@ export default function RecentObservationsInARegion() {
   const [locale, setLocale] = useState('en');
   const [locations, setLocations] = useState<string[]>([]);
   const [maxResults, setMaxResults] = useState('');
-  const [onlyObsFromHotspots, setOnlyObsFromHotspots] = useState(false);
+  const [onlyObservationsFromHotspots, setOnlyObservationsFromHotspots] =
+    useState(false);
   const [regionCode, setRegionCode] = useState('');
 
   async function onSubmit() {
@@ -29,7 +30,7 @@ export default function RecentObservationsInARegion() {
       regionCode,
       back,
       category,
-      onlyObsFromHotspots,
+      onlyObservationsFromHotspots,
       includeProvisionalObs,
       maxResults,
       locations
@@ -55,8 +56,8 @@ export default function RecentObservationsInARegion() {
         value={category}
       />
       <EbirdOnlyObservationsFromHotspotsInput
-        onChange={setOnlyObsFromHotspots}
-        value={onlyObsFromHotspots}
+        onChange={setOnlyObservationsFromHotspots}
+        value={onlyObservationsFromHotspots}
       />
       <EbirdIncludeProvisionalInput
         onChange={setIncludeProvisionalObs}
