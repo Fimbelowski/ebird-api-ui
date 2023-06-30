@@ -16,7 +16,7 @@ export function useHistoricObservationsOnADate() {
     day: string,
     category?: EbirdTaxonomyCategory,
     detailLevel: EbirdObservationDetailLevel = 'simple',
-    hotspot = false,
+    onlyObservationsFromHotspots = false,
     includeProvisional = false,
     maxResults?: string,
     rank: EbirdHistoricalObservationRank = 'mrec',
@@ -44,7 +44,7 @@ export function useHistoricObservationsOnADate() {
       {
         defaultValue: false,
         name: 'hotspot',
-        value: hotspot,
+        value: onlyObservationsFromHotspots,
       },
       {
         defaultValue: false,

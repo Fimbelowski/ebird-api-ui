@@ -11,7 +11,7 @@ export default function useRecentNearbyNotableObservations() {
     back = '14',
     detailLevel: EbirdObservationDetailLevel = 'simple',
     distance = '25',
-    hotspot = false,
+    onlyObservationsFromHotspots = false,
     maxResults?: string,
     speciesCommonNameLocale = 'en'
   ) {
@@ -42,7 +42,7 @@ export default function useRecentNearbyNotableObservations() {
       {
         defaultValue: false,
         name: 'hotspot',
-        value: hotspot,
+        value: onlyObservationsFromHotspots,
       },
       {
         name: 'maxResults',

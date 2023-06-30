@@ -9,7 +9,7 @@ export default function useRecentObservationsOfASpeciesInARegion() {
     regionCode: string,
     speciesCode: string,
     back = '14',
-    hotspot = false,
+    onlyObservationsFromHotspots = false,
     includeProvisional = false,
     maxResults?: string,
     locations?: string[],
@@ -35,7 +35,7 @@ export default function useRecentObservationsOfASpeciesInARegion() {
       {
         defaultValue: false,
         name: 'hotspot',
-        value: hotspot,
+        value: onlyObservationsFromHotspots,
       },
       {
         defaultValue: false,

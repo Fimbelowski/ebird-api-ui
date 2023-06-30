@@ -10,7 +10,7 @@ export default function useRecentObservationsInARegion() {
     regionCode: string,
     back = '14',
     category?: EbirdTaxonomyCategory,
-    hotspot = false,
+    onlyObservationsFromHotspots = false,
     includeProvisional = false,
     maxResults?: string,
     locations?: string[],
@@ -36,7 +36,7 @@ export default function useRecentObservationsInARegion() {
       {
         defaultValue: false,
         name: 'hotspot',
-        value: hotspot,
+        value: onlyObservationsFromHotspots,
       },
       {
         defaultValue: false,
