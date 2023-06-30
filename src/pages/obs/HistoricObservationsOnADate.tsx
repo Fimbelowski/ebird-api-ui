@@ -12,7 +12,7 @@ import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyOb
 import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import LocationTextarea from '../../components/LocationTextarea';
-import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
+import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 import type EbirdHistoricalObservationRank from '../../types/EbirdHistoricalObservationRank';
@@ -106,7 +106,7 @@ export default function HistoricObservationsOnADate() {
         onChange={setLocations}
         value={locations}
       />
-      <LocaleSelect
+      <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
         value={locale}
       />

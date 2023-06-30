@@ -9,7 +9,7 @@ import { NumberInput } from '../../components/NumberInput';
 import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
-import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
+import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 
 export default function RecentNearbyObservationsOfASpecies() {
   const getRecentNearbyObservationsOfASpecies =
@@ -78,7 +78,7 @@ export default function RecentNearbyObservationsOfASpecies() {
         onChange={setMaxResults}
         value={maxResults}
       />
-      <LocaleSelect
+      <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
         value={locale}
       />

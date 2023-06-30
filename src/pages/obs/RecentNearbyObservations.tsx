@@ -11,7 +11,7 @@ import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyOb
 import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
-import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
+import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import type EbirdRecentNearbyObservationsSortBy from '../../types/EbirdRecentNearbyObservationsSortBy';
 
 export default function RecentNearbyObservations() {
@@ -101,7 +101,7 @@ export default function RecentNearbyObservations() {
         options={sortBySelectOptions}
         value={sortBy}
       />
-      <LocaleSelect
+      <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
         value={locale}
       />

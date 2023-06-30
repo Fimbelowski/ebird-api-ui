@@ -5,7 +5,7 @@ import type EbirdRecordFormat from '../../../types/EbirdRecordFormat';
 import { useEbirdTaxonomy } from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useEbirdTaxonomy';
 import EbirdTaxonomyCategorySelect from '../../../components/EbirdTaxonomyCategorySelect';
 import FormatSelect from '../../../components/FormatSelect';
-import LocaleSelect from '../../../components/LocaleSelect/LocaleSelect';
+import SpeciesCommonNameLocaleSelect from '../../../components/SpeciesCommonNameLocaleSelect';
 import { TextInput } from '../../../components/TextInput';
 import VersionSelect from '../../../components/VersionSelect';
 import { BasePageTable, type Tables } from '../../../components/BasePageTable';
@@ -252,7 +252,7 @@ export default function EbirdTaxonomy() {
         onChange={setFormat}
         value={format}
       />
-      <LocaleSelect
+      <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
         value={locale}
       />

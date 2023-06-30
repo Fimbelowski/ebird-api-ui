@@ -7,7 +7,7 @@ import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyOb
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import type EbirdTaxonomyCategory from '../../types/EbirdTaxonomyCategory';
 import EbirdTaxonomyCategorySelect from '../../components/EbirdTaxonomyCategorySelect';
-import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
+import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import LocationTextarea from '../../components/LocationTextarea';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import useRecentObservationsInARegion from '../../services/ebird/hooks/endpoints/data/obs/useRecentObservationsInARegion';
@@ -71,7 +71,7 @@ export default function RecentObservationsInARegion() {
         onChange={setLocations}
         value={locations}
       />
-      <LocaleSelect
+      <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
         value={locale}
       />

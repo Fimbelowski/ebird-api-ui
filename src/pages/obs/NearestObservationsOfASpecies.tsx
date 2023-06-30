@@ -7,7 +7,7 @@ import BackInput from '../../components/BaseInput/BackInput';
 import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
-import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
+import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import { NumberInput } from '../../components/NumberInput';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 
@@ -70,7 +70,7 @@ export default function NearestObservationOfASpecies() {
         placeholder="3000"
         value={maxResults}
       />
-      <LocaleSelect
+      <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
         value={locale}
       />
