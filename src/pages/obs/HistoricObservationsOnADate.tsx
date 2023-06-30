@@ -24,7 +24,8 @@ export default function HistoricObservationsOnADate() {
   const [date, setDate] = useState('');
   const [detailLevel, setDetailLevel] =
     useState<EbirdObservationDetailLevel>('simple');
-  const [hotspot, setHotspot] = useState(false);
+  const [onlyObservationsFromHotspots, setOnlyObservationsFromHotspots] =
+    useState(false);
   const [includeProvisional, setIncludeProvisional] = useState(false);
   const [locale, setLocale] = useState('en');
   const [locations, setLocations] = useState<string[]>([]);
@@ -49,7 +50,7 @@ export default function HistoricObservationsOnADate() {
       ...dateStringToYearMonthDay(date),
       category,
       detailLevel,
-      hotspot,
+      onlyObservationsFromHotspots,
       includeProvisional,
       maxResults,
       rank,
@@ -82,8 +83,8 @@ export default function HistoricObservationsOnADate() {
         value={detailLevel}
       />
       <EbirdOnlyObservationsFromHotspotsInput
-        onChange={setHotspot}
-        value={hotspot}
+        onChange={setOnlyObservationsFromHotspots}
+        value={onlyObservationsFromHotspots}
       />
       <EbirdIncludeProvisionalInput
         onChange={setIncludeProvisional}
