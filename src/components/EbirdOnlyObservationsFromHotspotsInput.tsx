@@ -10,7 +10,7 @@ export default function EbirdOnlyObservationsFromHotspotsInput(props: Props) {
     <CheckboxInput
       {...props}
       id="only-obs-from-hotspots"
-      label="Only Observations from Hotspots"
+      label="Only Fetch Observations from Hotspots"
     />
   );
 }
