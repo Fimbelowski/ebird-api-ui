@@ -11,11 +11,11 @@ import DateInput from '../../components/DateInput';
 import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import IncludeProvisionalObservationsInput from '../../components/IncludeProvisionalObservationsInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
-import LocationTextarea from '../../components/LocationTextarea';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 import type EbirdHistoricalObservationRank from '../../types/EbirdHistoricalObservationRank';
+import LocationsInput from '../../components/LocationsInput';
 
 export default function HistoricObservationsOnADate() {
   const getHistoricObservationsOnADate = useHistoricObservationsOnADate();
@@ -27,7 +27,7 @@ export default function HistoricObservationsOnADate() {
   const [includeProvisionalObservations, setIncludeProvisionalObservations] =
     useState(false);
   const [locale, setLocale] = useState('en');
-  const [locations, setLocations] = useState<string[]>([]);
+  const [locations, setLocations] = useState('');
   const [maxResults, setMaxResults] = useState('');
   const [onlyObservationsFromHotspots, setOnlyObservationsFromHotspots] =
     useState(false);
@@ -103,7 +103,8 @@ export default function HistoricObservationsOnADate() {
         options={rankSelectOptions}
         value={rank}
       />
-      <LocationTextarea
+      <LocationsInput
+        maxLocations={50}
         onChange={setLocations}
         value={locations}
       />

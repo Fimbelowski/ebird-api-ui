@@ -8,9 +8,9 @@ import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import type EbirdTaxonomyCategory from '../../types/EbirdTaxonomyCategory';
 import EbirdTaxonomyCategorySelect from '../../components/EbirdTaxonomyCategorySelect';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
-import LocationTextarea from '../../components/LocationTextarea';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import useRecentObservationsInARegion from '../../services/ebird/hooks/endpoints/data/obs/useRecentObservationsInARegion';
+import LocationsInput from '../../components/LocationsInput';
 
 export default function RecentObservationsInARegion() {
   const getRecentObservationsInARegion = useRecentObservationsInARegion();
@@ -19,7 +19,7 @@ export default function RecentObservationsInARegion() {
   const [category, setCategory] = useState<EbirdTaxonomyCategory>('');
   const [includeProvisionalObs, setIncludeProvisionalObs] = useState(false);
   const [locale, setLocale] = useState('en');
-  const [locations, setLocations] = useState<string[]>([]);
+  const [locations, setLocations] = useState('');
   const [maxResults, setMaxResults] = useState('');
   const [onlyObservationsFromHotspots, setOnlyObservationsFromHotspots] =
     useState(false);
@@ -67,7 +67,7 @@ export default function RecentObservationsInARegion() {
         onChange={setMaxResults}
         value={maxResults}
       />
-      <LocationTextarea
+      <LocationsInput
         onChange={setLocations}
         value={locations}
       />
