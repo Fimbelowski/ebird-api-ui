@@ -19,11 +19,12 @@ export default function RecentNearbyNotableObservations() {
   const [detailLevel, setDetailLevel] =
     useState<EbirdObservationDetailLevel>('simple');
   const [distance, setDistance] = useState('');
-  const [hotspot, setHotspot] = useState(false);
   const [latitude, setLatitude] = useState('');
   const [locale, setLocale] = useState('en');
   const [longitude, setLongitude] = useState('');
   const [maxResults, setMaxResults] = useState('');
+  const [onlyObservationsFromHotspots, setOnlyObservationsFromHotspots] =
+    useState(false);
 
   async function onSubmit() {
     return await getRecentNearbyNotableObservations(
@@ -32,7 +33,7 @@ export default function RecentNearbyNotableObservations() {
       back,
       detailLevel,
       distance,
-      hotspot,
+      onlyObservationsFromHotspots,
       maxResults,
       locale
     );
@@ -64,8 +65,8 @@ export default function RecentNearbyNotableObservations() {
         value={distance}
       />
       <EbirdOnlyObservationsFromHotspotsInput
-        onChange={setHotspot}
-        value={hotspot}
+        onChange={setOnlyObservationsFromHotspots}
+        value={onlyObservationsFromHotspots}
       />
       <MaxResultsInput
         onChange={setMaxResults}
