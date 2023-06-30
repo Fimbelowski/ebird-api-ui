@@ -7,7 +7,7 @@ import LocationInputGroup from '../../components/LocationInputGroup/LocationInpu
 import BackInput from '../../components/BaseInput/BackInput';
 import EbirdObservationDetailLevelSelect from '../../components/EbirdObservationDetailLevelSelect';
 import { NumberInput } from '../../components/NumberInput';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
+import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
 

@@ -4,7 +4,7 @@ import BackInput from '../../components/BaseInput/BackInput';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 import type EbirdObservationDetailLevel from '../../types/EbirdObservationDetailLevel';
 import EbirdObservationDetailLevelSelect from '../../components/EbirdObservationDetailLevelSelect';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
+import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
 import LocationTextarea from '../../components/LocationTextarea';

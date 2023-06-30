@@ -3,7 +3,7 @@ import { useState } from 'react';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 import BackInput from '../../components/BaseInput/BackInput';
 import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
+import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import type EbirdTaxonomyCategory from '../../types/EbirdTaxonomyCategory';
 import EbirdTaxonomyCategorySelect from '../../components/EbirdTaxonomyCategorySelect';

@@ -8,7 +8,7 @@ import EbirdTaxonomyCategorySelect from '../../components/EbirdTaxonomyCategoryS
 import EbirdObservationDetailLevelSelect from '../../components/EbirdObservationDetailLevelSelect';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import DateInput from '../../components/DateInput';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
+import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import LocationTextarea from '../../components/LocationTextarea';

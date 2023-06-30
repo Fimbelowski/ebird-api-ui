@@ -4,7 +4,7 @@ import useNearestObservationsOfASpecies from '../../services/ebird/hooks/endpoin
 import EbirdSpeciesCodeInput from '../../components/EbirdSpeciesCodeInput';
 import LocationInputGroup from '../../components/LocationInputGroup/LocationInputGroup';
 import BackInput from '../../components/BaseInput/BackInput';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
+import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
