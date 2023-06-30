@@ -20,7 +20,8 @@ export default function RecentObservationsOfASpeciesInARegion() {
   const [locale, setLocale] = useState('en');
   const [maxResults, setMaxResults] = useState('');
   const [obsLocations, setObsLocations] = useState<string[]>([]);
-  const [onlyObsFromHotspots, setOnlyObsFromHotspots] = useState(false);
+  const [onlyObservationsFromHotspots, setOnlyObservationsFromHotspots] =
+    useState(false);
   const [regionCode, setRegionCode] = useState('');
   const [speciesCode, setSpeciesCode] = useState('');
 
@@ -29,7 +30,7 @@ export default function RecentObservationsOfASpeciesInARegion() {
       regionCode,
       speciesCode,
       back,
-      onlyObsFromHotspots,
+      onlyObservationsFromHotspots,
       includeProvisionalObs,
       maxResults,
       obsLocations,
@@ -57,8 +58,8 @@ export default function RecentObservationsOfASpeciesInARegion() {
         value={back}
       />
       <EbirdOnlyObservationsFromHotspotsInput
-        onChange={setOnlyObsFromHotspots}
-        value={onlyObsFromHotspots}
+        onChange={setOnlyObservationsFromHotspots}
+        value={onlyObservationsFromHotspots}
       />
       <EbirdIncludeProvisionalInput
         onChange={setIncludeProvisionalObs}
