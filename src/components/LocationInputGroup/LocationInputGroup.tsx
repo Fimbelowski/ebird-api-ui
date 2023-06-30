@@ -51,8 +51,8 @@ export default function LocationInputGroup({
         disabled={loadingPosition}
         id="lat"
         label="Latitude (to at least two decimal places)"
-        max={90}
-        min={-90}
+        max="90"
+        min="-90"
         onChange={setLatitude}
         placeholder="42.4799394"
         required
@@ -62,8 +62,8 @@ export default function LocationInputGroup({
         disabled={loadingPosition}
         id="lng"
         label="Longitude (to at least two decimal places)"
-        max={180}
-        min={-180}
+        max="180"
+        min="-180"
         onChange={setLongitude}
         placeholder="-76.4556869"
         required

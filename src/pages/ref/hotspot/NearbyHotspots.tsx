@@ -31,7 +31,7 @@ export default function NearbyHotspots() {
         setLongitude={setLongitude}
       />
       <DistanceInput
-        max={500}
+        max="500"
         onChange={setDistance}
         value={distance}
       />

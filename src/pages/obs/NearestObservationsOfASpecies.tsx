@@ -66,7 +66,7 @@ export default function NearestObservationOfASpecies() {
         value={includeProvisionalObservations}
       />
       <MaxResultsInput
-        max={3000}
+        max="3000"
         onChange={setMaxResults}
         placeholder="3000"
         value={maxResults}

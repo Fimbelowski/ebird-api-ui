@@ -26,7 +26,7 @@ export default function RecentChecklistsFeed() {
         value={regionCode}
       />
       <MaxResultsInput
-        max={200}
+        max="200"
         onChange={setMaxResults}
         placeholder="10"
         value={maxResults}

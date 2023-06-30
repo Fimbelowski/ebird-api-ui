@@ -164,7 +164,7 @@ export default function Top100() {
         value={rankedBy}
       />
       <MaxResultsInput
-        max={100}
+        max="100"
         onChange={setMaxResults}
         placeholder="100"
         value={maxResults}

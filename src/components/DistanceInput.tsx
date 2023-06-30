@@ -3,7 +3,7 @@ import { NumberInput, type NumberInputProps } from './NumberInput';
 type Props = Omit<NumberInputProps, 'id' | 'label' | 'min'>;
 
 export default function DistanceInput({
-  max = 50,
+  max = '50',
   placeholder = '25',
   ...rest
 }: Props) {
@@ -13,7 +13,7 @@ export default function DistanceInput({
       id="distance"
       label="Distance From the Given Position (km)"
       max={max}
-      min={0}
+      min="0"
       placeholder={placeholder}
     />
   );

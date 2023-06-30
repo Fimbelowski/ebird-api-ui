@@ -8,8 +8,8 @@ export default function BackInput({ placeholder = '14', ...rest }: Props) {
       {...rest}
       id="back"
       label="Back"
-      max={30}
-      min={1}
+      max="30"
+      min="1"
       placeholder={placeholder}
     />
   );

@@ -161,8 +161,8 @@ export default function PaginationControls<T>({
             id="go-to-page"
             inline
             label="Go to Page"
-            max={totalNumberOfPages()}
-            min={1}
+            max={totalNumberOfPages().toString()}
+            min="1"
             noScroll
             onChange={setGoToPage}
             placeholder={pageInputPlaceholder()}

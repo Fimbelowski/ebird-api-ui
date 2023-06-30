@@ -1,7 +1,7 @@
 import { NumberInput, type NumberInputProps } from './NumberInput';
 
 type Props = Omit<NumberInputProps, 'id' | 'inline' | 'label' | 'noScroll'> & {
-  max: number;
+  max: string;
 };
 
 export default function PageInput(props: Props) {
@@ -12,7 +12,7 @@ export default function PageInput(props: Props) {
       inline
       label="Go to Page"
       noScroll
-      min={1}
+      min="1"
     />
   );
 }

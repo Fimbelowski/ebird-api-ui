@@ -3,7 +3,7 @@ import { NumberInput, type NumberInputProps } from './NumberInput';
 type Props = Omit<NumberInputProps, 'id' | 'label' | 'min'>;
 
 export default function MaxResultsInput({
-  max = 10000,
+  max = '10000',
   placeholder = '100',
   ...rest
 }: Props) {
@@ -13,7 +13,7 @@ export default function MaxResultsInput({
       id="max-results"
       label="Max Results"
       max={max}
-      min={1}
+      min="1"
       placeholder={placeholder}
     />
   );
