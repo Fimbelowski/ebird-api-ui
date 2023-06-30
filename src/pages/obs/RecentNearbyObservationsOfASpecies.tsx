@@ -17,7 +17,8 @@ export default function RecentNearbyObservationsOfASpecies() {
 
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('');
-  const [includeProvisional, setIncludeProvisional] = useState(false);
+  const [includeProvisionalObservations, setIncludeProvisionalObservations] =
+    useState(false);
   const [latitude, setLatitude] = useState('');
   const [locale, setLocale] = useState('en');
   const [longitude, setLongitude] = useState('');
@@ -34,7 +35,7 @@ export default function RecentNearbyObservationsOfASpecies() {
       back,
       distance,
       onlyObservationsFromHotspots,
-      includeProvisional,
+      includeProvisionalObservations,
       maxResults,
       locale
     );
@@ -71,8 +72,8 @@ export default function RecentNearbyObservationsOfASpecies() {
         value={onlyObservationsFromHotspots}
       />
       <IncludeProvisionalObservationsInput
-        onChange={setIncludeProvisional}
-        value={includeProvisional}
+        onChange={setIncludeProvisionalObservations}
+        value={includeProvisionalObservations}
       />
       <MaxResultsInput
         onChange={setMaxResults}
