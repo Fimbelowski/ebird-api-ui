@@ -76,6 +76,7 @@ export default function RecentNearbyNotableObservations() {
 
   return (
     <BasePageTableEbirdObservation
+      detailLevel={detailLevel}
       formContent={formContent}
       onSubmit={onSubmit}
       title="Recent Nearby Notable Observations"

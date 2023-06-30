@@ -117,6 +117,7 @@ export default function HistoricObservationsOnADate() {
 
   return (
     <BasePageTableEbirdObservation
+      detailLevel={detailLevel}
       formContent={formContent}
       onSubmit={onSubmit}
       title="Historic Observations On A Date"
