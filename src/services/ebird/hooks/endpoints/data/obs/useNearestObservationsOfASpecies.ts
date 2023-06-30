@@ -11,7 +11,7 @@ export default function useNearestObservationsOfASpecies() {
     longitude: string,
     back = '14',
     onlyObservationsFromHotspots = false,
-    includeProvisional = false,
+    includeProvisionalObservations = false,
     maxResults?: string,
     speciesCommonNameLocale = 'en',
     distance?: string
@@ -45,7 +45,7 @@ export default function useNearestObservationsOfASpecies() {
       {
         defaultValue: false,
         name: 'includeProvisional',
-        value: includeProvisional,
+        value: includeProvisionalObservations,
       },
       {
         name: 'maxResults',

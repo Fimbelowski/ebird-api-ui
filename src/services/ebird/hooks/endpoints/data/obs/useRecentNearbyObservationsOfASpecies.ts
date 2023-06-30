@@ -12,7 +12,7 @@ export default function useRecentNearbyObservationsOfASpecies() {
     back = '14',
     distance = '25',
     onlyObservationsFromHotspots = false,
-    includeProvisional = false,
+    includeProvisionalObservations = false,
     maxResults?: string,
     speciesCommonNameLocale = 'en'
   ) {
@@ -50,7 +50,7 @@ export default function useRecentNearbyObservationsOfASpecies() {
       {
         defaultValue: false,
         name: 'includeProvisional',
-        value: includeProvisional,
+        value: includeProvisionalObservations,
       },
       {
         name: 'maxResults',
