@@ -6,13 +6,13 @@ import type EbirdTaxonomyCategory from '../../types/EbirdTaxonomyCategory';
 import LocationInputGroup from '../../components/LocationInputGroup/LocationInputGroup';
 import BackInput from '../../components/BaseInput/BackInput';
 import EbirdTaxonomyCategorySelect from '../../components/EbirdTaxonomyCategorySelect';
-import { NumberInput } from '../../components/NumberInput';
 import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import IncludeProvisionalObservationsInput from '../../components/IncludeProvisionalObservationsInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import type EbirdRecentNearbyObservationsSortBy from '../../types/EbirdRecentNearbyObservationsSortBy';
+import DistanceInput from '../../components/DistanceInput';
 
 export default function RecentNearbyObservations() {
   const getRecentNearbyObservations = useRecentNearbyObservations();
@@ -74,13 +74,8 @@ export default function RecentNearbyObservations() {
         onChange={setCategory}
         value={category}
       />
-      <NumberInput
-        id="distance"
-        label="Distance"
-        max={50}
-        min={0}
+      <DistanceInput
         onChange={setDistance}
-        placeholder="25"
         value={distance}
       />
       <EbirdOnlyObservationsFromHotspotsInput
