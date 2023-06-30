@@ -12,7 +12,7 @@ export default function useRecentNotableObservationsInARegion() {
     detail: EbirdObservationDetailLevel = 'simple',
     onlyObservationsFromHotspots = false,
     maxResults?: string,
-    locations?: string,
+    onlyFetchObservationsFromTheseLocations?: string,
     speciesCommonNameLocale = 'en'
   ) {
     const urlParams: UrlParam[] = [
@@ -44,7 +44,7 @@ export default function useRecentNotableObservationsInARegion() {
       },
       {
         name: 'r',
-        value: locations,
+        value: onlyFetchObservationsFromTheseLocations,
       },
       {
         defaultValue: 'en',

@@ -12,7 +12,7 @@ export default function useRecentObservationsOfASpeciesInARegion() {
     onlyObservationsFromHotspots = false,
     includeProvisionalObservations = false,
     maxResults?: string,
-    locations?: string,
+    onlyFetchObservationsFromTheseLocations?: string,
     speciesCommonNameLocale = 'en'
   ) {
     const urlParams: UrlParam[] = [
@@ -48,7 +48,7 @@ export default function useRecentObservationsOfASpeciesInARegion() {
       },
       {
         name: 'r',
-        value: locations,
+        value: onlyFetchObservationsFromTheseLocations,
       },
       {
         defaultValue: 'en',
