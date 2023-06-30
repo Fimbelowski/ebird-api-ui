@@ -5,7 +5,7 @@ import EbirdSpeciesCodeInput from '../../components/EbirdSpeciesCodeInput';
 import LocationInputGroup from '../../components/LocationInputGroup/LocationInputGroup';
 import BackInput from '../../components/BaseInput/BackInput';
 import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
-import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
+import IncludeProvisionalObservationsInput from '../../components/IncludeProvisionalObservationsInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import { NumberInput } from '../../components/NumberInput';
@@ -60,7 +60,7 @@ export default function NearestObservationOfASpecies() {
         onChange={setOnlyObservationsFromHotspots}
         value={onlyObservationsFromHotspots}
       />
-      <EbirdIncludeProvisionalInput
+      <IncludeProvisionalObservationsInput
         onChange={setIncludeProvisional}
         value={includeProvisional}
       />

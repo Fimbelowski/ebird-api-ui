@@ -9,7 +9,7 @@ import EbirdObservationDetailLevelSelect from '../../components/EbirdObservation
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import DateInput from '../../components/DateInput';
 import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
-import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
+import IncludeProvisionalObservationsInput from '../../components/IncludeProvisionalObservationsInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import LocationTextarea from '../../components/LocationTextarea';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
@@ -86,7 +86,7 @@ export default function HistoricObservationsOnADate() {
         onChange={setOnlyObservationsFromHotspots}
         value={onlyObservationsFromHotspots}
       />
-      <EbirdIncludeProvisionalInput
+      <IncludeProvisionalObservationsInput
         onChange={setIncludeProvisional}
         value={includeProvisional}
       />
