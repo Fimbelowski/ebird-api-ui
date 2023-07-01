@@ -1,14 +1,14 @@
 import { useContext } from 'react';
 
-import LocaleOptionsContext from '../../context/LocaleOptionsContext';
-import type { SelectProps } from '../Select/Select';
-import useTaxaLocaleCodes from '../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxaLocaleCodes';
-import type EbirdTaxaLocaleCode from '../../types/EbirdTaxaLocaleCode';
-import AsyncResourceSelect from '../AsyncResourceSelect/AsyncResourceSelect';
+import LocaleOptionsContext from '../context/LocaleOptionsContext';
+import type { SelectProps } from './Select/Select';
+import useTaxaLocaleCodes from '../services/ebird/hooks/endpoints/ref/taxonomy/useTaxaLocaleCodes';
+import type EbirdTaxaLocaleCode from '../types/EbirdTaxaLocaleCode';
+import AsyncResourceSelect from './AsyncResourceSelect/AsyncResourceSelect';
 
 type Props = Omit<SelectProps<string>, 'id' | 'label' | 'options'>;
 
-export default function LocaleSelect(props: Props) {
+export default function SpeciesCommonNameLocaleSelect(props: Props) {
   const { localeOptions, setLocaleOptions } = useContext(LocaleOptionsContext);
 
   const getTaxaLocaleCodes = useTaxaLocaleCodes();
@@ -27,8 +27,8 @@ export default function LocaleSelect(props: Props) {
     <AsyncResourceSelect<EbirdTaxaLocaleCode>
       {...props}
       hasQueried={hasQueried()}
-      id="locale"
-      label="Locale"
+      id="species-common-name-locale"
+      label="Species Common Name Locale"
       onLoad={onLoad}
       onLoadMoreClick={getTaxaLocaleCodes}
       options={localeOptions}

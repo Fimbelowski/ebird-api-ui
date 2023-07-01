@@ -12,8 +12,8 @@ export function useRecentNearbyObservations() {
     back = '14',
     category?: EbirdTaxonomyCategory,
     distance = '25',
-    hotspot = false,
-    includeProvisional = false,
+    onlyObservationsFromHotspots = false,
+    includeProvisionalObservations = false,
     maxResults?: string,
     sort: EbirdRecentNearbyObservationsSortBy = 'date',
     speciesCommonNameLocale = 'en'
@@ -44,12 +44,12 @@ export function useRecentNearbyObservations() {
       {
         defaultValue: false,
         name: 'hotspot',
-        value: hotspot,
+        value: onlyObservationsFromHotspots,
       },
       {
         defaultValue: false,
         name: 'includeProvisional',
-        value: includeProvisional,
+        value: includeProvisionalObservations,
       },
       {
         name: 'maxResults',

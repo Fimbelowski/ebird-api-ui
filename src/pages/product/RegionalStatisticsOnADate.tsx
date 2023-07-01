@@ -69,8 +69,11 @@ export default function RegionalStatisticsOnADate() {
   const formContent = (
     <>
       <EbirdRegionCodeInput
+        allowCountry
+        allowLocation
+        allowSubnational1
+        allowSubnational2
         onChange={setRegionCode}
-        required
         value={regionCode}
       />
       <DateInput

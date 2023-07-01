@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import BasePageTableEbirdChecklist from '../../components/BasePageTableEbirdChecklist';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
-import { NumberInput } from '../../components/NumberInput';
 import useRecentChecklistsFeed from '../../services/ebird/hooks/endpoints/data/obs/useRecentChecklistsFeed';
+import MaxResultsInput from '../../components/MaxResultsInput';
 
 export default function RecentChecklistsFeed() {
   const getRecentChecklists = useRecentChecklistsFeed();
@@ -18,15 +18,15 @@ export default function RecentChecklistsFeed() {
   const formContent = (
     <>
       <EbirdRegionCodeInput
+        allowCountry
+        allowLocation
+        allowSubnational1
+        allowSubnational2
         onChange={setRegionCode}
-        required
         value={regionCode}
       />
-      <NumberInput
-        id="max-results"
-        label="Max Results"
-        max={200}
-        min={1}
+      <MaxResultsInput
+        max="200"
         onChange={setMaxResults}
         placeholder="10"
         value={maxResults}

@@ -105,8 +105,12 @@ export default function RegionInfo() {
   const formContent = (
     <>
       <EbirdRegionCodeInput
+        allowCountry
+        allowLocation
+        allowMajorRegion
+        allowSubnational1
+        allowSubnational2
         onChange={setRegionCode}
-        required
         value={regionCode}
       />
       <Select<EbirdRegionNameFormat>

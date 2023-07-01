@@ -4,10 +4,10 @@ import BackInput from '../../../components/BaseInput/BackInput';
 import BasePageTableEbirdHotspot from '../../../components/BasePageTableEbirdHotspot';
 import type EbirdRecordFormat from '../../../types/EbirdRecordFormat';
 import FormatSelect from '../../../components/FormatSelect';
-import { NumberInput } from '../../../components/NumberInput';
 import useNearbyHotspots from '../../../services/ebird/hooks/endpoints/ref/hotspot/useNearbyHotspots';
 import ebirdHotspotCsvParser from './ebirdHotspotCsvParser';
 import LocationInputGroup from '../../../components/LocationInputGroup/LocationInputGroup';
+import DistanceInput from '../../../components/DistanceInput';
 
 export default function NearbyHotspots() {
   const getNearbyHotspots = useNearbyHotspots();
@@ -30,17 +30,14 @@ export default function NearbyHotspots() {
         setLatitude={setLatitude}
         setLongitude={setLongitude}
       />
-      <NumberInput
-        id="distance"
-        label="Distance (km)"
-        max={500}
-        min={0}
+      <DistanceInput
+        max="500"
         onChange={setDistance}
-        placeholder="25"
         value={distance}
       />
       <BackInput
         onChange={setBack}
+        placeholder="7"
         value={back}
       />
       <FormatSelect

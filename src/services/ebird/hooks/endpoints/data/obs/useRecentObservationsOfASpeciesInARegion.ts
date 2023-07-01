@@ -9,10 +9,10 @@ export default function useRecentObservationsOfASpeciesInARegion() {
     regionCode: string,
     speciesCode: string,
     back = '14',
-    hotspot = false,
-    includeProvisional = false,
+    onlyObservationsFromHotspots = false,
+    includeProvisionalObservations = false,
     maxResults?: string,
-    locations?: string[],
+    locations?: string,
     speciesCommonNameLocale = 'en'
   ) {
     const urlParams: UrlParam[] = [
@@ -35,12 +35,12 @@ export default function useRecentObservationsOfASpeciesInARegion() {
       {
         defaultValue: false,
         name: 'hotspot',
-        value: hotspot,
+        value: onlyObservationsFromHotspots,
       },
       {
         defaultValue: false,
         name: 'includeProvisional',
-        value: includeProvisional,
+        value: includeProvisionalObservations,
       },
       {
         name: 'maxResults',

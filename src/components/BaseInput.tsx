@@ -11,9 +11,9 @@ export interface BaseInputProps {
   id: string;
   inline?: boolean;
   label: string;
-  max?: number;
+  max?: string;
   maxLength?: number;
-  min?: number;
+  min?: string;
   minLength?: number;
   noScroll?: boolean;
   onChange: (value: string) => void;

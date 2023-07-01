@@ -6,10 +6,10 @@ import type EbirdObservationDetailLevel from '../../types/EbirdObservationDetail
 import LocationInputGroup from '../../components/LocationInputGroup/LocationInputGroup';
 import BackInput from '../../components/BaseInput/BackInput';
 import EbirdObservationDetailLevelSelect from '../../components/EbirdObservationDetailLevelSelect';
-import { NumberInput } from '../../components/NumberInput';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
+import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
-import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
+import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
+import DistanceInput from '../../components/DistanceInput';
 
 export default function RecentNearbyNotableObservations() {
   const getRecentNearbyNotableObservations =
@@ -19,11 +19,12 @@ export default function RecentNearbyNotableObservations() {
   const [detailLevel, setDetailLevel] =
     useState<EbirdObservationDetailLevel>('simple');
   const [distance, setDistance] = useState('');
-  const [hotspot, setHotspot] = useState(false);
   const [latitude, setLatitude] = useState('');
   const [locale, setLocale] = useState('en');
   const [longitude, setLongitude] = useState('');
   const [maxResults, setMaxResults] = useState('');
+  const [onlyObservationsFromHotspots, setOnlyObservationsFromHotspots] =
+    useState(false);
 
   async function onSubmit() {
     return await getRecentNearbyNotableObservations(
@@ -32,7 +33,7 @@ export default function RecentNearbyNotableObservations() {
       back,
       detailLevel,
       distance,
-      hotspot,
+      onlyObservationsFromHotspots,
       maxResults,
       locale
     );
@@ -48,31 +49,25 @@ export default function RecentNearbyNotableObservations() {
       />
       <BackInput
         onChange={setBack}
-        placeholder="14"
         value={back}
       />
       <EbirdObservationDetailLevelSelect
         onChange={setDetailLevel}
         value={detailLevel}
       />
-      <NumberInput
-        id="distance"
-        label="Distance"
-        max={50}
-        min={0}
+      <DistanceInput
         onChange={setDistance}
-        placeholder="25"
         value={distance}
       />
-      <EbirdOnlyObsFromHotspotsInput
-        onChange={setHotspot}
-        value={hotspot}
+      <EbirdOnlyObservationsFromHotspotsInput
+        onChange={setOnlyObservationsFromHotspots}
+        value={onlyObservationsFromHotspots}
       />
       <MaxResultsInput
         onChange={setMaxResults}
         value={maxResults}
       />
-      <LocaleSelect
+      <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
         value={locale}
       />
@@ -81,6 +76,7 @@ export default function RecentNearbyNotableObservations() {
 
   return (
     <BasePageTableEbirdObservation
+      detailLevel={detailLevel}
       formContent={formContent}
       onSubmit={onSubmit}
       title="Recent Nearby Notable Observations"

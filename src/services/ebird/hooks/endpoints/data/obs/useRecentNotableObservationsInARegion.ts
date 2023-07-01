@@ -10,9 +10,9 @@ export default function useRecentNotableObservationsInARegion() {
     regionCode: string,
     back = '14',
     detail: EbirdObservationDetailLevel = 'simple',
-    hotspot = false,
+    onlyObservationsFromHotspots = false,
     maxResults?: string,
-    locations?: string[],
+    locations?: string,
     speciesCommonNameLocale = 'en'
   ) {
     const urlParams: UrlParam[] = [
@@ -36,7 +36,7 @@ export default function useRecentNotableObservationsInARegion() {
       {
         defaultValue: false,
         name: 'hotspot',
-        value: hotspot,
+        value: onlyObservationsFromHotspots,
       },
       {
         name: 'maxResults',

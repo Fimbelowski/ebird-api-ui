@@ -16,11 +16,11 @@ export function useHistoricObservationsOnADate() {
     day: string,
     category?: EbirdTaxonomyCategory,
     detailLevel: EbirdObservationDetailLevel = 'simple',
-    hotspot = false,
-    includeProvisional = false,
+    onlyObservationsFromHotspots = false,
+    includeProvisionalObservations = false,
     maxResults?: string,
     rank: EbirdHistoricalObservationRank = 'mrec',
-    locations?: string[],
+    locations?: string,
     speciesCommonNameLocale = 'en'
   ) {
     const urlParams: UrlParam[] = [
@@ -44,12 +44,12 @@ export function useHistoricObservationsOnADate() {
       {
         defaultValue: false,
         name: 'hotspot',
-        value: hotspot,
+        value: onlyObservationsFromHotspots,
       },
       {
         defaultValue: false,
         name: 'includeProvisional',
-        value: includeProvisional,
+        value: includeProvisionalObservations,
       },
       {
         name: 'maxResults',

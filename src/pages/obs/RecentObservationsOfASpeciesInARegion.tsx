@@ -2,14 +2,14 @@ import { useState } from 'react';
 
 import BackInput from '../../components/BaseInput/BackInput';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
-import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
+import IncludeProvisionalObservationsInput from '../../components/IncludeProvisionalObservationsInput';
+import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import EbirdSpeciesCodeInput from '../../components/EbirdSpeciesCodeInput';
-import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
-import LocationTextarea from '../../components/LocationTextarea';
+import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import useRecentObservationsOfASpeciesInARegion from '../../services/ebird/hooks/endpoints/data/obs/useRecentObservationsOfASpeciesInARegion';
+import LocationsInput from '../../components/LocationsInput';
 
 export default function RecentObservationsOfASpeciesInARegion() {
   const getRecentObservationsOfASpeciesInARegion =
@@ -19,8 +19,9 @@ export default function RecentObservationsOfASpeciesInARegion() {
   const [includeProvisionalObs, setIncludeProvisionalObs] = useState(false);
   const [locale, setLocale] = useState('en');
   const [maxResults, setMaxResults] = useState('');
-  const [obsLocations, setObsLocations] = useState<string[]>([]);
-  const [onlyObsFromHotspots, setOnlyObsFromHotspots] = useState(false);
+  const [obsLocations, setObsLocations] = useState('');
+  const [onlyObservationsFromHotspots, setOnlyObservationsFromHotspots] =
+    useState(false);
   const [regionCode, setRegionCode] = useState('');
   const [speciesCode, setSpeciesCode] = useState('');
 
@@ -29,7 +30,7 @@ export default function RecentObservationsOfASpeciesInARegion() {
       regionCode,
       speciesCode,
       back,
-      onlyObsFromHotspots,
+      onlyObservationsFromHotspots,
       includeProvisionalObs,
       maxResults,
       obsLocations,
@@ -40,8 +41,11 @@ export default function RecentObservationsOfASpeciesInARegion() {
   const formContent = (
     <>
       <EbirdRegionCodeInput
+        allowCountry
+        allowLocation
+        allowSubnational1
+        allowSubnational2
         onChange={setRegionCode}
-        required
         value={regionCode}
       />
       <EbirdSpeciesCodeInput
@@ -51,14 +55,13 @@ export default function RecentObservationsOfASpeciesInARegion() {
       />
       <BackInput
         onChange={setBack}
-        placeholder="14"
         value={back}
       />
-      <EbirdOnlyObsFromHotspotsInput
-        onChange={setOnlyObsFromHotspots}
-        value={onlyObsFromHotspots}
+      <EbirdOnlyObservationsFromHotspotsInput
+        onChange={setOnlyObservationsFromHotspots}
+        value={onlyObservationsFromHotspots}
       />
-      <EbirdIncludeProvisionalInput
+      <IncludeProvisionalObservationsInput
         onChange={setIncludeProvisionalObs}
         value={includeProvisionalObs}
       />
@@ -66,11 +69,11 @@ export default function RecentObservationsOfASpeciesInARegion() {
         onChange={setMaxResults}
         value={maxResults}
       />
-      <LocationTextarea
+      <LocationsInput
         onChange={setObsLocations}
         value={obsLocations}
       />
-      <LocaleSelect
+      <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
         value={locale}
       />

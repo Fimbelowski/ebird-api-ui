@@ -4,12 +4,12 @@ import BackInput from '../../components/BaseInput/BackInput';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 import type EbirdObservationDetailLevel from '../../types/EbirdObservationDetailLevel';
 import EbirdObservationDetailLevelSelect from '../../components/EbirdObservationDetailLevelSelect';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
+import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
-import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
-import LocationTextarea from '../../components/LocationTextarea';
+import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import useRecentNotableObservationsInARegion from '../../services/ebird/hooks/endpoints/data/obs/useRecentNotableObservationsInARegion';
+import LocationsInput from '../../components/LocationsInput';
 
 export default function RecentNotableObservationsInARegion() {
   const getRecentNotableObservationsInAregion =
@@ -22,8 +22,9 @@ export default function RecentNotableObservationsInARegion() {
     useState<EbirdObservationDetailLevel>();
   const [locale, setLocale] = useState('en');
   const [maxResults, setMaxResults] = useState('');
-  const [obsLocations, setObsLocations] = useState<string[]>([]);
-  const [onlyObsFromHotspots, setOnlyObsFromHotspots] = useState(false);
+  const [obsLocations, setObsLocations] = useState('');
+  const [onlyObservationsFromHotspots, setOnlyObservationsFromHotspots] =
+    useState(false);
   const [regionCode, setRegionCode] = useState('');
 
   async function onSubmit() {
@@ -33,7 +34,7 @@ export default function RecentNotableObservationsInARegion() {
       regionCode,
       back,
       detailLevel,
-      onlyObsFromHotspots,
+      onlyObservationsFromHotspots,
       maxResults,
       obsLocations,
       locale
@@ -43,32 +44,34 @@ export default function RecentNotableObservationsInARegion() {
   const formContent = (
     <>
       <EbirdRegionCodeInput
+        allowCountry
+        allowLocation
+        allowSubnational1
+        allowSubnational2
         onChange={setRegionCode}
-        required
         value={regionCode}
       />
       <BackInput
         onChange={setBack}
-        placeholder="14"
         value={back}
       />
       <EbirdObservationDetailLevelSelect
         onChange={setDetailLevel}
         value={detailLevel}
       />
-      <EbirdOnlyObsFromHotspotsInput
-        onChange={setOnlyObsFromHotspots}
-        value={onlyObsFromHotspots}
+      <EbirdOnlyObservationsFromHotspotsInput
+        onChange={setOnlyObservationsFromHotspots}
+        value={onlyObservationsFromHotspots}
       />
       <MaxResultsInput
         onChange={setMaxResults}
         value={maxResults}
       />
-      <LocationTextarea
+      <LocationsInput
         onChange={setObsLocations}
         value={obsLocations}
       />
-      <LocaleSelect
+      <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
         value={locale}
       />

@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import {
   BasePageTable,
   type BasePageTableProps,
@@ -25,6 +27,7 @@ interface EbirdObservation {
   locName: string;
   locationPrivate: boolean;
   obsDt: string;
+  obsId?: string;
   obsReviewed: boolean;
   obsValid: boolean;
   presenceNoted?: boolean;
@@ -45,8 +48,12 @@ type Props = Omit<
 
 export default function BasePageTableEbirdObservation({
   detailLevel = 'simple',
+  onSubmit: onSubmitProp,
   ...rest
 }: Props) {
+  const [lastDetailLevel, setLastDetailLevel] =
+    useState<EbirdObservationDetailLevel>('simple');
+
   function detailedTableCells() {
     const cells: Array<
       TableCell<EbirdObservation> & { detailLevel: EbirdObservationDetailLevel }
@@ -122,6 +129,10 @@ export default function BasePageTableEbirdObservation({
         detailLevel: 'simple',
       },
       {
+        callback: ({ obsId }) => obsId,
+        detailLevel: 'full',
+      },
+      {
         callback: ({ obsReviewed }) => obsReviewed,
         detailLevel: 'simple',
       },
@@ -167,7 +178,7 @@ export default function BasePageTableEbirdObservation({
       },
     ];
 
-    return detailLevel === 'full'
+    return lastDetailLevel === 'full'
       ? cells
       : cells.filter((cell) => cell.detailLevel === 'simple');
   }
@@ -251,6 +262,10 @@ export default function BasePageTableEbirdObservation({
         label: 'obsDt',
       },
       {
+        detailLevel: 'full',
+        label: 'obsId',
+      },
+      {
         detailLevel: 'simple',
         label: 'obsReviewed',
       },
@@ -296,7 +311,7 @@ export default function BasePageTableEbirdObservation({
       },
     ];
 
-    return detailLevel === 'full'
+    return lastDetailLevel === 'full'
       ? headers
       : headers.filter(({ detailLevel }) => detailLevel === 'simple');
   }
@@ -349,9 +364,15 @@ export default function BasePageTableEbirdObservation({
     },
   ];
 
+  async function onSubmit() {
+    setLastDetailLevel(detailLevel);
+    return await onSubmitProp();
+  }
+
   return (
     <BasePageTable
       {...rest}
+      onSubmit={onSubmit}
       requiresApiKey
       tables={tables}
     />

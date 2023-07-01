@@ -55,9 +55,10 @@ export default function SubregionList() {
         value={regionType}
       />
       <EbirdRegionCodeInput
-        label="Parent Region Code"
+        allowCountry
+        allowSubnational1
+        allowWorld
         onChange={setParentRegionCode}
-        required
         value={parentRegionCode}
       />
       <FormatSelect

@@ -5,12 +5,12 @@ import {
 
 type Props = Omit<CheckboxInputProps, 'id' | 'label'>;
 
-export default function EbirdOnlyObsFromHotspotsInput(props: Props) {
+export default function EbirdOnlyObservationsFromHotspotsInput(props: Props) {
   return (
     <CheckboxInput
       {...props}
       id="only-obs-from-hotspots"
-      label="Only Observations from Hotspots"
+      label="Only Fetch Observations from Hotspots"
     />
   );
 }

@@ -5,7 +5,7 @@ import {
 
 type Props = Omit<CheckboxInputProps, 'id' | 'label'>;
 
-export default function EbirdIncludeProvisionalInput(props: Props) {
+export default function IncludeProvisionalObservationsInput(props: Props) {
   return (
     <CheckboxInput
       {...props}

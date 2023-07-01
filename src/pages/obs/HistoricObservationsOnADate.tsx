@@ -8,14 +8,14 @@ import EbirdTaxonomyCategorySelect from '../../components/EbirdTaxonomyCategoryS
 import EbirdObservationDetailLevelSelect from '../../components/EbirdObservationDetailLevelSelect';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import DateInput from '../../components/DateInput';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
-import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
+import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
+import IncludeProvisionalObservationsInput from '../../components/IncludeProvisionalObservationsInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
-import LocationTextarea from '../../components/LocationTextarea';
-import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
+import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 import type EbirdHistoricalObservationRank from '../../types/EbirdHistoricalObservationRank';
+import LocationsInput from '../../components/LocationsInput';
 
 export default function HistoricObservationsOnADate() {
   const getHistoricObservationsOnADate = useHistoricObservationsOnADate();
@@ -24,11 +24,13 @@ export default function HistoricObservationsOnADate() {
   const [date, setDate] = useState('');
   const [detailLevel, setDetailLevel] =
     useState<EbirdObservationDetailLevel>('simple');
-  const [hotspot, setHotspot] = useState(false);
-  const [includeProvisional, setIncludeProvisional] = useState(false);
+  const [includeProvisionalObservations, setIncludeProvisionalObservations] =
+    useState(false);
   const [locale, setLocale] = useState('en');
-  const [locations, setLocations] = useState<string[]>([]);
+  const [locations, setLocations] = useState('');
   const [maxResults, setMaxResults] = useState('');
+  const [onlyObservationsFromHotspots, setOnlyObservationsFromHotspots] =
+    useState(false);
   const [rank, setRank] = useState<EbirdHistoricalObservationRank>('mrec');
   const [regionCode, setRegionCode] = useState('');
 
@@ -49,8 +51,8 @@ export default function HistoricObservationsOnADate() {
       ...dateStringToYearMonthDay(date),
       category,
       detailLevel,
-      hotspot,
-      includeProvisional,
+      onlyObservationsFromHotspots,
+      includeProvisionalObservations,
       maxResults,
       rank,
       locations,
@@ -61,8 +63,11 @@ export default function HistoricObservationsOnADate() {
   const formContent = (
     <>
       <EbirdRegionCodeInput
+        allowCountry
+        allowLocation
+        allowSubnational1
+        allowSubnational2
         onChange={setRegionCode}
-        required
         value={regionCode}
       />
       <DateInput
@@ -78,13 +83,13 @@ export default function HistoricObservationsOnADate() {
         onChange={setDetailLevel}
         value={detailLevel}
       />
-      <EbirdOnlyObsFromHotspotsInput
-        onChange={setHotspot}
-        value={hotspot}
+      <EbirdOnlyObservationsFromHotspotsInput
+        onChange={setOnlyObservationsFromHotspots}
+        value={onlyObservationsFromHotspots}
       />
-      <EbirdIncludeProvisionalInput
-        onChange={setIncludeProvisional}
-        value={includeProvisional}
+      <IncludeProvisionalObservationsInput
+        onChange={setIncludeProvisionalObservations}
+        value={includeProvisionalObservations}
       />
       <MaxResultsInput
         onChange={setMaxResults}
@@ -98,11 +103,12 @@ export default function HistoricObservationsOnADate() {
         options={rankSelectOptions}
         value={rank}
       />
-      <LocationTextarea
+      <LocationsInput
+        maxLocations={50}
         onChange={setLocations}
         value={locations}
       />
-      <LocaleSelect
+      <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
         value={locale}
       />
@@ -111,6 +117,7 @@ export default function HistoricObservationsOnADate() {
 
   return (
     <BasePageTableEbirdObservation
+      detailLevel={detailLevel}
       formContent={formContent}
       onSubmit={onSubmit}
       title="Historic Observations On A Date"

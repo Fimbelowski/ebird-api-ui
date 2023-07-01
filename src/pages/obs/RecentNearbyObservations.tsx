@@ -6,13 +6,13 @@ import type EbirdTaxonomyCategory from '../../types/EbirdTaxonomyCategory';
 import LocationInputGroup from '../../components/LocationInputGroup/LocationInputGroup';
 import BackInput from '../../components/BaseInput/BackInput';
 import EbirdTaxonomyCategorySelect from '../../components/EbirdTaxonomyCategorySelect';
-import { NumberInput } from '../../components/NumberInput';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
-import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
+import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
+import IncludeProvisionalObservationsInput from '../../components/IncludeProvisionalObservationsInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
 import { Select, type SelectOptionArray } from '../../components/Select/Select';
-import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
+import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import type EbirdRecentNearbyObservationsSortBy from '../../types/EbirdRecentNearbyObservationsSortBy';
+import DistanceInput from '../../components/DistanceInput';
 
 export default function RecentNearbyObservations() {
   const getRecentNearbyObservations = useRecentNearbyObservations();
@@ -20,12 +20,14 @@ export default function RecentNearbyObservations() {
   const [back, setBack] = useState('');
   const [category, setCategory] = useState<EbirdTaxonomyCategory>('');
   const [distance, setDistance] = useState('');
-  const [hotspot, setHotspot] = useState(false);
-  const [includeProvisional, setIncludeProvisional] = useState(false);
+  const [includeProvisionalObservations, setIncludeProvisionalObservations] =
+    useState(false);
   const [latitude, setLatitude] = useState('');
   const [locale, setLocale] = useState('en');
   const [longitude, setLongitude] = useState('');
   const [maxResults, setMaxResults] = useState('');
+  const [onlyObservationsFromHotspots, setOnlyObservationsFromHotspots] =
+    useState(false);
   const [sortBy, setSortBy] =
     useState<EbirdRecentNearbyObservationsSortBy>('date');
 
@@ -48,8 +50,8 @@ export default function RecentNearbyObservations() {
       back,
       category,
       distance,
-      hotspot,
-      includeProvisional,
+      onlyObservationsFromHotspots,
+      includeProvisionalObservations,
       maxResults,
       sortBy,
       locale
@@ -66,29 +68,23 @@ export default function RecentNearbyObservations() {
       />
       <BackInput
         onChange={setBack}
-        placeholder="14"
         value={back}
       />
       <EbirdTaxonomyCategorySelect
         onChange={setCategory}
         value={category}
       />
-      <NumberInput
-        id="distance"
-        label="Distance"
-        max={50}
-        min={0}
+      <DistanceInput
         onChange={setDistance}
-        placeholder="25"
         value={distance}
       />
-      <EbirdOnlyObsFromHotspotsInput
-        onChange={setHotspot}
-        value={hotspot}
+      <EbirdOnlyObservationsFromHotspotsInput
+        onChange={setOnlyObservationsFromHotspots}
+        value={onlyObservationsFromHotspots}
       />
-      <EbirdIncludeProvisionalInput
-        onChange={setIncludeProvisional}
-        value={includeProvisional}
+      <IncludeProvisionalObservationsInput
+        onChange={setIncludeProvisionalObservations}
+        value={includeProvisionalObservations}
       />
       <MaxResultsInput
         onChange={setMaxResults}
@@ -101,7 +97,7 @@ export default function RecentNearbyObservations() {
         options={sortBySelectOptions}
         value={sortBy}
       />
-      <LocaleSelect
+      <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
         value={locale}
       />

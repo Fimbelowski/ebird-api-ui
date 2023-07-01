@@ -10,8 +10,8 @@ export default function useNearestObservationsOfASpecies() {
     latitude: string,
     longitude: string,
     back = '14',
-    hotspot = false,
-    includeProvisional = false,
+    onlyObservationsFromHotspots = false,
+    includeProvisionalObservations = false,
     maxResults?: string,
     speciesCommonNameLocale = 'en',
     distance?: string
@@ -40,12 +40,12 @@ export default function useNearestObservationsOfASpecies() {
       {
         defaultValue: false,
         name: 'hotspot',
-        value: hotspot,
+        value: onlyObservationsFromHotspots,
       },
       {
         defaultValue: false,
         name: 'includeProvisional',
-        value: includeProvisional,
+        value: includeProvisionalObservations,
       },
       {
         name: 'maxResults',

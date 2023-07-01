@@ -4,24 +4,26 @@ import useNearestObservationsOfASpecies from '../../services/ebird/hooks/endpoin
 import EbirdSpeciesCodeInput from '../../components/EbirdSpeciesCodeInput';
 import LocationInputGroup from '../../components/LocationInputGroup/LocationInputGroup';
 import BackInput from '../../components/BaseInput/BackInput';
-import EbirdOnlyObsFromHotspotsInput from '../../components/EbirdOnlyObsFromHotspotsInput';
-import EbirdIncludeProvisionalInput from '../../components/EbirdIncludeProvisionalInput';
+import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
+import IncludeProvisionalObservationsInput from '../../components/IncludeProvisionalObservationsInput';
 import MaxResultsInput from '../../components/MaxResultsInput';
-import LocaleSelect from '../../components/LocaleSelect/LocaleSelect';
-import { NumberInput } from '../../components/NumberInput';
+import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
+import DistanceInput from '../../components/DistanceInput';
 
 export default function NearestObservationOfASpecies() {
   const getNearestObservationsOfASpecies = useNearestObservationsOfASpecies();
 
   const [back, setBack] = useState('');
   const [distance, setDistance] = useState('');
-  const [hotspot, setHotspot] = useState(false);
-  const [includeProvisional, setIncludeProvisional] = useState(false);
+  const [includeProvisionalObservations, setIncludeProvisionalObservations] =
+    useState(false);
   const [latitude, setLatitude] = useState('');
   const [locale, setLocale] = useState('en');
   const [longitude, setLongitude] = useState('');
   const [maxResults, setMaxResults] = useState('');
+  const [onlyObservationsFromHotspots, setOnlyObservationsFromHotspots] =
+    useState(false);
   const [speciesCode, setSpeciesCode] = useState('');
 
   async function onSubmit() {
@@ -30,8 +32,8 @@ export default function NearestObservationOfASpecies() {
       latitude,
       longitude,
       back,
-      hotspot,
-      includeProvisional,
+      onlyObservationsFromHotspots,
+      includeProvisionalObservations,
       maxResults,
       locale,
       distance
@@ -53,32 +55,27 @@ export default function NearestObservationOfASpecies() {
       />
       <BackInput
         onChange={setBack}
-        placeholder="14"
         value={back}
       />
-      <EbirdOnlyObsFromHotspotsInput
-        onChange={setHotspot}
-        value={hotspot}
+      <EbirdOnlyObservationsFromHotspotsInput
+        onChange={setOnlyObservationsFromHotspots}
+        value={onlyObservationsFromHotspots}
       />
-      <EbirdIncludeProvisionalInput
-        onChange={setIncludeProvisional}
-        value={includeProvisional}
+      <IncludeProvisionalObservationsInput
+        onChange={setIncludeProvisionalObservations}
+        value={includeProvisionalObservations}
       />
       <MaxResultsInput
-        max={3000}
+        max="3000"
         onChange={setMaxResults}
         placeholder="3000"
         value={maxResults}
       />
-      <LocaleSelect
+      <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
         value={locale}
       />
-      <NumberInput
-        id="distance"
-        label="Within Distance (km)"
-        max={50}
-        min={0}
+      <DistanceInput
         onChange={setDistance}
         placeholder="50"
         value={distance}
