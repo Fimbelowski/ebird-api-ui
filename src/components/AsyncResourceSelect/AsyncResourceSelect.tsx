@@ -54,7 +54,10 @@ export default function AsyncResourceSelect<T>({
   }
 
   return (
-    <>
+    <Tooltip
+      disabled={hasApiKey()}
+      text={`An API key is required to load additional ${resourcePlural}.`}
+    >
       <div className="async-resource-select">
         <div className="async-resource-select__select">
           <Select
@@ -64,20 +67,15 @@ export default function AsyncResourceSelect<T>({
           />
         </div>
         {hasQueried ? null : (
-          <Tooltip
-            disabled={hasApiKey()}
-            text={`An API key is required to load additional ${resourcePlural}.`}
+          <Button
+            disabled={!hasApiKey() || isLoading}
+            onClick={onLoadMoreClick}
+            type="button"
           >
-            <Button
-              disabled={!hasApiKey() || isLoading}
-              onClick={onLoadMoreClick}
-              type="button"
-            >
-              {loadMoreButtonLabel()}
-            </Button>
-          </Tooltip>
+            {loadMoreButtonLabel()}
+          </Button>
         )}
       </div>
-    </>
+    </Tooltip>
   );
 }
