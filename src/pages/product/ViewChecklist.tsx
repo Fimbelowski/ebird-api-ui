@@ -352,7 +352,10 @@ export default function ViewChecklist() {
     ];
 
     return (
-      <Details summary="Simplified Checklist">
+      <Details
+        open
+        summary="Simplified Checklist"
+      >
         <KeyValuePairsList keyValuePairs={keyValuePairs} />
         <Table<EbirdChecklistObservation>
           cells={tableCells}
