@@ -7,7 +7,7 @@ export default function BackInput({ placeholder = '14', ...rest }: Props) {
     <NumberInput
       {...rest}
       id="back"
-      label="Back"
+      label="Only Show Data for the Past X Days"
       max="30"
       min="1"
       placeholder={placeholder}
