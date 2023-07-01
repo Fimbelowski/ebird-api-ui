@@ -52,6 +52,7 @@ export default function SubregionList() {
         label="Region Type"
         onChange={setRegionType}
         options={regionTypeOptions}
+        required
         value={regionType}
       />
       <EbirdRegionCodeInput
