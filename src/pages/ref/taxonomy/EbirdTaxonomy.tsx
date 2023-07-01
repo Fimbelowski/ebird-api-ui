@@ -260,7 +260,7 @@ export default function EbirdTaxonomy() {
         id="species"
         label="Species (Species Codes, Lowercase, Comma-separated)"
         onChange={setSpecies}
-        pattern="^(?:[a-z]{2,6}\d{0,2}|[xy]\d{5})(?:,\s*(?:[a-z]{2,6}\d{0,2}|[xy]\d{5}))*$"
+        pattern="^(?:[a-z]{2,6}\d{0,2}|[xy]\d{5})(?:\s*,\s*(?:[a-z]{2,6}\d{0,2}|[xy]\d{5}))*$"
         placeholder="virrai, cangoo"
         value={species}
       />
