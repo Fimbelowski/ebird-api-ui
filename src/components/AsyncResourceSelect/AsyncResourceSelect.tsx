@@ -30,7 +30,7 @@ export default function AsyncResourceSelect<T>({
   }
 
   function loadMoreButtonLabel() {
-    return isLoading ? 'Loading...' : 'Load More';
+    return isLoading ? 'Loading...' : 'Load Options';
   }
 
   function onLoadMoreClick() {
