@@ -169,6 +169,7 @@ export default function TaxonomicGroups() {
         label="Species Grouping"
         onChange={setSpeciesGrouping}
         options={speciesGroupingOptions}
+        required
         value={speciesGrouping}
       />
       <Select<EbirdGroupNameLocale>
