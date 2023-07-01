@@ -26,7 +26,7 @@ export function Select<T extends string>({
   disabled = false,
   id,
   inline = false,
-  label,
+  label: labelProp,
   onChange: onChangeProp,
   options,
   required = false,
@@ -55,6 +55,10 @@ export function Select<T extends string>({
     onChangeProp(value as T);
   }
 
+  function label() {
+    return required ? `${labelProp}*` : labelProp;
+  }
+
   function labelClasses() {
     return classNames(['select__label', { 'select__label--inline': inline }]);
   }
@@ -74,7 +78,7 @@ export function Select<T extends string>({
         className={labelClasses()}
         htmlFor={id}
       >
-        {label}
+        {label()}
       </label>
       <select
         className={selectClasses()}
