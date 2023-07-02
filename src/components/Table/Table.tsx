@@ -85,14 +85,16 @@ export function Table<T>({
 
   return (
     <>
-      <table className="table">
-        <thead className="table__thead">
-          <Headers />
-        </thead>
-        <tbody className="table__tbody">
-          <Rows />
-        </tbody>
-      </table>
+      <div className="table__container">
+        <table className="table__table">
+          <thead className="table__thead">
+            <Headers />
+          </thead>
+          <tbody className="table__tbody">
+            <Rows />
+          </tbody>
+        </table>
+      </div>
       {hidePagination ? null : (
         <Pagination<T>
           items={items}
