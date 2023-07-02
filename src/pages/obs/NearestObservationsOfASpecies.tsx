@@ -85,6 +85,7 @@ export default function NearestObservationOfASpecies() {
 
   return (
     <BasePageTableEbirdObservation
+      description="Fetches the nearest locations where a species has been seen recently."
       formContent={formContent}
       onSubmit={onSubmit}
       title="Nearest Observations of a Species"
