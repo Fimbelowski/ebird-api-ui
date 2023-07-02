@@ -14,7 +14,7 @@ type Props = Omit<
   | 'id'
   | 'label'
   | 'onLoad'
-  | 'onLoadMoreClick'
+  | 'onLoadOptionsClick'
   | 'options'
   | 'resourcePlural'
 >;
@@ -50,7 +50,7 @@ export default function VersionSelect(props: Props) {
       id="version"
       label="Taxonomy Version"
       onLoad={onLoad}
-      onLoadMoreClick={getTaxonomyVersions}
+      onLoadOptionsClick={getTaxonomyVersions}
       options={taxonomyVersionOptions}
       resourcePlural="versions"
     />
