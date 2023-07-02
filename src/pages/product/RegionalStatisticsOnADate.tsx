@@ -100,6 +100,7 @@ export default function RegionalStatisticsOnADate() {
 
   return (
     <BasePage<EbirdRegionStats>
+      description="Fetches a summary of the number of checklists submitted, species seen and contributors on a given date for a country or region."
       formContent={formContent}
       onLoad={setStats}
       onSubmit={onSubmit}
