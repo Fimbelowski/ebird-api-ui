@@ -1,12 +1,23 @@
 import { useContext } from 'react';
 
-import type { SelectProps } from './Select/Select';
 import useTaxonomyVersions from '../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomyVersions';
-import AsyncResourceSelect from './AsyncResourceSelect/AsyncResourceSelect';
+import {
+  AsyncResourceSelect,
+  type AsyncResourceSelectProps,
+} from './AsyncResourceSelect/AsyncResourceSelect';
 import type EbirdTaxonomyVersion from '../types/EbirdTaxonomyVersion';
 import TaxonomyVersionOptionsContext from '../context/TaxonomyVersionOptionsContext';
 
-type Props = Omit<SelectProps<string>, 'id' | 'label' | 'options'>;
+type Props = Omit<
+  AsyncResourceSelectProps<string>,
+  | 'hasQueried'
+  | 'id'
+  | 'label'
+  | 'onLoad'
+  | 'onLoadOptionsClick'
+  | 'options'
+  | 'resourcePlural'
+>;
 
 export default function VersionSelect(props: Props) {
   const { taxonomyVersionOptions, setTaxonomyVersionOptions } = useContext(
@@ -39,7 +50,7 @@ export default function VersionSelect(props: Props) {
       id="version"
       label="Taxonomy Version"
       onLoad={onLoad}
-      onLoadMoreClick={getTaxonomyVersions}
+      onLoadOptionsClick={getTaxonomyVersions}
       options={taxonomyVersionOptions}
       resourcePlural="versions"
     />

@@ -5,22 +5,22 @@ import Tooltip from '../Tooltip/Tooltip';
 import Button from '../Button/Button';
 import { Select, type SelectProps } from '../Select/Select';
 
-interface Props<T> extends SelectProps<string> {
+export interface AsyncResourceSelectProps<T> extends SelectProps<string> {
   hasQueried: boolean;
   onLoad: (results: T[]) => void;
-  onLoadMoreClick: () => Promise<Response>;
+  onLoadOptionsClick: () => Promise<Response>;
   resourcePlural: string;
 }
 
-export default function AsyncResourceSelect<T>({
+export function AsyncResourceSelect<T>({
   disabled = false,
   hasQueried,
   onLoad,
-  onLoadMoreClick: onLoadMoreClickProp,
+  onLoadOptionsClick: onLoadOptionsClickProp,
   options,
   resourcePlural,
   ...rest
-}: Props<T>) {
+}: AsyncResourceSelectProps<T>) {
   const { apiKey } = useApiKey();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +36,7 @@ export default function AsyncResourceSelect<T>({
   function onLoadMoreClick() {
     setIsLoading(true);
 
-    onLoadMoreClickProp()
+    onLoadOptionsClickProp()
       .then(async (response) => await response.json())
       .then((json) => {
         onLoad(json as T[]);
