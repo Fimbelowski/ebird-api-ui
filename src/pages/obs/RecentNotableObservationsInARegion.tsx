@@ -80,6 +80,7 @@ export default function RecentNotableObservationsInARegion() {
 
   return (
     <BasePageTableEbirdObservation
+      description="Get the list of recent, notable observations of birds seen in a country, region or location."
       detailLevel={lastDetailLevel}
       formContent={formContent}
       onSubmit={onSubmit}
