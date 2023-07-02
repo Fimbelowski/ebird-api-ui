@@ -184,6 +184,7 @@ export default function TaxonomicGroups() {
 
   return (
     <BasePageTable<EbirdTaxonomicGroup>
+      description="Fetches a list of species groups (terns, finches, etc.)"
       formContent={formContent}
       onSubmit={onSubmit}
       requiresApiKey
