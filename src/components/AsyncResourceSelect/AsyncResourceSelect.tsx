@@ -8,7 +8,7 @@ import { Select, type SelectProps } from '../Select/Select';
 export interface AsyncResourceSelectProps<T> extends SelectProps<string> {
   hasQueried: boolean;
   onLoad: (results: T[]) => void;
-  onLoadMoreClick: () => Promise<Response>;
+  onLoadOptionsClick: () => Promise<Response>;
   resourcePlural: string;
 }
 
@@ -16,7 +16,7 @@ export function AsyncResourceSelect<T>({
   disabled = false,
   hasQueried,
   onLoad,
-  onLoadMoreClick: onLoadMoreClickProp,
+  onLoadOptionsClick: onLoadOptionsClickProp,
   options,
   resourcePlural,
   ...rest
@@ -36,7 +36,7 @@ export function AsyncResourceSelect<T>({
   function onLoadMoreClick() {
     setIsLoading(true);
 
-    onLoadMoreClickProp()
+    onLoadOptionsClickProp()
       .then(async (response) => await response.json())
       .then((json) => {
         onLoad(json as T[]);
