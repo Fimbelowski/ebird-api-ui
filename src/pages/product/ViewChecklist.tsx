@@ -381,6 +381,7 @@ export default function ViewChecklist() {
 
   return (
     <BasePage<EbirdChecklist>
+      description="Fetches the details and observations of a given checklist."
       formContent={formContent}
       onLoad={setChecklist}
       onSubmit={onSubmit}
