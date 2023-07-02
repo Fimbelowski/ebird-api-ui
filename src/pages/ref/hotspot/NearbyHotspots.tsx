@@ -49,6 +49,7 @@ export default function NearbyHotspots() {
 
   return (
     <BasePageTableEbirdHotspot
+      description="Fetches a list of hotspots near a given location."
       formContent={formContent}
       onSubmit={onSubmit}
       parser={format === 'csv' ? ebirdHotspotCsvParser : undefined}
