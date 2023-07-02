@@ -147,6 +147,7 @@ export default function RegionInfo() {
 
   return (
     <BasePage<EbirdRegionInfo>
+      description="Get information on the name and geographical area covered by a region."
       formContent={formContent}
       onLoad={setRegionInfo}
       onSubmit={onSubmit}
