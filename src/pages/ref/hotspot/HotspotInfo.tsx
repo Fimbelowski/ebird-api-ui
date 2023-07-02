@@ -46,6 +46,7 @@ export default function HotspotInfo() {
 
   return (
     <BasePage<EbirdLocation>
+      description="Fetches information about a specified hotspot."
       formContent={formContent}
       onLoad={setHotspot}
       onSubmit={onSubmit}
