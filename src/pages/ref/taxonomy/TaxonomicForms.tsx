@@ -23,6 +23,7 @@ export default function TaxonomicForms() {
 
   return (
     <BasePageList
+      description="For a given species, fetches a list of subspecies recognised by the eBird taxonomy (including the given species)."
       formContent={formContent}
       onSubmit={onSubmit}
       requiresApiKey
