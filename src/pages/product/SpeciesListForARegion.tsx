@@ -27,6 +27,7 @@ export default function SpeciesListForARegion() {
 
   return (
     <BasePageList
+      description="Fetches a list of species codes for species ever seen in a region, in taxonomic order (species taxa only)."
       formContent={formContent}
       onSubmit={onSubmit}
       requiresApiKey

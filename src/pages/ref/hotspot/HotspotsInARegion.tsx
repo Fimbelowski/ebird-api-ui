@@ -42,6 +42,7 @@ export default function HotspotsInARegion() {
 
   return (
     <BasePageTableEbirdHotspot
+      description="Fetches hotspots within a specified country or region."
       formContent={formContent}
       onSubmit={onSubmit}
       parser={format === 'csv' ? ebirdHotspotCsvParser : undefined}

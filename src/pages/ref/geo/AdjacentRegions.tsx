@@ -25,6 +25,7 @@ export default function AdjacentRegions() {
 
   return (
     <BasePageTableEbirdRegion
+      description="Fetches the list of countries or regions that share a border with the specified region."
       onSubmit={onSubmit}
       formContent={formContent}
       requiresApiKey

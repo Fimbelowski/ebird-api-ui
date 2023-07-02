@@ -117,6 +117,7 @@ export default function HistoricObservationsOnADate() {
 
   return (
     <BasePageTableEbirdObservation
+      description="Fetches a list of all taxa seen in a country, region or location on a specific date."
       detailLevel={detailLevel}
       formContent={formContent}
       onSubmit={onSubmit}

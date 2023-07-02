@@ -80,6 +80,7 @@ export default function RecentObservationsInARegion() {
 
   return (
     <BasePageTableEbirdObservation
+      description="Get the list of recent observations of birds seen in a country, state, county, or location. Results include only the most recent observation for each species in the region specified."
       formContent={formContent}
       onSubmit={onSubmit}
       title="Recent Observations in a Region"

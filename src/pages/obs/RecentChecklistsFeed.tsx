@@ -36,6 +36,7 @@ export default function RecentChecklistsFeed() {
 
   return (
     <BasePageTableEbirdChecklist
+      description="Fetches information on the most recently submitted checklists for a country or region."
       formContent={formContent}
       onSubmit={onSubmit}
       requiresApiKey

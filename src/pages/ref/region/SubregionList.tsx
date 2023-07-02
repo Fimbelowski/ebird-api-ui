@@ -71,6 +71,7 @@ export default function SubregionList() {
 
   return (
     <BasePageTableEbirdRegion
+      description="Fetches the list of sub-regions within a specified country or region."
       formContent={formContent}
       onSubmit={onSubmit}
       parser={format === 'csv' ? csvParser : undefined}

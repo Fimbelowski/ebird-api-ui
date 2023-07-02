@@ -273,6 +273,7 @@ export default function EbirdTaxonomy() {
 
   return (
     <BasePageTable<EbirdTaxonomyEntry>
+      description="Fetches the taxonomy (species, species codes, common names, scientific names, etc.) used by Ebird"
       formContent={formContent}
       onSubmit={onSubmit}
       parser={format === 'csv' ? parser : undefined}

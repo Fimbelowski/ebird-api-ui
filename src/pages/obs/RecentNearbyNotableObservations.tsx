@@ -76,6 +76,7 @@ export default function RecentNearbyNotableObservations() {
 
   return (
     <BasePageTableEbirdObservation
+      description="Fetches a list of notable observations of birds seen at locations near a given set of coordinates."
       detailLevel={detailLevel}
       formContent={formContent}
       onSubmit={onSubmit}

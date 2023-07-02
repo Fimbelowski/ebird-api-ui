@@ -30,6 +30,7 @@ export default function TaxonomyVersions() {
 
   return (
     <BasePageTable<EbirdTaxonomyVersion>
+      description="Fetches a list of all versions of eBird's taxonomy, with a flag indicating the latest version."
       onSubmit={getTaxonomyVersions}
       requestOnMount
       tables={tables}
