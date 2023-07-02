@@ -2,14 +2,16 @@ import { useState } from 'react';
 
 import { BasePage, type BasePageProps } from '../BasePage/BasePage';
 import Details from '../Details/Details';
+import PaginationControls from '../Pagination/Pagination';
 
 type Props = Omit<BasePageProps<string[]>, 'onLoad' | 'resultsContent'>;
 
 export default function BasePageList(props: Props) {
+  const [paginatedItems, setPaginatedItems] = useState<string[]>([]);
   const [parsedResponse, setParsedResponse] = useState<string[]>([]);
 
   function ResultsList() {
-    const listItems = parsedResponse.map((item) => <li key={item}>{item}</li>);
+    const listItems = paginatedItems.map((item) => <li key={item}>{item}</li>);
 
     return <ul className="base-page-list__list">{listItems}</ul>;
   }
@@ -20,6 +22,10 @@ export default function BasePageList(props: Props) {
       summary="Results"
     >
       <ResultsList />
+      <PaginationControls<string>
+        items={parsedResponse}
+        onPaginatedItemsChange={setPaginatedItems}
+      />
     </Details>
   );
 
