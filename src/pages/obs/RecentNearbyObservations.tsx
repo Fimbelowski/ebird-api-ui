@@ -106,6 +106,7 @@ export default function RecentNearbyObservations() {
 
   return (
     <BasePageTableEbirdObservation
+      description="Fetches a list of recent observations of birds seen at locations near a given set of coordinates. Results include only the most recent observation for each species in the region specified."
       formContent={formContent}
       onSubmit={onSubmit}
       title="Recent Nearby Observations"
