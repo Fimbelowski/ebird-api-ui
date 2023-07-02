@@ -36,6 +36,7 @@ export default function TaxaLocaleCodes() {
 
   return (
     <BasePageTable<EbirdTaxaLocaleCode>
+      description="Fetches a list of supported locale codes and names used for species common names, as well as the last time they were updated."
       onSubmit={getTaxaLocaleCodes}
       requiresApiKey
       tables={tables}
