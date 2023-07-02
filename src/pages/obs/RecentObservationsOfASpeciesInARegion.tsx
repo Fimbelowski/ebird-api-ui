@@ -82,6 +82,7 @@ export default function RecentObservationsOfASpeciesInARegion() {
 
   return (
     <BasePageTableEbirdObservation
+      description="Get the recent observations of a particular species in a country, region or location. Results include only the most recent observation from each location in the region specified."
       formContent={formContent}
       onSubmit={onSubmit}
       title="Recent Observations of a Species in a Region"
