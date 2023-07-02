@@ -14,7 +14,7 @@ type Props = Omit<
   | 'id'
   | 'label'
   | 'onLoad'
-  | 'onLoadMoreClick'
+  | 'onLoadOptionsClick'
   | 'options'
   | 'resourcePlural'
 >;
@@ -41,7 +41,7 @@ export default function SpeciesCommonNameLocaleSelect(props: Props) {
       id="species-common-name-locale"
       label="Species Common Name Locale"
       onLoad={onLoad}
-      onLoadMoreClick={getTaxaLocaleCodes}
+      onLoadOptionsClick={getTaxaLocaleCodes}
       options={localeOptions}
       resourcePlural="locales"
     />
