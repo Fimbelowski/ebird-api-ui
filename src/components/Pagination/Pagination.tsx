@@ -88,7 +88,7 @@ export default function PaginationControls<T>({
   }
 
   function pageInputPlaceholder() {
-    return Math.floor(totalNumberOfPages() / 2).toLocaleString();
+    return Math.max(Math.floor(totalNumberOfPages() / 2), 1).toLocaleString();
   }
 
   function paginatedItemsLowerBound() {
