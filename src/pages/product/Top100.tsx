@@ -174,6 +174,7 @@ export default function Top100() {
 
   return (
     <BasePageTable<EbirdContributor>
+      description="Fetches the top 100 contributors on a given date for a country or region."
       formContent={formContent}
       onLoad={onLoad}
       onSubmit={onSubmit}
