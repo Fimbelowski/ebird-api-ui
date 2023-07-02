@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { BasePage, type BasePageProps } from '../BasePage/BasePage';
 import Details from '../Details/Details';
-import PaginationControls from '../Pagination/Pagination';
+import Pagination from '../Pagination/Pagination';
 
 type Props = Omit<BasePageProps<string[]>, 'onLoad' | 'resultsContent'>;
 
@@ -22,7 +22,7 @@ export default function BasePageList(props: Props) {
       summary="Results"
     >
       <ResultsList />
-      <PaginationControls<string>
+      <Pagination<string>
         items={parsedResponse}
         onPaginatedItemsChange={setPaginatedItems}
       />
