@@ -74,6 +74,7 @@ export default function ChecklistFeedOnADate() {
 
   return (
     <BasePageTableEbirdChecklist
+      description="Fetches information on the checklists submitted on a given date for a country or region."
       formContent={formContent}
       onSubmit={onSubmit}
       requiresApiKey
