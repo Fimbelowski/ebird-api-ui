@@ -9,7 +9,7 @@ interface Props<T> {
   onPaginatedItemsChange: (newlyPaginatedItems: T[]) => void;
 }
 
-export default function PaginationControls<T>({
+export default function Pagination<T>({
   items,
   onPaginatedItemsChange,
 }: Props<T>) {
