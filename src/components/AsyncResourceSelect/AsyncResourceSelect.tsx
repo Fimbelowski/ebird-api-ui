@@ -5,14 +5,14 @@ import Tooltip from '../Tooltip/Tooltip';
 import Button from '../Button/Button';
 import { Select, type SelectProps } from '../Select/Select';
 
-interface Props<T> extends SelectProps<string> {
+export interface AsyncResourceSelectProps<T> extends SelectProps<string> {
   hasQueried: boolean;
   onLoad: (results: T[]) => void;
   onLoadMoreClick: () => Promise<Response>;
   resourcePlural: string;
 }
 
-export default function AsyncResourceSelect<T>({
+export function AsyncResourceSelect<T>({
   disabled = false,
   hasQueried,
   onLoad,
@@ -20,7 +20,7 @@ export default function AsyncResourceSelect<T>({
   options,
   resourcePlural,
   ...rest
-}: Props<T>) {
+}: AsyncResourceSelectProps<T>) {
   const { apiKey } = useApiKey();
 
   const [isLoading, setIsLoading] = useState(false);
