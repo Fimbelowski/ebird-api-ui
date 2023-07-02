@@ -1,8 +1,19 @@
 .table {
-  display: block;
-  overflow-x: auto;
-  border-collapse: collapse;
-  text-align: left;
+  &__container {
+    display: inline-block;
+    border: 1px solid black;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  &__table {
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  &__th {
+    white-space: nowrap;
+  }
 
   &,
   &__td,
