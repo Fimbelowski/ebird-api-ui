@@ -6,6 +6,7 @@ import Details from '../Details/Details';
 import useLoading from '../../hooks/useLoading';
 
 export interface BasePageProps<T> {
+  description: string;
   formContent?: ReactNode;
   onLoad: (results: T) => void;
   onSubmit: () => Promise<Response>;
@@ -17,6 +18,7 @@ export interface BasePageProps<T> {
 }
 
 export function BasePage<T>({
+  description,
   formContent,
   onLoad,
   onSubmit: onSubmitProp,
@@ -89,6 +91,7 @@ export function BasePage<T>({
   return (
     <section className="base-page">
       <h2 className="base-page__title">{title}</h2>
+      <p className="base-page__description">{description}</p>
       {renderForm() ? (
         <form
           className="base-page__form"

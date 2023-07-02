@@ -1,4 +1,7 @@
 .base-page {
+  --border-radius: 0.5rem;
+  --box-shadow: 0.2rem 0.2rem 0.6rem rgba(0, 0, 0, 0.3);
+
   padding: 2rem;
   max-width: 120rem;
   margin: 0 auto;
@@ -7,6 +10,13 @@
   flex-direction: column;
   align-items: center;
 
+  &__description {
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+  }
+
   &__copy-to-clipboard {
     margin-bottom: 1rem;
   }
@@ -14,8 +24,8 @@
   &__form {
     width: 100%;
     padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0.2rem 0.2rem 0.6rem rgba(0, 0, 0, 0.3);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: min-content;
