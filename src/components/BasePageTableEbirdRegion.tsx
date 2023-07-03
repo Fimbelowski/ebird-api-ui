@@ -30,7 +30,6 @@ export function BasePageTableEbirdRegion(props: Props) {
           label: 'Code',
         },
       ],
-      open: true,
       title: 'Results Table',
     },
   ];
