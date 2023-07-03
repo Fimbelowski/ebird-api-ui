@@ -47,6 +47,10 @@ export default function RecentObservationsInARegion() {
         onChange={setRegionCode}
         value={regionCode}
       />
+      <LocationsInput
+        onChange={setLocations}
+        value={locations}
+      />
       <BackInput
         onChange={setBack}
         value={back}
@@ -66,10 +70,6 @@ export default function RecentObservationsInARegion() {
       <MaxResultsInput
         onChange={setMaxResults}
         value={maxResults}
-      />
-      <LocationsInput
-        onChange={setLocations}
-        value={locations}
       />
       <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
