@@ -29,7 +29,6 @@ export default function TaxaLocaleCodes() {
           label: 'Last Update',
         },
       ],
-      open: true,
       title: 'Results Table',
     },
   ];
