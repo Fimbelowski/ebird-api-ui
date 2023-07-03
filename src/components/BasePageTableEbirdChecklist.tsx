@@ -116,7 +116,6 @@ export default function BasePageTableEbirdChecklist(props: Props) {
           label: 'Date of Observation',
         },
       ],
-      open: true,
       title: 'Simple Table',
     },
   ];
