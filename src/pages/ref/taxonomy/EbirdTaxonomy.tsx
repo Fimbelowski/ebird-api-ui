@@ -248,14 +248,6 @@ export default function EbirdTaxonomy() {
         onChange={setCategory}
         value={category}
       />
-      <FormatSelect
-        onChange={setFormat}
-        value={format}
-      />
-      <SpeciesCommonNameLocaleSelect
-        onChange={setLocale}
-        value={locale}
-      />
       <TextInput
         id="species"
         label="Species (Species Codes, Lowercase, Comma-separated)"
@@ -264,9 +256,17 @@ export default function EbirdTaxonomy() {
         placeholder="virrai, cangoo"
         value={species}
       />
+      <SpeciesCommonNameLocaleSelect
+        onChange={setLocale}
+        value={locale}
+      />
       <VersionSelect
         onChange={setVersion}
         value={version}
+      />
+      <FormatSelect
+        onChange={setFormat}
+        value={format}
       />
     </>
   );
