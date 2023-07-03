@@ -3,6 +3,7 @@ import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 import ApiKeyInput from '../ApiKeyInput/ApiKeyInput';
 import Button from '../Button/Button';
 import Details from '../Details/Details';
+import Notification from '../Notification/Notification';
 import useLoading from '../../hooks/useLoading';
 
 export interface BasePageProps<T> {
@@ -91,7 +92,24 @@ export function BasePage<T>({
   return (
     <section className="base-page">
       <h2 className="base-page__title">{title}</h2>
-      <p className="base-page__description">{description}</p>
+      <div className="base-page__info-box">
+        <p className="base-page__description">{description}</p>
+        {requiresApiKey ? (
+          <Notification type="info">
+            <p>
+              This page requires an eBird API key. To get one, visit{' '}
+              <a
+                href="https://ebird.org/api/keygen"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                this page
+              </a>{' '}
+              and fill out the form.
+            </p>
+          </Notification>
+        ) : null}
+      </div>
       {renderForm() ? (
         <form
           className="base-page__form"
