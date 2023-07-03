@@ -47,7 +47,6 @@ export default function TaxonomicGroups() {
           label: 'Taxon Order Bounds',
         },
       ],
-      open: true,
       title: 'Results Table',
     },
   ];
