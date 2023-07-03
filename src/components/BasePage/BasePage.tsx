@@ -5,10 +5,12 @@ import Button from '../Button/Button';
 import Details from '../Details/Details';
 import Notification from '../Notification/Notification';
 import useLoading from '../../hooks/useLoading';
+import Fieldset from '../Fieldset/Fieldset';
 
 export interface BasePageProps<T> {
   description: string;
   formContent?: ReactNode;
+  formOptionsFieldsetContent?: ReactNode;
   onLoad: (results: T) => void;
   onSubmit: () => Promise<Response>;
   parser?: (rawResponse: string) => T;
@@ -21,6 +23,7 @@ export interface BasePageProps<T> {
 export function BasePage<T>({
   description,
   formContent,
+  formOptionsFieldsetContent,
   onLoad,
   onSubmit: onSubmitProp,
   parser = (rawResponse) => JSON.parse(rawResponse) as T,
@@ -117,6 +120,11 @@ export function BasePage<T>({
         >
           {requiresApiKey ? <ApiKeyInput /> : null}
           {formContent}
+          {formOptionsFieldsetContent === undefined ? null : (
+            <Fieldset legendText="Options">
+              {formOptionsFieldsetContent}
+            </Fieldset>
+          )}
           <Button type="submit">Submit</Button>
         </form>
       ) : null}
