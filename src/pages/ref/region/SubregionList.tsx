@@ -14,7 +14,6 @@ import {
 import { useSubregionList } from '../../../services/ebird/hooks/endpoints/ref/region/useSubregionList';
 import csvToArray from '../../../utilities/csvToArray';
 import type EbirdRegionType from '../../../types/EbirdRegionType';
-import Fieldset from '../../../components/Fieldset/Fieldset';
 
 export default function SubregionList() {
   const getSubregionList = useSubregionList();
@@ -64,12 +63,15 @@ export default function SubregionList() {
         required
         value={regionType}
       />
-      <Fieldset legendText="Options">
-        <FormatSelect
-          onChange={setFormat}
-          value={format}
-        />
-      </Fieldset>
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
+      <FormatSelect
+        onChange={setFormat}
+        value={format}
+      />
     </>
   );
 
@@ -77,6 +79,7 @@ export default function SubregionList() {
     <BasePageTableEbirdRegion
       description="Fetches the list of sub-regions within a specified country or region."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       parser={format === 'csv' ? csvParser : undefined}
       requiresApiKey
