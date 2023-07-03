@@ -256,13 +256,18 @@ export default function EbirdTaxonomy() {
         placeholder="virrai, cangoo"
         value={species}
       />
-      <SpeciesCommonNameLocaleSelect
-        onChange={setLocale}
-        value={locale}
-      />
       <VersionSelect
         onChange={setVersion}
         value={version}
+      />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
+      <SpeciesCommonNameLocaleSelect
+        onChange={setLocale}
+        value={locale}
       />
       <FormatSelect
         onChange={setFormat}
@@ -275,6 +280,7 @@ export default function EbirdTaxonomy() {
     <BasePageTable<EbirdTaxonomyEntry>
       description="Fetches the taxonomy (species, species codes, common names, scientific names, etc.) used by Ebird"
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       parser={format === 'csv' ? parser : undefined}
       requiresApiKey
