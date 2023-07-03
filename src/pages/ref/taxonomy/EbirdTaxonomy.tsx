@@ -200,7 +200,6 @@ export default function EbirdTaxonomy() {
           label: 'Declared Extinct',
         },
       ],
-      open: true,
       title: 'Simplified Table',
     },
   ];
