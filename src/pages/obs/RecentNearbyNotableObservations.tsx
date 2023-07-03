@@ -59,6 +59,11 @@ export default function RecentNearbyNotableObservations() {
         onChange={setOnlyObservationsFromHotspots}
         value={onlyObservationsFromHotspots}
       />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
       <EbirdObservationDetailLevelSelect
         onChange={setDetailLevel}
         value={detailLevel}
@@ -79,6 +84,7 @@ export default function RecentNearbyNotableObservations() {
       description="Fetches a list of notable observations of birds seen at locations near a given set of coordinates."
       detailLevel={detailLevel}
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       title="Recent Nearby Notable Observations"
     />
