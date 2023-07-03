@@ -92,6 +92,11 @@ export default function HistoricObservationsOnADate() {
         onChange={setIncludeProvisionalObservations}
         value={includeProvisionalObservations}
       />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
       <Select<EbirdHistoricalObservationRank>
         id="rank"
         label="Rank By"
@@ -120,6 +125,7 @@ export default function HistoricObservationsOnADate() {
       description="Fetches a list of all taxa seen in a country, region or location on a specific date."
       detailLevel={detailLevel}
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       title="Historic Observations On A Date"
     />
