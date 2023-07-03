@@ -13,6 +13,7 @@ import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import type EbirdRecentNearbyObservationsSortBy from '../../types/EbirdRecentNearbyObservationsSortBy';
 import DistanceInput from '../../components/DistanceInput';
+import Fieldset from '../../components/Fieldset/Fieldset';
 
 export default function RecentNearbyObservations() {
   const getRecentNearbyObservations = useRecentNearbyObservations();
@@ -60,16 +61,18 @@ export default function RecentNearbyObservations() {
 
   const formContent = (
     <>
-      <LocationInputGroup
-        latitude={latitude}
-        longitude={longitude}
-        setLatitude={setLatitude}
-        setLongitude={setLongitude}
-      />
-      <DistanceInput
-        onChange={setDistance}
-        value={distance}
-      />
+      <Fieldset legendText="Location">
+        <LocationInputGroup
+          latitude={latitude}
+          longitude={longitude}
+          setLatitude={setLatitude}
+          setLongitude={setLongitude}
+        />
+        <DistanceInput
+          onChange={setDistance}
+          value={distance}
+        />
+      </Fieldset>
       <EbirdTaxonomyCategorySelect
         onChange={setCategory}
         value={category}
