@@ -84,10 +84,6 @@ export default function HistoricObservationsOnADate() {
         onChange={setCategory}
         value={category}
       />
-      <EbirdObservationDetailLevelSelect
-        onChange={setDetailLevel}
-        value={detailLevel}
-      />
       <EbirdOnlyObservationsFromHotspotsInput
         onChange={setOnlyObservationsFromHotspots}
         value={onlyObservationsFromHotspots}
@@ -102,6 +98,10 @@ export default function HistoricObservationsOnADate() {
         onChange={setRank}
         options={rankSelectOptions}
         value={rank}
+      />
+      <EbirdObservationDetailLevelSelect
+        onChange={setDetailLevel}
+        value={detailLevel}
       />
       <MaxResultsInput
         onChange={setMaxResults}
