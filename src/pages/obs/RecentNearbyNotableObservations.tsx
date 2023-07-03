@@ -47,6 +47,10 @@ export default function RecentNearbyNotableObservations() {
         setLatitude={setLatitude}
         setLongitude={setLongitude}
       />
+      <DistanceInput
+        onChange={setDistance}
+        value={distance}
+      />
       <BackInput
         onChange={setBack}
         value={back}
@@ -54,10 +58,6 @@ export default function RecentNearbyNotableObservations() {
       <EbirdObservationDetailLevelSelect
         onChange={setDetailLevel}
         value={detailLevel}
-      />
-      <DistanceInput
-        onChange={setDistance}
-        value={distance}
       />
       <EbirdOnlyObservationsFromHotspotsInput
         onChange={setOnlyObservationsFromHotspots}
