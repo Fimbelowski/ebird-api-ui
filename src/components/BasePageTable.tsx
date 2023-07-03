@@ -1,11 +1,13 @@
 import { useState } from 'react';
 
-import { BasePage, type BasePageProps } from './BasePage/BasePage';
-import Details from './Details/Details';
+import {
+  BasePage,
+  type BasePageProps,
+  type ResultsSection,
+} from './BasePage/BasePage';
 import { Table, type TableProps } from './Table/Table';
 
 type ModifiedTableProps<T> = Omit<TableProps<T>, 'items'> & {
-  open?: boolean;
   title: string;
 };
 
@@ -13,7 +15,7 @@ export type Tables<T> = Array<ModifiedTableProps<T>>;
 
 export type BasePageTableProps<T> = Omit<
   BasePageProps<T[]>,
-  'onLoad' | 'resultsContent'
+  'onLoad' | 'resultsSections'
 > & {
   onLoad?: (results: T[]) => void;
   tables: Array<ModifiedTableProps<T>>;
@@ -26,6 +28,21 @@ export function BasePageTable<T>({
 }: BasePageTableProps<T>) {
   const [parsedResults, setParsedResults] = useState<T[]>([]);
 
+  const resultsSections: ResultsSection[] = tables.map(
+    ({ cells, headers, title }) => ({
+      content: (
+        <Table<T>
+          cells={cells}
+          headers={headers}
+          items={parsedResults}
+          key={title}
+        />
+      ),
+      open,
+      title,
+    })
+  );
+
   function onLoad(results: T[]) {
     if (onLoadProp !== undefined) {
       onLoadProp(results);
@@ -34,29 +51,11 @@ export function BasePageTable<T>({
     setParsedResults(results);
   }
 
-  const resultsContent = () => {
-    const listItems = tables.map(({ cells, headers, open = false, title }) => (
-      <Details
-        key={title}
-        open={open}
-        summary={title}
-      >
-        <Table<T>
-          cells={cells}
-          headers={headers}
-          items={parsedResults}
-        />
-      </Details>
-    ));
-
-    return listItems;
-  };
-
   return (
     <BasePage<T[]>
       {...rest}
       onLoad={onLoad}
-      resultsContent={resultsContent()}
+      resultsSections={resultsSections}
     />
   );
 }
