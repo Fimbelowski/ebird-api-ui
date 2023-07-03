@@ -62,6 +62,11 @@ export default function HistoricObservationsOnADate() {
 
   const formContent = (
     <>
+      <DateInput
+        id="date"
+        onChange={setDate}
+        required
+      />
       <EbirdRegionCodeInput
         allowCountry
         allowLocation
@@ -70,10 +75,10 @@ export default function HistoricObservationsOnADate() {
         onChange={setRegionCode}
         value={regionCode}
       />
-      <DateInput
-        id="date"
-        onChange={setDate}
-        required
+      <LocationsInput
+        maxLocations={50}
+        onChange={setLocations}
+        value={locations}
       />
       <EbirdTaxonomyCategorySelect
         onChange={setCategory}
@@ -91,11 +96,6 @@ export default function HistoricObservationsOnADate() {
         onChange={setIncludeProvisionalObservations}
         value={includeProvisionalObservations}
       />
-      <MaxResultsInput
-        onChange={setMaxResults}
-        placeholder="10000"
-        value={maxResults}
-      />
       <Select<EbirdHistoricalObservationRank>
         id="rank"
         label="Rank By"
@@ -103,10 +103,10 @@ export default function HistoricObservationsOnADate() {
         options={rankSelectOptions}
         value={rank}
       />
-      <LocationsInput
-        maxLocations={50}
-        onChange={setLocations}
-        value={locations}
+      <MaxResultsInput
+        onChange={setMaxResults}
+        placeholder="10000"
+        value={maxResults}
       />
       <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
