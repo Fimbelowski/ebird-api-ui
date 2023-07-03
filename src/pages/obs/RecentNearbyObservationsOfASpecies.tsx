@@ -54,13 +54,13 @@ export default function RecentNearbyObservationsOfASpecies() {
         setLatitude={setLatitude}
         setLongitude={setLongitude}
       />
-      <BackInput
-        onChange={setBack}
-        value={back}
-      />
       <DistanceInput
         onChange={setDistance}
         value={distance}
+      />
+      <BackInput
+        onChange={setBack}
+        value={back}
       />
       <EbirdOnlyObservationsFromHotspotsInput
         onChange={setOnlyObservationsFromHotspots}
