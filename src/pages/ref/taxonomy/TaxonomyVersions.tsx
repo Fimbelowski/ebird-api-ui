@@ -23,7 +23,6 @@ export default function TaxonomyVersions() {
           label: 'Latest',
         },
       ],
-      open: true,
       title: 'Results Table',
     },
   ];
