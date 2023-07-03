@@ -359,7 +359,6 @@ export default function BasePageTableEbirdObservation({
           label: 'Date',
         },
       ],
-      open: true,
       title: 'Simple Table',
     },
   ];
