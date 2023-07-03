@@ -14,6 +14,7 @@ import {
 import { useSubregionList } from '../../../services/ebird/hooks/endpoints/ref/region/useSubregionList';
 import csvToArray from '../../../utilities/csvToArray';
 import type EbirdRegionType from '../../../types/EbirdRegionType';
+import Fieldset from '../../../components/Fieldset/Fieldset';
 
 export default function SubregionList() {
   const getSubregionList = useSubregionList();
@@ -63,10 +64,12 @@ export default function SubregionList() {
         required
         value={regionType}
       />
-      <FormatSelect
-        onChange={setFormat}
-        value={format}
-      />
+      <Fieldset legendText="Options">
+        <FormatSelect
+          onChange={setFormat}
+          value={format}
+        />
+      </Fieldset>
     </>
   );
 
