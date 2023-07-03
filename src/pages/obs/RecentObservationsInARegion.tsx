@@ -67,6 +67,11 @@ export default function RecentObservationsInARegion() {
         onChange={setIncludeProvisionalObs}
         value={includeProvisionalObs}
       />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
       <MaxResultsInput
         onChange={setMaxResults}
         value={maxResults}
@@ -82,6 +87,7 @@ export default function RecentObservationsInARegion() {
     <BasePageTableEbirdObservation
       description="Get the list of recent observations of birds seen in a country, state, county, or location. Results include only the most recent observation for each species in the region specified."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       title="Recent Observations in a Region"
     />
