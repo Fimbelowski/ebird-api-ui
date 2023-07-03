@@ -1,17 +1,14 @@
 import { useState } from 'react';
 
-import { BasePage } from '../../../components/BasePage/BasePage';
-import Details from '../../../components/Details/Details';
+import {
+  BasePageKeyValuePairsList,
+  type SimpleRecord,
+} from '../../../components/BasePageKeyValuePairsList';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 import {
   Select,
   type SelectOptionArray,
 } from '../../../components/Select/Select';
-import {
-  Table,
-  type TableCellArray,
-  type TableHeader,
-} from '../../../components/Table/Table';
 import { TextInput } from '../../../components/TextInput';
 import { useRegionInfo } from '../../../services/ebird/hooks/endpoints/ref/region/useRegionInfo';
 import type EbirdRegionNameFormat from '../../../types/EbirdRegionNameFormat';
@@ -31,45 +28,8 @@ export default function RegionInfo() {
 
   const [delimiter, setDelimiter] = useState('');
   const [regionCode, setRegionCode] = useState('');
-  const [regionInfo, setRegionInfo] = useState<EbirdRegionInfo>();
   const [regionNameFormat, setRegionNameFormat] =
     useState<EbirdRegionNameFormat>('full');
-
-  const tableCells: TableCellArray<EbirdRegionInfo> = [
-    {
-      callback: ({ result }) => result,
-    },
-    {
-      callback: ({ bounds: { minX } }) => minX.toString(),
-    },
-    {
-      callback: ({ bounds: { maxX } }) => maxX.toString(),
-    },
-    {
-      callback: ({ bounds: { minY } }) => minY.toString(),
-    },
-    {
-      callback: ({ bounds: { maxY } }) => maxY.toString(),
-    },
-  ];
-
-  const tableHeaders: TableHeader[] = [
-    {
-      label: 'Region Name',
-    },
-    {
-      label: 'Min X',
-    },
-    {
-      label: 'Max X',
-    },
-    {
-      label: 'Min Y',
-    },
-    {
-      label: 'Max Y',
-    },
-  ];
 
   const regionNameFormatOptions: SelectOptionArray<EbirdRegionNameFormat> = [
     {
@@ -100,6 +60,15 @@ export default function RegionInfo() {
 
   async function onSubmit() {
     return await getRegionInfo(regionCode, regionNameFormat, delimiter);
+  }
+
+  function transformer(regionInfo: EbirdRegionInfo): SimpleRecord {
+    const { bounds, result } = regionInfo;
+
+    return {
+      ...bounds,
+      result,
+    };
   }
 
   const formContent = (
@@ -136,30 +105,15 @@ export default function RegionInfo() {
     </>
   );
 
-  const resultsContent =
-    regionInfo === undefined ? null : (
-      <Details
-        open
-        summary="Results Table"
-      >
-        <Table
-          cells={tableCells}
-          headers={tableHeaders}
-          items={[regionInfo]}
-        />
-      </Details>
-    );
-
   return (
-    <BasePage<EbirdRegionInfo>
+    <BasePageKeyValuePairsList<EbirdRegionInfo>
       description="Get information on the name and geographical area covered by a region."
       formContent={formContent}
       formOptionsFieldsetContent={formOptionsFieldsetContent}
-      onLoad={setRegionInfo}
       onSubmit={onSubmit}
       requiresApiKey
-      resultsContent={resultsContent}
       title="Region Info"
+      transformer={transformer}
     />
   );
 }
