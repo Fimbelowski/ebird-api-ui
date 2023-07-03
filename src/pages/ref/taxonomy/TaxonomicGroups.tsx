@@ -172,19 +172,23 @@ export default function TaxonomicGroups() {
         required
         value={speciesGrouping}
       />
-      <Select<EbirdGroupNameLocale>
-        id="group-name-locale"
-        label="Group Name Locale"
-        onChange={setGroupNameLocale}
-        options={groupNameLocaleOptions}
-        value={groupNameLocale}
-      />
     </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <Select<EbirdGroupNameLocale>
+      id="group-name-locale"
+      label="Group Name Locale"
+      onChange={setGroupNameLocale}
+      options={groupNameLocaleOptions}
+      value={groupNameLocale}
+    />
   );
 
   return (
     <BasePageTable<EbirdTaxonomicGroup>
       description="Fetches a list of species groups (terns, finches, etc.)"
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       formContent={formContent}
       onSubmit={onSubmit}
       requiresApiKey

@@ -43,6 +43,11 @@ export default function ChecklistFeedOnADate() {
 
   const formContent = (
     <>
+      <DateInput
+        id="date"
+        onChange={setDate}
+        required
+      />
       <EbirdRegionCodeInput
         allowCountry
         allowLocation
@@ -51,11 +56,11 @@ export default function ChecklistFeedOnADate() {
         onChange={setRegionCode}
         value={regionCode}
       />
-      <DateInput
-        id="date"
-        onChange={setDate}
-        required
-      />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
       <Select<EbirdChecklistSortBy>
         id="sort-key"
         label="Sort By"
@@ -76,6 +81,7 @@ export default function ChecklistFeedOnADate() {
     <BasePageTableEbirdChecklist
       description="Fetches information on the checklists submitted on a given date for a country or region."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       requiresApiKey
       title="Checklist Feed on a Date"

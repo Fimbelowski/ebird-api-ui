@@ -33,17 +33,21 @@ export default function HotspotsInARegion() {
         placeholder="7"
         value={back}
       />
-      <FormatSelect
-        onChange={setFormat}
-        value={format}
-      />
     </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <FormatSelect
+      onChange={setFormat}
+      value={format}
+    />
   );
 
   return (
     <BasePageTableEbirdHotspot
       description="Fetches hotspots within a specified country or region."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       parser={format === 'csv' ? ebirdHotspotCsvParser : undefined}
       title="Hotspots in a Region"

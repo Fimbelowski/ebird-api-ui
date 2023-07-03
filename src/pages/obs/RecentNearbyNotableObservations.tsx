@@ -10,6 +10,7 @@ import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyOb
 import MaxResultsInput from '../../components/MaxResultsInput';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import DistanceInput from '../../components/DistanceInput';
+import Fieldset from '../../components/Fieldset/Fieldset';
 
 export default function RecentNearbyNotableObservations() {
   const getRecentNearbyNotableObservations =
@@ -41,27 +42,34 @@ export default function RecentNearbyNotableObservations() {
 
   const formContent = (
     <>
-      <LocationInputGroup
-        latitude={latitude}
-        longitude={longitude}
-        setLatitude={setLatitude}
-        setLongitude={setLongitude}
-      />
+      <Fieldset legendText="Location">
+        <LocationInputGroup
+          latitude={latitude}
+          longitude={longitude}
+          setLatitude={setLatitude}
+          setLongitude={setLongitude}
+        />
+        <DistanceInput
+          onChange={setDistance}
+          value={distance}
+        />
+      </Fieldset>
       <BackInput
         onChange={setBack}
         value={back}
       />
-      <EbirdObservationDetailLevelSelect
-        onChange={setDetailLevel}
-        value={detailLevel}
-      />
-      <DistanceInput
-        onChange={setDistance}
-        value={distance}
-      />
       <EbirdOnlyObservationsFromHotspotsInput
         onChange={setOnlyObservationsFromHotspots}
         value={onlyObservationsFromHotspots}
+      />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
+      <EbirdObservationDetailLevelSelect
+        onChange={setDetailLevel}
+        value={detailLevel}
       />
       <MaxResultsInput
         onChange={setMaxResults}
@@ -79,6 +87,7 @@ export default function RecentNearbyNotableObservations() {
       description="Fetches a list of notable observations of birds seen at locations near a given set of coordinates."
       detailLevel={detailLevel}
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       title="Recent Nearby Notable Observations"
     />

@@ -40,6 +40,11 @@ export default function RecentObservationsOfASpeciesInARegion() {
 
   const formContent = (
     <>
+      <EbirdSpeciesCodeInput
+        onChange={setSpeciesCode}
+        required
+        value={speciesCode}
+      />
       <EbirdRegionCodeInput
         allowCountry
         allowLocation
@@ -48,10 +53,9 @@ export default function RecentObservationsOfASpeciesInARegion() {
         onChange={setRegionCode}
         value={regionCode}
       />
-      <EbirdSpeciesCodeInput
-        onChange={setSpeciesCode}
-        required
-        value={speciesCode}
+      <LocationsInput
+        onChange={setObsLocations}
+        value={obsLocations}
       />
       <BackInput
         onChange={setBack}
@@ -65,13 +69,14 @@ export default function RecentObservationsOfASpeciesInARegion() {
         onChange={setIncludeProvisionalObs}
         value={includeProvisionalObs}
       />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
       <MaxResultsInput
         onChange={setMaxResults}
         value={maxResults}
-      />
-      <LocationsInput
-        onChange={setObsLocations}
-        value={obsLocations}
       />
       <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
@@ -84,6 +89,7 @@ export default function RecentObservationsOfASpeciesInARegion() {
     <BasePageTableEbirdObservation
       description="Get the recent observations of a particular species in a country, region or location. Results include only the most recent observation from each location in the region specified."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       title="Recent Observations of a Species in a Region"
     />

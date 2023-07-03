@@ -10,6 +10,7 @@ import IncludeProvisionalObservationsInput from '../../components/IncludeProvisi
 import MaxResultsInput from '../../components/MaxResultsInput';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import DistanceInput from '../../components/DistanceInput';
+import Fieldset from '../../components/Fieldset/Fieldset';
 
 export default function RecentNearbyObservationsOfASpecies() {
   const getRecentNearbyObservationsOfASpecies =
@@ -48,19 +49,21 @@ export default function RecentNearbyObservationsOfASpecies() {
         required
         value={speciesCode}
       />
-      <LocationInputGroup
-        latitude={latitude}
-        longitude={longitude}
-        setLatitude={setLatitude}
-        setLongitude={setLongitude}
-      />
+      <Fieldset legendText="Location">
+        <LocationInputGroup
+          latitude={latitude}
+          longitude={longitude}
+          setLatitude={setLatitude}
+          setLongitude={setLongitude}
+        />
+        <DistanceInput
+          onChange={setDistance}
+          value={distance}
+        />
+      </Fieldset>
       <BackInput
         onChange={setBack}
         value={back}
-      />
-      <DistanceInput
-        onChange={setDistance}
-        value={distance}
       />
       <EbirdOnlyObservationsFromHotspotsInput
         onChange={setOnlyObservationsFromHotspots}
@@ -70,6 +73,11 @@ export default function RecentNearbyObservationsOfASpecies() {
         onChange={setIncludeProvisionalObservations}
         value={includeProvisionalObservations}
       />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
       <MaxResultsInput
         onChange={setMaxResults}
         value={maxResults}
@@ -85,6 +93,7 @@ export default function RecentNearbyObservationsOfASpecies() {
     <BasePageTableEbirdObservation
       description="Fetches a list of the nearest locations where a species has been seen recently."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       title="Recent Nearby Observations of a Species"
     />

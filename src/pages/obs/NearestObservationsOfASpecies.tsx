@@ -10,6 +10,7 @@ import MaxResultsInput from '../../components/MaxResultsInput';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 import DistanceInput from '../../components/DistanceInput';
+import Fieldset from '../../components/Fieldset/Fieldset';
 
 export default function NearestObservationOfASpecies() {
   const getNearestObservationsOfASpecies = useNearestObservationsOfASpecies();
@@ -47,12 +48,19 @@ export default function NearestObservationOfASpecies() {
         required
         value={speciesCode}
       />
-      <LocationInputGroup
-        latitude={latitude}
-        longitude={longitude}
-        setLatitude={setLatitude}
-        setLongitude={setLongitude}
-      />
+      <Fieldset legendText="Location">
+        <LocationInputGroup
+          latitude={latitude}
+          longitude={longitude}
+          setLatitude={setLatitude}
+          setLongitude={setLongitude}
+        />
+        <DistanceInput
+          onChange={setDistance}
+          placeholder="50"
+          value={distance}
+        />
+      </Fieldset>
       <BackInput
         onChange={setBack}
         value={back}
@@ -65,6 +73,11 @@ export default function NearestObservationOfASpecies() {
         onChange={setIncludeProvisionalObservations}
         value={includeProvisionalObservations}
       />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
       <MaxResultsInput
         max="3000"
         onChange={setMaxResults}
@@ -75,11 +88,6 @@ export default function NearestObservationOfASpecies() {
         onChange={setLocale}
         value={locale}
       />
-      <DistanceInput
-        onChange={setDistance}
-        placeholder="50"
-        value={distance}
-      />
     </>
   );
 
@@ -87,6 +95,7 @@ export default function NearestObservationOfASpecies() {
     <BasePageTableEbirdObservation
       description="Fetches the nearest locations where a species has been seen recently."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       title="Nearest Observations of a Species"
     />

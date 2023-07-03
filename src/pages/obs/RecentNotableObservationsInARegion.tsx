@@ -51,25 +51,30 @@ export default function RecentNotableObservationsInARegion() {
         onChange={setRegionCode}
         value={regionCode}
       />
+      <LocationsInput
+        onChange={setObsLocations}
+        value={obsLocations}
+      />
       <BackInput
         onChange={setBack}
         value={back}
-      />
-      <EbirdObservationDetailLevelSelect
-        onChange={setDetailLevel}
-        value={detailLevel}
       />
       <EbirdOnlyObservationsFromHotspotsInput
         onChange={setOnlyObservationsFromHotspots}
         value={onlyObservationsFromHotspots}
       />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
+      <EbirdObservationDetailLevelSelect
+        onChange={setDetailLevel}
+        value={detailLevel}
+      />
       <MaxResultsInput
         onChange={setMaxResults}
         value={maxResults}
-      />
-      <LocationsInput
-        onChange={setObsLocations}
-        value={obsLocations}
       />
       <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
@@ -83,6 +88,7 @@ export default function RecentNotableObservationsInARegion() {
       description="Get the list of recent, notable observations of birds seen in a country, region or location."
       detailLevel={lastDetailLevel}
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       title="Recent Notable Observations in a Region"
     />

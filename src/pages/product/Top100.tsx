@@ -144,17 +144,17 @@ export default function Top100() {
 
   const formContent = (
     <>
+      <DateInput
+        id="date"
+        onChange={setDate}
+        required
+      />
       <EbirdRegionCodeInput
         allowCountry
         allowLocation
         allowSubnational1
         onChange={setRegionCode}
         value={regionCode}
-      />
-      <DateInput
-        id="date"
-        onChange={setDate}
-        required
       />
       <Select<EbirdContributorRankedBy>
         id="ranked-by"
@@ -163,19 +163,23 @@ export default function Top100() {
         options={rankedByOptions}
         value={rankedBy}
       />
-      <MaxResultsInput
-        max="100"
-        onChange={setMaxResults}
-        placeholder="100"
-        value={maxResults}
-      />
     </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <MaxResultsInput
+      max="100"
+      onChange={setMaxResults}
+      placeholder="100"
+      value={maxResults}
+    />
   );
 
   return (
     <BasePageTable<EbirdContributor>
       description="Fetches the top 100 contributors on a given date for a country or region."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onLoad={onLoad}
       onSubmit={onSubmit}
       requiresApiKey

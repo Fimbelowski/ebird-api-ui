@@ -47,21 +47,27 @@ export default function SubregionList() {
 
   const formContent = (
     <>
+      <EbirdRegionCodeInput
+        allowCountry
+        allowSubnational1
+        allowWorld
+        labelBase="Parent Region Code"
+        onChange={setParentRegionCode}
+        value={parentRegionCode}
+      />
       <Select<EbirdRegionType>
         id="region-type"
-        label="Region Type"
+        label="Sub-Region Type"
         onChange={setRegionType}
         options={regionTypeOptions}
         required
         value={regionType}
       />
-      <EbirdRegionCodeInput
-        allowCountry
-        allowSubnational1
-        allowWorld
-        onChange={setParentRegionCode}
-        value={parentRegionCode}
-      />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
       <FormatSelect
         onChange={setFormat}
         value={format}
@@ -73,6 +79,7 @@ export default function SubregionList() {
     <BasePageTableEbirdRegion
       description="Fetches the list of sub-regions within a specified country or region."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       parser={format === 'csv' ? csvParser : undefined}
       requiresApiKey

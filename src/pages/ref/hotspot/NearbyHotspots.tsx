@@ -8,6 +8,7 @@ import useNearbyHotspots from '../../../services/ebird/hooks/endpoints/ref/hotsp
 import ebirdHotspotCsvParser from './ebirdHotspotCsvParser';
 import LocationInputGroup from '../../../components/LocationInputGroup/LocationInputGroup';
 import DistanceInput from '../../../components/DistanceInput';
+import Fieldset from '../../../components/Fieldset/Fieldset';
 
 export default function NearbyHotspots() {
   const getNearbyHotspots = useNearbyHotspots();
@@ -24,33 +25,39 @@ export default function NearbyHotspots() {
 
   const formContent = (
     <>
-      <LocationInputGroup
-        latitude={latitude}
-        longitude={longitude}
-        setLatitude={setLatitude}
-        setLongitude={setLongitude}
-      />
-      <DistanceInput
-        max="500"
-        onChange={setDistance}
-        value={distance}
-      />
+      <Fieldset legendText="Location">
+        <LocationInputGroup
+          latitude={latitude}
+          longitude={longitude}
+          setLatitude={setLatitude}
+          setLongitude={setLongitude}
+        />
+        <DistanceInput
+          max="500"
+          onChange={setDistance}
+          value={distance}
+        />
+      </Fieldset>
       <BackInput
         onChange={setBack}
         placeholder="7"
         value={back}
       />
-      <FormatSelect
-        onChange={setFormat}
-        value={format}
-      />
     </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <FormatSelect
+      onChange={setFormat}
+      value={format}
+    />
   );
 
   return (
     <BasePageTableEbirdHotspot
       description="Fetches a list of hotspots near a given location."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       parser={format === 'csv' ? ebirdHotspotCsvParser : undefined}
       title="Nearby hotspots"

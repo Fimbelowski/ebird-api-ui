@@ -248,14 +248,6 @@ export default function EbirdTaxonomy() {
         onChange={setCategory}
         value={category}
       />
-      <FormatSelect
-        onChange={setFormat}
-        value={format}
-      />
-      <SpeciesCommonNameLocaleSelect
-        onChange={setLocale}
-        value={locale}
-      />
       <TextInput
         id="species"
         label="Species (Species Codes, Lowercase, Comma-separated)"
@@ -271,10 +263,24 @@ export default function EbirdTaxonomy() {
     </>
   );
 
+  const formOptionsFieldsetContent = (
+    <>
+      <SpeciesCommonNameLocaleSelect
+        onChange={setLocale}
+        value={locale}
+      />
+      <FormatSelect
+        onChange={setFormat}
+        value={format}
+      />
+    </>
+  );
+
   return (
     <BasePageTable<EbirdTaxonomyEntry>
       description="Fetches the taxonomy (species, species codes, common names, scientific names, etc.) used by Ebird"
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       parser={format === 'csv' ? parser : undefined}
       requiresApiKey

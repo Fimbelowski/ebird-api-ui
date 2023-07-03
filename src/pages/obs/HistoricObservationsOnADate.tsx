@@ -62,6 +62,11 @@ export default function HistoricObservationsOnADate() {
 
   const formContent = (
     <>
+      <DateInput
+        id="date"
+        onChange={setDate}
+        required
+      />
       <EbirdRegionCodeInput
         allowCountry
         allowLocation
@@ -70,18 +75,14 @@ export default function HistoricObservationsOnADate() {
         onChange={setRegionCode}
         value={regionCode}
       />
-      <DateInput
-        id="date"
-        onChange={setDate}
-        required
+      <LocationsInput
+        maxLocations={50}
+        onChange={setLocations}
+        value={locations}
       />
       <EbirdTaxonomyCategorySelect
         onChange={setCategory}
         value={category}
-      />
-      <EbirdObservationDetailLevelSelect
-        onChange={setDetailLevel}
-        value={detailLevel}
       />
       <EbirdOnlyObservationsFromHotspotsInput
         onChange={setOnlyObservationsFromHotspots}
@@ -91,11 +92,11 @@ export default function HistoricObservationsOnADate() {
         onChange={setIncludeProvisionalObservations}
         value={includeProvisionalObservations}
       />
-      <MaxResultsInput
-        onChange={setMaxResults}
-        placeholder="10000"
-        value={maxResults}
-      />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
       <Select<EbirdHistoricalObservationRank>
         id="rank"
         label="Rank By"
@@ -103,10 +104,14 @@ export default function HistoricObservationsOnADate() {
         options={rankSelectOptions}
         value={rank}
       />
-      <LocationsInput
-        maxLocations={50}
-        onChange={setLocations}
-        value={locations}
+      <EbirdObservationDetailLevelSelect
+        onChange={setDetailLevel}
+        value={detailLevel}
+      />
+      <MaxResultsInput
+        onChange={setMaxResults}
+        placeholder="10000"
+        value={maxResults}
       />
       <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
@@ -120,6 +125,7 @@ export default function HistoricObservationsOnADate() {
       description="Fetches a list of all taxa seen in a country, region or location on a specific date."
       detailLevel={detailLevel}
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       title="Historic Observations On A Date"
     />

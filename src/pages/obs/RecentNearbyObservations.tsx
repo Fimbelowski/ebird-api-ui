@@ -13,6 +13,7 @@ import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import type EbirdRecentNearbyObservationsSortBy from '../../types/EbirdRecentNearbyObservationsSortBy';
 import DistanceInput from '../../components/DistanceInput';
+import Fieldset from '../../components/Fieldset/Fieldset';
 
 export default function RecentNearbyObservations() {
   const getRecentNearbyObservations = useRecentNearbyObservations();
@@ -60,23 +61,25 @@ export default function RecentNearbyObservations() {
 
   const formContent = (
     <>
-      <LocationInputGroup
-        latitude={latitude}
-        longitude={longitude}
-        setLatitude={setLatitude}
-        setLongitude={setLongitude}
-      />
-      <BackInput
-        onChange={setBack}
-        value={back}
-      />
+      <Fieldset legendText="Location">
+        <LocationInputGroup
+          latitude={latitude}
+          longitude={longitude}
+          setLatitude={setLatitude}
+          setLongitude={setLongitude}
+        />
+        <DistanceInput
+          onChange={setDistance}
+          value={distance}
+        />
+      </Fieldset>
       <EbirdTaxonomyCategorySelect
         onChange={setCategory}
         value={category}
       />
-      <DistanceInput
-        onChange={setDistance}
-        value={distance}
+      <BackInput
+        onChange={setBack}
+        value={back}
       />
       <EbirdOnlyObservationsFromHotspotsInput
         onChange={setOnlyObservationsFromHotspots}
@@ -86,16 +89,21 @@ export default function RecentNearbyObservations() {
         onChange={setIncludeProvisionalObservations}
         value={includeProvisionalObservations}
       />
-      <MaxResultsInput
-        onChange={setMaxResults}
-        value={maxResults}
-      />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
       <Select
         id="sort-by"
         label="Sort By"
         onChange={setSortBy}
         options={sortBySelectOptions}
         value={sortBy}
+      />
+      <MaxResultsInput
+        onChange={setMaxResults}
+        value={maxResults}
       />
       <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
@@ -108,6 +116,7 @@ export default function RecentNearbyObservations() {
     <BasePageTableEbirdObservation
       description="Fetches a list of recent observations of birds seen at locations near a given set of coordinates. Results include only the most recent observation for each species in the region specified."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       title="Recent Nearby Observations"
     />

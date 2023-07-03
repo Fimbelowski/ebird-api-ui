@@ -113,6 +113,11 @@ export default function RegionInfo() {
         onChange={setRegionCode}
         value={regionCode}
       />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
       <Select<EbirdRegionNameFormat>
         id="region-name-format"
         label="Region Name Format"
@@ -149,6 +154,7 @@ export default function RegionInfo() {
     <BasePage<EbirdRegionInfo>
       description="Get information on the name and geographical area covered by a region."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onLoad={setRegionInfo}
       onSubmit={onSubmit}
       requiresApiKey
