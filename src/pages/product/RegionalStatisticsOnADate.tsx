@@ -1,14 +1,8 @@
 import { useState } from 'react';
 
-import { BasePage } from '../../components/BasePage/BasePage';
+import { BasePageKeyValuePairsList } from '../../components/BasePageKeyValuePairsList';
 import DateInput from '../../components/DateInput';
-import Details from '../../components/Details/Details';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
-import {
-  Table,
-  type TableCellArray,
-  type TableHeader,
-} from '../../components/Table/Table';
 import useRegionalStatisticsOnADate from '../../services/ebird/hooks/endpoints/product/useRegionalStatisticsOnADate';
 import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
 
@@ -23,37 +17,6 @@ export default function RegionalStatisticsOnADate() {
 
   const [date, setDate] = useState('');
   const [regionCode, setRegionCode] = useState('');
-  const [stats, setStats] = useState<EbirdRegionStats>();
-
-  const tableCells: TableCellArray<EbirdRegionStats> = [
-    {
-      align: 'right',
-      callback: ({ numChecklists }) => numChecklists,
-    },
-    {
-      align: 'right',
-      callback: ({ numContributors }) => numContributors,
-    },
-    {
-      align: 'right',
-      callback: ({ numSpecies }) => numSpecies,
-    },
-  ];
-
-  const tableHeaders: TableHeader[] = [
-    {
-      align: 'right',
-      label: 'Checklists',
-    },
-    {
-      align: 'right',
-      label: 'Contributors',
-    },
-    {
-      align: 'right',
-      label: 'Species',
-    },
-  ];
 
   async function onSubmit() {
     if (date === undefined) {
@@ -84,28 +47,12 @@ export default function RegionalStatisticsOnADate() {
     </>
   );
 
-  const resultsContent =
-    stats === undefined ? null : (
-      <Details
-        open
-        summary="Results Table"
-      >
-        <Table
-          cells={tableCells}
-          headers={tableHeaders}
-          items={[stats]}
-        />
-      </Details>
-    );
-
   return (
-    <BasePage<EbirdRegionStats>
+    <BasePageKeyValuePairsList<EbirdRegionStats>
       description="Fetches a summary of the number of checklists submitted, species seen and contributors on a given date for a country or region."
       formContent={formContent}
-      onLoad={setStats}
       onSubmit={onSubmit}
       requiresApiKey
-      resultsContent={resultsContent}
       title="Regional Statistics on a Date"
     />
   );
