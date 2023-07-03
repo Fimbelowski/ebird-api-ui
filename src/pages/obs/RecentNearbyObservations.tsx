@@ -66,17 +66,17 @@ export default function RecentNearbyObservations() {
         setLatitude={setLatitude}
         setLongitude={setLongitude}
       />
-      <BackInput
-        onChange={setBack}
-        value={back}
+      <DistanceInput
+        onChange={setDistance}
+        value={distance}
       />
       <EbirdTaxonomyCategorySelect
         onChange={setCategory}
         value={category}
       />
-      <DistanceInput
-        onChange={setDistance}
-        value={distance}
+      <BackInput
+        onChange={setBack}
+        value={back}
       />
       <EbirdOnlyObservationsFromHotspotsInput
         onChange={setOnlyObservationsFromHotspots}
@@ -86,16 +86,16 @@ export default function RecentNearbyObservations() {
         onChange={setIncludeProvisionalObservations}
         value={includeProvisionalObservations}
       />
-      <MaxResultsInput
-        onChange={setMaxResults}
-        value={maxResults}
-      />
       <Select
         id="sort-by"
         label="Sort By"
         onChange={setSortBy}
         options={sortBySelectOptions}
         value={sortBy}
+      />
+      <MaxResultsInput
+        onChange={setMaxResults}
+        value={maxResults}
       />
       <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
