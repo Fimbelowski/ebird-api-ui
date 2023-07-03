@@ -10,6 +10,7 @@ import MaxResultsInput from '../../components/MaxResultsInput';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 import DistanceInput from '../../components/DistanceInput';
+import Fieldset from '../../components/Fieldset/Fieldset';
 
 export default function NearestObservationOfASpecies() {
   const getNearestObservationsOfASpecies = useNearestObservationsOfASpecies();
@@ -47,17 +48,19 @@ export default function NearestObservationOfASpecies() {
         required
         value={speciesCode}
       />
-      <LocationInputGroup
-        latitude={latitude}
-        longitude={longitude}
-        setLatitude={setLatitude}
-        setLongitude={setLongitude}
-      />
-      <DistanceInput
-        onChange={setDistance}
-        placeholder="50"
-        value={distance}
-      />
+      <Fieldset legendText="Location">
+        <LocationInputGroup
+          latitude={latitude}
+          longitude={longitude}
+          setLatitude={setLatitude}
+          setLongitude={setLongitude}
+        />
+        <DistanceInput
+          onChange={setDistance}
+          placeholder="50"
+          value={distance}
+        />
+      </Fieldset>
       <BackInput
         onChange={setBack}
         value={back}
