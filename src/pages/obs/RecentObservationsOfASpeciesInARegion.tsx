@@ -40,6 +40,11 @@ export default function RecentObservationsOfASpeciesInARegion() {
 
   const formContent = (
     <>
+      <EbirdSpeciesCodeInput
+        onChange={setSpeciesCode}
+        required
+        value={speciesCode}
+      />
       <EbirdRegionCodeInput
         allowCountry
         allowLocation
@@ -48,10 +53,9 @@ export default function RecentObservationsOfASpeciesInARegion() {
         onChange={setRegionCode}
         value={regionCode}
       />
-      <EbirdSpeciesCodeInput
-        onChange={setSpeciesCode}
-        required
-        value={speciesCode}
+      <LocationsInput
+        onChange={setObsLocations}
+        value={obsLocations}
       />
       <BackInput
         onChange={setBack}
@@ -68,10 +72,6 @@ export default function RecentObservationsOfASpeciesInARegion() {
       <MaxResultsInput
         onChange={setMaxResults}
         value={maxResults}
-      />
-      <LocationsInput
-        onChange={setObsLocations}
-        value={obsLocations}
       />
       <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
