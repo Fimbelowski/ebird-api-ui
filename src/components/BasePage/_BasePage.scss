@@ -10,15 +10,11 @@
   flex-direction: column;
   align-items: center;
 
-  &__description {
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    margin-bottom: 2rem;
-  }
-
   &__copy-to-clipboard {
     margin-bottom: 1rem;
+  }
+
+  &__description {
   }
 
   &__form {
@@ -31,6 +27,13 @@
     grid-auto-rows: min-content;
     gap: 1rem;
     margin-bottom: 1rem;
+  }
+
+  &__info-box {
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
   }
 
   &__results-container {

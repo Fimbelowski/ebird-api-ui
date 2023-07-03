@@ -1,0 +1,10 @@
+.notification {
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+
+  &--info {
+    background-color: lightblue;
+    border: 1px solid blue;
+  }
+}
