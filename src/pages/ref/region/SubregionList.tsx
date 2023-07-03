@@ -47,20 +47,21 @@ export default function SubregionList() {
 
   const formContent = (
     <>
-      <Select<EbirdRegionType>
-        id="region-type"
-        label="Region Type"
-        onChange={setRegionType}
-        options={regionTypeOptions}
-        required
-        value={regionType}
-      />
       <EbirdRegionCodeInput
         allowCountry
         allowSubnational1
         allowWorld
+        labelBase="Parent Region Code"
         onChange={setParentRegionCode}
         value={parentRegionCode}
+      />
+      <Select<EbirdRegionType>
+        id="region-type"
+        label="Sub-Region Type"
+        onChange={setRegionType}
+        options={regionTypeOptions}
+        required
+        value={regionType}
       />
       <FormatSelect
         onChange={setFormat}
