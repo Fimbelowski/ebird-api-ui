@@ -70,6 +70,11 @@ export default function NearestObservationOfASpecies() {
         onChange={setIncludeProvisionalObservations}
         value={includeProvisionalObservations}
       />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
       <MaxResultsInput
         max="3000"
         onChange={setMaxResults}
@@ -87,6 +92,7 @@ export default function NearestObservationOfASpecies() {
     <BasePageTableEbirdObservation
       description="Fetches the nearest locations where a species has been seen recently."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       title="Nearest Observations of a Species"
     />
