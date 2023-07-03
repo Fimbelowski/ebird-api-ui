@@ -116,7 +116,6 @@ export default function BasePageTableEbirdHotspot(props: Props) {
           label: 'Latest Observation',
         },
       ],
-      open: true,
       title: 'Simple Table',
     },
   ];
