@@ -15,7 +15,6 @@ import {
 import { TextInput } from '../../../components/TextInput';
 import { useRegionInfo } from '../../../services/ebird/hooks/endpoints/ref/region/useRegionInfo';
 import type EbirdRegionNameFormat from '../../../types/EbirdRegionNameFormat';
-import Fieldset from '../../../components/Fieldset/Fieldset';
 
 interface EbirdRegionInfo {
   bounds: {
@@ -114,23 +113,26 @@ export default function RegionInfo() {
         onChange={setRegionCode}
         value={regionCode}
       />
-      <Fieldset legendText="Options">
-        <Select<EbirdRegionNameFormat>
-          id="region-name-format"
-          label="Region Name Format"
-          onChange={setRegionNameFormat}
-          options={regionNameFormatOptions}
-          value={regionNameFormat}
-        />
-        <TextInput
-          id="delimiter"
-          label="Delimiter"
-          maxLength={2}
-          placeholder=", "
-          onChange={setDelimiter}
-          value={delimiter}
-        />
-      </Fieldset>
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
+      <Select<EbirdRegionNameFormat>
+        id="region-name-format"
+        label="Region Name Format"
+        onChange={setRegionNameFormat}
+        options={regionNameFormatOptions}
+        value={regionNameFormat}
+      />
+      <TextInput
+        id="delimiter"
+        label="Delimiter"
+        maxLength={2}
+        placeholder=", "
+        onChange={setDelimiter}
+        value={delimiter}
+      />
     </>
   );
 
@@ -152,6 +154,7 @@ export default function RegionInfo() {
     <BasePage<EbirdRegionInfo>
       description="Get information on the name and geographical area covered by a region."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onLoad={setRegionInfo}
       onSubmit={onSubmit}
       requiresApiKey
