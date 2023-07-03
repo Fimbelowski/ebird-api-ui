@@ -53,6 +53,11 @@ export default function NearestObservationOfASpecies() {
         setLatitude={setLatitude}
         setLongitude={setLongitude}
       />
+      <DistanceInput
+        onChange={setDistance}
+        placeholder="50"
+        value={distance}
+      />
       <BackInput
         onChange={setBack}
         value={back}
@@ -74,11 +79,6 @@ export default function NearestObservationOfASpecies() {
       <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
         value={locale}
-      />
-      <DistanceInput
-        onChange={setDistance}
-        placeholder="50"
-        value={distance}
       />
     </>
   );
