@@ -7,6 +7,11 @@ import Notification from '../Notification/Notification';
 import useLoading from '../../hooks/useLoading';
 import Fieldset from '../Fieldset/Fieldset';
 
+export interface ResultsSection {
+  content: ReactNode;
+  title: string;
+}
+
 export interface BasePageProps<T> {
   description: string;
   formContent?: ReactNode;
@@ -16,7 +21,7 @@ export interface BasePageProps<T> {
   parser?: (rawResponse: string) => T;
   requestOnMount?: boolean;
   requiresApiKey?: boolean;
-  resultsContent?: ReactNode;
+  resultsSections: ResultsSection[];
   title: string;
 }
 
@@ -29,7 +34,7 @@ export function BasePage<T>({
   parser = (rawResponse) => JSON.parse(rawResponse) as T,
   requestOnMount = false,
   requiresApiKey = false,
-  resultsContent,
+  resultsSections,
   title,
 }: BasePageProps<T>) {
   const { loading, setLoading } = useLoading();
@@ -88,6 +93,40 @@ export function BasePage<T>({
     return formContent !== undefined || requiresApiKey;
   }
 
+  function resultsContent() {
+    const sections: ResultsSection[] = [
+      {
+        content: (
+          <>
+            <div className="base-page__copy-to-clipboard">
+              <Button
+                onClick={onCopyToClipboardClick}
+                type="button"
+              >
+                Copy to Clipboard
+              </Button>
+            </div>
+            <div>{rawResponse}</div>
+          </>
+        ),
+        title: 'Raw Response',
+      },
+      ...resultsSections,
+    ];
+
+    const listItems = sections.map(({ content, title }, index) => (
+      <Details
+        key={title}
+        open={index === sections.length - 1}
+        summary={title}
+      >
+        {content}
+      </Details>
+    ));
+
+    return <>{listItems}</>;
+  }
+
   function showResults() {
     return hasQueried && !isError && !noData();
   }
@@ -138,18 +177,7 @@ export function BasePage<T>({
           {noData() ? 'No data' : null}
           {showResults() ? (
             <div className="base-page__results-container">
-              <Details summary="Raw Response">
-                <div className="base-page__copy-to-clipboard">
-                  <Button
-                    onClick={onCopyToClipboardClick}
-                    type="button"
-                  >
-                    Copy to Clipboard
-                  </Button>
-                </div>
-                <div>{rawResponse}</div>
-              </Details>
-              {resultsContent}
+              {resultsContent()}
             </div>
           ) : null}
         </>
