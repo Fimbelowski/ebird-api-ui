@@ -144,17 +144,17 @@ export default function Top100() {
 
   const formContent = (
     <>
+      <DateInput
+        id="date"
+        onChange={setDate}
+        required
+      />
       <EbirdRegionCodeInput
         allowCountry
         allowLocation
         allowSubnational1
         onChange={setRegionCode}
         value={regionCode}
-      />
-      <DateInput
-        id="date"
-        onChange={setDate}
-        required
       />
       <Select<EbirdContributorRankedBy>
         id="ranked-by"
