@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
-import { BasePage } from '../../components/BasePage/BasePage';
+import {
+  BasePage,
+  type ResultsSection,
+} from '../../components/BasePage/BasePage';
 import useViewChecklist from '../../services/ebird/hooks/endpoints/product/useViewChecklist';
 import { TextInput } from '../../components/TextInput';
-import Details from '../../components/Details/Details';
 import {
   KeyValuePairsList,
   type KeyValueTuple,
@@ -80,6 +82,17 @@ export default function ViewChecklist() {
   const [checklist, setChecklist] = useState<EbirdChecklist>();
   const [subId, setSubId] = useState('');
 
+  const resultsSections: ResultsSection[] = [
+    {
+      content: DetailedChecklist(),
+      title: 'Detailed Checklist',
+    },
+    {
+      content: SimplifiedChecklist(),
+      title: 'Simplified Checklist',
+    },
+  ];
+
   async function onSubmit() {
     return await getChecklist(subId);
   }
@@ -113,7 +126,6 @@ export default function ViewChecklist() {
 
     const clonedChecklist: EbirdChecklistWithoutArrays = { ...rest };
 
-    // Observations Table
     const observationsTableHeaders: TableHeader[] = [
       {
         label: 'hideFlags',
@@ -192,7 +204,6 @@ export default function ViewChecklist() {
       },
     ];
 
-    // Checklist Aux Table
     const checklistAuxTableHeaders: TableHeader[] = [
       {
         label: 'auxCode',
@@ -223,7 +234,6 @@ export default function ViewChecklist() {
       },
     ];
 
-    // Checklist Aux AI Table
     const checklistAuxAiTableHeaders: TableHeader[] = [
       {
         label: 'aiType',
@@ -263,7 +273,7 @@ export default function ViewChecklist() {
     ];
 
     return (
-      <Details summary="Detailed Checklist">
+      <>
         <KeyValuePairsList keyValuePairs={Object.entries(clonedChecklist)} />
         {observations.length > 0 ? (
           <>
@@ -295,7 +305,7 @@ export default function ViewChecklist() {
             />
           </>
         ) : null}
-      </Details>
+      </>
     );
   }
 
@@ -352,29 +362,13 @@ export default function ViewChecklist() {
     ];
 
     return (
-      <Details
-        open
-        summary="Simplified Checklist"
-      >
+      <>
         <KeyValuePairsList keyValuePairs={keyValuePairs} />
         <Table<EbirdChecklistObservation>
           cells={tableCells}
           headers={tableHeaders}
           items={obs}
         />
-      </Details>
-    );
-  }
-
-  function ResultsContent() {
-    if (checklist === undefined) {
-      return null;
-    }
-
-    return (
-      <>
-        {DetailedChecklist()}
-        {SimplifiedChecklist()}
       </>
     );
   }
@@ -386,7 +380,7 @@ export default function ViewChecklist() {
       onLoad={setChecklist}
       onSubmit={onSubmit}
       requiresApiKey
-      resultsContent={ResultsContent()}
+      resultsSections={resultsSections}
       title="View Checklist"
     />
   );
