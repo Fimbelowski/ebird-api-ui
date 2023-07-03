@@ -10,6 +10,7 @@ import IncludeProvisionalObservationsInput from '../../components/IncludeProvisi
 import MaxResultsInput from '../../components/MaxResultsInput';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import DistanceInput from '../../components/DistanceInput';
+import Fieldset from '../../components/Fieldset/Fieldset';
 
 export default function RecentNearbyObservationsOfASpecies() {
   const getRecentNearbyObservationsOfASpecies =
@@ -48,16 +49,18 @@ export default function RecentNearbyObservationsOfASpecies() {
         required
         value={speciesCode}
       />
-      <LocationInputGroup
-        latitude={latitude}
-        longitude={longitude}
-        setLatitude={setLatitude}
-        setLongitude={setLongitude}
-      />
-      <DistanceInput
-        onChange={setDistance}
-        value={distance}
-      />
+      <Fieldset legendText="Location">
+        <LocationInputGroup
+          latitude={latitude}
+          longitude={longitude}
+          setLatitude={setLatitude}
+          setLongitude={setLongitude}
+        />
+        <DistanceInput
+          onChange={setDistance}
+          value={distance}
+        />
+      </Fieldset>
       <BackInput
         onChange={setBack}
         value={back}
