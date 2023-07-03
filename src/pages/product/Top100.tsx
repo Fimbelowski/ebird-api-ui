@@ -109,7 +109,6 @@ export default function Top100() {
           }`,
         },
       ],
-      open: true,
       title: 'Simple Table',
     },
   ];
