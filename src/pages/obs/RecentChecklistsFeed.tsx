@@ -25,19 +25,23 @@ export default function RecentChecklistsFeed() {
         onChange={setRegionCode}
         value={regionCode}
       />
-      <MaxResultsInput
-        max="200"
-        onChange={setMaxResults}
-        placeholder="10"
-        value={maxResults}
-      />
     </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <MaxResultsInput
+      max="200"
+      onChange={setMaxResults}
+      placeholder="10"
+      value={maxResults}
+    />
   );
 
   return (
     <BasePageTableEbirdChecklist
       description="Fetches information on the most recently submitted checklists for a country or region."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       requiresApiKey
       title="Recent Checklists"
