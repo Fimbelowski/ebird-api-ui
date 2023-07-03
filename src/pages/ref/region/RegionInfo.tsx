@@ -15,6 +15,7 @@ import {
 import { TextInput } from '../../../components/TextInput';
 import { useRegionInfo } from '../../../services/ebird/hooks/endpoints/ref/region/useRegionInfo';
 import type EbirdRegionNameFormat from '../../../types/EbirdRegionNameFormat';
+import Fieldset from '../../../components/Fieldset/Fieldset';
 
 interface EbirdRegionInfo {
   bounds: {
@@ -113,21 +114,23 @@ export default function RegionInfo() {
         onChange={setRegionCode}
         value={regionCode}
       />
-      <Select<EbirdRegionNameFormat>
-        id="region-name-format"
-        label="Region Name Format"
-        onChange={setRegionNameFormat}
-        options={regionNameFormatOptions}
-        value={regionNameFormat}
-      />
-      <TextInput
-        id="delimiter"
-        label="Delimiter"
-        maxLength={2}
-        placeholder=", "
-        onChange={setDelimiter}
-        value={delimiter}
-      />
+      <Fieldset legendText="Options">
+        <Select<EbirdRegionNameFormat>
+          id="region-name-format"
+          label="Region Name Format"
+          onChange={setRegionNameFormat}
+          options={regionNameFormatOptions}
+          value={regionNameFormat}
+        />
+        <TextInput
+          id="delimiter"
+          label="Delimiter"
+          maxLength={2}
+          placeholder=", "
+          onChange={setDelimiter}
+          value={delimiter}
+        />
+      </Fieldset>
     </>
   );
 
