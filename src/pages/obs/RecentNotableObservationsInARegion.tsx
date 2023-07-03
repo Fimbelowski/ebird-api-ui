@@ -51,25 +51,25 @@ export default function RecentNotableObservationsInARegion() {
         onChange={setRegionCode}
         value={regionCode}
       />
+      <LocationsInput
+        onChange={setObsLocations}
+        value={obsLocations}
+      />
       <BackInput
         onChange={setBack}
         value={back}
-      />
-      <EbirdObservationDetailLevelSelect
-        onChange={setDetailLevel}
-        value={detailLevel}
       />
       <EbirdOnlyObservationsFromHotspotsInput
         onChange={setOnlyObservationsFromHotspots}
         value={onlyObservationsFromHotspots}
       />
+      <EbirdObservationDetailLevelSelect
+        onChange={setDetailLevel}
+        value={detailLevel}
+      />
       <MaxResultsInput
         onChange={setMaxResults}
         value={maxResults}
-      />
-      <LocationsInput
-        onChange={setObsLocations}
-        value={obsLocations}
       />
       <SpeciesCommonNameLocaleSelect
         onChange={setLocale}
