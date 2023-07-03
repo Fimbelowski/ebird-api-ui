@@ -40,17 +40,21 @@ export default function NearbyHotspots() {
         placeholder="7"
         value={back}
       />
-      <FormatSelect
-        onChange={setFormat}
-        value={format}
-      />
     </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <FormatSelect
+      onChange={setFormat}
+      value={format}
+    />
   );
 
   return (
     <BasePageTableEbirdHotspot
       description="Fetches a list of hotspots near a given location."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       parser={format === 'csv' ? ebirdHotspotCsvParser : undefined}
       title="Nearby hotspots"
