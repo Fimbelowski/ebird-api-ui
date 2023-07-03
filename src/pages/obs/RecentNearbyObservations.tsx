@@ -86,6 +86,11 @@ export default function RecentNearbyObservations() {
         onChange={setIncludeProvisionalObservations}
         value={includeProvisionalObservations}
       />
+    </>
+  );
+
+  const formOptionsFieldsetContent = (
+    <>
       <Select
         id="sort-by"
         label="Sort By"
@@ -108,6 +113,7 @@ export default function RecentNearbyObservations() {
     <BasePageTableEbirdObservation
       description="Fetches a list of recent observations of birds seen at locations near a given set of coordinates. Results include only the most recent observation for each species in the region specified."
       formContent={formContent}
+      formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
       title="Recent Nearby Observations"
     />
