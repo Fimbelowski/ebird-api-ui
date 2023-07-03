@@ -55,13 +55,13 @@ export default function RecentNearbyNotableObservations() {
         onChange={setBack}
         value={back}
       />
-      <EbirdObservationDetailLevelSelect
-        onChange={setDetailLevel}
-        value={detailLevel}
-      />
       <EbirdOnlyObservationsFromHotspotsInput
         onChange={setOnlyObservationsFromHotspots}
         value={onlyObservationsFromHotspots}
+      />
+      <EbirdObservationDetailLevelSelect
+        onChange={setDetailLevel}
+        value={detailLevel}
       />
       <MaxResultsInput
         onChange={setMaxResults}
