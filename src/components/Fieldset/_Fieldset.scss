@@ -1,11 +1,11 @@
 .fieldset {
-  padding: 1rem;
-  border-radius: 0.5rem;
+  padding: var(--spacing-regular);
+  border-radius: var(--border-radius-regular);
 
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--spacing-regular);
   }
 
   &__legend {
