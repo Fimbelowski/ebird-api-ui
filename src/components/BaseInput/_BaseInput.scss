@@ -39,7 +39,7 @@
     &--inline {
       display: inline;
       padding-bottom: 0;
-      padding-right: vat(--spacing-sm);
+      padding-right: var(--spacing-sm);
     }
   }
 }
