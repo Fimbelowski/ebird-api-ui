@@ -14,9 +14,9 @@
     width: 40rem;
     text-align: center;
     background-color: #eee;
-    border: 1px solid black;
-    border-radius: 0.2rem;
-    padding: 1rem;
+    border: var(--border);
+    border-radius: var(--border-radius-regular);
+    padding: var(--spacing-regular);
 
     &--disabled {
       display: none;
