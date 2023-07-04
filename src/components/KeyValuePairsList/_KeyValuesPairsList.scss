@@ -1,5 +1,5 @@
 .key-value-pairs-list {
-  line-height: 2rem;
+  line-height: var(--spacing-lg);
 
   &__key,
   &__value {
