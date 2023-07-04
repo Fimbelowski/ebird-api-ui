@@ -1,6 +1,6 @@
 .api-key-input {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-regular);
   align-items: flex-end;
 
   &__input {

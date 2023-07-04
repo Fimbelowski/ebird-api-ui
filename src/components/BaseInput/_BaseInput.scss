@@ -1,11 +1,12 @@
 .base-input {
   &__input {
     width: 100%;
-    padding: 1rem;
+    padding: var(--spacing-regular);
     font-size: 1.6rem;
 
-    border: 1px solid #444;
-    border-radius: 0.4rem;
+    border: var(--border);
+    border-color: #444;
+    border-radius: var(--border-radius-regular);
 
     &--disabled {
       cursor: not-allowed;
@@ -33,12 +34,12 @@
 
   &__label {
     display: block;
-    padding-bottom: 0.2rem;
+    padding-bottom: var(--spacing-xs);
 
     &--inline {
       display: inline;
       padding-bottom: 0;
-      padding-right: 0.5rem;
+      padding-right: vat(--spacing-sm);
     }
   }
 }

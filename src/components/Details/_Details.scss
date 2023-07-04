@@ -1,15 +1,15 @@
 .details {
   width: 100%;
-  border-radius: 0.5rem;
-  box-shadow: 0.2rem 0.2rem 0.6rem rgba(0, 0, 0, 0.3);
+  border-radius: var(--border-radius-regular);
+  box-shadow: var(--box-shadow);
 
   &__content {
-    padding: 2rem;
+    padding: var(--spacing-lg);
     padding-top: 0;
     white-space: pre-line;
   }
 
   &__summary {
-    padding: 1rem 2rem;
+    padding: var(--spacing-regular) var(--spacing-lg);
   }
 }

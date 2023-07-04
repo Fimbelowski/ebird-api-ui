@@ -1,7 +1,7 @@
 .table {
   &__container {
     display: inline-block;
-    border: 1px solid black;
+    border: var(--border);
     overflow-x: auto;
     max-width: 100%;
   }
@@ -18,12 +18,12 @@
   &,
   &__td,
   &__th {
-    border: 1px solid black;
+    border: var(--border);
   }
 
   &__td,
   &__th {
-    padding: 0.3rem 1rem;
+    padding: var(--spacing-xs) var(--spacing-regular);
 
     &--center {
       text-align: center;

@@ -1,7 +1,4 @@
 .base-page {
-  --border-radius: 0.5rem;
-  --box-shadow: 0.2rem 0.2rem 0.6rem rgba(0, 0, 0, 0.3);
-
   padding: 2rem;
   max-width: 100rem;
   margin: 0 auto;
@@ -11,7 +8,7 @@
   align-items: center;
 
   &__copy-to-clipboard {
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-regular);
   }
 
   &__description {
@@ -19,31 +16,31 @@
 
   &__form {
     width: 100%;
-    padding: 2rem;
-    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-regular);
     box-shadow: var(--box-shadow);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: var(--spacing-regular);
+    margin-bottom: var(--spacing-regular);
   }
 
   &__info-box {
-    padding: 2rem;
-    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-regular);
     box-shadow: var(--box-shadow);
-    margin-bottom: 2rem;
+    margin-bottom: var(--spacing-lg);
   }
 
   &__results-container {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--spacing-regular);
     position: relative;
   }
 
   &__title {
-    margin-bottom: 2rem;
+    margin-bottom: var(--spacing-lg);
   }
 }

@@ -1,17 +1,17 @@
 .pagination {
-  margin-top: 0.5rem;
+  margin-top: var(--spacing-sm);
 
   &__controls {
     display: flex;
-    gap: 1rem;
+    gap: var(--spacing-regular);
   }
 
   &__info {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-sm);
   }
 
   &__go-to-page-form {
     display: flex;
-    gap: 1rem;
+    gap: var(--spacing-regular);
   }
 }

@@ -1,21 +1,21 @@
 .select {
   &__label {
     display: block;
-    padding-bottom: 0.2rem;
+    padding-bottom: var(--spacing-xs);
 
     &--inline {
       display: inline;
       padding-bottom: 0;
-      padding-right: 0.5rem;
+      padding-right: var(--spacing-sm);
     }
   }
 
   &__option {
-    padding: 1rem 0;
+    padding: var(--spacing-regular) 0;
   }
 
   &__select {
-    padding: 1rem;
+    padding: var(--spacing-regular);
     font-size: 1.6rem;
     width: 100%;
 
