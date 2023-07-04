@@ -1,6 +1,6 @@
 .async-resource-select {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-regular);
   align-items: flex-end;
 
   &__select {
