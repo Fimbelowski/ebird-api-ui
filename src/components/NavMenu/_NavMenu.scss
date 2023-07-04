@@ -1,6 +1,6 @@
 .nav-menu {
   &__item {
-    padding: 1rem;
+    padding: var(--spacing-regular);
 
     &:hover {
       background-color: #eee;
@@ -20,7 +20,7 @@
     position: absolute;
     list-style: none;
     background-color: white;
-    border: 1px solid black;
+    border: var(--border);
     white-space: nowrap;
 
     &--align {
