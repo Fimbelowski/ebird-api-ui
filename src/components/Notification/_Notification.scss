@@ -1,10 +1,11 @@
 .notification {
-  padding: 2rem;
-  border-radius: 1rem;
-  margin-top: 1rem;
+  padding: var(--spacing-lg);
+  border-radius: var(--spacing-regular);
+  margin-top: var(--spacing-regular);
 
   &--info {
     background-color: lightblue;
-    border: 1px solid blue;
+    border: var(--border);
+    border-color: blue;
   }
 }
