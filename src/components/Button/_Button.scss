@@ -1,5 +1,5 @@
 .button {
-  padding: 1rem;
+  padding: var(--spacing-regular);
   font-size: 1.6rem;
 
   &--disabled {
