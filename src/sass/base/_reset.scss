@@ -16,6 +16,10 @@ html {
   @include respond(small) {
     font-size: 50%;
   }
+
+  @include respond(xs) {
+    font-size: 43.75%;
+  }
 }
 
 body {

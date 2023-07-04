@@ -20,6 +20,7 @@ export interface BaseInputProps {
   pattern?: string;
   placeholder?: string;
   required?: boolean;
+  size?: number;
   step?: number | 'any';
   type: 'date' | 'number' | 'password' | 'text';
   value?: string;
@@ -41,6 +42,7 @@ export function BaseInput({
   pattern,
   placeholder,
   required = false,
+  size,
   step,
   type,
   value,
@@ -122,6 +124,7 @@ export function BaseInput({
         pattern={pattern}
         placeholder={placeholder}
         required={required}
+        size={size}
         step={step}
         type={type}
         value={value}

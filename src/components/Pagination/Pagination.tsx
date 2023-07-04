@@ -167,6 +167,7 @@ export default function Pagination<T>({
             onChange={setGoToPage}
             placeholder={pageInputPlaceholder()}
             required
+            size={1}
             value={goToPage}
           />
           <Button type="submit">Go</Button>
