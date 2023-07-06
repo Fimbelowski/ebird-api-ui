@@ -1,7 +1,6 @@
 .details {
+  @include paper;
   width: 100%;
-  border-radius: var(--border-radius-regular);
-  box-shadow: var(--box-shadow);
 
   &__content {
     padding: var(--spacing-lg);
