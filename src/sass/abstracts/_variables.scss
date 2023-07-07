@@ -1,5 +1,6 @@
 :root {
   --border: 1px solid black;
+  --border-thick: 4px solid black;
 
   --border-radius-sm: 0.2rem;
   --border-radius-regular: 0.5rem;
@@ -8,6 +9,9 @@
   --box-shadow: 0.2rem 0.2rem 0.6rem rgba(0, 0, 0, 0.3);
 
   --color-off-white: #faf9f6;
+  --color-primary: #037b52;
+  --color-primary-dark: #026242;
+  --color-primary-darker: #024a31;
 
   --spacing-xs: 0.2rem;
   --spacing-sm: 0.5rem;

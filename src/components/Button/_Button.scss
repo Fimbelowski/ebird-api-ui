@@ -14,7 +14,35 @@
     cursor: wait;
   }
 
-  &--submit {
-    grid-column-start: 1;
+  &--primary {
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: var(--border-radius-regular);
+    color: white;
+    transition: background-color 0.1s;
+
+    &:hover {
+      background-color: var(--color-primary-dark);
+    }
+
+    &:active {
+      background-color: var(--color-primary-darker);
+    }
+  }
+
+  &--secondary {
+    background-color: white;
+    border: var(--border-thick);
+    border-color: var(--color-primary);
+    border-radius: var(--border-radius-lg);
+    transition: border-color 0.1s;
+
+    &:hover {
+      border-color: var(--color-primary-dark);
+    }
+
+    &:active {
+      border-color: var(--color-primary-darker);
+    }
   }
 }

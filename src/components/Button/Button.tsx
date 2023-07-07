@@ -8,6 +8,8 @@ interface Props {
   disabled?: boolean;
   fullWidth?: boolean;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  primary?: boolean;
+  secondary?: boolean;
   type: 'button' | 'submit' | 'reset' | undefined;
 }
 
@@ -16,6 +18,8 @@ export default function Button({
   disabled = false,
   fullWidth = false,
   onClick,
+  primary = false,
+  secondary = false,
   type,
 }: Props) {
   const { loading, loadingPosition } = useLoading();
@@ -26,7 +30,8 @@ export default function Button({
       { 'button--disabled': disabled },
       { 'button--full-width': fullWidth },
       { 'button--loading': loading || loadingPosition },
-      { 'button--submit': type === 'submit' },
+      { 'button--primary': primary },
+      { 'button--secondary': secondary },
     ]);
   }
 

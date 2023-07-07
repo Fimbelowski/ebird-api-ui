@@ -74,6 +74,7 @@ export default function LocationInputGroup({
           disabled={loadingPosition}
           fullWidth
           onClick={getUserPosition}
+          secondary
           type="button"
         >
           Use My Location

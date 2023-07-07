@@ -164,7 +164,12 @@ export function BasePage<T>({
               {formOptionsFieldsetContent}
             </Fieldset>
           )}
-          <Button type="submit">Submit</Button>
+          <Button
+            primary
+            type="submit"
+          >
+            Submit
+          </Button>
         </form>
       ) : null}
       {loading ? (
