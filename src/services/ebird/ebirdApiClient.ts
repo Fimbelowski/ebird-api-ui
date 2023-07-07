@@ -51,11 +51,19 @@ export async function makeRequest(
     requestUrl += buildQueryString(queryParams);
   }
 
-  return await fetch(requestUrl, {
+  const response = await fetch(requestUrl, {
     headers: {
       'x-ebirdapitoken': apiKey ?? '',
     },
   });
+
+  const { status, statusText } = response;
+
+  if (status !== 200) {
+    throw Error(`${status}: ${statusText}`);
+  }
+
+  return response;
 }
 
 function mergeUrlParams(endpoint: string, urlParams: UrlParam[]) {
