@@ -2,11 +2,11 @@ import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
 
 import ApiKeyContext from '../context/ApiKeyContext';
-import Header from '../layout/Header/Header';
 import LoadingContext from '../context/LoadingContext';
 import LocaleOptionsContext from '../context/LocaleOptionsContext';
 import { type SelectOptionArray } from '../components/Select/Select';
 import TaxonomyVersionOptionsContext from '../context/TaxonomyVersionOptionsContext';
+import Layout from '../layout/Layout/Layout';
 
 export default function Root() {
   const [apiKey, setApiKey] = useState('');
@@ -26,8 +26,7 @@ export default function Root() {
 
   return (
     <>
-      <Header></Header>
-      <main>
+      <Layout>
         <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
           <LoadingContext.Provider
             value={{ loading, loadingPosition, setLoading, setLoadingPosition }}
@@ -43,7 +42,7 @@ export default function Root() {
             </LocaleOptionsContext.Provider>
           </LoadingContext.Provider>
         </ApiKeyContext.Provider>
-      </main>
+      </Layout>
     </>
   );
 }

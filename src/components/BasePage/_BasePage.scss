@@ -15,10 +15,9 @@
   }
 
   &__form {
+    @include paper;
     width: 100%;
     padding: var(--spacing-lg);
-    border-radius: var(--border-radius-regular);
-    box-shadow: var(--box-shadow);
     display: flex;
     flex-direction: column;
     gap: var(--spacing-regular);
@@ -26,9 +25,8 @@
   }
 
   &__info-box {
+    @include paper;
     padding: var(--spacing-lg);
-    border-radius: var(--border-radius-regular);
-    box-shadow: var(--box-shadow);
     margin-bottom: var(--spacing-lg);
   }
 
