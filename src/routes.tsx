@@ -1,8 +1,7 @@
-import { type RouteObject } from 'react-router-dom';
-
 import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
 import ChecklistFeedOnADate from './pages/product/ChecklistFeedOnADate';
 import EbirdTaxonomy from './pages/ref/taxonomy/EbirdTaxonomy';
+import type ExtendedRouteObject from './routes/ExtendedRouteObject';
 import HistoricObservationsOnADate from './pages/obs/HistoricObservationsOnADate';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
 import HotspotsInARegion from './pages/ref/hotspot/HotspotsInARegion';
@@ -18,7 +17,6 @@ import RecentObservationsInARegion from './pages/obs/RecentObservationsInARegion
 import RegionInfo from './pages/ref/region/RegionInfo';
 import RegionalStatisticsOnADate from './pages/product/RegionalStatisticsOnADate';
 import Root from './pages/Root';
-import type RouteName from './types/RouteName';
 import SpeciesListForARegion from './pages/product/SpeciesListForARegion';
 import SubregionList from './pages/ref/region/SubregionList';
 import TaxaLocaleCodes from './pages/ref/taxonomy/TaxaLocaleCodes';
@@ -28,9 +26,7 @@ import TaxonomyVersions from './pages/ref/taxonomy/TaxonomyVersions';
 import Top100 from './pages/product/Top100';
 import ViewChecklist from './pages/product/ViewChecklist';
 
-const ROUTES: [
-  RouteObject & { children: Array<RouteObject & { path: RouteName }> }
-] = [
+const ROUTES: ExtendedRouteObject[] = [
   {
     path: '',
     element: <Root />,
