@@ -1,0 +1,14 @@
+import { Outlet } from 'react-router-dom';
+
+import type ExtendedRouteObject from '../ExtendedRouteObject';
+import hotspotInfo from './hotspotInfo';
+import hotspotsInARegion from './hotspotsInARegion';
+import nearbyHotspots from './nearbyHotspots';
+
+const hotspots: ExtendedRouteObject = {
+  children: [hotspotInfo, hotspotsInARegion, nearbyHotspots],
+  element: <Outlet />,
+  path: 'hotspots',
+};
+
+export default hotspots;

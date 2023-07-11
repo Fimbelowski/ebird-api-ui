@@ -5,6 +5,7 @@ type RoutePath =
   | 'ebird-taxonomy'
   | 'historic-observations-on-a-date'
   | 'hotspot-info'
+  | 'hotspots'
   | 'hotspots-in-a-region'
   | 'nearby-hotspots'
   | 'nearest-observations-of-a-species'

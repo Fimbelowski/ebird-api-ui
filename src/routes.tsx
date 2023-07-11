@@ -3,9 +3,7 @@ import checklistFeedOnADate from './routes/product/checklistFeedOnADate';
 import ebirdTaxonomy from './routes/taxonomy/ebirdTaxonomy';
 import type ExtendedRouteObject from './routes/ExtendedRouteObject';
 import historicObservationsOnADate from './routes/observations/historicObservationsOnADate';
-import hotspotInfo from './routes/hotspots/hotspotInfo';
-import hotspotsInARegion from './routes/hotspots/hotspotsInARegion';
-import nearbyHotspots from './routes/hotspots/nearbyHotspots';
+import hotspots from './routes/hotspots/hotspots';
 import nearestObservationsOfASpecies from './routes/observations/nearestObservationsOfASpecies';
 import recentChecklistsFeed from './routes/observations/recentChecklistsFeed';
 import recentNearbyNotableObservations from './routes/observations/recentNearbyNotableObservations';
@@ -34,9 +32,7 @@ const ROUTES: ExtendedRouteObject[] = [
       checklistFeedOnADate,
       ebirdTaxonomy,
       historicObservationsOnADate,
-      hotspotInfo,
-      hotspotsInARegion,
-      nearbyHotspots,
+      hotspots,
       nearestObservationsOfASpecies,
       recentChecklistsFeed,
       recentNearbyNotableObservations,
