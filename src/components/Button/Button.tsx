@@ -1,19 +1,19 @@
-import { type MouseEvent, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import classNames from '../../utilities/classNames';
 import useLoading from '../../hooks/useLoading';
 
-interface Props {
+export interface ButtonProps {
   children?: ReactNode;
   disabled?: boolean;
   fullWidth?: boolean;
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClick?: () => void;
   primary?: boolean;
   secondary?: boolean;
   type: 'button' | 'submit' | 'reset' | undefined;
 }
 
-export default function Button({
+export function Button({
   children,
   disabled = false,
   fullWidth = false,
@@ -21,7 +21,7 @@ export default function Button({
   primary = false,
   secondary = false,
   type,
-}: Props) {
+}: ButtonProps) {
   const { loading, loadingPosition } = useLoading();
 
   function classes() {
