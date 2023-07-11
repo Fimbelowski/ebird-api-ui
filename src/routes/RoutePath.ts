@@ -10,6 +10,7 @@ type RoutePath =
   | 'hotspots-in-a-region'
   | 'nearby-hotspots'
   | 'nearest-observations-of-a-species'
+  | 'observations'
   | 'product'
   | 'recent-checklists-feed'
   | 'recent-nearby-notable-observations'
