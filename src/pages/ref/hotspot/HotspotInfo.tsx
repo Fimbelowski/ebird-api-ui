@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import { BasePageKeyValuePairsList } from '../../../components/BasePageKeyValuePairsList';
 import type EbirdLocation from '../../../types/EbirdLocation';
-import { TextInput } from '../../../components/TextInput';
 import useHotspotInfo from '../../../services/ebird/hooks/endpoints/ref/hotspot/useHotspotInfo';
+import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
 
 export default function HotspotInfo() {
   const getHotspotInfo = useHotspotInfo();
@@ -15,12 +15,10 @@ export default function HotspotInfo() {
   }
 
   const formContent = (
-    <TextInput
-      id="loc-id"
+    <EbirdRegionCodeInput
+      allowLocation
       label="Location ID"
       onChange={setLocationId}
-      placeholder="L140473"
-      required
       value={locationId}
     />
   );
