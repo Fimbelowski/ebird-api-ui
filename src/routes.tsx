@@ -15,7 +15,7 @@ import recentNotableObservationsInARegion from './routes/observations/recentNota
 import recentObservationsInARegion from './routes/observations/recentObservationsInARegion';
 import recentObservationsOfASpeciesInARegion from './routes/observations/recentObservationsOfASpeciesInARegion';
 import regionalStatisticsOnADate from './routes/product/regionalStatisticsOnADate';
-import regions from './routes/regions/root';
+import regions from './routes/regions/regions';
 import Root from './pages/Root';
 import speciesListForARegion from './routes/product/speciesListForARegion';
 import taxaLocaleCodes from './routes/taxonomy/taxaLocaleCodes';

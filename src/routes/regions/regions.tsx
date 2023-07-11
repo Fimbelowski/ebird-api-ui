@@ -4,10 +4,10 @@ import type ExtendedRouteObject from '../ExtendedRouteObject';
 import regionInfo from './regionInfo';
 import subregionList from './subregionList';
 
-const root: ExtendedRouteObject = {
+const regions: ExtendedRouteObject = {
   children: [regionInfo, subregionList],
   element: <Outlet />,
   path: 'regions',
 };
 
-export default root;
+export default regions;
