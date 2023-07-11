@@ -20,7 +20,10 @@ interface AllowLocationTypeProps {
 type Props = Omit<
   TextInputProps,
   'id' | 'label' | 'placeholder' | 'required'
-> & { labelBase?: string } & RequireAtLeastOne<AllowLocationTypeProps>;
+> & {
+  label?: string;
+  labelBase?: string;
+} & RequireAtLeastOne<AllowLocationTypeProps>;
 
 export default function EbirdRegionCodeInput({
   allowCountry = false,
@@ -30,6 +33,7 @@ export default function EbirdRegionCodeInput({
   allowSubnational2 = false,
   allowUsfws = false,
   allowWorld = false,
+  label: labelProp,
   labelBase = 'Region Code',
   ...rest
 }: Props) {
@@ -80,6 +84,10 @@ export default function EbirdRegionCodeInput({
   ]);
 
   function label() {
+    if (labelProp !== undefined) {
+      return labelProp;
+    }
+
     const locationTypes: string[] = [];
 
     if (allowWorld) {
