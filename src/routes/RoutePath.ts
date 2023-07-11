@@ -3,6 +3,7 @@ type RoutePath =
   | 'adjacent-regions'
   | 'checklist-feed-on-a-date'
   | 'ebird-taxonomy'
+  | 'geography'
   | 'historic-observations-on-a-date'
   | 'hotspot-info'
   | 'hotspots'

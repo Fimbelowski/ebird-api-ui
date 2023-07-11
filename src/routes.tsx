@@ -1,7 +1,7 @@
-import adjacentRegions from './routes/geography/adjacentRegions';
 import checklistFeedOnADate from './routes/product/checklistFeedOnADate';
 import ebirdTaxonomy from './routes/taxonomy/ebirdTaxonomy';
 import type ExtendedRouteObject from './routes/ExtendedRouteObject';
+import geography from './routes/geography/geography';
 import historicObservationsOnADate from './routes/observations/historicObservationsOnADate';
 import hotspots from './routes/hotspots/hotspots';
 import nearestObservationsOfASpecies from './routes/observations/nearestObservationsOfASpecies';
@@ -28,9 +28,9 @@ const ROUTES: ExtendedRouteObject[] = [
     path: '',
     element: <Root />,
     children: [
-      adjacentRegions,
       checklistFeedOnADate,
       ebirdTaxonomy,
+      geography,
       historicObservationsOnADate,
       hotspots,
       nearestObservationsOfASpecies,
