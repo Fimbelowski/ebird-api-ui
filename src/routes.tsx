@@ -14,11 +14,10 @@ import recentNearbyObservationsOfASpecies from './routes/observations/recentNear
 import recentNotableObservationsInARegion from './routes/observations/recentNotableObservationsInARegion';
 import recentObservationsInARegion from './routes/observations/recentObservationsInARegion';
 import recentObservationsOfASpeciesInARegion from './routes/observations/recentObservationsOfASpeciesInARegion';
-import regionInfo from './routes/regions/regionInfo';
 import regionalStatisticsOnADate from './routes/product/regionalStatisticsOnADate';
+import regions from './routes/regions/root';
 import Root from './pages/Root';
 import speciesListForARegion from './routes/product/speciesListForARegion';
-import subregionList from './routes/regions/subregionList';
 import taxaLocaleCodes from './routes/taxonomy/taxaLocaleCodes';
 import taxonomicForms from './routes/taxonomy/taxonomicForms';
 import taxonomicGroups from './routes/taxonomy/taxonomicGroups';
@@ -46,10 +45,9 @@ const ROUTES: ExtendedRouteObject[] = [
       recentNotableObservationsInARegion,
       recentObservationsInARegion,
       recentObservationsOfASpeciesInARegion,
-      regionInfo,
       regionalStatisticsOnADate,
+      regions,
       speciesListForARegion,
-      subregionList,
       taxaLocaleCodes,
       taxonomicForms,
       taxonomicGroups,

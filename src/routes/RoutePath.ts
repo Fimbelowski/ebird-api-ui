@@ -17,6 +17,7 @@ type RoutePath =
   | 'recent-observations-of-a-species-in-a-region'
   | 'region-info'
   | 'regional-statistics-on-a-date'
+  | 'regions'
   | 'species-list-for-a-region'
   | 'sub-region-list'
   | 'taxa-locale-codes'
