@@ -1,6 +1,6 @@
 import { type FormEvent, useEffect, useState } from 'react';
 
-import Button from '../Button/Button';
+import { Button } from '../Button/Button';
 import { Select, type SelectOptionArray } from '../Select/Select';
 import { NumberInput } from '../NumberInput';
 

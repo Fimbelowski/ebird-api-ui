@@ -1,7 +1,7 @@
 import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 
 import ApiKeyInput from '../ApiKeyInput/ApiKeyInput';
-import Button from '../Button/Button';
+import { Button } from '../Button/Button';
 import Details from '../Details/Details';
 import Notification from '../Notification/Notification';
 import useLoading from '../../hooks/useLoading';
