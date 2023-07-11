@@ -26,6 +26,7 @@ type RoutePath =
   | 'taxa-locale-codes'
   | 'taxonomic-forms'
   | 'taxonomic-groups'
+  | 'taxonomy'
   | 'taxonomy-versions'
   | 'top-100'
   | 'view-checklist';
