@@ -9,6 +9,9 @@ const hotspots: ExtendedRouteObject = {
   children: [hotspotInfo, hotspotsInARegion, nearbyHotspots],
   element: <Outlet />,
   path: 'hotspots',
+  meta: {
+    name: 'Hotspots',
+  },
 };
 
 export default hotspots;

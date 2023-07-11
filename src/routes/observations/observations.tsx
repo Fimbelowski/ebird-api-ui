@@ -25,6 +25,9 @@ const observations: ExtendedRouteObject = {
   ],
   element: <Outlet />,
   path: 'observations',
+  meta: {
+    name: 'Observations',
+  },
 };
 
 export default observations;

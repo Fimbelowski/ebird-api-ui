@@ -17,6 +17,9 @@ const taxonomy: ExtendedRouteObject = {
   ],
   element: <Outlet />,
   path: 'taxonomy',
+  meta: {
+    name: 'Taxonomy',
+  },
 };
 
 export default taxonomy;

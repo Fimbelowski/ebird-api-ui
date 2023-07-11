@@ -8,6 +8,9 @@ const regions: ExtendedRouteObject = {
   children: [regionInfo, subregionList],
   element: <Outlet />,
   path: 'regions',
+  meta: {
+    name: 'Regions',
+  },
 };
 
 export default regions;

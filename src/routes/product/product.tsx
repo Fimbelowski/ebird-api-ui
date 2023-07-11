@@ -17,6 +17,9 @@ const product: ExtendedRouteObject = {
   ],
   element: <Outlet />,
   path: 'product',
+  meta: {
+    name: 'Product',
+  },
 };
 
 export default product;

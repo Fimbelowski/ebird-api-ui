@@ -7,6 +7,9 @@ const geography: ExtendedRouteObject = {
   children: [adjacentRegions],
   element: <Outlet />,
   path: 'geography',
+  meta: {
+    name: 'Geography',
+  },
 };
 
 export default geography;
