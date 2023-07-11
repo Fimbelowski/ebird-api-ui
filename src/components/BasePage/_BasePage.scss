@@ -7,8 +7,9 @@
   flex-direction: column;
   align-items: center;
 
-  &__copy-to-clipboard {
-    margin-bottom: var(--spacing-regular);
+  &__copy-raw-response {
+    @include paper;
+    padding: var(--spacing-regular);
   }
 
   &__description {

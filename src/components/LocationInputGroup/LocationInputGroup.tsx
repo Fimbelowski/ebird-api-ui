@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Button from '../Button/Button';
+import { Button } from '../Button/Button';
 import CoordinateInput from '../CoordinateInput';
 import useLoading from '../../hooks/useLoading';
 

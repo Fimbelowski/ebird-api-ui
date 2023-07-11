@@ -1,11 +1,12 @@
 import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 
 import ApiKeyInput from '../ApiKeyInput/ApiKeyInput';
-import Button from '../Button/Button';
+import { Button } from '../Button/Button';
 import Details from '../Details/Details';
 import Notification from '../Notification/Notification';
 import useLoading from '../../hooks/useLoading';
 import Fieldset from '../Fieldset/Fieldset';
+import CopyRawResponseButton from '../CopyRawResponseButton/CopyRawResponseButton';
 
 export interface ResultsSection {
   content: ReactNode;
@@ -94,37 +95,24 @@ export function BasePage<T>({
   }
 
   function resultsContent() {
-    const sections: ResultsSection[] = [
-      {
-        content: (
-          <>
-            <div className="base-page__copy-to-clipboard">
-              <Button
-                onClick={onCopyToClipboardClick}
-                type="button"
-              >
-                Copy to Clipboard
-              </Button>
-            </div>
-            <div>{rawResponse}</div>
-          </>
-        ),
-        title: 'Raw Response',
-      },
-      ...resultsSections,
-    ];
-
-    const listItems = sections.map(({ content, title }, index) => (
+    const listItems = resultsSections.map(({ content, title }, index) => (
       <Details
         key={title}
-        open={index === sections.length - 1}
+        open={index === resultsSections.length - 1}
         summary={title}
       >
         {content}
       </Details>
     ));
 
-    return <>{listItems}</>;
+    return (
+      <>
+        <div className="base-page__copy-raw-response">
+          <CopyRawResponseButton onClick={onCopyToClipboardClick} />
+        </div>
+        {listItems}
+      </>
+    );
   }
 
   function showResults() {

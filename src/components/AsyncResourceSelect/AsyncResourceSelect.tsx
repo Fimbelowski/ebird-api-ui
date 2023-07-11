@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import useApiKey from '../../hooks/useApiKey';
 import Tooltip from '../Tooltip/Tooltip';
-import Button from '../Button/Button';
+import { Button } from '../Button/Button';
 import { Select, type SelectProps } from '../Select/Select';
 
 export interface AsyncResourceSelectProps<T> extends SelectProps<string> {

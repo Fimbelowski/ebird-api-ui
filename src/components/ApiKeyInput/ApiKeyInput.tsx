@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { BaseInput } from '../BaseInput';
-import Button from '../Button/Button';
+import { Button } from '../Button/Button';
 import useApiKey from '../../hooks/useApiKey';
 
 export default function ApiKeyInput() {
