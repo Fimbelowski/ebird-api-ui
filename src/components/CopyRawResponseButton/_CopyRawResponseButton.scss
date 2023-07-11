@@ -1,0 +1,28 @@
+.copy-raw-response-button {
+  position: relative;
+
+  &__confirmation {
+    @include paper;
+    padding: var(--spacing-regular);
+    position: absolute;
+    left: 50%;
+    top: 0;
+    display: none;
+    transform: translateX(-50%);
+
+    &--active {
+      display: block;
+      opacity: 0;
+      animation: fadeIn 2.1s;
+      animation-delay: 0.01s;
+
+      @keyframes fadeIn {
+        14%,
+        86% {
+          opacity: 1;
+          top: -4rem;
+        }
+      }
+    }
+  }
+}
