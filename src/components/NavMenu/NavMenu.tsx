@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 import classNames from '../../utilities/classNames';
-import type RouteName from '../../types/RouteName';
+import type RoutePath from '../../routes/RoutePath';
 
 export interface NavMenuItem {
   label: string;
-  path: RouteName;
+  path: RoutePath;
 }
 
 interface Props {
