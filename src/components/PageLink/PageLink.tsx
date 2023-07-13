@@ -13,8 +13,8 @@ export default function PageLink({
       className="page-link"
       to={path}
     >
-      <h3 className="page-link__title">{`${title}${
-        requiresApiKey ? ' 🔑' : ''
+      <h3 className="page-link__title">{`${title} ${
+        requiresApiKey ? '🔑' : '🔓'
       }`}</h3>
       <p>{description}</p>
     </Link>
