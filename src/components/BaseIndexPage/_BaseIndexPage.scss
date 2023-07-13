@@ -4,6 +4,11 @@
   margin: 0 auto;
   max-width: 75rem;
 
+  &__description {
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+  }
+
   &__menu {
     display: flex;
     flex-direction: column;
@@ -11,7 +16,7 @@
   }
 
   &__title {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-regular);
     text-align: center;
   }
 }
