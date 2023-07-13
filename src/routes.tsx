@@ -161,7 +161,7 @@ export default createRoutesFromChildren(
       />
       <Route
         element={<TaxonomyVersions />}
-        path="taxonomy-verions"
+        path="taxonomy-versions"
       />
     </Route>
   </Route>
