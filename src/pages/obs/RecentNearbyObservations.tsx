@@ -14,6 +14,7 @@ import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLoc
 import type EbirdRecentNearbyObservationsSortBy from '../../types/EbirdRecentNearbyObservationsSortBy';
 import DistanceInput from '../../components/DistanceInput';
 import Fieldset from '../../components/Fieldset/Fieldset';
+import PAGE from './PAGE';
 
 export default function RecentNearbyObservations() {
   const getRecentNearbyObservations = useRecentNearbyObservations();
@@ -114,11 +115,10 @@ export default function RecentNearbyObservations() {
 
   return (
     <BasePageTableEbirdObservation
-      description="Fetches a list of recent observations of birds seen at locations near a given set of coordinates. Results include only the most recent observation for each species in the region specified."
       formContent={formContent}
       formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
-      title="Recent Nearby Observations"
+      page={PAGE.RecentNearbyObservations}
     />
   );
 }

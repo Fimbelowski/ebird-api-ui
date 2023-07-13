@@ -2,35 +2,31 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 import classNames from '../../utilities/classNames';
-
-export interface NavMenuItem {
-  label: string;
-  path: string;
-}
+import type Page from '../../types/Page';
 
 interface Props {
   alignToRight?: boolean;
   folderLabel: string;
   folderPath: string;
-  menuItems: NavMenuItem[];
+  pages: Page[];
 }
 
-export function NavMenu({
+export default function NavMenu({
   alignToRight = false,
   folderLabel,
   folderPath,
-  menuItems,
+  pages,
 }: Props) {
   const [isHovered, setIsHovered] = useState(false);
 
   function Menu() {
-    const listItems = menuItems.map(({ label, path }) => (
+    const listItems = pages.map(({ path, title }) => (
       <Link
         className="nav-menu__link"
         key={path}
-        to={`${folderPath}/${path}`}
+        to={path}
       >
-        {label}
+        {title}
       </Link>
     ));
 

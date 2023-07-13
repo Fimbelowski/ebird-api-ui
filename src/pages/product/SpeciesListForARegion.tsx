@@ -3,6 +3,7 @@ import { useState } from 'react';
 import BasePageList from '../../components/BasePageList/BasePageList';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import useSpeciesListForARegion from '../../services/ebird/hooks/endpoints/product/useSpeciesListForARegion';
+import PAGE from './PAGE';
 
 export default function SpeciesListForARegion() {
   const getSpeciesListForARegion = useSpeciesListForARegion();
@@ -27,11 +28,9 @@ export default function SpeciesListForARegion() {
 
   return (
     <BasePageList
-      description="Fetches a list of species codes for species ever seen in a region, in taxonomic order (species taxa only)."
       formContent={formContent}
       onSubmit={onSubmit}
-      requiresApiKey
-      title="Species List for a Region"
+      page={PAGE.SpeciesListForARegion}
     />
   );
 }

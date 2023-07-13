@@ -4,6 +4,7 @@ import BasePageTableEbirdChecklist from '../../components/BasePageTableEbirdChec
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import useRecentChecklistsFeed from '../../services/ebird/hooks/endpoints/data/obs/useRecentChecklistsFeed';
 import MaxResultsInput from '../../components/MaxResultsInput';
+import PAGE from './PAGE';
 
 export default function RecentChecklistsFeed() {
   const getRecentChecklists = useRecentChecklistsFeed();
@@ -39,12 +40,10 @@ export default function RecentChecklistsFeed() {
 
   return (
     <BasePageTableEbirdChecklist
-      description="Fetches information on the most recently submitted checklists for a country or region."
       formContent={formContent}
       formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
-      requiresApiKey
-      title="Recent Checklists"
+      page={PAGE.RecentChecklists}
     />
   );
 }

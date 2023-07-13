@@ -16,6 +16,7 @@ import { Select, type SelectOptionArray } from '../../components/Select/Select';
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
 import type EbirdHistoricalObservationRank from '../../types/EbirdHistoricalObservationRank';
 import LocationsInput from '../../components/LocationsInput';
+import PAGE from './PAGE';
 
 export default function HistoricObservationsOnADate() {
   const getHistoricObservationsOnADate = useHistoricObservationsOnADate();
@@ -122,12 +123,11 @@ export default function HistoricObservationsOnADate() {
 
   return (
     <BasePageTableEbirdObservation
-      description="Fetches a list of all taxa seen in a country, region or location on a specific date."
       detailLevel={detailLevel}
       formContent={formContent}
       formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
-      title="Historic Observations On A Date"
+      page={PAGE.HistoricObservationsOnADate}
     />
   );
 }

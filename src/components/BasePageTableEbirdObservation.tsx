@@ -372,7 +372,6 @@ export default function BasePageTableEbirdObservation({
     <BasePageTable
       {...rest}
       onSubmit={onSubmit}
-      requiresApiKey
       tables={tables}
     />
   );

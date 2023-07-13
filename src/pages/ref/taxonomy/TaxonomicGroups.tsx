@@ -8,6 +8,7 @@ import {
 import { useTaxonomicGroups } from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomicGroups';
 import type EbirdSpeciesGrouping from '../../../types/EbirdSpeciesGrouping';
 import type EbirdGroupNameLocale from '../../../types/EbirdGroupNameLocale';
+import PAGE from './PAGE';
 
 interface EbirdTaxonomicGroup {
   groupName: string;
@@ -186,13 +187,11 @@ export default function TaxonomicGroups() {
 
   return (
     <BasePageTable<EbirdTaxonomicGroup>
-      description="Fetches a list of species groups (terns, finches, etc.)"
       formOptionsFieldsetContent={formOptionsFieldsetContent}
       formContent={formContent}
       onSubmit={onSubmit}
-      requiresApiKey
+      page={PAGE.TaxonomicGroups}
       tables={tables}
-      title="Taxonomic Groups"
     />
   );
 }

@@ -11,6 +11,7 @@ import MaxResultsInput from '../../components/MaxResultsInput';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import DistanceInput from '../../components/DistanceInput';
 import Fieldset from '../../components/Fieldset/Fieldset';
+import PAGE from './PAGE';
 
 export default function RecentNearbyObservationsOfASpecies() {
   const getRecentNearbyObservationsOfASpecies =
@@ -91,11 +92,10 @@ export default function RecentNearbyObservationsOfASpecies() {
 
   return (
     <BasePageTableEbirdObservation
-      description="Fetches a list of the nearest locations where a species has been seen recently."
       formContent={formContent}
       formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
-      title="Recent Nearby Observations of a Species"
+      page={PAGE.RecentNearbyObservationsOfASpecies}
     />
   );
 }

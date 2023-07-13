@@ -17,6 +17,7 @@ import {
 } from '../../components/Table/Table';
 import kilometersToMiles from '../../utilities/kilometersToMiles';
 import hoursToHoursAndMinutes from '../../utilities/hoursToHoursAndMinutes';
+import PAGE from './PAGE';
 
 interface EbirdChecklist {
   allObsReported: boolean;
@@ -375,13 +376,11 @@ export default function ViewChecklist() {
 
   return (
     <BasePage<EbirdChecklist>
-      description="Fetches the details and observations of a given checklist."
       formContent={formContent}
       onLoad={setChecklist}
       onSubmit={onSubmit}
-      requiresApiKey
+      page={PAGE.ViewChecklist}
       resultsSections={resultsSections}
-      title="View Checklist"
     />
   );
 }

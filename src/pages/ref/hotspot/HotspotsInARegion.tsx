@@ -7,6 +7,7 @@ import type EbirdRecordFormat from '../../../types/EbirdRecordFormat';
 import FormatSelect from '../../../components/FormatSelect';
 import useHotspotsInARegion from '../../../services/ebird/hooks/endpoints/ref/hotspot/useHotspotsInARegion';
 import ebirdHotspotCsvParser from './ebirdHotspotCsvParser';
+import PAGE from './PAGE';
 
 export default function HotspotsInARegion() {
   const getRegionHotspots = useHotspotsInARegion();
@@ -45,12 +46,11 @@ export default function HotspotsInARegion() {
 
   return (
     <BasePageTableEbirdHotspot
-      description="Fetches hotspots within a specified country or region."
       formContent={formContent}
       formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
+      page={PAGE.HotspotsInARegion}
       parser={format === 'csv' ? ebirdHotspotCsvParser : undefined}
-      title="Hotspots in a Region"
     />
   );
 }
