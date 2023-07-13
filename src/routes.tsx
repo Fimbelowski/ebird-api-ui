@@ -10,6 +10,7 @@ import HotspotsIndex from './pages/ref/hotspot/HotspotsIndex';
 import HotspotsInARegion from './pages/ref/hotspot/HotspotsInARegion';
 import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import NearestObservationOfASpecies from './pages/obs/NearestObservationsOfASpecies';
+import ProductIndex from './pages/product/ProductIndex';
 import RecentChecklistsFeed from './pages/obs/RecentChecklistsFeed';
 import RecentNearbyNotableObservations from './pages/obs/RecentNearbyNotableObservations';
 import RecentNearbyObservations from './pages/obs/RecentNearbyObservations';
@@ -102,6 +103,10 @@ export default createRoutesFromChildren(
       />
     </Route>
     <Route path="product">
+      <Route
+        element={<ProductIndex />}
+        index
+      />
       <Route
         element={<ChecklistFeedOnADate />}
         path="checklist-feed-on-a-date"
