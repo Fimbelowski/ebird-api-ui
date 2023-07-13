@@ -4,7 +4,7 @@ import type PageLinkInterface from '../../types/PageLink';
 interface Props {
   description: string;
   pageLinks: PageLinkInterface[];
-  title: string;
+  title?: string;
 }
 
 export default function BaseIndexPage({
@@ -21,7 +21,9 @@ export default function BaseIndexPage({
 
   return (
     <div className="base-index-page">
-      <h2 className="base-index-page__title">{title}</h2>
+      {title === undefined ? null : (
+        <h2 className="base-index-page__title">{title}</h2>
+      )}
       <p className="base-index-page__description">{description}</p>
       <menu className="base-index-page__menu">{listItems}</menu>
     </div>
