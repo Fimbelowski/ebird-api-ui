@@ -18,6 +18,7 @@ import RecentObservationsInARegion from './pages/obs/RecentObservationsInARegion
 import RecentObservationsOfASpeciesInARegion from './pages/obs/RecentObservationsOfASpeciesInARegion';
 import RegionInfo from './pages/ref/region/RegionInfo';
 import RegionalStatisticsOnADate from './pages/product/RegionalStatisticsOnADate';
+import Regions from './pages/ref/region/Regions';
 import Root from './pages/Root';
 import SpeciesListForARegion from './pages/product/SpeciesListForARegion';
 import SubregionList from './pages/ref/region/SubregionList';
@@ -118,6 +119,10 @@ export default createRoutesFromChildren(
       />
     </Route>
     <Route path="regions">
+      <Route
+        element={<Regions />}
+        index
+      />
       <Route
         element={<RegionInfo />}
         path="region-info"
