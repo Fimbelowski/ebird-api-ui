@@ -3,6 +3,7 @@ import { createRoutesFromChildren, Route } from 'react-router-dom';
 import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
 import ChecklistFeedOnADate from './pages/product/ChecklistFeedOnADate';
 import EbirdTaxonomy from './pages/ref/taxonomy/EbirdTaxonomy';
+import Geography from './pages/ref/geo/Geography';
 import HistoricObservationsOnADate from './pages/obs/HistoricObservationsOnADate';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
 import HotspotsInARegion from './pages/ref/hotspot/HotspotsInARegion';
@@ -33,6 +34,10 @@ export default createRoutesFromChildren(
     element={<Root />}
   >
     <Route path="geography">
+      <Route
+        element={<Geography />}
+        index
+      />
       <Route
         element={<AdjacentRegions />}
         path="adjacent-regions"
