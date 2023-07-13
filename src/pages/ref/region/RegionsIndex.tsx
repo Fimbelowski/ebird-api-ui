@@ -21,6 +21,7 @@ export default function RegionsIndex() {
 
   return (
     <BaseIndexPage
+      description="Get information about a specific region or get a list of all regions within a given region."
       pageLinks={pageLinks}
       title="Regions"
     />

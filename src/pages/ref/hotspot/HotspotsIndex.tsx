@@ -22,6 +22,7 @@ export default function HotspotsIndex() {
 
   return (
     <BaseIndexPage
+      description="Find the hotspots for a given country or region or nearby hotspots."
       pageLinks={pageLinks}
       title="Hotspots"
     />

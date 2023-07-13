@@ -41,6 +41,7 @@ export default function ProductIndex() {
 
   return (
     <BaseIndexPage
+      description="Product end-points make it easy to get the information shown in various pages on the eBird web site (Top 100 Contributors, checklist data, etc.)"
       pageLinks={pageLinks}
       title="Product"
     />

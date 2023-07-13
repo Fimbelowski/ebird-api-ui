@@ -40,6 +40,7 @@ export default function TaxonomyIndex() {
 
   return (
     <BaseIndexPage
+      description="Get taxonomic information about species as well as information about the taxonomy itself."
       pageLinks={pageLinks}
       title="Taxonomy"
     />

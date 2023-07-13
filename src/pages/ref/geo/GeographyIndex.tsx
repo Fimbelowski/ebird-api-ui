@@ -14,6 +14,7 @@ export default function GeographyIndex() {
 
   return (
     <BaseIndexPage
+      description="Find a country's or region's neighbors."
       pageLinks={pageLinks}
       title="Geography"
     />
