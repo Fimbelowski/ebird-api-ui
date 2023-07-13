@@ -1,14 +1,14 @@
 import { NavMenu, type NavMenuItem } from '../../components/NavMenu/NavMenu';
 
 export default function Nav() {
-  const geographyMenuItems: NavMenuItem[] = [
+  const geographyNavMenuItems: NavMenuItem[] = [
     {
       label: 'Adjacent Regions',
       path: 'adjacent-regions',
     },
   ];
 
-  const hotspotMenuItems: NavMenuItem[] = [
+  const hotspotNavMenuItems: NavMenuItem[] = [
     {
       label: 'Hotspot Info',
       path: 'hotspot-info',
@@ -23,7 +23,7 @@ export default function Nav() {
     },
   ];
 
-  const observationMenuItems: NavMenuItem[] = [
+  const observationNavMenuItems: NavMenuItem[] = [
     {
       label: 'Historic Observations on a Date',
       path: 'historic-observations-on-a-date',
@@ -62,7 +62,7 @@ export default function Nav() {
     },
   ];
 
-  const productMenuItems: NavMenuItem[] = [
+  const productNavMenuItems: NavMenuItem[] = [
     {
       label: 'Checklist Feed on a Date',
       path: 'checklist-feed-on-a-date',
@@ -85,7 +85,7 @@ export default function Nav() {
     },
   ];
 
-  const regionMenuItems: NavMenuItem[] = [
+  const regionNavMenuItems: NavMenuItem[] = [
     {
       label: 'Region Info',
       path: 'region-info',
@@ -96,7 +96,7 @@ export default function Nav() {
     },
   ];
 
-  const taxonomyMenuItems: NavMenuItem[] = [
+  const taxonomyNavMenuItems: NavMenuItem[] = [
     {
       label: 'eBird Taxonomy',
       path: 'ebird-taxonomy',
@@ -121,31 +121,39 @@ export default function Nav() {
 
   return (
     <nav className="nav">
-      <NavMenu
-        items={geographyMenuItems}
-        label="Geography"
-      />
-      <NavMenu
-        items={hotspotMenuItems}
-        label="Hotspots"
-      />
-      <NavMenu
-        items={observationMenuItems}
-        label="Observations"
-      />
-      <NavMenu
-        items={productMenuItems}
-        label="Product"
-      />
-      <NavMenu
-        items={regionMenuItems}
-        label="Regions"
-      />
-      <NavMenu
-        items={taxonomyMenuItems}
-        label="Taxonomy"
-        menuAlignment="right"
-      />
+      <menu className="nav__menu">
+        <NavMenu
+          folderLabel="Geography"
+          folderPath="geography"
+          menuItems={geographyNavMenuItems}
+        />
+        <NavMenu
+          folderLabel="Hotspots"
+          folderPath="hotspots"
+          menuItems={hotspotNavMenuItems}
+        />
+        <NavMenu
+          folderLabel="Observations"
+          folderPath="observations"
+          menuItems={observationNavMenuItems}
+        />
+        <NavMenu
+          folderLabel="Product"
+          folderPath="product"
+          menuItems={productNavMenuItems}
+        />
+        <NavMenu
+          folderLabel="Regions"
+          folderPath="regions"
+          menuItems={regionNavMenuItems}
+        />
+        <NavMenu
+          alignToRight
+          folderLabel="Taxonomy"
+          folderPath="taxonomy"
+          menuItems={taxonomyNavMenuItems}
+        />
+      </menu>
     </nav>
   );
 }
