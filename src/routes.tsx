@@ -8,6 +8,7 @@ import HistoricObservationsOnADate from './pages/obs/HistoricObservationsOnADate
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
 import HotspotsIndex from './pages/ref/hotspot/HotspotsIndex';
 import HotspotsInARegion from './pages/ref/hotspot/HotspotsInARegion';
+import Index from './pages/Index';
 import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import NearestObservationOfASpecies from './pages/obs/NearestObservationsOfASpecies';
 import ObservationsIndex from './pages/obs/ObservationsIndex';
@@ -38,6 +39,10 @@ export default createRoutesFromChildren(
     path="/"
     element={<Root />}
   >
+    <Route
+      element={<Index />}
+      index
+    />
     <Route path="geography">
       <Route
         element={<GeographyIndex />}
