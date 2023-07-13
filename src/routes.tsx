@@ -27,6 +27,7 @@ import SubregionList from './pages/ref/region/SubregionList';
 import TaxaLocaleCodes from './pages/ref/taxonomy/TaxaLocaleCodes';
 import TaxonomicForms from './pages/ref/taxonomy/TaxonomicForms';
 import TaxonomicGroups from './pages/ref/taxonomy/TaxonomicGroups';
+import TaxonomyIndex from './pages/ref/taxonomy/TaxonomyIndex';
 import TaxonomyVersions from './pages/ref/taxonomy/TaxonomyVersions';
 import Top100 from './pages/product/Top100';
 import ViewChecklist from './pages/product/ViewChecklist';
@@ -143,6 +144,10 @@ export default createRoutesFromChildren(
       />
     </Route>
     <Route path="taxonomy">
+      <Route
+        element={<TaxonomyIndex />}
+        index
+      />
       <Route
         element={<EbirdTaxonomy />}
         path="ebird-taxonomy"
