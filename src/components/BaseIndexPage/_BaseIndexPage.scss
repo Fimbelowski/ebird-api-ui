@@ -1,0 +1,11 @@
+.base-index-page {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 75rem;
+
+  &__title {
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+  }
+}
