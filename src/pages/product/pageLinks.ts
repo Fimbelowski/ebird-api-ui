@@ -1,6 +1,6 @@
-import type PageLink from '../../types/PageLink';
+import type Page from '../../types/Page';
 
-const pageLinks: PageLink[] = [
+const pageLinks: Page[] = [
   {
     description:
       'Fetches information on the checklists submitted on a given date for a country or region.',

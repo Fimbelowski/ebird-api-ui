@@ -1,6 +1,6 @@
-import type PageLink from '../../types/PageLink';
+import type Page from '../../types/Page';
 
-const pageLinks: PageLink[] = [
+const pageLinks: Page[] = [
   {
     description:
       'Fetches a list of all taxa seen in a country, region or location on a specific date.',

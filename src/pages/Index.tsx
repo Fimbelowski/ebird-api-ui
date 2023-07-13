@@ -1,8 +1,8 @@
 import BaseIndexPage from '../components/BaseIndexPage/BaseIndexPage';
-import type PageLink from '../types/PageLink';
+import type Page from '../types/Page';
 
 export default function Index() {
-  const pageLinks: PageLink[] = [
+  const pageLinks: Page[] = [
     {
       description: "Find a country's or region's neighbors.",
       index: true,

@@ -1,9 +1,9 @@
 import PageLink from '../PageLink/PageLink';
-import type PageLinkInterface from '../../types/PageLink';
+import type Page from '../../types/Page';
 
 interface Props {
   description: string;
-  pageLinks: PageLinkInterface[];
+  pageLinks: Page[];
   title?: string;
 }
 

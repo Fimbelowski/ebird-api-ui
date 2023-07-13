@@ -1,6 +1,6 @@
-import type PageLink from '../../../types/PageLink';
+import type Page from '../../../types/Page';
 
-const pageLinks: PageLink[] = [
+const pageLinks: Page[] = [
   {
     description:
       'Fetches the list of countries or regions that share a border with the specified region.',

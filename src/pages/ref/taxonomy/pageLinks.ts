@@ -1,6 +1,6 @@
-import type PageLink from '../../../types/PageLink';
+import type Page from '../../../types/Page';
 
-const pageLinks: PageLink[] = [
+const pageLinks: Page[] = [
   {
     description:
       'Fetches the taxonomy (species, species codes, common names, scientific names, etc.) used by Ebird',

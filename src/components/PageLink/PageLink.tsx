@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import type PageLinkInterface from '../../types/PageLink';
+import type PageLinkInterface from '../../types/Page';
 import Tooltip from '../Tooltip/Tooltip';
 
 export default function PageLink({

@@ -1,6 +1,6 @@
-import type PageLink from '../../../types/PageLink';
+import type Page from '../../../types/Page';
 
-const pageLinks: PageLink[] = [
+const pageLinks: Page[] = [
   {
     description: 'Fetches information about a specified hotspot.',
     path: 'hotspot-info',

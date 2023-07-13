@@ -1,4 +1,4 @@
-export default interface PageLink {
+export default interface Page {
   description: string;
   index?: boolean;
   path: string;
