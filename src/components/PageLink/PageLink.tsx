@@ -1,18 +1,21 @@
 import { Link } from 'react-router-dom';
 
-export interface PageLinkProps {
-  description: string;
-  path: string;
-  title: string;
-}
+import type PageLinkInterface from '../../types/PageLink';
 
-export function PageLink({ description, path, title }: PageLinkProps) {
+export default function PageLink({
+  description,
+  path,
+  title,
+  requiresApiKey = false,
+}: PageLinkInterface) {
   return (
     <Link
       className="page-link"
       to={path}
     >
-      <h3 className="page-link__title">{title}</h3>
+      <h3 className="page-link__title">{`${title}${
+        requiresApiKey ? ' 🔑' : ''
+      }`}</h3>
       <p>{description}</p>
     </Link>
   );
