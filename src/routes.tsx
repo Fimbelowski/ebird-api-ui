@@ -1,18 +1,19 @@
 import { createRoutesFromChildren, Route } from 'react-router-dom';
 
 import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
+import BaseIndexPage from './components/BaseIndexPage/BaseIndexPage';
 import ChecklistFeedOnADate from './pages/product/ChecklistFeedOnADate';
 import EbirdTaxonomy from './pages/ref/taxonomy/EbirdTaxonomy';
-import GeographyIndex from './pages/ref/geo/GeographyIndex';
+import geographyPageLinks from './pages/ref/geo/pageLinks';
 import HistoricObservationsOnADate from './pages/obs/HistoricObservationsOnADate';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
-import HotspotsIndex from './pages/ref/hotspot/HotspotsIndex';
+import hotspotPageLinks from './pages/ref/hotspot/pageLinks';
 import HotspotsInARegion from './pages/ref/hotspot/HotspotsInARegion';
 import Index from './pages/Index';
 import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import NearestObservationOfASpecies from './pages/obs/NearestObservationsOfASpecies';
-import ObservationsIndex from './pages/obs/ObservationsIndex';
-import ProductIndex from './pages/product/ProductIndex';
+import observationsPageLinks from './pages/obs/pageLinks';
+import productPageLinks from './pages/product/pageLinks';
 import RecentChecklistsFeed from './pages/obs/RecentChecklistsFeed';
 import RecentNearbyNotableObservations from './pages/obs/RecentNearbyNotableObservations';
 import RecentNearbyObservations from './pages/obs/RecentNearbyObservations';
@@ -20,16 +21,16 @@ import RecentNearbyObservationsOfASpecies from './pages/obs/RecentNearbyObservat
 import RecentNotableObservationsInARegion from './pages/obs/RecentNotableObservationsInARegion';
 import RecentObservationsInARegion from './pages/obs/RecentObservationsInARegion';
 import RecentObservationsOfASpeciesInARegion from './pages/obs/RecentObservationsOfASpeciesInARegion';
+import regionPageLinks from './pages/ref/region/pageLinks';
 import RegionInfo from './pages/ref/region/RegionInfo';
 import RegionalStatisticsOnADate from './pages/product/RegionalStatisticsOnADate';
-import RegionsIndex from './pages/ref/region/RegionsIndex';
 import Root from './pages/Root';
 import SpeciesListForARegion from './pages/product/SpeciesListForARegion';
 import SubregionList from './pages/ref/region/SubregionList';
 import TaxaLocaleCodes from './pages/ref/taxonomy/TaxaLocaleCodes';
 import TaxonomicForms from './pages/ref/taxonomy/TaxonomicForms';
 import TaxonomicGroups from './pages/ref/taxonomy/TaxonomicGroups';
-import TaxonomyIndex from './pages/ref/taxonomy/TaxonomyIndex';
+import taxonomyPageLinks from './pages/ref/taxonomy/pageLinks';
 import TaxonomyVersions from './pages/ref/taxonomy/TaxonomyVersions';
 import Top100 from './pages/product/Top100';
 import ViewChecklist from './pages/product/ViewChecklist';
@@ -45,7 +46,13 @@ export default createRoutesFromChildren(
     />
     <Route path="geography">
       <Route
-        element={<GeographyIndex />}
+        element={
+          <BaseIndexPage
+            description="Find a country's or region's neighbors."
+            pageLinks={geographyPageLinks}
+            title="Geography"
+          />
+        }
         index
       />
       <Route
@@ -55,7 +62,13 @@ export default createRoutesFromChildren(
     </Route>
     <Route path="hotspots">
       <Route
-        element={<HotspotsIndex />}
+        element={
+          <BaseIndexPage
+            description="Find the hotspots for a given country or region or nearby hotspots."
+            pageLinks={hotspotPageLinks}
+            title="Hotspots"
+          />
+        }
         index
       />
       <Route
@@ -73,7 +86,13 @@ export default createRoutesFromChildren(
     </Route>
     <Route path="observations">
       <Route
-        element={<ObservationsIndex />}
+        element={
+          <BaseIndexPage
+            description="Fetch observations submitted to eBird in checklists. Either for a specific country, region or location, or for nearby locations."
+            pageLinks={observationsPageLinks}
+            title="Observations"
+          />
+        }
         index
       />
       <Route
@@ -115,7 +134,13 @@ export default createRoutesFromChildren(
     </Route>
     <Route path="product">
       <Route
-        element={<ProductIndex />}
+        element={
+          <BaseIndexPage
+            description="Product end-points make it easy to get the information shown in various pages on the eBird web site (Top 100 Contributors, checklist data, etc.)"
+            pageLinks={productPageLinks}
+            title="Product"
+          />
+        }
         index
       />
       <Route
@@ -141,7 +166,13 @@ export default createRoutesFromChildren(
     </Route>
     <Route path="regions">
       <Route
-        element={<RegionsIndex />}
+        element={
+          <BaseIndexPage
+            description="Get information about a specific region or get a list of all regions within a given region."
+            pageLinks={regionPageLinks}
+            title="Regions"
+          />
+        }
         index
       />
       <Route
@@ -155,7 +186,13 @@ export default createRoutesFromChildren(
     </Route>
     <Route path="taxonomy">
       <Route
-        element={<TaxonomyIndex />}
+        element={
+          <BaseIndexPage
+            description="Get taxonomic information about species as well as information about the taxonomy itself."
+            pageLinks={taxonomyPageLinks}
+            title="Taxonomy"
+          />
+        }
         index
       />
       <Route
