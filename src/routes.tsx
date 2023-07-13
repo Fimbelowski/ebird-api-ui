@@ -6,6 +6,7 @@ import EbirdTaxonomy from './pages/ref/taxonomy/EbirdTaxonomy';
 import Geography from './pages/ref/geo/Geography';
 import HistoricObservationsOnADate from './pages/obs/HistoricObservationsOnADate';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
+import Hotspots from './pages/ref/hotspot/Hotspots';
 import HotspotsInARegion from './pages/ref/hotspot/HotspotsInARegion';
 import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import NearestObservationOfASpecies from './pages/obs/NearestObservationsOfASpecies';
@@ -45,6 +46,10 @@ export default createRoutesFromChildren(
       />
     </Route>
     <Route path="hotspots">
+      <Route
+        element={<Hotspots />}
+        index
+      />
       <Route
         element={<HotspotInfo />}
         path="hotspot-info"
