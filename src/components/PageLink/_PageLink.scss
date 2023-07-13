@@ -2,7 +2,7 @@
   @include paper;
   display: block;
   color: inherit;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-regular) var(--spacing-lg);
   text-decoration: none;
 
   &__title {
