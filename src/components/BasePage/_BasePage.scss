@@ -1,7 +1,5 @@
 .base-page {
-  padding: 2rem;
-  max-width: 100rem;
-  margin: 0 auto;
+  padding: var(--spacing-lg);
 
   display: flex;
   flex-direction: column;
