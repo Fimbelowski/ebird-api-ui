@@ -1,24 +1,22 @@
-import { PageLink, type PageLinkProps } from '../PageLink/PageLink';
+import PageLink from '../PageLink/PageLink';
+import type PageLinkInterface from '../../types/PageLink';
 
 interface Props {
-  pageLinks: PageLinkProps[];
+  pageLinks: PageLinkInterface[];
   title: string;
 }
 
 export default function BaseIndexPage({ pageLinks, title }: Props) {
-  const listItems = pageLinks.map(({ description, path, title }) => (
+  const listItems = pageLinks.map((pageLink) => (
     <PageLink
-      description={description}
-      key={title}
-      path={path}
-      title={title}
+      {...pageLink}
+      key={pageLink.title}
     />
   ));
 
   return (
     <div className="base-index-page">
       <h2 className="base-index-page__title">{title}</h2>
-      <menu>{listItems}</menu>
     </div>
   );
 }
