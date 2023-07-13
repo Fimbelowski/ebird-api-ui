@@ -1,6 +1,6 @@
 import type Page from '../../types/Page';
 
-const pageLinks: Page[] = [
+const pages: Page[] = [
   {
     description:
       'Fetches a list of all taxa seen in a country, region or location on a specific date.',
@@ -66,4 +66,4 @@ const pageLinks: Page[] = [
   },
 ];
 
-export default pageLinks;
+export default pages;

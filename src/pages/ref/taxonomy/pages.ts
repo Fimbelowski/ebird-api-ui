@@ -1,6 +1,6 @@
 import type Page from '../../../types/Page';
 
-const pageLinks: Page[] = [
+const pages: Page[] = [
   {
     description:
       'Fetches the taxonomy (species, species codes, common names, scientific names, etc.) used by Ebird',
@@ -36,4 +36,4 @@ const pageLinks: Page[] = [
   },
 ];
 
-export default pageLinks;
+export default pages;

@@ -3,16 +3,12 @@ import type Page from '../../types/Page';
 
 interface Props {
   description: string;
-  pageLinks: Page[];
+  pages: Page[];
   title?: string;
 }
 
-export default function BaseIndexPage({
-  description,
-  pageLinks,
-  title,
-}: Props) {
-  const listItems = pageLinks.map((pageLink) => (
+export default function BaseIndexPage({ description, pages, title }: Props) {
+  const listItems = pages.map((pageLink) => (
     <PageLink
       {...pageLink}
       key={pageLink.title}

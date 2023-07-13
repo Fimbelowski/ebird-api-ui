@@ -1,6 +1,6 @@
 import type Page from '../../types/Page';
 
-const pageLinks: Page[] = [
+const pages: Page[] = [
   {
     description:
       'Fetches information on the checklists submitted on a given date for a country or region.',
@@ -37,4 +37,4 @@ const pageLinks: Page[] = [
   },
 ];
 
-export default pageLinks;
+export default pages;

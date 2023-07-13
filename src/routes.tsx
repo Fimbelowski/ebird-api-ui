@@ -4,16 +4,16 @@ import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
 import BaseIndexPage from './components/BaseIndexPage/BaseIndexPage';
 import ChecklistFeedOnADate from './pages/product/ChecklistFeedOnADate';
 import EbirdTaxonomy from './pages/ref/taxonomy/EbirdTaxonomy';
-import geographyPageLinks from './pages/ref/geo/pageLinks';
+import geographyPages from './pages/ref/geo/pages';
 import HistoricObservationsOnADate from './pages/obs/HistoricObservationsOnADate';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
-import hotspotPageLinks from './pages/ref/hotspot/pageLinks';
+import hotspotPages from './pages/ref/hotspot/pages';
 import HotspotsInARegion from './pages/ref/hotspot/HotspotsInARegion';
 import Index from './pages/Index';
 import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import NearestObservationOfASpecies from './pages/obs/NearestObservationsOfASpecies';
-import observationsPageLinks from './pages/obs/pageLinks';
-import productPageLinks from './pages/product/pageLinks';
+import observationsPages from './pages/obs/pages';
+import productPages from './pages/product/pages';
 import RecentChecklistsFeed from './pages/obs/RecentChecklistsFeed';
 import RecentNearbyNotableObservations from './pages/obs/RecentNearbyNotableObservations';
 import RecentNearbyObservations from './pages/obs/RecentNearbyObservations';
@@ -21,7 +21,7 @@ import RecentNearbyObservationsOfASpecies from './pages/obs/RecentNearbyObservat
 import RecentNotableObservationsInARegion from './pages/obs/RecentNotableObservationsInARegion';
 import RecentObservationsInARegion from './pages/obs/RecentObservationsInARegion';
 import RecentObservationsOfASpeciesInARegion from './pages/obs/RecentObservationsOfASpeciesInARegion';
-import regionPageLinks from './pages/ref/region/pageLinks';
+import regionPages from './pages/ref/region/pages';
 import RegionInfo from './pages/ref/region/RegionInfo';
 import RegionalStatisticsOnADate from './pages/product/RegionalStatisticsOnADate';
 import Root from './pages/Root';
@@ -30,7 +30,7 @@ import SubregionList from './pages/ref/region/SubregionList';
 import TaxaLocaleCodes from './pages/ref/taxonomy/TaxaLocaleCodes';
 import TaxonomicForms from './pages/ref/taxonomy/TaxonomicForms';
 import TaxonomicGroups from './pages/ref/taxonomy/TaxonomicGroups';
-import taxonomyPageLinks from './pages/ref/taxonomy/pageLinks';
+import taxonomyPages from './pages/ref/taxonomy/pages';
 import TaxonomyVersions from './pages/ref/taxonomy/TaxonomyVersions';
 import Top100 from './pages/product/Top100';
 import ViewChecklist from './pages/product/ViewChecklist';
@@ -49,7 +49,7 @@ export default createRoutesFromChildren(
         element={
           <BaseIndexPage
             description="Find a country's or region's neighbors."
-            pageLinks={geographyPageLinks}
+            pages={geographyPages}
             title="Geography"
           />
         }
@@ -65,7 +65,7 @@ export default createRoutesFromChildren(
         element={
           <BaseIndexPage
             description="Find the hotspots for a given country or region or nearby hotspots."
-            pageLinks={hotspotPageLinks}
+            pages={hotspotPages}
             title="Hotspots"
           />
         }
@@ -89,7 +89,7 @@ export default createRoutesFromChildren(
         element={
           <BaseIndexPage
             description="Fetch observations submitted to eBird in checklists. Either for a specific country, region or location, or for nearby locations."
-            pageLinks={observationsPageLinks}
+            pages={observationsPages}
             title="Observations"
           />
         }
@@ -137,7 +137,7 @@ export default createRoutesFromChildren(
         element={
           <BaseIndexPage
             description="Product end-points make it easy to get the information shown in various pages on the eBird web site (Top 100 Contributors, checklist data, etc.)"
-            pageLinks={productPageLinks}
+            pages={productPages}
             title="Product"
           />
         }
@@ -169,7 +169,7 @@ export default createRoutesFromChildren(
         element={
           <BaseIndexPage
             description="Get information about a specific region or get a list of all regions within a given region."
-            pageLinks={regionPageLinks}
+            pages={regionPages}
             title="Regions"
           />
         }
@@ -189,7 +189,7 @@ export default createRoutesFromChildren(
         element={
           <BaseIndexPage
             description="Get taxonomic information about species as well as information about the taxonomy itself."
-            pageLinks={taxonomyPageLinks}
+            pages={taxonomyPages}
             title="Taxonomy"
           />
         }

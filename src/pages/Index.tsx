@@ -2,7 +2,7 @@ import BaseIndexPage from '../components/BaseIndexPage/BaseIndexPage';
 import type Page from '../types/Page';
 
 export default function Index() {
-  const pageLinks: Page[] = [
+  const pages: Page[] = [
     {
       description: "Find a country's or region's neighbors.",
       index: true,
@@ -49,7 +49,7 @@ export default function Index() {
   return (
     <BaseIndexPage
       description="eBird API UI wraps all 25 of the eBird API's endpoints, allowing you to make API requests easily."
-      pageLinks={pageLinks}
+      pages={pages}
       title=""
     />
   );

@@ -1,6 +1,6 @@
 import type Page from '../../../types/Page';
 
-const pageLinks: Page[] = [
+const pages: Page[] = [
   {
     description: 'Fetches information about a specified hotspot.',
     path: 'hotspot-info',
@@ -18,4 +18,4 @@ const pageLinks: Page[] = [
   },
 ];
 
-export default pageLinks;
+export default pages;

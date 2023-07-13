@@ -1,6 +1,6 @@
 import type Page from '../../../types/Page';
 
-const pageLinks: Page[] = [
+const pages: Page[] = [
   {
     description:
       'Get information on the name and geographical area covered by a region.',
@@ -17,4 +17,4 @@ const pageLinks: Page[] = [
   },
 ];
 
-export default pageLinks;
+export default pages;
