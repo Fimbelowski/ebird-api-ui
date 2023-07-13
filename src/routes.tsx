@@ -3,10 +3,10 @@ import { createRoutesFromChildren, Route } from 'react-router-dom';
 import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
 import ChecklistFeedOnADate from './pages/product/ChecklistFeedOnADate';
 import EbirdTaxonomy from './pages/ref/taxonomy/EbirdTaxonomy';
-import Geography from './pages/ref/geo/Geography';
+import GeographyIndex from './pages/ref/geo/GeographyIndex';
 import HistoricObservationsOnADate from './pages/obs/HistoricObservationsOnADate';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
-import Hotspots from './pages/ref/hotspot/Hotspots';
+import HotspotsIndex from './pages/ref/hotspot/HotspotsIndex';
 import HotspotsInARegion from './pages/ref/hotspot/HotspotsInARegion';
 import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import NearestObservationOfASpecies from './pages/obs/NearestObservationsOfASpecies';
@@ -19,7 +19,7 @@ import RecentObservationsInARegion from './pages/obs/RecentObservationsInARegion
 import RecentObservationsOfASpeciesInARegion from './pages/obs/RecentObservationsOfASpeciesInARegion';
 import RegionInfo from './pages/ref/region/RegionInfo';
 import RegionalStatisticsOnADate from './pages/product/RegionalStatisticsOnADate';
-import Regions from './pages/ref/region/Regions';
+import RegionsIndex from './pages/ref/region/RegionsIndex';
 import Root from './pages/Root';
 import SpeciesListForARegion from './pages/product/SpeciesListForARegion';
 import SubregionList from './pages/ref/region/SubregionList';
@@ -37,7 +37,7 @@ export default createRoutesFromChildren(
   >
     <Route path="geography">
       <Route
-        element={<Geography />}
+        element={<GeographyIndex />}
         index
       />
       <Route
@@ -47,7 +47,7 @@ export default createRoutesFromChildren(
     </Route>
     <Route path="hotspots">
       <Route
-        element={<Hotspots />}
+        element={<HotspotsIndex />}
         index
       />
       <Route
@@ -125,7 +125,7 @@ export default createRoutesFromChildren(
     </Route>
     <Route path="regions">
       <Route
-        element={<Regions />}
+        element={<RegionsIndex />}
         index
       />
       <Route

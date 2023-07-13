@@ -1,7 +1,7 @@
 import BaseIndexPage from '../../../components/BaseIndexPage/BaseIndexPage';
 import type PageLink from '../../../types/PageLink';
 
-export default function Hotspots() {
+export default function HotspotsIndex() {
   const pageLinks: PageLink[] = [
     {
       description: 'Fetches information about a specified hotspot.',

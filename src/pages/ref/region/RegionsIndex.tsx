@@ -1,7 +1,7 @@
 import BaseIndexPage from '../../../components/BaseIndexPage/BaseIndexPage';
 import type PageLink from '../../../types/PageLink';
 
-export default function Regions() {
+export default function RegionsIndex() {
   const pageLinks: PageLink[] = [
     {
       description:
