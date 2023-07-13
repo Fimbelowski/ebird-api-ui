@@ -5,12 +5,18 @@ import Tooltip from '../Tooltip/Tooltip';
 
 export default function PageLink({
   description,
+  index = false,
   path,
   title,
   requiresApiKey = false,
 }: PageLinkInterface) {
   function Icon() {
+    if (index) {
+      return <span>📂</span>;
+    }
+
     const icon = requiresApiKey ? '🔑' : '🔓';
+
     const tooltipMessage = `This endpoint ${
       requiresApiKey ? 'requires' : 'does not require'
     } an API key.`;
