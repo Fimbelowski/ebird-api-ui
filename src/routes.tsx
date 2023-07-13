@@ -10,6 +10,7 @@ import HotspotsIndex from './pages/ref/hotspot/HotspotsIndex';
 import HotspotsInARegion from './pages/ref/hotspot/HotspotsInARegion';
 import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import NearestObservationOfASpecies from './pages/obs/NearestObservationsOfASpecies';
+import ObservationsIndex from './pages/obs/ObservationsIndex';
 import ProductIndex from './pages/product/ProductIndex';
 import RecentChecklistsFeed from './pages/obs/RecentChecklistsFeed';
 import RecentNearbyNotableObservations from './pages/obs/RecentNearbyNotableObservations';
@@ -66,6 +67,10 @@ export default createRoutesFromChildren(
       />
     </Route>
     <Route path="observations">
+      <Route
+        element={<ObservationsIndex />}
+        index
+      />
       <Route
         element={<HistoricObservationsOnADate />}
         path="historic-observations-on-a-date"
