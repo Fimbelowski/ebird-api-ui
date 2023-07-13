@@ -17,6 +17,7 @@ export default function BaseIndexPage({ pageLinks, title }: Props) {
   return (
     <div className="base-index-page">
       <h2 className="base-index-page__title">{title}</h2>
+      <menu className="base-index-page__menu">{listItems}</menu>
     </div>
   );
 }
