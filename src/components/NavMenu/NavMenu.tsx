@@ -64,7 +64,7 @@ export function NavMenu({
     >
       <Link
         className="nav-menu__link"
-        to={folderLabel}
+        to={folderPath}
       >
         {folderLabel}
       </Link>
