@@ -21,6 +21,7 @@ const PATH = {
   HotspotsInARegion: `${FOLDER_PATH.Hotspots}/hotspots-in-a-region`,
   NearbyHotspots: `${FOLDER_PATH.Hotspots}/nearby-hotspots`,
   NearestObservationsOfASpecies: `${FOLDER_PATH.Observations}/nearest-observations-of-a-species`,
+  NotFound: '*',
   Observations: FOLDER_PATH.Observations,
   Product: FOLDER_PATH.Product,
   RecentChecklistsFeed: `${FOLDER_PATH.Observations}/recent-checklists-feed`,
