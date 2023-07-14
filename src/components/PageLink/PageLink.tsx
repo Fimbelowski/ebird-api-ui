@@ -12,16 +12,14 @@ export default function PageLink({
 }: PageLinkInterface) {
   function Icon() {
     if (index) {
-      return <span>📂</span>;
+      return <>📂</>;
     }
 
-    const icon = requiresApiKey ? '🔑' : '🔓';
+    return <Tooltip text="This endpoint requires an API key.">🔑</Tooltip>;
+  }
 
-    const tooltipMessage = `This endpoint ${
-      requiresApiKey ? 'requires' : 'does not require'
-    } an API key.`;
-
-    return <Tooltip text={tooltipMessage}>{icon}</Tooltip>;
+  function showIcon() {
+    return index || requiresApiKey;
   }
 
   return (
@@ -30,7 +28,12 @@ export default function PageLink({
       to={path}
     >
       <h3 className="page-link__title">
-        <Icon /> {title}
+        {showIcon() ? (
+          <>
+            <Icon />{' '}
+          </>
+        ) : null}
+        {title}
       </h3>
       <p>{description}</p>
     </Link>
