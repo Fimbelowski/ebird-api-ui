@@ -21,7 +21,7 @@ export default function ebirdHotspotCsvParser(
     {
       lat: (stringValue: string) => parseFloat(stringValue),
       lng: (stringValue: string) => parseFloat(stringValue),
-      numSpeciesAllTime: (stringValue: string) => parseInt(stringValue),
+      numSpeciesAllTime: (stringValue = '0') => parseInt(stringValue, 10),
     },
     ignoreFirstLine
   );

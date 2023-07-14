@@ -16,8 +16,21 @@ export default function csvToArray<T>(
     rows.shift();
   }
 
-  return rows.map((row) => {
-    const values = row.split(/(?!\B"[^"]*),(?![^"]*"\B)/g);
+  return rows.map((row, index) => {
+    const alteredRow = row.replaceAll(/"([^"])*"/g, (match) =>
+      ' '.repeat(match.length)
+    );
+
+    const commaIndices = Array.from(alteredRow.matchAll(/,/g)).map(
+      ({ index }) => index as number
+    );
+
+    const values = [
+      row.slice(0, commaIndices[0]),
+      ...commaIndices.map((commaIndex, index) =>
+        row.slice(commaIndex + 1, commaIndices[index + 1])
+      ),
+    ];
 
     const rowObject: Partial<Record<keyof T, any>> = {};
 
