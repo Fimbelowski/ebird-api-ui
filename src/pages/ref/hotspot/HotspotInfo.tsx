@@ -4,6 +4,7 @@ import { BasePageKeyValuePairsList } from '../../../components/BasePageKeyValueP
 import type EbirdLocation from '../../../types/EbirdLocation';
 import useHotspotInfo from '../../../services/ebird/hooks/endpoints/ref/hotspot/useHotspotInfo';
 import EbirdRegionCodeInput from '../../../components/EbirdRegionCodeInput';
+import PAGE from './PAGE';
 
 export default function HotspotInfo() {
   const getHotspotInfo = useHotspotInfo();
@@ -25,10 +26,9 @@ export default function HotspotInfo() {
 
   return (
     <BasePageKeyValuePairsList<EbirdLocation>
-      description="Fetches information about a specified hotspot."
       formContent={formContent}
       onSubmit={onSubmit}
-      title="Hotspot Info"
+      page={PAGE.HotspotInfo}
     />
   );
 }

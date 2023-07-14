@@ -5,6 +5,7 @@ import DateInput from '../../components/DateInput';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';
 import useRegionalStatisticsOnADate from '../../services/ebird/hooks/endpoints/product/useRegionalStatisticsOnADate';
 import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
+import PAGE from './PAGE';
 
 interface EbirdRegionStats {
   numChecklists: number;
@@ -49,11 +50,9 @@ export default function RegionalStatisticsOnADate() {
 
   return (
     <BasePageKeyValuePairsList<EbirdRegionStats>
-      description="Fetches a summary of the number of checklists submitted, species seen and contributors on a given date for a country or region."
       formContent={formContent}
       onSubmit={onSubmit}
-      requiresApiKey
-      title="Regional Statistics on a Date"
+      page={PAGE.RegionalStatisticsOnADate}
     />
   );
 }

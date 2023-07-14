@@ -8,6 +8,7 @@ import { useChecklistFeedOnADate } from '../../services/ebird/hooks/endpoints/pr
 import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
 import type EbirdChecklistSortBy from '../../types/EbirdChecklistSortBy';
 import MaxResultsInput from '../../components/MaxResultsInput';
+import PAGE from './PAGE';
 
 export default function ChecklistFeedOnADate() {
   const getChecklistFeedOnADate = useChecklistFeedOnADate();
@@ -79,12 +80,10 @@ export default function ChecklistFeedOnADate() {
 
   return (
     <BasePageTableEbirdChecklist
-      description="Fetches information on the checklists submitted on a given date for a country or region."
       formContent={formContent}
       formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
-      requiresApiKey
-      title="Checklist Feed on a Date"
+      page={PAGE.ChecklistFeedOnADate}
     />
   );
 }

@@ -11,6 +11,7 @@ import useTop100 from '../../services/ebird/hooks/endpoints/product/useTop100';
 import dateStringToYearMonthDay from '../../utilities/dateStringToYearMonthDay';
 import type EbirdContributorRankedBy from '../../types/EbirdContributorRankedBy';
 import MaxResultsInput from '../../components/MaxResultsInput';
+import PAGE from './PAGE';
 
 export default function Top100() {
   const getTop100 = useTop100();
@@ -176,14 +177,12 @@ export default function Top100() {
 
   return (
     <BasePageTable<EbirdContributor>
-      description="Fetches the top 100 contributors on a given date for a country or region."
       formContent={formContent}
       formOptionsFieldsetContent={formOptionsFieldsetContent}
       onLoad={onLoad}
       onSubmit={onSubmit}
-      requiresApiKey
+      page={PAGE.Top100}
       tables={tables}
-      title="Top 100 Contributors"
     />
   );
 }

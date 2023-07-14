@@ -7,6 +7,7 @@ import LocaleOptionsContext from '../context/LocaleOptionsContext';
 import { type SelectOptionArray } from '../components/Select/Select';
 import TaxonomyVersionOptionsContext from '../context/TaxonomyVersionOptionsContext';
 import Layout from '../layout/Layout/Layout';
+import ScrollToTop from '../components/ScrollToTop';
 
 export default function Root() {
   const [apiKey, setApiKey] = useState('');
@@ -27,6 +28,7 @@ export default function Root() {
   return (
     <>
       <Layout>
+        <ScrollToTop />
         <ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
           <LoadingContext.Provider
             value={{ loading, loadingPosition, setLoading, setLoadingPosition }}

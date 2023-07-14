@@ -2,46 +2,46 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 import classNames from '../../utilities/classNames';
-import type RouteName from '../../types/RouteName';
-
-export interface NavMenuItem {
-  label: string;
-  path: RouteName;
-}
+import type Page from '../../types/Page';
 
 interface Props {
-  items: NavMenuItem[];
-  label: string;
-  menuAlignment?: 'left' | 'right';
+  alignToRight?: boolean;
+  folderLabel: string;
+  folderPath: string;
+  pages: Page[];
 }
 
-export function NavMenu({ items, label, menuAlignment = 'left' }: Props) {
+export default function NavMenu({
+  alignToRight = false,
+  folderLabel,
+  folderPath,
+  pages,
+}: Props) {
   const [isHovered, setIsHovered] = useState(false);
+
+  function Menu() {
+    const listItems = pages.map(({ path, title }) => (
+      <Link
+        className="nav-menu__link"
+        key={path}
+        to={path}
+      >
+        {title}
+      </Link>
+    ));
+
+    return <menu className={menuClasses()}>{listItems}</menu>;
+  }
+
+  function containerClasses() {
+    return classNames(['nav-menu', { 'nav-menu--hovered': isHovered }]);
+  }
 
   function menuClasses() {
     return classNames([
       'nav-menu__menu',
-      `nav-menu__menu--align-${menuAlignment}`,
-      isHovered ? '' : 'nav-menu__menu--hidden',
+      { 'nav-menu__menu--right': alignToRight },
     ]);
-  }
-
-  function MenuItems() {
-    const listItems = items.map(({ label, path }, index) => (
-      <li
-        className="nav-menu__item"
-        key={index}
-      >
-        <Link
-          className="nav-menu__link"
-          to={path}
-        >
-          {label}
-        </Link>
-      </li>
-    ));
-
-    return <>{listItems}</>;
   }
 
   function onMouseEnter() {
@@ -54,14 +54,17 @@ export function NavMenu({ items, label, menuAlignment = 'left' }: Props) {
 
   return (
     <div
-      className="nav-menu__label"
+      className={containerClasses()}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      {label}
-      <menu className={menuClasses()}>
-        <MenuItems />
-      </menu>
+      <Link
+        className="nav-menu__link"
+        to={folderPath}
+      >
+        {folderLabel}
+      </Link>
+      {isHovered ? <Menu /> : null}
     </div>
   );
 }

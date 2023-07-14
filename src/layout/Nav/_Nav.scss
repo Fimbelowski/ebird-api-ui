@@ -1,4 +1,6 @@
 .nav {
-  display: flex;
-  gap: var(--spacing-lg);
+  &__menu {
+    display: flex;
+    gap: var(--spacing-regular);
+  }
 }

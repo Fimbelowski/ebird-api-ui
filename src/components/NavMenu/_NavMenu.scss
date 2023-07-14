@@ -1,40 +1,30 @@
 .nav-menu {
-  &__item {
+  position: relative;
+
+  &__link {
+    border-radius: var(--border-radius-regular);
+    color: inherit;
     padding: var(--spacing-regular);
+    text-decoration: none;
 
     &:hover {
       background-color: #eee;
     }
   }
 
-  &__label {
-    position: relative;
-  }
-
-  &__link {
-    text-decoration: none;
-    color: inherit;
-  }
-
   &__menu {
+    @include paper;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     position: absolute;
-    list-style: none;
-    background-color: white;
-    border: var(--border);
+    top: calc(100% + var(--spacing-regular));
     white-space: nowrap;
+    z-index: 1;
 
-    &--align {
-      &-left {
-        left: 0;
-      }
-
-      &-right {
-        right: 0;
-      }
-    }
-
-    &--hidden {
-      display: none;
+    &--right {
+      right: 0;
+      text-align: end;
     }
   }
 }

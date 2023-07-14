@@ -12,6 +12,7 @@ import {
 import { TextInput } from '../../../components/TextInput';
 import { useRegionInfo } from '../../../services/ebird/hooks/endpoints/ref/region/useRegionInfo';
 import type EbirdRegionNameFormat from '../../../types/EbirdRegionNameFormat';
+import PAGE from './PAGE';
 
 interface EbirdRegionInfo {
   bounds: {
@@ -107,12 +108,10 @@ export default function RegionInfo() {
 
   return (
     <BasePageKeyValuePairsList<EbirdRegionInfo>
-      description="Get information on the name and geographical area covered by a region."
       formContent={formContent}
       formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
-      requiresApiKey
-      title="Region Info"
+      page={PAGE.RegionInfo}
       transformer={transformer}
     />
   );

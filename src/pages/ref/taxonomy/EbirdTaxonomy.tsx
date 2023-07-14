@@ -11,6 +11,7 @@ import VersionSelect from '../../../components/VersionSelect';
 import { BasePageTable, type Tables } from '../../../components/BasePageTable';
 import taxonomyCategoryToLabel from '../../../utilities/taxonomyCategoryToLabel';
 import csvToArray from '../../../utilities/csvToArray';
+import PAGE from './PAGE';
 
 interface EbirdTaxonomyEntry {
   bandingCodes: string[];
@@ -277,14 +278,12 @@ export default function EbirdTaxonomy() {
 
   return (
     <BasePageTable<EbirdTaxonomyEntry>
-      description="Fetches the taxonomy (species, species codes, common names, scientific names, etc.) used by Ebird"
       formContent={formContent}
       formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
+      page={PAGE.EbirdTaxonomy}
       parser={format === 'csv' ? parser : undefined}
-      requiresApiKey
       tables={tables}
-      title="eBird Taxonomy"
     />
   );
 }

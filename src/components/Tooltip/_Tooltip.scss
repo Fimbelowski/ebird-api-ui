@@ -1,22 +1,23 @@
 .tooltip {
   position: relative;
+  overflow: visible;
 
   &:hover .tooltip__text {
     visibility: visible;
   }
 
   &__text {
-    visibility: hidden;
-    position: absolute;
-    bottom: 5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40rem;
-    text-align: center;
     background-color: #eee;
     border: var(--border);
     border-radius: var(--border-radius-regular);
+    bottom: 100%;
+    left: 50%;
     padding: var(--spacing-regular);
+    position: absolute;
+    text-align: center;
+    transform: translateX(-50%);
+    visibility: hidden;
+    white-space: nowrap;
 
     &--disabled {
       display: none;

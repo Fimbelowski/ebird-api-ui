@@ -1,6 +1,7 @@
 import { BasePageTable, type Tables } from '../../../components/BasePageTable';
 import useTaxonomyVersions from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomyVersions';
 import type EbirdTaxonomyVersion from '../../../types/EbirdTaxonomyVersion';
+import PAGE from './PAGE';
 
 export default function TaxonomyVersions() {
   const getTaxonomyVersions = useTaxonomyVersions();
@@ -29,11 +30,10 @@ export default function TaxonomyVersions() {
 
   return (
     <BasePageTable<EbirdTaxonomyVersion>
-      description="Fetches a list of all versions of eBird's taxonomy, with a flag indicating the latest version."
       onSubmit={getTaxonomyVersions}
+      page={PAGE.TaxonomyVersions}
       requestOnMount
       tables={tables}
-      title="Taxonomy Versions"
     />
   );
 }

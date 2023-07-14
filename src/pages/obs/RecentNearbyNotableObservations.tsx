@@ -11,6 +11,7 @@ import MaxResultsInput from '../../components/MaxResultsInput';
 import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLocaleSelect';
 import DistanceInput from '../../components/DistanceInput';
 import Fieldset from '../../components/Fieldset/Fieldset';
+import PAGE from './PAGE';
 
 export default function RecentNearbyNotableObservations() {
   const getRecentNearbyNotableObservations =
@@ -84,12 +85,11 @@ export default function RecentNearbyNotableObservations() {
 
   return (
     <BasePageTableEbirdObservation
-      description="Fetches a list of notable observations of birds seen at locations near a given set of coordinates."
       detailLevel={detailLevel}
       formContent={formContent}
       formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
-      title="Recent Nearby Notable Observations"
+      page={PAGE.RecentNearbyNotableObservations}
     />
   );
 }

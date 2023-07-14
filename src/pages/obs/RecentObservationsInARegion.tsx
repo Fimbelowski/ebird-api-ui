@@ -11,6 +11,7 @@ import SpeciesCommonNameLocaleSelect from '../../components/SpeciesCommonNameLoc
 import MaxResultsInput from '../../components/MaxResultsInput';
 import useRecentObservationsInARegion from '../../services/ebird/hooks/endpoints/data/obs/useRecentObservationsInARegion';
 import LocationsInput from '../../components/LocationsInput';
+import PAGE from './PAGE';
 
 export default function RecentObservationsInARegion() {
   const getRecentObservationsInARegion = useRecentObservationsInARegion();
@@ -85,11 +86,10 @@ export default function RecentObservationsInARegion() {
 
   return (
     <BasePageTableEbirdObservation
-      description="Get the list of recent observations of birds seen in a country, state, county, or location. Results include only the most recent observation for each species in the region specified."
       formContent={formContent}
       formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
-      title="Recent Observations in a Region"
+      page={PAGE.RecentObservationsInAregion}
     />
   );
 }

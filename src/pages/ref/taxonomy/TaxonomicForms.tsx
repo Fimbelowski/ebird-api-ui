@@ -3,6 +3,7 @@ import { useState } from 'react';
 import BasePageList from '../../../components/BasePageList/BasePageList';
 import EbirdSpeciesCodeInput from '../../../components/EbirdSpeciesCodeInput';
 import useTaxonomicForms from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomicForms';
+import PAGE from './PAGE';
 
 export default function TaxonomicForms() {
   const getTaxonomicForms = useTaxonomicForms();
@@ -23,11 +24,9 @@ export default function TaxonomicForms() {
 
   return (
     <BasePageList
-      description="For a given species, fetches a list of subspecies recognised by the eBird taxonomy (including the given species)."
       formContent={formContent}
       onSubmit={onSubmit}
-      requiresApiKey
-      title="Taxonomic Forms"
+      page={PAGE.TaxonomicForms}
     />
   );
 }

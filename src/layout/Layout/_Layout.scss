@@ -1,4 +1,10 @@
 .layout {
   background-color: var(--color-off-white);
   min-height: 100vh;
+
+  &__content {
+    max-width: 100rem;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+  }
 }

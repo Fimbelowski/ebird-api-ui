@@ -1,0 +1,11 @@
+.page-link {
+  @include paper;
+  display: block;
+  color: inherit;
+  padding: var(--spacing-regular) var(--spacing-lg);
+  text-decoration: none;
+
+  &__title {
+    margin-bottom: var(--spacing-sm);
+  }
+}

@@ -9,6 +9,7 @@ import ebirdHotspotCsvParser from './ebirdHotspotCsvParser';
 import LocationInputGroup from '../../../components/LocationInputGroup/LocationInputGroup';
 import DistanceInput from '../../../components/DistanceInput';
 import Fieldset from '../../../components/Fieldset/Fieldset';
+import PAGE from './PAGE';
 
 export default function NearbyHotspots() {
   const getNearbyHotspots = useNearbyHotspots();
@@ -55,12 +56,11 @@ export default function NearbyHotspots() {
 
   return (
     <BasePageTableEbirdHotspot
-      description="Fetches a list of hotspots near a given location."
       formContent={formContent}
       formOptionsFieldsetContent={formOptionsFieldsetContent}
       onSubmit={onSubmit}
+      page={PAGE.NearbyHotspots}
       parser={format === 'csv' ? ebirdHotspotCsvParser : undefined}
-      title="Nearby hotspots"
     />
   );
 }

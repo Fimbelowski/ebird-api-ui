@@ -7,6 +7,7 @@ import Notification from '../Notification/Notification';
 import useLoading from '../../hooks/useLoading';
 import Fieldset from '../Fieldset/Fieldset';
 import CopyRawResponseButton from '../CopyRawResponseButton/CopyRawResponseButton';
+import type Page from '../../types/Page';
 
 export interface ResultsSection {
   content: ReactNode;
@@ -14,29 +15,25 @@ export interface ResultsSection {
 }
 
 export interface BasePageProps<T> {
-  description: string;
   formContent?: ReactNode;
   formOptionsFieldsetContent?: ReactNode;
   onLoad: (results: T) => void;
   onSubmit: () => Promise<Response>;
+  page: Page;
   parser?: (rawResponse: string) => T;
   requestOnMount?: boolean;
-  requiresApiKey?: boolean;
   resultsSections: ResultsSection[];
-  title: string;
 }
 
 export function BasePage<T>({
-  description,
   formContent,
   formOptionsFieldsetContent,
   onLoad,
   onSubmit: onSubmitProp,
+  page: { description, requiresApiKey = false, title },
   parser = (rawResponse) => JSON.parse(rawResponse) as T,
   requestOnMount = false,
-  requiresApiKey = false,
   resultsSections,
-  title,
 }: BasePageProps<T>) {
   const { loading, setLoading } = useLoading();
 
