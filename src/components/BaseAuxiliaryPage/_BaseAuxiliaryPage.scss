@@ -1,0 +1,10 @@
+.base-auxiliary-page {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+
+  &__title {
+    margin-bottom: var(--spacing-regular);
+  }
+}
