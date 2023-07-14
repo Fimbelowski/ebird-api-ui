@@ -13,6 +13,7 @@ import HotspotsInARegion from './pages/ref/hotspot/HotspotsInARegion';
 import Index from './pages/Index';
 import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import NearestObservationOfASpecies from './pages/obs/NearestObservationsOfASpecies';
+import NotFound from './pages/NotFound';
 import observationsPages from './pages/obs/pages';
 import PATH from './types/PATH';
 import productPages from './pages/product/pages';
@@ -222,5 +223,9 @@ export default createRoutesFromChildren(
         path={PATH.TaxonomyVersions}
       />
     </Route>
+    <Route
+      element={<NotFound />}
+      path={PATH.NotFound}
+    />
   </Route>
 );
