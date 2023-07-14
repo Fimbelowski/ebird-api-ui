@@ -13,6 +13,7 @@ const PATH = {
   AdjacentRegions: `${FOLDER_PATH.Geography}/adjacent-regions`,
   ChecklistFeedOnADate: `${FOLDER_PATH.Product}/checklist-feed-on-a-date`,
   EbirdTaxonomy: `${FOLDER_PATH.Taxonomy}/ebird-taxonomy`,
+  Feedback: `${BASE_PATH}feedback`,
   Geography: FOLDER_PATH.Geography,
   HistoricObservationsOnADate: `${FOLDER_PATH.Observations}/historic-observations-on-a-date`,
   HotspotInfo: `${FOLDER_PATH.Hotspots}/hotspot-info`,

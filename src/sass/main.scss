@@ -4,12 +4,14 @@
 @import 'base/reset';
 @import 'base/typography';
 
-@import '../layout/Layout/Layout';
+@import '../layout/Footer/Footer';
 @import '../layout/Header/Header';
+@import '../layout/Layout/Layout';
 @import '../layout/Nav/Nav';
 
 @import '../components/ApiKeyInput/ApiKeyInput';
 @import '../components/AsyncResourceSelect/AsyncResourceSelect';
+@import '../components/BaseAuxiliaryPage/BaseAuxiliaryPage';
 @import '../components/BaseIndexPage/BaseIndexPage';
 @import '../components/BaseInput/BaseInput';
 @import '../components/BasePage/BasePage';
