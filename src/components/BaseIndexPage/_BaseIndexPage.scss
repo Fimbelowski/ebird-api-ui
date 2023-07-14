@@ -1,8 +1,6 @@
 .base-index-page {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-  max-width: 75rem;
 
   &__description {
     margin-bottom: var(--spacing-lg);

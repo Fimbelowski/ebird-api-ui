@@ -5,9 +5,13 @@
   min-height: 100vh;
 
   &__content {
-    flex: 1 1 auto;
     margin: 0 auto;
+    max-width: 75rem;
     padding: var(--spacing-lg);
-    width: 75rem;
+  }
+
+  &__content-container {
+    flex: 1 1 auto;
+    width: 100%;
   }
 }

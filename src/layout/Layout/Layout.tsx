@@ -11,7 +11,9 @@ export default function Layout({ children }: Props) {
   return (
     <div className="layout">
       <Header />
-      <main className="layout__content">{children}</main>
+      <div className="layout__content-container">
+        <main className="layout__content">{children}</main>
+      </div>
       <Footer />
     </div>
   );
