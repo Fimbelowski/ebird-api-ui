@@ -49,7 +49,7 @@ export default function Index() {
 
   return (
     <BaseIndexPage
-      description="eBird API UI wraps all 25 of the eBird API's endpoints, allowing you to make API requests easily."
+      description="eBird API UI wraps all 25 of the eBird API's endpoints, making it easy to make API requests."
       pages={pages}
     />
   );
