@@ -4,6 +4,7 @@ import AdjacentRegions from './pages/ref/geo/AdjacentRegions';
 import BaseIndexPage from './components/BaseIndexPage/BaseIndexPage';
 import ChecklistFeedOnADate from './pages/product/ChecklistFeedOnADate';
 import EbirdTaxonomy from './pages/ref/taxonomy/EbirdTaxonomy';
+import Feedback from './pages/Feedback';
 import geographyPages from './pages/ref/geo/pages';
 import HistoricObservationsOnADate from './pages/obs/HistoricObservationsOnADate';
 import HotspotInfo from './pages/ref/hotspot/HotspotInfo';
@@ -44,6 +45,10 @@ export default createRoutesFromChildren(
     <Route
       element={<Index />}
       index
+    />
+    <Route
+      element={<Feedback />}
+      path={PATH.Feedback}
     />
     <Route path={PATH.Geography}>
       <Route
