@@ -1,5 +1,5 @@
 .header {
-  padding: var(--spacing-regular) 4rem;
+  padding: var(--spacing-regular) var(--spacing-lg);
   border-bottom: var(--border);
   display: flex;
   justify-content: space-between;
@@ -9,16 +9,9 @@
   background-color: white;
   z-index: 1;
 
-  @include respond(medium) {
-    padding: var(--spacing-regular) var(--spacing-lg);
-  }
-
-  @include respond(small) {
-    padding: var(--spacing-regular);
-  }
-
-  @include respond(xs) {
+  @include respond(md) {
     flex-direction: column;
+    gap: var(--spacing-regular);
   }
 
   &__title {

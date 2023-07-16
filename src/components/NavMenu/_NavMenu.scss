@@ -22,6 +22,10 @@
     white-space: nowrap;
     z-index: 1;
 
+    @include respond(md) {
+      display: none;
+    }
+
     &--right {
       right: 0;
       text-align: end;

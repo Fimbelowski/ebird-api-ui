@@ -1,6 +1,12 @@
 .nav {
   &__menu {
     display: flex;
-    gap: var(--spacing-regular);
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+
+    @include respond(md) {
+      gap: var(--spacing-lg) var(--spacing-sm);
+    }
   }
 }

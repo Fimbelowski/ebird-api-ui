@@ -7,19 +7,8 @@
 }
 
 html {
+  // 1rem = 10px
   font-size: 62.5%;
-
-  @include respond(medium) {
-    font-size: 56.25%;
-  }
-
-  @include respond(small) {
-    font-size: 50%;
-  }
-
-  @include respond(xs) {
-    font-size: 43.75%;
-  }
 }
 
 body {

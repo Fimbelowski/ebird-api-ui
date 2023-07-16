@@ -5,20 +5,16 @@
 }
 
 @mixin respond($breakpoint) {
-  @if $breakpoint == medium {
-    @media only screen and (max-width: 56.25em) {
+  @if $breakpoint == md {
+    // 800px
+    @media only screen and (max-width: 50em) {
       @content;
     }
   }
 
-  @if $breakpoint == small {
-    @media only screen and (max-width: 46.875em) {
-      @content;
-    }
-  }
-
-  @if $breakpoint == xs {
-    @media only screen and (max-width: 40.625em) {
+  @if $breakpoint == sm {
+    // 450px
+    @media only screen and (max-width: 28.125em) {
       @content;
     }
   }
