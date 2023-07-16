@@ -8,6 +8,10 @@
     margin: 0 auto;
     max-width: 100rem;
     padding: var(--spacing-lg);
+
+    @include respond(sm) {
+      padding: var(--spacing-regular);
+    }
   }
 
   &__content-container {
