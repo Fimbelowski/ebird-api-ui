@@ -2,5 +2,9 @@
   &__menu {
     display: flex;
     gap: var(--spacing-sm);
+
+    @include respond(md) {
+      display: none;
+    }
   }
 }
