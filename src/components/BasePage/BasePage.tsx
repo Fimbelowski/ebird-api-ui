@@ -108,6 +108,16 @@ export function BasePage<T>({
           <CopyRawResponseButton onClick={onCopyToClipboardClick} />
         </div>
         {listItems}
+        <p className="base-page__attribution">
+          All data provided by{' '}
+          <a
+            href="https://ebird.org/home"
+            rel="noreferrer"
+            target="_blank"
+          >
+            eBird
+          </a>
+        </p>
       </>
     );
   }
