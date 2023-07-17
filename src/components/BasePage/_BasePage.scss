@@ -3,6 +3,10 @@
   flex-direction: column;
   align-items: center;
 
+  &__attribution {
+    text-align: center;
+  }
+
   &__copy-raw-response {
     @include paper;
     padding: var(--spacing-regular);
