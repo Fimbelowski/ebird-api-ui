@@ -1,9 +1,9 @@
 import type { EbirdApiOptions } from '../ebirdApiClient';
 import { makeRequest } from '../ebirdApiClient';
-import useApiKey from '../../../hooks/useApiKey';
+import useAppSelector from '../../../store/hooks/useAppSelector';
 
 export default function useEbirdApi() {
-  const { apiKey } = useApiKey();
+  const apiKey = useAppSelector((state) => state.apiKey.value);
 
   return async function curriedMakeRequest(
     endpoint: string,

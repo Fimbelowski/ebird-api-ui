@@ -2,10 +2,13 @@ import { useState } from 'react';
 
 import { BaseInput } from '../BaseInput';
 import { Button } from '../Button/Button';
-import useApiKey from '../../hooks/useApiKey';
+import { update } from '../../store/slices/apiKeySlice';
+import useAppDispatch from '../../store/hooks/useAppDispatch';
+import useAppSelector from '../../store/hooks/useAppSelector';
 
 export default function ApiKeyInput() {
-  const { apiKey, setApiKey } = useApiKey();
+  const apiKey = useAppSelector((state) => state.apiKey.value);
+  const dispatch = useAppDispatch();
 
   const [showApiKey, setShowApiKey] = useState(false);
 
@@ -14,7 +17,7 @@ export default function ApiKeyInput() {
   }
 
   function onChange(value: string) {
-    setApiKey(value);
+    dispatch(update(value));
   }
 
   function onToggleShowApiKey() {
