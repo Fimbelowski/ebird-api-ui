@@ -1,12 +1,12 @@
-import { useContext } from 'react';
-
-import LocaleOptionsContext from '../context/LocaleOptionsContext';
-import useTaxaLocaleCodes from '../services/ebird/hooks/endpoints/ref/taxonomy/useTaxaLocaleCodes';
-import type EbirdTaxaLocaleCode from '../types/EbirdTaxaLocaleCode';
 import {
   AsyncResourceSelect,
   type AsyncResourceSelectProps,
 } from './AsyncResourceSelect/AsyncResourceSelect';
+import type EbirdTaxaLocaleCode from '../types/EbirdTaxaLocaleCode';
+import { update } from '../store/slices/localeOptionsSlice';
+import useAppDispatch from '../store/hooks/useAppDispatch';
+import useAppSelector from '../store/hooks/useAppSelector';
+import useTaxaLocaleCodes from '../services/ebird/hooks/endpoints/ref/taxonomy/useTaxaLocaleCodes';
 
 type Props = Omit<
   AsyncResourceSelectProps<string>,
@@ -20,7 +20,8 @@ type Props = Omit<
 >;
 
 export default function SpeciesCommonNameLocaleSelect(props: Props) {
-  const { localeOptions, setLocaleOptions } = useContext(LocaleOptionsContext);
+  const dispatch = useAppDispatch();
+  const localeOptions = useAppSelector((state) => state.localeOptions.value);
 
   const getTaxaLocaleCodes = useTaxaLocaleCodes();
 
@@ -29,8 +30,8 @@ export default function SpeciesCommonNameLocaleSelect(props: Props) {
   }
 
   function onLoad(results: EbirdTaxaLocaleCode[]) {
-    setLocaleOptions(
-      results.map(({ code, name }) => ({ label: name, value: code }))
+    dispatch(
+      update(results.map(({ code, name }) => ({ label: name, value: code })))
     );
   }
 

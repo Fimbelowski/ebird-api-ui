@@ -4,7 +4,7 @@ import classNames from '../../utilities/classNames';
 import getValueFromChangeEvent from '../../utilities/getValueFromChangeEvent';
 import useAppSelector from '../../store/hooks/useAppSelector';
 
-interface SelectOption<T> {
+export interface SelectOption<T> {
   label: string;
   value: T;
 }
