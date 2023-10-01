@@ -1,10 +1,10 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import type { SelectOption } from '../../components/Select/Select';
+import type { SelectOptionArray } from '../../components/Select/Select';
 import type { RootState } from '../store';
 
 export interface LocaleOptionsState {
-  value: Array<SelectOption<string>>;
+  value: SelectOptionArray<string>;
 }
 
 const initialState: LocaleOptionsState = {
@@ -20,10 +20,7 @@ export const localeOptionsSlice = createSlice({
   name: 'localeOptions',
   initialState,
   reducers: {
-    update: (
-      state,
-      { payload }: PayloadAction<Array<SelectOption<string>>>
-    ) => {
+    update: (state, { payload }: PayloadAction<SelectOptionArray<string>>) => {
       state.value = payload;
     },
   },

@@ -1,20 +1,21 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 import type { RootState } from '../store';
+import type { SelectOptionArray } from '../../components/Select/Select';
 
 export interface TaxonomyVersionOptionsState {
-  value: string[];
+  value: SelectOptionArray<string>;
 }
 
 const initialState: TaxonomyVersionOptionsState = {
-  value: [],
+  value: [{ label: 'Latest', value: '' }],
 };
 
 export const taxonomyVersionOptionsSlice = createSlice({
   name: 'taxonomyVersionOptions',
   initialState,
   reducers: {
-    update: (state, { payload }: PayloadAction<string[]>) => {
+    update: (state, { payload }: PayloadAction<SelectOptionArray<string>>) => {
       state.value = payload;
     },
   },

@@ -1,12 +1,12 @@
-import { useContext } from 'react';
-
-import useTaxonomyVersions from '../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomyVersions';
 import {
   AsyncResourceSelect,
   type AsyncResourceSelectProps,
 } from './AsyncResourceSelect/AsyncResourceSelect';
 import type EbirdTaxonomyVersion from '../types/EbirdTaxonomyVersion';
-import TaxonomyVersionOptionsContext from '../context/TaxonomyVersionOptionsContext';
+import { update } from '../store/slices/taxonomyVersionOptionsSlice';
+import useAppDispatch from '../store/hooks/useAppDispatch';
+import useAppSelector from '../store/hooks/useAppSelector';
+import useTaxonomyVersions from '../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomyVersions';
 
 type Props = Omit<
   AsyncResourceSelectProps<string>,
@@ -20,8 +20,9 @@ type Props = Omit<
 >;
 
 export default function VersionSelect(props: Props) {
-  const { taxonomyVersionOptions, setTaxonomyVersionOptions } = useContext(
-    TaxonomyVersionOptionsContext
+  const dispatch = useAppDispatch();
+  const taxonomyVersionOptions = useAppSelector(
+    (state) => state.taxonomyVersionOptions.value
   );
 
   const getTaxonomyVersions = useTaxonomyVersions();
@@ -31,15 +32,17 @@ export default function VersionSelect(props: Props) {
   }
 
   function onLoad(versions: EbirdTaxonomyVersion[]) {
-    setTaxonomyVersionOptions(
-      versions.map(({ authorityVer, latest }) => {
-        const versionAsString = authorityVer.toString();
+    dispatch(
+      update(
+        versions.map(({ authorityVer, latest }) => {
+          const versionAsString = authorityVer.toString();
 
-        return {
-          label: `${versionAsString}${latest ? ' (Latest)' : ''}`,
-          value: versionAsString,
-        };
-      })
+          return {
+            label: `${versionAsString}${latest ? ' (Latest)' : ''}`,
+            value: versionAsString,
+          };
+        })
+      )
     );
   }
 
