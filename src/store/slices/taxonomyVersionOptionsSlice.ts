@@ -21,7 +21,8 @@ export const taxonomyVersionOptionsSlice = createSlice({
   },
 });
 
-export const { update } = taxonomyVersionOptionsSlice.actions;
+export const { update: updateTaxonomyVersionOptions } =
+  taxonomyVersionOptionsSlice.actions;
 
 export const selectTaxonomyVersionOptions = (state: RootState) =>
   state.taxonomyVersionOptions.value;

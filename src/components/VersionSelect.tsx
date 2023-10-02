@@ -3,7 +3,7 @@ import {
   type AsyncResourceSelectProps,
 } from './AsyncResourceSelect/AsyncResourceSelect';
 import type EbirdTaxonomyVersion from '../types/EbirdTaxonomyVersion';
-import { update } from '../store/slices/taxonomyVersionOptionsSlice';
+import { updateTaxonomyVersionOptions } from '../store/slices/taxonomyVersionOptionsSlice';
 import useAppDispatch from '../store/hooks/useAppDispatch';
 import useAppSelector from '../store/hooks/useAppSelector';
 import useTaxonomyVersions from '../services/ebird/hooks/endpoints/ref/taxonomy/useTaxonomyVersions';
@@ -33,7 +33,7 @@ export default function VersionSelect(props: Props) {
 
   function onLoad(versions: EbirdTaxonomyVersion[]) {
     dispatch(
-      update(
+      updateTaxonomyVersionOptions(
         versions.map(({ authorityVer, latest }) => {
           const versionAsString = authorityVer.toString();
 

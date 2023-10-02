@@ -20,7 +20,7 @@ export const apiKeySlice = createSlice({
   },
 });
 
-export const { update } = apiKeySlice.actions;
+export const { update: updateApiKey } = apiKeySlice.actions;
 
 export const selectApiKey = (state: RootState) => state.apiKey.value;
 

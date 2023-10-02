@@ -26,7 +26,7 @@ export const localeOptionsSlice = createSlice({
   },
 });
 
-export const { update } = localeOptionsSlice.actions;
+export const { update: updateLocaleOptions } = localeOptionsSlice.actions;
 
 export const selectLocaleOptions = (state: RootState) =>
   state.localeOptions.value;

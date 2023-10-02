@@ -3,7 +3,7 @@ import {
   type AsyncResourceSelectProps,
 } from './AsyncResourceSelect/AsyncResourceSelect';
 import type EbirdTaxaLocaleCode from '../types/EbirdTaxaLocaleCode';
-import { update } from '../store/slices/localeOptionsSlice';
+import { updateLocaleOptions } from '../store/slices/localeOptionsSlice';
 import useAppDispatch from '../store/hooks/useAppDispatch';
 import useAppSelector from '../store/hooks/useAppSelector';
 import useTaxaLocaleCodes from '../services/ebird/hooks/endpoints/ref/taxonomy/useTaxaLocaleCodes';
@@ -31,7 +31,9 @@ export default function SpeciesCommonNameLocaleSelect(props: Props) {
 
   function onLoad(results: EbirdTaxaLocaleCode[]) {
     dispatch(
-      update(results.map(({ code, name }) => ({ label: name, value: code })))
+      updateLocaleOptions(
+        results.map(({ code, name }) => ({ label: name, value: code }))
+      )
     );
   }
 
