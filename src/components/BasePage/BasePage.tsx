@@ -2,12 +2,14 @@ import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
 
 import ApiKeyInput from '../ApiKeyInput/ApiKeyInput';
 import { Button } from '../Button/Button';
-import Details from '../Details/Details';
-import Notification from '../Notification/Notification';
-import useLoading from '../../hooks/useLoading';
-import Fieldset from '../Fieldset/Fieldset';
 import CopyRawResponseButton from '../CopyRawResponseButton/CopyRawResponseButton';
+import Details from '../Details/Details';
+import Fieldset from '../Fieldset/Fieldset';
+import Notification from '../Notification/Notification';
 import type Page from '../../types/Page';
+import { updateIsLoadingReqeust } from '../../store/slices/loadingSlice';
+import useAppDispatch from '../../store/hooks/useAppDispatch';
+import useAppSelector from '../../store/hooks/useAppSelector';
 
 export interface ResultsSection {
   content: ReactNode;
@@ -35,7 +37,10 @@ export function BasePage<T>({
   requestOnMount = false,
   resultsSections,
 }: BasePageProps<T>) {
-  const { loading, setLoading } = useLoading();
+  const isLoadingRequest = useAppSelector(
+    (state) => state.loading.isLoadingRequest
+  );
+  const dispatch = useAppDispatch();
 
   const [hasQueried, setHasQueried] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -48,7 +53,7 @@ export function BasePage<T>({
   }, []);
 
   function makeRequest() {
-    setLoading(true);
+    dispatch(updateIsLoadingReqeust(true));
     setIsError(false);
 
     onSubmitProp()
@@ -66,7 +71,7 @@ export function BasePage<T>({
         setIsError(true);
       })
       .finally(() => {
-        setLoading(false);
+        dispatch(updateIsLoadingReqeust(false));
       });
   }
 
@@ -82,7 +87,7 @@ export function BasePage<T>({
 
   function onSubmit(event: FormEvent) {
     event.preventDefault();
-    setLoading(true);
+    dispatch(updateIsLoadingReqeust(true));
 
     makeRequest();
   }
@@ -167,7 +172,7 @@ export function BasePage<T>({
           </Button>
         </form>
       ) : null}
-      {loading ? (
+      {isLoadingRequest ? (
         'Loading...'
       ) : (
         <>

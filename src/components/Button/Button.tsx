@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 import classNames from '../../utilities/classNames';
-import useLoading from '../../hooks/useLoading';
+import useAppSelector from '../../store/hooks/useAppSelector';
 
 export interface ButtonProps {
   children?: ReactNode;
@@ -22,14 +22,19 @@ export function Button({
   secondary = false,
   type,
 }: ButtonProps) {
-  const { loading, loadingPosition } = useLoading();
+  const isLoadingPosition = useAppSelector(
+    (state) => state.loading.isLoadingPosition
+  );
+  const isLoadingRequest = useAppSelector(
+    (state) => state.loading.isLoadingRequest
+  );
 
   function classes() {
     return classNames([
       'button',
       { 'button--disabled': disabled },
       { 'button--full-width': fullWidth },
-      { 'button--loading': loading || loadingPosition },
+      { 'button--loading': isLoadingRequest || isLoadingPosition },
       { 'button--primary': primary },
       { 'button--secondary': secondary },
     ]);
@@ -38,7 +43,7 @@ export function Button({
   return (
     <button
       className={classes()}
-      disabled={disabled || loading || loadingPosition}
+      disabled={disabled || isLoadingRequest || isLoadingPosition}
       onClick={onClick}
       type={type}
     >

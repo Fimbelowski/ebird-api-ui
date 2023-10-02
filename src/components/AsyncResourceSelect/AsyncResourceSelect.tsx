@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import useApiKey from '../../hooks/useApiKey';
 import Tooltip from '../Tooltip/Tooltip';
 import { Button } from '../Button/Button';
 import { Select, type SelectProps } from '../Select/Select';
+import useAppSelector from '../../store/hooks/useAppSelector';
 
 export interface AsyncResourceSelectProps<T> extends SelectProps<string> {
   hasQueried: boolean;
@@ -21,7 +21,7 @@ export function AsyncResourceSelect<T>({
   resourcePlural,
   ...rest
 }: AsyncResourceSelectProps<T>) {
-  const { apiKey } = useApiKey();
+  const apiKey = useAppSelector((state) => state.apiKey.value);
 
   const [isLoading, setIsLoading] = useState(false);
 

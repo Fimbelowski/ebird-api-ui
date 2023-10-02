@@ -2,7 +2,9 @@ import { useState } from 'react';
 
 import { Button } from '../Button/Button';
 import CoordinateInput from '../CoordinateInput';
-import useLoading from '../../hooks/useLoading';
+import { updateIsLoadingPosition } from '../../store/slices/loadingSlice';
+import useAppDispatch from '../../store/hooks/useAppDispatch';
+import useAppSelector from '../../store/hooks/useAppSelector';
 
 interface Props {
   latitude: string;
@@ -17,12 +19,15 @@ export default function LocationInputGroup({
   setLatitude,
   setLongitude,
 }: Props) {
-  const { loadingPosition, setLoadingPosition } = useLoading();
+  const isLoadingPosition = useAppSelector(
+    (state) => state.loading.isLoadingPosition
+  );
+  const dispatch = useAppDispatch();
 
   const [positionError, setPositionError] = useState(false);
 
   function getUserPosition() {
-    setLoadingPosition(true);
+    dispatch(updateIsLoadingPosition(true));
     setPositionError(false);
 
     navigator.geolocation.getCurrentPosition(
@@ -33,7 +38,7 @@ export default function LocationInputGroup({
 
   function onGetUserPositionFail() {
     setPositionError(true);
-    setLoadingPosition(false);
+    dispatch(updateIsLoadingPosition(false));
   }
 
   function onGetUserPositionSuccess(position: GeolocationPosition) {
@@ -42,13 +47,13 @@ export default function LocationInputGroup({
 
     setLatitude(latitude.toString());
     setLongitude(longitude.toString());
-    setLoadingPosition(false);
+    dispatch(updateIsLoadingPosition(false));
   }
 
   return (
     <div className="location-input-group">
       <CoordinateInput
-        disabled={loadingPosition}
+        disabled={isLoadingPosition}
         id="lat"
         label="Latitude (to at least two decimal places)"
         max="90"
@@ -59,7 +64,7 @@ export default function LocationInputGroup({
         value={latitude}
       />
       <CoordinateInput
-        disabled={loadingPosition}
+        disabled={isLoadingPosition}
         id="lng"
         label="Longitude (to at least two decimal places)"
         max="180"
@@ -71,7 +76,7 @@ export default function LocationInputGroup({
       />
       <div className="location-input-group__button">
         <Button
-          disabled={loadingPosition}
+          disabled={isLoadingPosition}
           fullWidth
           onClick={getUserPosition}
           secondary
@@ -80,7 +85,7 @@ export default function LocationInputGroup({
           Use My Location
         </Button>
       </div>
-      {loadingPosition ? (
+      {isLoadingPosition ? (
         <p className="location-input-group__loading-position">
           Getting position...
         </p>

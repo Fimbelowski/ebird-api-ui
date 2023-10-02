@@ -2,9 +2,9 @@ import { type ChangeEvent } from 'react';
 
 import classNames from '../../utilities/classNames';
 import getValueFromChangeEvent from '../../utilities/getValueFromChangeEvent';
-import useLoading from '../../hooks/useLoading';
+import useAppSelector from '../../store/hooks/useAppSelector';
 
-interface SelectOption<T> {
+export interface SelectOption<T> {
   label: string;
   value: T;
 }
@@ -32,7 +32,12 @@ export function Select<T extends string>({
   required = false,
   value,
 }: SelectProps<T>) {
-  const { loading, loadingPosition } = useLoading();
+  const isLoadingPosition = useAppSelector(
+    (state) => state.loading.isLoadingPosition
+  );
+  const isLoadingRequest = useAppSelector(
+    (state) => state.loading.isLoadingRequest
+  );
 
   function Options() {
     const listItems = options.map(({ label, value }, index) => {
@@ -68,7 +73,7 @@ export function Select<T extends string>({
       'select__select',
       { 'select__select--disabled': disabled },
       { 'select__select--inline': inline },
-      { 'select__select--loading': loading || loadingPosition },
+      { 'select__select--loading': isLoadingRequest || isLoadingPosition },
     ]);
   }
 
@@ -82,7 +87,7 @@ export function Select<T extends string>({
       </label>
       <select
         className={selectClasses()}
-        disabled={disabled || loading || loadingPosition}
+        disabled={disabled || isLoadingRequest || isLoadingPosition}
         id={id}
         onChange={onChange}
         required={required}

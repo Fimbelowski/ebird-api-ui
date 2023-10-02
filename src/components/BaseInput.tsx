@@ -2,7 +2,7 @@ import { type ChangeEvent } from 'react';
 
 import classNames from '../utilities/classNames';
 import getValueFromChangeEvent from '../utilities/getValueFromChangeEvent';
-import useLoading from '../hooks/useLoading';
+import useAppSelector from '../store/hooks/useAppSelector';
 
 export interface BaseInputProps {
   disabled?: boolean;
@@ -47,7 +47,12 @@ export function BaseInput({
   type,
   value,
 }: BaseInputProps) {
-  const { loading, loadingPosition } = useLoading();
+  const isLoadingPosition = useAppSelector(
+    (state) => state.loading.isLoadingPosition
+  );
+  const isLoadingRequest = useAppSelector(
+    (state) => state.loading.isLoadingRequest
+  );
 
   function computedLabel() {
     return required && !hideRequiredAsterisk ? `${label}*` : label;
@@ -58,7 +63,7 @@ export function BaseInput({
       'base-input__input',
       { 'base-input__input--disabled': disabled },
       { 'base-input__input--inline': inline },
-      { 'base-input__input--loading': loading || loadingPosition },
+      { 'base-input__input--loading': isLoadingRequest || isLoadingPosition },
       { 'base-input__input--no-stepper': hideStepper },
     ]);
   }
@@ -112,7 +117,7 @@ export function BaseInput({
       </label>
       <input
         className={inputClasses()}
-        disabled={disabled || loading || loadingPosition}
+        disabled={disabled || isLoadingRequest || isLoadingPosition}
         id={id}
         max={max}
         maxLength={maxLength}
