@@ -1,13 +1,7 @@
-import type { ReactNode } from 'react';
-
 import classNames from '../../utilities/classNames';
+import type { TableColumn } from '../Table/Table';
 
-interface Props<T> {
-  align?: 'left' | 'center' | 'right';
-  callback: (item: T) => string | ReactNode;
-  item: T;
-  wrap?: boolean;
-}
+type Props<T> = Omit<TableColumn<T>, 'label'> & { item: T };
 
 export type TableCellConfig<T> = Omit<Props<T>, 'item'>;
 export type TableCellConfigArray<T> = Array<TableCellConfig<T>>;
