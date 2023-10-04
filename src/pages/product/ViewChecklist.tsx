@@ -10,12 +10,14 @@ import {
   KeyValuePairsList,
   type KeyValueTuple,
 } from '../../components/KeyValuePairsList/KeyValuePairsList';
-import { Table } from '../../components/Table/Table';
+import {
+  Table,
+  type TableCellConfigArray,
+  type TableHeaderPropsArray,
+} from '../../components/Table/Table';
 import kilometersToMiles from '../../utilities/kilometersToMiles';
 import hoursToHoursAndMinutes from '../../utilities/hoursToHoursAndMinutes';
 import PAGE from './PAGE';
-import type { TableHeaderPropsArray } from '../../components/TableHeader/TableHeader';
-import type { TableCellConfigArray } from '../../components/TableCell/TableCell';
 
 interface EbirdChecklist {
   allObsReported: boolean;

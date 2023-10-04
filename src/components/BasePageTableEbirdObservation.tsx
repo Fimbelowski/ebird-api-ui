@@ -7,8 +7,7 @@ import {
 } from './BasePageTable';
 import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
 import GoogleMapsLink from './GoogleMapsLink';
-import type { TableHeaderProps } from './TableHeader/TableHeader';
-import type { TableCellConfig } from './TableCell/TableCell';
+import type { TableCellConfig, TableHeaderProps } from './Table/Table';
 
 interface EbirdObservation {
   checklistId?: string;

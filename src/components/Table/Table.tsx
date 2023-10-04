@@ -1,25 +1,38 @@
 import { useState } from 'react';
 
 import Pagination from '../Pagination/Pagination';
-import { TableCell, type TableCellConfigArray } from '../TableCell/TableCell';
+import {
+  TableCell,
+  type TableCellConfig,
+  type TableCellConfigArray,
+} from '../TableCell/TableCell';
 import {
   TableHeader,
+  type TableHeaderProps,
   type TableHeaderPropsArray,
 } from '../TableHeader/TableHeader';
 
-export interface TableProps<T> {
+interface Props<T> {
   cells: TableCellConfigArray<T>;
   headers: TableHeaderPropsArray;
   hidePagination?: boolean;
   items: T[];
 }
 
+export type {
+  Props as TableProps,
+  TableCellConfig,
+  TableCellConfigArray,
+  TableHeaderProps,
+  TableHeaderPropsArray,
+};
+
 export function Table<T>({
   cells,
   headers,
   hidePagination = false,
   items,
-}: TableProps<T>) {
+}: Props<T>) {
   const [paginatedItems, setPaginatedItems] = useState<T[]>([]);
 
   function Headers() {
