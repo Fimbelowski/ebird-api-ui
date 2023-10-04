@@ -1,22 +1,14 @@
-import { type ReactNode, useState } from 'react';
+import { useState } from 'react';
 
-import classNames from '../../utilities/classNames';
 import Pagination from '../Pagination/Pagination';
+import { TableCell, type TableCellConfigArray } from '../TableCell/TableCell';
 import {
   TableHeader,
   type TableHeaderPropsArray,
 } from '../TableHeader/TableHeader';
 
-export interface TableCell<T> {
-  align?: 'left' | 'center' | 'right';
-  callback: (item: T) => string | ReactNode;
-  wrap?: boolean;
-}
-
-export type TableCellArray<T> = Array<TableCell<T>>;
-
 export interface TableProps<T> {
-  cells: TableCellArray<T>;
+  cells: TableCellConfigArray<T>;
   headers: TableHeaderPropsArray;
   hidePagination?: boolean;
   items: T[];
@@ -45,20 +37,13 @@ export function Table<T>({
 
   function Rows() {
     const listItems = paginatedItems.map((item, itemIndex) => {
-      const tds = cells.map(({ align, callback, wrap = false }, cellIndex) => {
-        const classes = classNames([
-          'table__td',
-          { [`table__td--${align ?? ''}`]: align !== undefined },
-          { 'table__td--wrap': wrap },
-        ]);
-
+      const tds = cells.map((props, cellIndex) => {
         return (
-          <td
-            className={classes}
+          <TableCell
             key={cellIndex}
-          >
-            {callback(item)}
-          </td>
+            {...props}
+            item={item}
+          />
         );
       });
 

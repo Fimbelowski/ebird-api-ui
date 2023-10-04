@@ -1,13 +1,14 @@
 import type EbirdLocation from '../types/EbirdLocation';
 import GoogleMapsLink from './GoogleMapsLink';
 import type LocationTableProps from '../types/LocationTableProps';
-import { Table, type TableCellArray } from './Table/Table';
+import { Table } from './Table/Table';
 import type { TableHeaderPropsArray } from './TableHeader/TableHeader';
+import type { TableCellConfigArray } from './TableCell/TableCell';
 
 export default function EbirdLocationTableSimple({
   locations,
 }: LocationTableProps) {
-  const tableCells: TableCellArray<EbirdLocation> = [
+  const tableCells: TableCellConfigArray<EbirdLocation> = [
     {
       callback: ({ hierarchicalName }) => hierarchicalName,
       wrap: true,

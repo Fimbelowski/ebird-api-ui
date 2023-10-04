@@ -10,11 +10,12 @@ import {
   KeyValuePairsList,
   type KeyValueTuple,
 } from '../../components/KeyValuePairsList/KeyValuePairsList';
-import { Table, type TableCellArray } from '../../components/Table/Table';
+import { Table } from '../../components/Table/Table';
 import kilometersToMiles from '../../utilities/kilometersToMiles';
 import hoursToHoursAndMinutes from '../../utilities/hoursToHoursAndMinutes';
 import PAGE from './PAGE';
 import type { TableHeaderPropsArray } from '../../components/TableHeader/TableHeader';
+import type { TableCellConfigArray } from '../../components/TableCell/TableCell';
 
 interface EbirdChecklist {
   allObsReported: boolean;
@@ -163,44 +164,45 @@ export default function ViewChecklist() {
       },
     ];
 
-    const observationsTableCells: TableCellArray<EbirdChecklistObservation> = [
-      {
-        callback: ({ hideFlags }) => hideFlags.join(''),
-      },
-      {
-        align: 'right',
-        callback: ({ howManyAtLeast }) => howManyAtLeast,
-      },
-      {
-        align: 'right',
-        callback: ({ howManyAtMost }) => howManyAtMost,
-      },
-      {
-        align: 'right',
-        callback: ({ howManyStr }) => howManyStr,
-      },
-      {
-        callback: ({ obsDt }) => obsDt,
-      },
-      {
-        callback: ({ obsId }) => obsId,
-      },
-      {
-        callback: ({ present }) => present.toString(),
-      },
-      {
-        callback: ({ projId }) => projId,
-      },
-      {
-        callback: ({ speciesCode }) => speciesCode,
-      },
-      {
-        callback: ({ subnational1Code }) => subnational1Code,
-      },
-      {
-        callback: ({ subId }) => subId,
-      },
-    ];
+    const observationsTableCells: TableCellConfigArray<EbirdChecklistObservation> =
+      [
+        {
+          callback: ({ hideFlags }) => hideFlags.join(''),
+        },
+        {
+          align: 'right',
+          callback: ({ howManyAtLeast }) => howManyAtLeast,
+        },
+        {
+          align: 'right',
+          callback: ({ howManyAtMost }) => howManyAtMost,
+        },
+        {
+          align: 'right',
+          callback: ({ howManyStr }) => howManyStr,
+        },
+        {
+          callback: ({ obsDt }) => obsDt,
+        },
+        {
+          callback: ({ obsId }) => obsId,
+        },
+        {
+          callback: ({ present }) => present.toString(),
+        },
+        {
+          callback: ({ projId }) => projId,
+        },
+        {
+          callback: ({ speciesCode }) => speciesCode,
+        },
+        {
+          callback: ({ subnational1Code }) => subnational1Code,
+        },
+        {
+          callback: ({ subId }) => subId,
+        },
+      ];
 
     const checklistAuxTableHeaders: TableHeaderPropsArray = [
       {
@@ -217,7 +219,7 @@ export default function ViewChecklist() {
       },
     ];
 
-    const checklistAuxTableCells: TableCellArray<EbirdChecklistAux> = [
+    const checklistAuxTableCells: TableCellConfigArray<EbirdChecklistAux> = [
       {
         callback: ({ auxCode }) => auxCode,
       },
@@ -251,24 +253,25 @@ export default function ViewChecklist() {
       },
     ];
 
-    const checklistAuxAiTableCells: TableCellArray<EbirdChecklistAuxAi> = [
-      {
-        callback: ({ aiType }) => aiType,
-      },
-      {
-        align: 'right',
-        callback: ({ eventId }) => eventId,
-      },
-      {
-        callback: ({ method }) => method,
-      },
-      {
-        callback: ({ source }) => source,
-      },
-      {
-        callback: ({ subId }) => subId,
-      },
-    ];
+    const checklistAuxAiTableCells: TableCellConfigArray<EbirdChecklistAuxAi> =
+      [
+        {
+          callback: ({ aiType }) => aiType,
+        },
+        {
+          align: 'right',
+          callback: ({ eventId }) => eventId,
+        },
+        {
+          callback: ({ method }) => method,
+        },
+        {
+          callback: ({ source }) => source,
+        },
+        {
+          callback: ({ subId }) => subId,
+        },
+      ];
 
     return (
       <>
@@ -349,7 +352,7 @@ export default function ViewChecklist() {
       },
     ];
 
-    const tableCells: TableCellArray<EbirdChecklistObservation> = [
+    const tableCells: TableCellConfigArray<EbirdChecklistObservation> = [
       {
         callback: ({ speciesCode }) => speciesCode,
       },

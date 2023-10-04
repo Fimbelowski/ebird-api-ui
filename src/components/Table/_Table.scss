@@ -1,4 +1,6 @@
 .table {
+  border: var(--border);
+
   &__container {
     display: inline-block;
     border: var(--border);
@@ -9,32 +11,6 @@
   &__table {
     border-collapse: collapse;
     text-align: left;
-  }
-
-  &,
-  &__td {
-    border: var(--border);
-  }
-
-  &__td {
-    padding: var(--spacing-xs) var(--spacing-regular);
-    white-space: nowrap;
-
-    &--center {
-      text-align: center;
-    }
-
-    &--left {
-      text-align: left;
-    }
-
-    &--right {
-      text-align: right;
-    }
-
-    &--wrap {
-      white-space: normal;
-    }
   }
 
   &__tbody {
