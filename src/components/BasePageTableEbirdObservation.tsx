@@ -7,7 +7,8 @@ import {
 } from './BasePageTable';
 import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
 import GoogleMapsLink from './GoogleMapsLink';
-import { type TableCell, type TableHeader } from './Table/Table';
+import type { TableCell } from './Table/Table';
+import type { TableHeaderProps } from './TableHeader/TableHeader';
 
 interface EbirdObservation {
   checklistId?: string;
@@ -185,7 +186,7 @@ export default function BasePageTableEbirdObservation({
 
   function detailedTableHeaders() {
     const headers: Array<
-      TableHeader & {
+      TableHeaderProps & {
         detailLevel: EbirdObservationDetailLevel;
         label: keyof EbirdObservation;
       }

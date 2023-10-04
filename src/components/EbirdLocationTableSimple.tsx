@@ -1,7 +1,8 @@
 import type EbirdLocation from '../types/EbirdLocation';
 import GoogleMapsLink from './GoogleMapsLink';
 import type LocationTableProps from '../types/LocationTableProps';
-import { Table, type TableCellArray, type TableHeader } from './Table/Table';
+import { Table, type TableCellArray } from './Table/Table';
+import type { TableHeaderPropsArray } from './TableHeader/TableHeader';
 
 export default function EbirdLocationTableSimple({
   locations,
@@ -26,7 +27,7 @@ export default function EbirdLocationTableSimple({
     },
   ];
 
-  const tableHeaders: TableHeader[] = [
+  const tableHeaders: TableHeaderPropsArray = [
     {
       label: 'Name',
     },

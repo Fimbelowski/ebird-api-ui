@@ -11,19 +11,14 @@
     text-align: left;
   }
 
-  &__th {
-    white-space: nowrap;
-  }
-
   &,
-  &__td,
-  &__th {
+  &__td {
     border: var(--border);
   }
 
-  &__td,
-  &__th {
+  &__td {
     padding: var(--spacing-xs) var(--spacing-regular);
+    white-space: nowrap;
 
     &--center {
       text-align: center;
@@ -36,20 +31,13 @@
     &--right {
       text-align: right;
     }
-  }
-
-  &__tbody {
-  }
-
-  &__td {
-    white-space: nowrap;
 
     &--wrap {
       white-space: normal;
     }
   }
 
-  &__th {
+  &__tbody {
   }
 
   &__tr {

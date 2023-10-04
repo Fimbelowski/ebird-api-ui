@@ -10,14 +10,11 @@ import {
   KeyValuePairsList,
   type KeyValueTuple,
 } from '../../components/KeyValuePairsList/KeyValuePairsList';
-import {
-  Table,
-  type TableHeader,
-  type TableCellArray,
-} from '../../components/Table/Table';
+import { Table, type TableCellArray } from '../../components/Table/Table';
 import kilometersToMiles from '../../utilities/kilometersToMiles';
 import hoursToHoursAndMinutes from '../../utilities/hoursToHoursAndMinutes';
 import PAGE from './PAGE';
+import type { TableHeaderPropsArray } from '../../components/TableHeader/TableHeader';
 
 interface EbirdChecklist {
   allObsReported: boolean;
@@ -127,7 +124,7 @@ export default function ViewChecklist() {
 
     const clonedChecklist: EbirdChecklistWithoutArrays = { ...rest };
 
-    const observationsTableHeaders: TableHeader[] = [
+    const observationsTableHeaders: TableHeaderPropsArray = [
       {
         label: 'hideFlags',
       },
@@ -205,7 +202,7 @@ export default function ViewChecklist() {
       },
     ];
 
-    const checklistAuxTableHeaders: TableHeader[] = [
+    const checklistAuxTableHeaders: TableHeaderPropsArray = [
       {
         label: 'auxCode',
       },
@@ -235,7 +232,7 @@ export default function ViewChecklist() {
       },
     ];
 
-    const checklistAuxAiTableHeaders: TableHeader[] = [
+    const checklistAuxAiTableHeaders: TableHeaderPropsArray = [
       {
         label: 'aiType',
       },
@@ -342,7 +339,7 @@ export default function ViewChecklist() {
       ['# of Observers', numObservers],
     ];
 
-    const tableHeaders: TableHeader[] = [
+    const tableHeaders: TableHeaderPropsArray = [
       {
         label: 'Species Code',
       },

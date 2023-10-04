@@ -2,6 +2,10 @@ import { type ReactNode, useState } from 'react';
 
 import classNames from '../../utilities/classNames';
 import Pagination from '../Pagination/Pagination';
+import {
+  TableHeader,
+  type TableHeaderPropsArray,
+} from '../TableHeader/TableHeader';
 
 export interface TableCell<T> {
   align?: 'left' | 'center' | 'right';
@@ -11,14 +15,9 @@ export interface TableCell<T> {
 
 export type TableCellArray<T> = Array<TableCell<T>>;
 
-export interface TableHeader {
-  align?: 'left' | 'center' | 'right';
-  label: string;
-}
-
 export interface TableProps<T> {
   cells: TableCellArray<T>;
-  headers: TableHeader[];
+  headers: TableHeaderPropsArray;
   hidePagination?: boolean;
   items: T[];
 }
@@ -32,19 +31,12 @@ export function Table<T>({
   const [paginatedItems, setPaginatedItems] = useState<T[]>([]);
 
   function Headers() {
-    const listItems = headers.map(({ align, label }, index) => {
-      const classes = classNames([
-        'table__th',
-        { [`table__th--${align ?? ''}`]: align !== undefined },
-      ]);
-
+    const listItems = headers.map((props, index) => {
       return (
-        <th
-          className={classes}
+        <TableHeader
           key={index}
-        >
-          {label}
-        </th>
+          {...props}
+        />
       );
     });
 

@@ -1,6 +1,7 @@
 import type EbirdLocation from '../types/EbirdLocation';
 import type LocationTableProps from '../types/LocationTableProps';
-import { Table, type TableCellArray, type TableHeader } from './Table/Table';
+import { Table, type TableCellArray } from './Table/Table';
+import type { TableHeaderPropsArray } from './TableHeader/TableHeader';
 
 export default function DetailedLocationTable({
   locations,
@@ -60,7 +61,7 @@ export default function DetailedLocationTable({
     },
   ];
 
-  const tableHeaders: TableHeader[] = [
+  const tableHeaders: TableHeaderPropsArray = [
     {
       label: 'locId',
     },
