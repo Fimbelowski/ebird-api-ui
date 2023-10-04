@@ -127,44 +127,45 @@ export default function ViewChecklist() {
 
     const clonedChecklist: EbirdChecklistWithoutArrays = { ...rest };
 
-    const observationsTableHeaders: TableHeaderPropsArray = [
-      {
-        label: 'hideFlags',
-      },
-      {
-        label: 'howManyAtLeast',
-        align: 'right',
-      },
-      {
-        label: 'howManyAtMost',
-        align: 'right',
-      },
-      {
-        label: 'howManyStr',
-        align: 'right',
-      },
-      {
-        label: 'obsDt',
-      },
-      {
-        label: 'obsId',
-      },
-      {
-        label: 'present',
-      },
-      {
-        label: 'projId',
-      },
-      {
-        label: 'speciesCode',
-      },
-      {
-        label: 'subnational1Code',
-      },
-      {
-        label: 'subId',
-      },
-    ];
+    const observationsTableHeaders: TableHeaderPropsArray<EbirdChecklistObservation> =
+      [
+        {
+          label: 'hideFlags',
+        },
+        {
+          label: 'howManyAtLeast',
+          align: 'right',
+        },
+        {
+          label: 'howManyAtMost',
+          align: 'right',
+        },
+        {
+          label: 'howManyStr',
+          align: 'right',
+        },
+        {
+          label: 'obsDt',
+        },
+        {
+          label: 'obsId',
+        },
+        {
+          label: 'present',
+        },
+        {
+          label: 'projId',
+        },
+        {
+          label: 'speciesCode',
+        },
+        {
+          label: 'subnational1Code',
+        },
+        {
+          label: 'subId',
+        },
+      ];
 
     const observationsTableCells: TableCellConfigArray<EbirdChecklistObservation> =
       [
@@ -206,7 +207,7 @@ export default function ViewChecklist() {
         },
       ];
 
-    const checklistAuxTableHeaders: TableHeaderPropsArray = [
+    const checklistAuxTableHeaders: TableHeaderPropsArray<EbirdChecklistAux> = [
       {
         label: 'auxCode',
       },
@@ -236,24 +237,25 @@ export default function ViewChecklist() {
       },
     ];
 
-    const checklistAuxAiTableHeaders: TableHeaderPropsArray = [
-      {
-        label: 'aiType',
-      },
-      {
-        align: 'right',
-        label: 'eventId',
-      },
-      {
-        label: 'method',
-      },
-      {
-        label: 'source',
-      },
-      {
-        label: 'subId',
-      },
-    ];
+    const checklistAuxAiTableHeaders: TableHeaderPropsArray<EbirdChecklistAuxAi> =
+      [
+        {
+          label: 'aiType',
+        },
+        {
+          align: 'right',
+          label: 'eventId',
+        },
+        {
+          label: 'method',
+        },
+        {
+          label: 'source',
+        },
+        {
+          label: 'subId',
+        },
+      ];
 
     const checklistAuxAiTableCells: TableCellConfigArray<EbirdChecklistAuxAi> =
       [
@@ -344,7 +346,7 @@ export default function ViewChecklist() {
       ['# of Observers', numObservers],
     ];
 
-    const tableHeaders: TableHeaderPropsArray = [
+    const tableHeaders: TableHeaderPropsArray<EbirdChecklistObservation> = [
       {
         label: 'Species Code',
       },

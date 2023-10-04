@@ -64,7 +64,7 @@ export default function DetailedLocationTable({
     },
   ];
 
-  const tableHeaders: TableHeaderPropsArray = [
+  const tableHeaders: TableHeaderPropsArray<EbirdLocation> = [
     {
       label: 'locId',
     },

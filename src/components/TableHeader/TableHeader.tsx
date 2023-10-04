@@ -1,14 +1,13 @@
 import classNames from '../../utilities/classNames';
 
-interface Props {
-  align?: 'left' | 'center' | 'right';
-  label: string;
-}
+import type { TableColumn } from '../Table/Table';
+
+type Props<T> = Pick<TableColumn<T>, 'align' | 'label'>;
 
 export type { Props as TableHeaderProps };
-export type TableHeaderPropsArray = Props[];
+export type TableHeaderPropsArray<T> = Array<Props<T>>;
 
-export function TableHeader({ align = 'left', label }: Props) {
+export function TableHeader<T>({ align = 'left', label }: Props<T>) {
   function classes() {
     return classNames(['table-header', `table-header--${align}`]);
   }

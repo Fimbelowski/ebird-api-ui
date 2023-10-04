@@ -30,7 +30,7 @@ export default function EbirdLocationTableSimple({
     },
   ];
 
-  const tableHeaders: TableHeaderPropsArray = [
+  const tableHeaders: TableHeaderPropsArray<EbirdLocation> = [
     {
       label: 'Name',
     },

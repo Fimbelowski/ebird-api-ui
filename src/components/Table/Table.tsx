@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { type ReactNode, useState } from 'react';
 
 import Pagination from '../Pagination/Pagination';
 import {
@@ -12,14 +12,25 @@ import {
   type TableHeaderPropsArray,
 } from '../TableHeader/TableHeader';
 
+interface Column<T> {
+  align?: 'left' | 'center' | 'right';
+  callback: (item: T) => string | ReactNode;
+  label: string;
+  wrap?: boolean;
+}
+
+type ColumnArray<T> = Array<Column<T>>;
+
 interface Props<T> {
   cells: TableCellConfigArray<T>;
-  headers: TableHeaderPropsArray;
+  headers: TableHeaderPropsArray<T>;
   hidePagination?: boolean;
   items: T[];
 }
 
 export type {
+  Column as TableColumn,
+  ColumnArray as TableColumnArray,
   Props as TableProps,
   TableCellConfig,
   TableCellConfigArray,

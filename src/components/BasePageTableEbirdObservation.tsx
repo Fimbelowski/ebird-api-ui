@@ -187,7 +187,7 @@ export default function BasePageTableEbirdObservation({
 
   function detailedTableHeaders() {
     const headers: Array<
-      TableHeaderProps & {
+      TableHeaderProps<EbirdObservation> & {
         detailLevel: EbirdObservationDetailLevel;
         label: keyof EbirdObservation;
       }
