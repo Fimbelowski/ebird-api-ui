@@ -8,25 +8,17 @@ export default function TaxaLocaleCodes() {
 
   const tables: Tables<EbirdTaxaLocaleCode> = [
     {
-      cells: [
+      columns: [
         {
           callback: ({ name }) => name,
-        },
-        {
-          callback: ({ code }) => code,
-        },
-        {
-          callback: ({ lastUpdate }) => new Date(lastUpdate).toLocaleString(),
-        },
-      ],
-      headers: [
-        {
           label: 'Name',
         },
         {
+          callback: ({ code }) => code,
           label: 'Code',
         },
         {
+          callback: ({ lastUpdate }) => new Date(lastUpdate).toLocaleString(),
           label: 'Last Update',
         },
       ],

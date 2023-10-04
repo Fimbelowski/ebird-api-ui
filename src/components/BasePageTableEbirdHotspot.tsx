@@ -11,75 +11,52 @@ type Props = Omit<BasePageTableProps<EbirdHotspot>, 'tables'>;
 export default function BasePageTableEbirdHotspot(props: Props) {
   const tables: Tables<EbirdHotspot> = [
     {
-      cells: [
+      columns: [
         {
           callback: ({ locId }) => locId,
+          label: 'locId',
         },
         {
           callback: ({ locName }) => locName,
+          label: 'locName',
         },
         {
           callback: ({ countryCode }) => countryCode,
+          label: 'countryCode',
         },
         {
           callback: ({ subnational1Code }) => subnational1Code,
+          label: 'subnational1Code',
         },
         {
           callback: ({ subnational2Code }) => subnational2Code,
+          label: 'subnational2Code',
         },
         {
           align: 'right',
           callback: ({ lat }) => lat.toLocaleString(),
+          label: 'lat',
         },
         {
           align: 'right',
           callback: ({ lng }) => lng.toLocaleString(),
+          label: 'lng',
         },
         {
           callback: ({ latestObsDt = 'N/A' }) => latestObsDt,
+          label: 'latestObsDt',
         },
         {
           align: 'right',
           callback: ({ numSpeciesAllTime = 0 }) =>
             numSpeciesAllTime.toLocaleString(),
-        },
-      ],
-      headers: [
-        {
-          label: 'locId',
-        },
-        {
-          label: 'locName',
-        },
-        {
-          label: 'countryCode',
-        },
-        {
-          label: 'subnational1Code',
-        },
-        {
-          label: 'subnational2Code',
-        },
-        {
-          align: 'right',
-          label: 'lat',
-        },
-        {
-          align: 'right',
-          label: 'lng',
-        },
-        {
-          label: 'latestObsDt',
-        },
-        {
-          align: 'right',
           label: 'numSpeciesAllTime',
         },
       ],
       title: 'Detailed Table',
     },
     {
-      cells: [
+      columns: [
         {
           callback: ({ lat, lng, locName }) => (
             <GoogleMapsLink
@@ -89,11 +66,13 @@ export default function BasePageTableEbirdHotspot(props: Props) {
               {locName}
             </GoogleMapsLink>
           ),
+          label: 'Name',
         },
         {
           align: 'right',
           callback: ({ numSpeciesAllTime = 0 }) =>
             numSpeciesAllTime.toLocaleString(),
+          label: 'Species Observed',
         },
         {
           callback: ({ latestObsDt }) =>
@@ -102,17 +81,6 @@ export default function BasePageTableEbirdHotspot(props: Props) {
             ) : (
               <time>{new Date(latestObsDt).toLocaleString()}</time>
             ),
-        },
-      ],
-      headers: [
-        {
-          label: 'Name',
-        },
-        {
-          align: 'right',
-          label: 'Species Observed',
-        },
-        {
           label: 'Latest Observation',
         },
       ],

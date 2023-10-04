@@ -1,16 +1,8 @@
 import { type ReactNode, useState } from 'react';
 
 import Pagination from '../Pagination/Pagination';
-import {
-  TableCell,
-  type TableCellConfig,
-  type TableCellConfigArray,
-} from '../TableCell/TableCell';
-import {
-  TableHeader,
-  type TableHeaderProps,
-  type TableHeaderPropsArray,
-} from '../TableHeader/TableHeader';
+import TableCell from '../TableCell/TableCell';
+import TableHeader from '../TableHeader/TableHeader';
 
 interface Column<T> {
   align?: 'left' | 'center' | 'right';
@@ -22,8 +14,7 @@ interface Column<T> {
 type ColumnArray<T> = Array<Column<T>>;
 
 interface Props<T> {
-  cells: TableCellConfigArray<T>;
-  headers: TableHeaderPropsArray<T>;
+  columns: ColumnArray<T>;
   hidePagination?: boolean;
   items: T[];
 }
@@ -32,26 +23,19 @@ export type {
   Column as TableColumn,
   ColumnArray as TableColumnArray,
   Props as TableProps,
-  TableCellConfig,
-  TableCellConfigArray,
-  TableHeaderProps,
-  TableHeaderPropsArray,
 };
 
-export function Table<T>({
-  cells,
-  headers,
-  hidePagination = false,
-  items,
-}: Props<T>) {
+export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
   const [paginatedItems, setPaginatedItems] = useState<T[]>([]);
 
   function Headers() {
-    const listItems = headers.map((props, index) => {
+    console.log(columns);
+    const listItems = columns.map(({ align = 'left', label }, index) => {
       return (
         <TableHeader
+          align={align}
           key={index}
-          {...props}
+          label={label}
         />
       );
     });
@@ -61,15 +45,19 @@ export function Table<T>({
 
   function Rows() {
     const listItems = paginatedItems.map((item, itemIndex) => {
-      const tds = cells.map((props, cellIndex) => {
-        return (
-          <TableCell
-            key={cellIndex}
-            {...props}
-            item={item}
-          />
-        );
-      });
+      const tds = columns.map(
+        ({ align = 'left', callback, wrap = false }, cellIndex) => {
+          return (
+            <TableCell
+              key={cellIndex}
+              align={align}
+              callback={callback}
+              item={item}
+              wrap={wrap}
+            />
+          );
+        }
+      );
 
       return (
         <tr

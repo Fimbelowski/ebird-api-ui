@@ -29,11 +29,10 @@ export function BasePageTable<T>({
   const [parsedResults, setParsedResults] = useState<T[]>([]);
 
   const resultsSections: ResultsSection[] = tables.map(
-    ({ cells, headers, title }) => ({
+    ({ columns, title }) => ({
       content: (
         <Table<T>
-          cells={cells}
-          headers={headers}
+          columns={columns}
           items={parsedResults}
           key={title}
         />

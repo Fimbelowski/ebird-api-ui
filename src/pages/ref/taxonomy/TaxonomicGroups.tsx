@@ -26,25 +26,17 @@ export default function TaxonomicGroups() {
 
   const tables: Tables<EbirdTaxonomicGroup> = [
     {
-      cells: [
+      columns: [
         {
           callback: ({ groupName }) => groupName,
-        },
-        {
-          callback: ({ groupOrder }) => groupOrder.toString(),
-        },
-        {
-          callback: ({ taxonOrderBounds }) => taxonOrderBounds[0].join(', '),
-        },
-      ],
-      headers: [
-        {
           label: 'Name',
         },
         {
+          callback: ({ groupOrder }) => groupOrder.toString(),
           label: 'Order',
         },
         {
+          callback: ({ taxonOrderBounds }) => taxonOrderBounds[0].join(', '),
           label: 'Taxon Order Bounds',
         },
       ],

@@ -3,10 +3,7 @@ import type { TableColumn } from '../Table/Table';
 
 type Props<T> = Omit<TableColumn<T>, 'label'> & { item: T };
 
-export type TableCellConfig<T> = Omit<Props<T>, 'item'>;
-export type TableCellConfigArray<T> = Array<TableCellConfig<T>>;
-
-export function TableCell<T>({
+export default function TableCell<T>({
   align = 'left',
   callback,
   item,

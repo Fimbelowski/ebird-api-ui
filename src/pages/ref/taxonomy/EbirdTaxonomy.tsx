@@ -42,162 +42,108 @@ export default function EbirdTaxonomy() {
 
   const tables: Tables<EbirdTaxonomyEntry> = [
     {
-      cells: [
+      columns: [
         {
           callback: ({ bandingCodes }) => bandingCodes.join(', '),
-        },
-        {
-          callback: ({ category }) => category,
-        },
-        {
-          callback: ({ comName }) => comName,
-        },
-        {
-          callback: ({ comNameCodes }) => comNameCodes.join(', '),
-        },
-        {
-          callback: ({ extinct }) => extinct,
-        },
-        {
-          align: 'right',
-          callback: ({ extinctYear }) => extinctYear,
-        },
-        {
-          callback: ({ familyCode }) => familyCode,
-        },
-        {
-          callback: ({ familyComName }) => familyComName,
-        },
-        {
-          callback: ({ familySciName }) => familySciName,
-        },
-        {
-          callback: ({ order }) => order,
-        },
-        {
-          callback: ({ reportAs }) => reportAs,
-        },
-        {
-          callback: ({ sciName }) => sciName,
-        },
-        {
-          callback: ({ sciNameCodes }) => sciNameCodes.join(', '),
-        },
-        {
-          callback: ({ speciesCode }) => speciesCode,
-        },
-        {
-          callback: ({ taxonOrder }) => taxonOrder,
-        },
-      ],
-      headers: [
-        {
           label: 'bandingCodes',
         },
         {
+          callback: ({ category }) => category,
           label: 'category',
         },
         {
+          callback: ({ comName }) => comName,
           label: 'comName',
         },
         {
+          callback: ({ comNameCodes }) => comNameCodes.join(', '),
           label: 'comNameCodes',
         },
         {
+          callback: ({ extinct }) => extinct,
           label: 'extinct',
         },
         {
           align: 'right',
+          callback: ({ extinctYear }) => extinctYear,
           label: 'extinctYear',
         },
         {
+          callback: ({ familyCode }) => familyCode,
           label: 'familyCode',
         },
         {
+          callback: ({ familyComName }) => familyComName,
           label: 'familyComName',
         },
         {
+          callback: ({ familySciName }) => familySciName,
           label: 'familySciName',
         },
         {
+          callback: ({ order }) => order,
           label: 'order',
         },
         {
+          callback: ({ reportAs }) => reportAs,
           label: 'reportAs',
         },
         {
+          callback: ({ sciName }) => sciName,
           label: 'sciName',
         },
         {
+          callback: ({ sciNameCodes }) => sciNameCodes.join(', '),
           label: 'sciNameCodes',
         },
         {
+          callback: ({ speciesCode }) => speciesCode,
           label: 'speciesCode',
         },
         {
+          callback: ({ taxonOrder }) => taxonOrder,
           label: 'taxonOrder',
         },
       ],
       title: 'Detailed Table',
     },
     {
-      cells: [
+      columns: [
         {
           callback: ({ speciesCode }) => speciesCode,
-        },
-        {
-          callback: ({ category }) => taxonomyCategoryToLabel(category),
-        },
-        {
-          callback: ({ comName }) => comName,
-        },
-        {
-          callback: ({ sciName }) => sciName,
-        },
-        {
-          callback: ({ order }) => order,
-        },
-        {
-          callback: ({ familyComName }) => familyComName,
-        },
-        {
-          callback: ({ familySciName }) => familySciName,
-        },
-        {
-          callback: ({ extinct }) => (extinct ? 'Yes' : 'No'),
-        },
-        {
-          align: 'right',
-          callback: ({ extinctYear }) => extinctYear,
-        },
-      ],
-      headers: [
-        {
           label: 'Species Code',
         },
         {
+          callback: ({ category }) => taxonomyCategoryToLabel(category),
           label: 'Category',
         },
         {
+          callback: ({ comName }) => comName,
           label: 'Common Name',
         },
         {
+          callback: ({ sciName }) => sciName,
           label: 'Scientific Name',
         },
         {
+          callback: ({ order }) => order,
           label: 'Order',
         },
         {
+          callback: ({ familyComName }) => familyComName,
           label: 'Family Common Name',
         },
         {
+          callback: ({ familySciName }) => familySciName,
           label: 'Family Scientific Name',
         },
         {
+          callback: ({ extinct }) => (extinct ? 'Yes' : 'No'),
           label: 'Extinct?',
         },
         {
           align: 'right',
+          callback: ({ extinctYear }) => extinctYear,
           label: 'Declared Extinct',
         },
       ],
