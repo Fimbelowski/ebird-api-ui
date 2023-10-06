@@ -29,7 +29,6 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
   const [paginatedItems, setPaginatedItems] = useState<T[]>([]);
 
   function Headers() {
-    console.log(columns);
     const listItems = columns.map(({ align = 'left', label }, index) => {
       return (
         <TableHeader
