@@ -7,7 +7,7 @@ import {
 } from './BasePageTable';
 import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
 import GoogleMapsLink from './GoogleMapsLink';
-import { type TableCell, type TableHeader } from './Table/Table';
+import type { TableColumn, TableColumnArray } from './Table/Table';
 
 interface EbirdObservation {
   checklistId?: string;
@@ -54,282 +54,228 @@ export default function BasePageTableEbirdObservation({
   const [lastDetailLevel, setLastDetailLevel] =
     useState<EbirdObservationDetailLevel>('simple');
 
-  function detailedTableCells() {
-    const cells: Array<
-      TableCell<EbirdObservation> & { detailLevel: EbirdObservationDetailLevel }
-    > = [
-      {
-        callback: ({ checklistId }) => checklistId,
-        detailLevel: 'full',
-      },
-      {
-        callback: ({ comName }) => comName,
-        detailLevel: 'simple',
-      },
-      {
-        callback: ({ countryCode }) => countryCode,
-        detailLevel: 'full',
-      },
-      {
-        callback: ({ countryName }) => countryName,
-        detailLevel: 'full',
-      },
-      {
-        callback: ({ evidence }) => evidence,
-        detailLevel: 'full',
-      },
-      {
-        callback: ({ exoticCategory }) => exoticCategory,
-        detailLevel: 'simple',
-      },
-      {
-        callback: ({ firstName }) => firstName,
-        detailLevel: 'full',
-      },
-      {
-        callback: ({ hasComments }) => hasComments,
-        detailLevel: 'full',
-      },
-      {
-        callback: ({ hasRichMedia }) => hasRichMedia,
-        detailLevel: 'full',
-      },
-      {
-        callback: ({ howMany }) => howMany,
-        detailLevel: 'simple',
-      },
-      {
-        callback: ({ lastName }) => lastName,
-        detailLevel: 'full',
-      },
-      {
-        align: 'right',
-        callback: ({ lat }) => lat,
-        detailLevel: 'simple',
-      },
-      {
-        align: 'right',
-        callback: ({ lng }) => lng,
-        detailLevel: 'simple',
-      },
-      {
-        callback: ({ locId }) => locId,
-        detailLevel: 'simple',
-      },
-      {
-        callback: ({ locName }) => locName,
-        detailLevel: 'simple',
-      },
-      {
-        callback: ({ locationPrivate }) => locationPrivate,
-        detailLevel: 'simple',
-      },
-      {
-        callback: ({ obsDt }) => obsDt,
-        detailLevel: 'simple',
-      },
-      {
-        callback: ({ obsId }) => obsId,
-        detailLevel: 'full',
-      },
-      {
-        callback: ({ obsReviewed }) => obsReviewed,
-        detailLevel: 'simple',
-      },
-      {
-        callback: ({ obsValid }) => obsValid,
-        detailLevel: 'simple',
-      },
-      {
-        callback: ({ presenceNoted }) => presenceNoted,
-        detailLevel: 'full',
-      },
-      {
-        callback: ({ sciName }) => sciName,
-        detailLevel: 'simple',
-      },
-      {
-        callback: ({ speciesCode }) => speciesCode,
-        detailLevel: 'simple',
-      },
-      {
-        callback: ({ subId }) => subId,
-        detailLevel: 'simple',
-      },
-      {
-        callback: ({ subnational1Code }) => subnational1Code,
-        detailLevel: 'full',
-      },
-      {
-        callback: ({ subnational1Name }) => subnational1Name,
-        detailLevel: 'full',
-      },
-      {
-        callback: ({ subnational2Code }) => subnational2Code,
-        detailLevel: 'full',
-      },
-      {
-        callback: ({ subnational2Name }) => subnational2Name,
-        detailLevel: 'full',
-      },
-      {
-        callback: ({ userDisplayName }) => userDisplayName,
-        detailLevel: 'full',
-      },
-    ];
+  const allDetailedTableColumns: Record<
+    string,
+    TableColumn<EbirdObservation>
+  > = {
+    checklistId: {
+      callback: ({ checklistId }) => checklistId,
+      label: 'checklistId',
+    },
+    comName: {
+      callback: ({ comName }) => comName,
+      label: 'comName',
+    },
+    countryCode: {
+      callback: ({ countryCode }) => countryCode,
+      label: 'countryCode',
+    },
+    countryName: {
+      callback: ({ countryName }) => countryName,
+      label: 'countryName',
+    },
+    evidence: {
+      callback: ({ evidence }) => evidence,
+      label: 'evidence',
+    },
+    exoticCategory: {
+      callback: ({ exoticCategory }) => exoticCategory,
+      label: 'exoticCategory',
+    },
+    firstName: {
+      callback: ({ firstName }) => firstName,
+      label: 'firstName',
+    },
+    hasComments: {
+      callback: ({ hasComments }) => hasComments,
+      label: 'hasComments',
+    },
+    hasRichMedia: {
+      callback: ({ hasRichMedia }) => hasRichMedia,
+      label: 'hasRichMedia',
+    },
+    howMany: {
+      align: 'right',
+      callback: ({ howMany }) => howMany,
+      label: 'howMany',
+    },
+    lastName: {
+      callback: ({ lastName }) => lastName,
+      label: 'lastName',
+    },
+    lat: {
+      align: 'right',
+      callback: ({ lat }) => lat,
+      label: 'lat',
+    },
+    lng: {
+      align: 'right',
+      callback: ({ lng }) => lng,
+      label: 'lng',
+    },
+    locId: {
+      callback: ({ locId }) => locId,
+      label: 'locId',
+    },
+    locName: {
+      callback: ({ locName }) => locName,
+      label: 'locName',
+    },
+    locationPrivate: {
+      callback: ({ locationPrivate }) => locationPrivate,
+      label: 'locationPrivate',
+    },
+    obsDt: {
+      callback: ({ obsDt }) => obsDt,
+      label: 'obsDt',
+    },
+    obsId: {
+      callback: ({ obsId }) => obsId,
+      label: 'obsId',
+    },
+    obsReviewed: {
+      callback: ({ obsReviewed }) => obsReviewed,
+      label: 'obsReviewed',
+    },
+    obsValid: {
+      callback: ({ obsValid }) => obsValid,
+      label: 'obsValid',
+    },
+    presenceNoted: {
+      callback: ({ presenceNoted }) => presenceNoted,
+      label: 'presenceNoted',
+    },
+    sciName: {
+      callback: ({ sciName }) => sciName,
+      label: 'sciName',
+    },
+    speciesCode: {
+      callback: ({ speciesCode }) => speciesCode,
+      label: 'speciesCode',
+    },
+    subId: {
+      callback: ({ subId }) => subId,
+      label: 'subId',
+    },
+    subnational1Code: {
+      callback: ({ subnational1Code }) => subnational1Code,
+      label: 'subnational1Code',
+    },
+    subnational1Name: {
+      callback: ({ subnational1Name }) => subnational1Name,
+      label: 'subnational1Name',
+    },
+    subnational2Code: {
+      callback: ({ subnational2Code }) => subnational2Code,
+      label: 'subnational2Code',
+    },
+    subnational2Name: {
+      callback: ({ subnational2Name }) => subnational2Name,
+      label: 'subnational2Name',
+    },
+    userDisplayName: {
+      callback: ({ userDisplayName }) => userDisplayName,
+      label: 'userDisplayName',
+    },
+  };
+
+  function detailedTableColumns(): TableColumnArray<EbirdObservation> {
+    const {
+      checklistId,
+      comName,
+      countryCode,
+      countryName,
+      evidence,
+      exoticCategory,
+      firstName,
+      hasComments,
+      hasRichMedia,
+      howMany,
+      lastName,
+      lat,
+      lng,
+      locId,
+      locName,
+      locationPrivate,
+      obsDt,
+      obsId,
+      obsReviewed,
+      obsValid,
+      presenceNoted,
+      sciName,
+      speciesCode,
+      subId,
+      subnational1Code,
+      subnational1Name,
+      subnational2Code,
+      subnational2Name,
+      userDisplayName,
+    } = allDetailedTableColumns;
 
     return lastDetailLevel === 'full'
-      ? cells
-      : cells.filter((cell) => cell.detailLevel === 'simple');
-  }
-
-  function detailedTableHeaders() {
-    const headers: Array<
-      TableHeader & {
-        detailLevel: EbirdObservationDetailLevel;
-        label: keyof EbirdObservation;
-      }
-    > = [
-      {
-        detailLevel: 'full',
-        label: 'checklistId',
-      },
-      {
-        detailLevel: 'simple',
-        label: 'comName',
-      },
-      {
-        detailLevel: 'full',
-        label: 'countryCode',
-      },
-      {
-        detailLevel: 'full',
-        label: 'countryName',
-      },
-      {
-        detailLevel: 'full',
-        label: 'evidence',
-      },
-      {
-        detailLevel: 'simple',
-        label: 'exoticCategory',
-      },
-      {
-        detailLevel: 'full',
-        label: 'firstName',
-      },
-      {
-        detailLevel: 'full',
-        label: 'hasComments',
-      },
-      {
-        detailLevel: 'full',
-        label: 'hasRichMedia',
-      },
-      {
-        align: 'right',
-        detailLevel: 'simple',
-        label: 'howMany',
-      },
-      {
-        detailLevel: 'full',
-        label: 'lastName',
-      },
-      {
-        align: 'right',
-        detailLevel: 'simple',
-        label: 'lat',
-      },
-      {
-        align: 'right',
-        detailLevel: 'simple',
-        label: 'lng',
-      },
-      {
-        detailLevel: 'simple',
-        label: 'locId',
-      },
-      {
-        detailLevel: 'simple',
-        label: 'locName',
-      },
-      {
-        detailLevel: 'simple',
-        label: 'locationPrivate',
-      },
-      {
-        detailLevel: 'simple',
-        label: 'obsDt',
-      },
-      {
-        detailLevel: 'full',
-        label: 'obsId',
-      },
-      {
-        detailLevel: 'simple',
-        label: 'obsReviewed',
-      },
-      {
-        detailLevel: 'simple',
-        label: 'obsValid',
-      },
-      {
-        detailLevel: 'full',
-        label: 'presenceNoted',
-      },
-      {
-        detailLevel: 'simple',
-        label: 'sciName',
-      },
-      {
-        detailLevel: 'simple',
-        label: 'speciesCode',
-      },
-      {
-        detailLevel: 'simple',
-        label: 'subId',
-      },
-      {
-        detailLevel: 'full',
-        label: 'subnational1Code',
-      },
-      {
-        detailLevel: 'full',
-        label: 'subnational1Name',
-      },
-      {
-        detailLevel: 'full',
-        label: 'subnational2Code',
-      },
-      {
-        detailLevel: 'full',
-        label: 'subnational2Name',
-      },
-      {
-        detailLevel: 'full',
-        label: 'userDisplayName',
-      },
-    ];
-
-    return lastDetailLevel === 'full'
-      ? headers
-      : headers.filter(({ detailLevel }) => detailLevel === 'simple');
+      ? [
+          checklistId,
+          comName,
+          countryCode,
+          countryName,
+          evidence,
+          exoticCategory,
+          firstName,
+          hasComments,
+          hasRichMedia,
+          howMany,
+          lastName,
+          lat,
+          lng,
+          locId,
+          locationPrivate,
+          obsDt,
+          obsId,
+          obsReviewed,
+          obsValid,
+          presenceNoted,
+          sciName,
+          speciesCode,
+          subId,
+          subnational1Code,
+          subnational1Name,
+          subnational2Code,
+          subnational2Name,
+          userDisplayName,
+        ]
+      : [
+          comName,
+          exoticCategory,
+          howMany,
+          lat,
+          lng,
+          locId,
+          locName,
+          locationPrivate,
+          obsDt,
+          obsReviewed,
+          obsValid,
+          sciName,
+          speciesCode,
+          subId,
+        ];
   }
 
   const tables: Tables<EbirdObservation> = [
     {
-      cells: detailedTableCells(),
-      headers: detailedTableHeaders(),
+      columns: detailedTableColumns(),
       title: 'Detailed Table',
     },
     {
-      cells: [
+      columns: [
         {
           callback: ({ comName }) => comName,
+          label: 'Species',
         },
         {
           align: 'right',
           callback: ({ howMany }) => howMany?.toLocaleString(),
+          label: 'Quantity',
         },
         {
           callback: ({ lat, lng, locName }) => (
@@ -340,22 +286,10 @@ export default function BasePageTableEbirdObservation({
               {locName}
             </GoogleMapsLink>
           ),
-        },
-        {
-          callback: ({ obsDt }) => new Date(obsDt).toLocaleString(),
-        },
-      ],
-      headers: [
-        {
-          label: 'Species',
-        },
-        {
-          label: 'Quantity',
-        },
-        {
           label: 'Location',
         },
         {
+          callback: ({ obsDt }) => new Date(obsDt).toLocaleString(),
           label: 'Date',
         },
       ],

@@ -25,58 +25,43 @@ export default function Top100() {
 
   const tables: Tables<EbirdContributor> = [
     {
-      cells: [
+      columns: [
         {
           callback: ({ profileHandle }) => profileHandle,
-        },
-        {
-          callback: ({ userDisplayName }) => userDisplayName,
-        },
-        {
-          align: 'right',
-          callback: ({ numSpecies }) => numSpecies,
-        },
-        {
-          align: 'right',
-          callback: ({ numCompleteChecklists }) => numCompleteChecklists,
-        },
-        {
-          align: 'right',
-          callback: ({ rowNum }) => rowNum,
-        },
-        {
-          callback: ({ userId }) => userId,
-        },
-      ],
-      headers: [
-        {
           label: 'profileHandle',
         },
         {
+          callback: ({ userDisplayName }) => userDisplayName,
           label: 'userDisplayName',
         },
         {
           align: 'right',
+          callback: ({ numSpecies }) => numSpecies,
           label: 'numSpecies',
         },
         {
           align: 'right',
+          callback: ({ numCompleteChecklists }) => numCompleteChecklists,
           label: 'numCompleteChecklists',
         },
         {
           align: 'right',
+          callback: ({ rowNum }) => rowNum,
           label: 'rowNum',
         },
         {
+          callback: ({ userId }) => userId,
           label: 'userId',
         },
       ],
       title: 'Detailed Table',
     },
     {
-      cells: [
+      columns: [
         {
+          align: 'right',
           callback: ({ rowNum }) => getOrdinalNumber(rowNum),
+          label: 'Place',
         },
         {
           callback: ({ userDisplayName, profileHandle }) =>
@@ -88,23 +73,12 @@ export default function Top100() {
                 userDisplayName={userDisplayName}
               />
             ),
+          label: 'Contributor',
         },
         {
           align: 'right',
           callback: ({ numCompleteChecklists, numSpecies }) =>
             lastRankedBy === 'spp' ? numSpecies : numCompleteChecklists,
-        },
-      ],
-      headers: [
-        {
-          align: 'right',
-          label: 'Place',
-        },
-        {
-          label: 'Contributor',
-        },
-        {
-          align: 'right',
           label: `# ${
             lastRankedBy === 'spp' ? 'Species' : 'Complete Checklists'
           }`,

@@ -1,18 +1,21 @@
 import type EbirdLocation from '../types/EbirdLocation';
 import GoogleMapsLink from './GoogleMapsLink';
 import type LocationTableProps from '../types/LocationTableProps';
-import { Table, type TableCellArray, type TableHeader } from './Table/Table';
+import { Table, type TableColumnArray } from './Table/Table';
 
 export default function EbirdLocationTableSimple({
   locations,
 }: LocationTableProps) {
-  const tableCells: TableCellArray<EbirdLocation> = [
+  const tableColumns: TableColumnArray<EbirdLocation> = [
     {
       callback: ({ hierarchicalName }) => hierarchicalName,
+      label: 'Name',
       wrap: true,
     },
     {
       callback: ({ countryName }) => countryName,
+
+      label: 'Country',
     },
     {
       callback: ({ lat, lng }) => (
@@ -23,25 +26,13 @@ export default function EbirdLocationTableSimple({
           Link
         </GoogleMapsLink>
       ),
-    },
-  ];
-
-  const tableHeaders: TableHeader[] = [
-    {
-      label: 'Name',
-    },
-    {
-      label: 'Country',
-    },
-    {
       label: 'View on Google Maps',
     },
   ];
 
   return (
     <Table
-      cells={tableCells}
-      headers={tableHeaders}
+      columns={tableColumns}
       items={locations}
     />
   );

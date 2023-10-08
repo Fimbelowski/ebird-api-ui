@@ -1,0 +1,17 @@
+.table-header {
+  border: var(--border);
+  padding: var(--spacing-xs) var(--spacing-regular);
+  white-space: nowrap;
+
+  &--center {
+    text-align: center;
+  }
+
+  &--left {
+    text-align: left;
+  }
+
+  &--right {
+    text-align: right;
+  }
+}

@@ -14,19 +14,13 @@ type Props = Omit<BasePageTableProps<EbirdRegion>, 'tables'>;
 export function BasePageTableEbirdRegion(props: Props) {
   const tables: Tables<EbirdRegion> = [
     {
-      cells: [
+      columns: [
         {
           callback: ({ name }) => name,
-        },
-        {
-          callback: ({ code }) => code,
-        },
-      ],
-      headers: [
-        {
           label: 'Name',
         },
         {
+          callback: ({ code }) => code,
           label: 'Code',
         },
       ],

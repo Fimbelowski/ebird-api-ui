@@ -8,19 +8,13 @@ export default function TaxonomyVersions() {
 
   const tables: Tables<EbirdTaxonomyVersion> = [
     {
-      cells: [
+      columns: [
         {
           callback: ({ authorityVer }) => authorityVer.toString(),
-        },
-        {
-          callback: ({ latest }) => latest.toString(),
-        },
-      ],
-      headers: [
-        {
           label: 'Version',
         },
         {
+          callback: ({ latest }) => latest.toString(),
           label: 'Latest',
         },
       ],

@@ -10,11 +10,7 @@ import {
   KeyValuePairsList,
   type KeyValueTuple,
 } from '../../components/KeyValuePairsList/KeyValuePairsList';
-import {
-  Table,
-  type TableHeader,
-  type TableCellArray,
-} from '../../components/Table/Table';
+import { Table, type TableColumnArray } from '../../components/Table/Table';
 import kilometersToMiles from '../../utilities/kilometersToMiles';
 import hoursToHoursAndMinutes from '../../utilities/hoursToHoursAndMinutes';
 import PAGE from './PAGE';
@@ -127,149 +123,97 @@ export default function ViewChecklist() {
 
     const clonedChecklist: EbirdChecklistWithoutArrays = { ...rest };
 
-    const observationsTableHeaders: TableHeader[] = [
-      {
-        label: 'hideFlags',
-      },
-      {
-        label: 'howManyAtLeast',
-        align: 'right',
-      },
-      {
-        label: 'howManyAtMost',
-        align: 'right',
-      },
-      {
-        label: 'howManyStr',
-        align: 'right',
-      },
-      {
-        label: 'obsDt',
-      },
-      {
-        label: 'obsId',
-      },
-      {
-        label: 'present',
-      },
-      {
-        label: 'projId',
-      },
-      {
-        label: 'speciesCode',
-      },
-      {
-        label: 'subnational1Code',
-      },
-      {
-        label: 'subId',
-      },
-    ];
+    const obervationTableColumns: TableColumnArray<EbirdChecklistObservation> =
+      [
+        {
+          callback: ({ hideFlags }) => hideFlags.join(''),
+          label: 'hideFlags',
+        },
+        {
+          align: 'right',
+          callback: ({ howManyAtLeast }) => howManyAtLeast,
+          label: 'howManyAtLeast',
+        },
+        {
+          align: 'right',
+          callback: ({ howManyAtMost }) => howManyAtMost,
+          label: 'howManyAtMost',
+        },
+        {
+          callback: ({ howManyStr }) => howManyStr,
+          align: 'right',
+          label: 'howManyStr',
+        },
+        {
+          callback: ({ obsDt }) => obsDt,
+          label: 'obsDt',
+        },
+        {
+          callback: ({ obsId }) => obsId,
+          label: 'obsId',
+        },
+        {
+          callback: ({ present }) => present.toString(),
+          label: 'present',
+        },
+        {
+          callback: ({ projId }) => projId,
+          label: 'projId',
+        },
+        {
+          callback: ({ speciesCode }) => speciesCode,
+          label: 'speciesCode',
+        },
+        {
+          callback: ({ subnational1Code }) => subnational1Code,
+          label: 'subnational1Code',
+        },
+        {
+          callback: ({ subId }) => subId,
+          label: 'subId',
+        },
+      ];
 
-    const observationsTableCells: TableCellArray<EbirdChecklistObservation> = [
+    const checklistAuxTableColumns: TableColumnArray<EbirdChecklistAux> = [
       {
-        callback: ({ hideFlags }) => hideFlags.join(''),
-      },
-      {
-        align: 'right',
-        callback: ({ howManyAtLeast }) => howManyAtLeast,
-      },
-      {
-        align: 'right',
-        callback: ({ howManyAtMost }) => howManyAtMost,
-      },
-      {
-        align: 'right',
-        callback: ({ howManyStr }) => howManyStr,
-      },
-      {
-        callback: ({ obsDt }) => obsDt,
-      },
-      {
-        callback: ({ obsId }) => obsId,
-      },
-      {
-        callback: ({ present }) => present.toString(),
-      },
-      {
-        callback: ({ projId }) => projId,
-      },
-      {
-        callback: ({ speciesCode }) => speciesCode,
-      },
-      {
-        callback: ({ subnational1Code }) => subnational1Code,
-      },
-      {
-        callback: ({ subId }) => subId,
-      },
-    ];
-
-    const checklistAuxTableHeaders: TableHeader[] = [
-      {
+        callback: ({ auxCode }) => auxCode,
         label: 'auxCode',
       },
       {
+        callback: ({ entryMethodCode }) => entryMethodCode,
         label: 'entryMethodCode',
       },
       {
+        callback: ({ fieldName }) => fieldName,
         label: 'fieldName',
       },
       {
+        callback: ({ subId }) => subId,
         label: 'subId',
       },
     ];
 
-    const checklistAuxTableCells: TableCellArray<EbirdChecklistAux> = [
+    const checklistAuxAiTableColumns: TableColumnArray<EbirdChecklistAuxAi> = [
       {
-        callback: ({ auxCode }) => auxCode,
-      },
-      {
-        callback: ({ entryMethodCode }) => entryMethodCode,
-      },
-      {
-        callback: ({ fieldName }) => fieldName,
-      },
-      {
-        callback: ({ subId }) => subId,
-      },
-    ];
-
-    const checklistAuxAiTableHeaders: TableHeader[] = [
-      {
+        callback: ({ aiType }) => aiType,
         label: 'aiType',
       },
       {
         align: 'right',
+        callback: ({ eventId }) => eventId,
         label: 'eventId',
       },
       {
+        callback: ({ method }) => method,
         label: 'method',
       },
       {
+        callback: ({ source }) => source,
         label: 'source',
       },
       {
-        label: 'subId',
-      },
-    ];
-
-    const checklistAuxAiTableCells: TableCellArray<EbirdChecklistAuxAi> = [
-      {
-        callback: ({ aiType }) => aiType,
-      },
-      {
-        align: 'right',
-        callback: ({ eventId }) => eventId,
-      },
-      {
-        callback: ({ method }) => method,
-      },
-      {
-        callback: ({ source }) => source,
-      },
-      {
         callback: ({ subId }) => subId,
+        label: 'subId',
       },
     ];
 
@@ -280,8 +224,7 @@ export default function ViewChecklist() {
           <>
             <h3>Observations</h3>
             <Table<EbirdChecklistObservation>
-              cells={observationsTableCells}
-              headers={observationsTableHeaders}
+              columns={obervationTableColumns}
               items={observations}
             />
           </>
@@ -290,8 +233,7 @@ export default function ViewChecklist() {
           <>
             <h3>Checklist Aux</h3>
             <Table<EbirdChecklistAux>
-              cells={checklistAuxTableCells}
-              headers={checklistAuxTableHeaders}
+              columns={checklistAuxTableColumns}
               items={subAux}
             />
           </>
@@ -300,8 +242,7 @@ export default function ViewChecklist() {
           <>
             <h3>Checklist Aux AI</h3>
             <Table<EbirdChecklistAuxAi>
-              cells={checklistAuxAiTableCells}
-              headers={checklistAuxAiTableHeaders}
+              columns={checklistAuxAiTableColumns}
               items={subAuxAi}
             />
           </>
@@ -342,23 +283,15 @@ export default function ViewChecklist() {
       ['# of Observers', numObservers],
     ];
 
-    const tableHeaders: TableHeader[] = [
+    const tableColumns: TableColumnArray<EbirdChecklistObservation> = [
       {
+        callback: ({ speciesCode }) => speciesCode,
         label: 'Species Code',
       },
       {
         align: 'right',
-        label: 'Quantity',
-      },
-    ];
-
-    const tableCells: TableCellArray<EbirdChecklistObservation> = [
-      {
-        callback: ({ speciesCode }) => speciesCode,
-      },
-      {
-        align: 'right',
         callback: ({ howManyStr, present }) => (present ? 'X' : howManyStr),
+        label: 'Quantity',
       },
     ];
 
@@ -366,8 +299,7 @@ export default function ViewChecklist() {
       <>
         <KeyValuePairsList keyValuePairs={keyValuePairs} />
         <Table<EbirdChecklistObservation>
-          cells={tableCells}
-          headers={tableHeaders}
+          columns={tableColumns}
           items={obs}
         />
       </>

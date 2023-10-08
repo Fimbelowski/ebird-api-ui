@@ -22,64 +22,49 @@ type Props = Omit<BasePageTableProps<EbirdChecklist>, 'tables'>;
 export default function BasePageTableEbirdChecklist(props: Props) {
   const tables: Tables<EbirdChecklist> = [
     {
-      cells: [
+      columns: [
         {
           callback: ({ locId }) => locId,
-        },
-        {
-          callback: ({ subId }) => subId,
-        },
-        {
-          callback: ({ userDisplayName }) => userDisplayName,
-        },
-        {
-          align: 'right',
-          callback: ({ numSpecies }) => numSpecies,
-        },
-        {
-          callback: ({ obsDt }) => obsDt,
-        },
-        {
-          callback: ({ obsTime }) => obsTime,
-        },
-        {
-          callback: ({ subID }) => subID,
-        },
-      ],
-      headers: [
-        {
           label: 'locId',
         },
         {
+          callback: ({ subId }) => subId,
           label: 'subId',
         },
         {
+          callback: ({ userDisplayName }) => userDisplayName,
           label: 'userDisplayName',
         },
         {
           align: 'right',
+          callback: ({ numSpecies }) => numSpecies,
           label: 'numSpecies',
         },
         {
+          callback: ({ obsDt }) => obsDt,
           label: 'obsDt',
         },
         {
+          callback: ({ obsTime }) => obsTime,
           label: 'obsTime',
         },
         {
+          callback: ({ subID }) => subID,
           label: 'subID',
         },
       ],
       title: 'Detailed Table',
     },
     {
-      cells: [
+      columns: [
         {
           callback: ({ userDisplayName }) => userDisplayName,
+          label: 'Contributor',
         },
         {
           align: 'right',
           callback: ({ numSpecies }) => numSpecies,
+          label: '# Species',
         },
         {
           callback: ({ loc: { lat, lng, locName } }) => (
@@ -90,6 +75,7 @@ export default function BasePageTableEbirdChecklist(props: Props) {
               {locName}
             </GoogleMapsLink>
           ),
+          label: 'Location',
         },
         {
           callback: ({ obsDt, obsTime = '' }) => {
@@ -99,20 +85,6 @@ export default function BasePageTableEbirdChecklist(props: Props) {
               ? date.toLocaleDateString()
               : date.toLocaleString();
           },
-        },
-      ],
-      headers: [
-        {
-          label: 'Contributor',
-        },
-        {
-          align: 'right',
-          label: '# Species',
-        },
-        {
-          label: 'Location',
-        },
-        {
           label: 'Date of Observation',
         },
       ],

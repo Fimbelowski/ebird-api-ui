@@ -1,50 +1,41 @@
 import { type ReactNode, useState } from 'react';
 
-import classNames from '../../utilities/classNames';
 import Pagination from '../Pagination/Pagination';
+import TableCell from '../TableCell/TableCell';
+import TableHeader from '../TableHeader/TableHeader';
 
-export interface TableCell<T> {
+interface Column<T> {
   align?: 'left' | 'center' | 'right';
   callback: (item: T) => string | ReactNode;
+  label: string;
   wrap?: boolean;
 }
 
-export type TableCellArray<T> = Array<TableCell<T>>;
+type ColumnArray<T> = Array<Column<T>>;
 
-export interface TableHeader {
-  align?: 'left' | 'center' | 'right';
-  label: string;
-}
-
-export interface TableProps<T> {
-  cells: TableCellArray<T>;
-  headers: TableHeader[];
+interface Props<T> {
+  columns: ColumnArray<T>;
   hidePagination?: boolean;
   items: T[];
 }
 
-export function Table<T>({
-  cells,
-  headers,
-  hidePagination = false,
-  items,
-}: TableProps<T>) {
+export type {
+  Column as TableColumn,
+  ColumnArray as TableColumnArray,
+  Props as TableProps,
+};
+
+export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
   const [paginatedItems, setPaginatedItems] = useState<T[]>([]);
 
   function Headers() {
-    const listItems = headers.map(({ align, label }, index) => {
-      const classes = classNames([
-        'table__th',
-        { [`table__th--${align ?? ''}`]: align !== undefined },
-      ]);
-
+    const listItems = columns.map(({ align = 'left', label }, index) => {
       return (
-        <th
-          className={classes}
+        <TableHeader
+          align={align}
           key={index}
-        >
-          {label}
-        </th>
+          label={label}
+        />
       );
     });
 
@@ -53,22 +44,19 @@ export function Table<T>({
 
   function Rows() {
     const listItems = paginatedItems.map((item, itemIndex) => {
-      const tds = cells.map(({ align, callback, wrap = false }, cellIndex) => {
-        const classes = classNames([
-          'table__td',
-          { [`table__td--${align ?? ''}`]: align !== undefined },
-          { 'table__td--wrap': wrap },
-        ]);
-
-        return (
-          <td
-            className={classes}
-            key={cellIndex}
-          >
-            {callback(item)}
-          </td>
-        );
-      });
+      const tds = columns.map(
+        ({ align = 'left', callback, wrap = false }, cellIndex) => {
+          return (
+            <TableCell
+              key={cellIndex}
+              align={align}
+              callback={callback}
+              item={item}
+              wrap={wrap}
+            />
+          );
+        }
+      );
 
       return (
         <tr
