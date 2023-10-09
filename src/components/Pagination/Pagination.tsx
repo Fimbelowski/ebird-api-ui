@@ -1,21 +1,26 @@
-import { type FormEvent, useEffect, useState } from 'react';
+import { type FormEvent, useState } from 'react';
 
 import { Button } from '../Button/Button';
 import { Select, type SelectOptionArray } from '../Select/Select';
 import { NumberInput } from '../NumberInput';
+import usePaginationBounds from '../../hooks/usePaginationBounds';
 
-interface Props<T> {
-  items: T[];
-  onPaginatedItemsChange: (newlyPaginatedItems: T[]) => void;
+interface Props {
+  itemsPerPage: number;
+  page: number;
+  totalItems: number;
 }
 
-export default function Pagination<T>({
-  items,
-  onPaginatedItemsChange,
-}: Props<T>) {
+export default function Pagination({ page, itemsPerPage, totalItems }: Props) {
+  const { lowerBound, upperBound } = usePaginationBounds(
+    page,
+    itemsPerPage,
+    totalItems
+  );
+
   const [goToPage, setGoToPage] = useState('');
-  const [itemsPerPage, setItemsPerPage] = useState('15');
-  const [page, setPage] = useState(1);
+  const [, setItemsPerPage] = useState('15');
+  const [, setPage] = useState(1);
 
   const itemsPerPageOptions: SelectOptionArray<string> = [
     {
@@ -40,24 +45,8 @@ export default function Pagination<T>({
     },
   ];
 
-  useEffect(() => {
-    onPaginatedItemsChange(getPaginatedItems());
-  }, [page, itemsPerPage]);
-
-  useEffect(() => {
-    setPage(1);
-  }, [items, itemsPerPage]);
-
   function firstAndPreviousPageButtonsDisabled() {
     return page === 1;
-  }
-
-  function itemsPerPageAsNumber() {
-    return parseInt(itemsPerPage, 10);
-  }
-
-  function getPaginatedItems() {
-    return items.slice(paginatedItemsLowerBound(), paginatedItemsUpperBound());
   }
 
   function nextAndLastPageButtonsDisabled() {
@@ -91,24 +80,15 @@ export default function Pagination<T>({
     return Math.max(Math.floor(totalNumberOfPages() / 2), 1).toLocaleString();
   }
 
-  function paginatedItemsLowerBound() {
-    return (page - 1) * itemsPerPageAsNumber();
-  }
-
-  function paginatedItemsUpperBound() {
-    return Math.min(page * itemsPerPageAsNumber(), items.length);
-  }
-
   function paginationInfo() {
-    const lowerBoundString = (paginatedItemsLowerBound() + 1).toLocaleString();
-    const upperBoundString = paginatedItemsUpperBound().toLocaleString();
-    const totalItemsString = items.length.toLocaleString();
+    const lowerBoundString = (lowerBound() + 1).toLocaleString();
+    const upperBoundString = upperBound().toLocaleString();
 
-    return `Showing ${lowerBoundString} - ${upperBoundString} of ${totalItemsString}`;
+    return `Showing ${lowerBoundString} - ${upperBoundString} of ${totalItems.toLocaleString()}`;
   }
 
   function totalNumberOfPages() {
-    return Math.ceil(items.length / itemsPerPageAsNumber());
+    return Math.ceil(totalItems / itemsPerPage);
   }
 
   return (
@@ -149,7 +129,7 @@ export default function Pagination<T>({
           label="Items Per Page"
           onChange={setItemsPerPage}
           options={itemsPerPageOptions}
-          value={itemsPerPage}
+          value={itemsPerPage.toString()}
         />
         <form
           className="pagination__go-to-page-form"
