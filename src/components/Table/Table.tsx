@@ -1,8 +1,9 @@
-import { type ReactNode, useState } from 'react';
+import type { ReactNode } from 'react';
 
 import Pagination from '../Pagination/Pagination';
 import TableCell from '../TableCell/TableCell';
 import TableHeader from '../TableHeader/TableHeader';
+import usePagination from '../../hooks/usePagination';
 
 interface Column<T> {
   align?: 'left' | 'center' | 'right';
@@ -26,7 +27,8 @@ export type {
 };
 
 export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
-  const [paginatedItems, setPaginatedItems] = useState<T[]>([]);
+  const { itemsPerPage, page, paginatedItems, setItemsPerPage, setPage } =
+    usePagination(items);
 
   function Headers() {
     const listItems = columns.map(({ align = 'left', label }, index) => {
@@ -43,7 +45,7 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
   }
 
   function Rows() {
-    const listItems = paginatedItems.map((item, itemIndex) => {
+    const listItems = paginatedItems().map((item, itemIndex) => {
       const tds = columns.map(
         ({ align = 'left', callback, wrap = false }, cellIndex) => {
           return (
@@ -84,9 +86,12 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
         </table>
       </div>
       {hidePagination ? null : (
-        <Pagination<T>
-          items={items}
-          onPaginatedItemsChange={setPaginatedItems}
+        <Pagination
+          itemsPerPage={itemsPerPage}
+          onItemsPerPageChange={setItemsPerPage}
+          onPageChange={setPage}
+          page={page}
+          totalItems={items.length}
         />
       )}
     </>
