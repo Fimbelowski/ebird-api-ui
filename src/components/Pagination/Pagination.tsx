@@ -8,10 +8,18 @@ import usePaginationBounds from '../../hooks/usePaginationBounds';
 interface Props {
   itemsPerPage: number;
   page: number;
+  onItemsPerPageChange: (value: number) => void;
+  onPageChange: (value: number) => void;
   totalItems: number;
 }
 
-export default function Pagination({ page, itemsPerPage, totalItems }: Props) {
+export default function Pagination({
+  itemsPerPage,
+  onItemsPerPageChange: onItemsPerPageChangeProp,
+  onPageChange,
+  page,
+  totalItems,
+}: Props) {
   const { lowerBound, upperBound } = usePaginationBounds(
     page,
     itemsPerPage,
@@ -19,8 +27,6 @@ export default function Pagination({ page, itemsPerPage, totalItems }: Props) {
   );
 
   const [goToPage, setGoToPage] = useState('');
-  const [, setItemsPerPage] = useState('15');
-  const [, setPage] = useState(1);
 
   const itemsPerPageOptions: SelectOptionArray<string> = [
     {
@@ -53,26 +59,14 @@ export default function Pagination({ page, itemsPerPage, totalItems }: Props) {
     return page === totalNumberOfPages();
   }
 
-  function onFirstPageClick() {
-    setPage(1);
-  }
-
-  function onLastPageClick() {
-    setPage(totalNumberOfPages());
-  }
-
-  function onNextPageClick() {
-    setPage(page + 1);
-  }
-
-  function onPreviousPageClick() {
-    setPage(page - 1);
+  function onItemsPerPageChange(value: string) {
+    onItemsPerPageChangeProp(parseInt(value, 10));
   }
 
   function onSubmit(event: FormEvent) {
     event.preventDefault();
 
-    setPage(parseInt(goToPage, 10));
+    onPageChange(parseInt(goToPage, 10));
     setGoToPage('');
   }
 
@@ -97,28 +91,36 @@ export default function Pagination({ page, itemsPerPage, totalItems }: Props) {
       <div className="pagination__controls">
         <Button
           disabled={firstAndPreviousPageButtonsDisabled()}
-          onClick={onFirstPageClick}
+          onClick={() => {
+            onPageChange(1);
+          }}
           type="button"
         >
           First
         </Button>
         <Button
           disabled={firstAndPreviousPageButtonsDisabled()}
-          onClick={onPreviousPageClick}
+          onClick={() => {
+            onPageChange(page - 1);
+          }}
           type="button"
         >
           Previous
         </Button>
         <Button
           disabled={nextAndLastPageButtonsDisabled()}
-          onClick={onNextPageClick}
+          onClick={() => {
+            onPageChange(page + 1);
+          }}
           type="button"
         >
           Next
         </Button>
         <Button
           disabled={nextAndLastPageButtonsDisabled()}
-          onClick={onLastPageClick}
+          onClick={() => {
+            onPageChange(totalNumberOfPages());
+          }}
           type="button"
         >
           Last
@@ -127,7 +129,7 @@ export default function Pagination({ page, itemsPerPage, totalItems }: Props) {
           id="items-per-page"
           inline
           label="Items Per Page"
-          onChange={setItemsPerPage}
+          onChange={onItemsPerPageChange}
           options={itemsPerPageOptions}
           value={itemsPerPage.toString()}
         />

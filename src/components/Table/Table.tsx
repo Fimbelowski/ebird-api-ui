@@ -88,6 +88,8 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
       {hidePagination ? null : (
         <Pagination
           itemsPerPage={itemsPerPage}
+          onItemsPerPageChange={setItemsPerPage}
+          onPageChange={setPage}
           page={page}
           totalItems={items.length}
         />
