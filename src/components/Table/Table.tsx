@@ -1,14 +1,23 @@
-import type { ReactNode } from 'react';
+import { type ReactNode, useState } from 'react';
 
 import Pagination from '../Pagination/Pagination';
 import TableCell from '../TableCell/TableCell';
 import TableHeader from '../TableHeader/TableHeader';
 import usePagination from '../../hooks/usePagination';
 
+type Sort<T> = (items: T[]) => T[];
+
+export enum SortDirection {
+  None,
+  Ascending,
+  Descening,
+}
+
 interface Column<T> {
   align?: 'left' | 'center' | 'right';
   callback: (item: T) => string | ReactNode;
   label: string;
+  sort?: Sort<T>;
   wrap?: boolean;
 }
 
@@ -24,19 +33,28 @@ export type {
   Column as TableColumn,
   ColumnArray as TableColumnArray,
   Props as TableProps,
+  Sort,
 };
 
 export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
   const { itemsPerPage, page, paginatedItems, setItemsPerPage, setPage } =
     usePagination(items);
 
+  const [activeSort, setActiveSort] = useState<Sort<T>>();
+  const [activeSortDirection, setActiveSortDirection] = useState(
+    SortDirection.None
+  );
+
   function Headers() {
-    const listItems = columns.map(({ align = 'left', label }, index) => {
+    const listItems = columns.map(({ align = 'left', label, sort }, index) => {
       return (
         <TableHeader
+          activeSort={activeSort}
+          activeSortDirection={activeSortDirection}
           align={align}
           key={index}
           label={label}
+          sort={sort}
         />
       );
     });

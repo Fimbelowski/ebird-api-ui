@@ -73,6 +73,7 @@ export default function BasePageTableEbirdHotspot(props: Props) {
           callback: ({ numSpeciesAllTime = 0 }) =>
             numSpeciesAllTime.toLocaleString(),
           label: 'Species Observed',
+          sort: (items: EbirdHotspot[]) => [...items].reverse(),
         },
         {
           callback: ({ latestObsDt }) =>
