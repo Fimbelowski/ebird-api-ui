@@ -6,21 +6,27 @@ import {
   type ResultsSection,
 } from '../BasePage/BasePage';
 import Pagination from '../Pagination/Pagination';
+import usePagination from '../../hooks/usePagination';
 
 type Props = Omit<BasePageProps<string[]>, 'onLoad' | 'resultsSections'>;
 
 export default function BasePageList(props: Props) {
-  const [paginatedItems, setPaginatedItems] = useState<string[]>([]);
   const [parsedResponse, setParsedResponse] = useState<string[]>([]);
+
+  const { itemsPerPage, page, paginatedItems, setItemsPerPage, setPage } =
+    usePagination(parsedResponse);
 
   const resultSections: ResultsSection[] = [
     {
       content: (
         <>
           <ResultsList />
-          <Pagination<string>
-            items={parsedResponse}
-            onPaginatedItemsChange={setPaginatedItems}
+          <Pagination
+            itemsPerPage={itemsPerPage}
+            onItemsPerPageChange={setItemsPerPage}
+            onPageChange={setPage}
+            page={page}
+            totalItems={parsedResponse.length}
           />
         </>
       ),
@@ -29,7 +35,9 @@ export default function BasePageList(props: Props) {
   ];
 
   function ResultsList() {
-    const listItems = paginatedItems.map((item) => <li key={item}>{item}</li>);
+    const listItems = paginatedItems().map((item) => (
+      <li key={item}>{item}</li>
+    ));
 
     return <ul className="base-page-list__list">{listItems}</ul>;
   }
