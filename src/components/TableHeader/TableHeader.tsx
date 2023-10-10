@@ -3,15 +3,27 @@ import classNames from '../../utilities/classNames';
 import type { Sort, SortDirection, TableColumn } from '../Table/Table';
 import TableSortControls from '../TableSortControls';
 
-type Props<T> = Pick<TableColumn<T>, 'align' | 'label' | 'sort'> & {
-  activeSort?: Sort<T>;
+type BaseProps<T> = Pick<TableColumn<T>, 'align' | 'label'>;
+
+type SortProps<T> = Required<Pick<TableColumn<T>, 'sort'>> & {
+  activeSort: Sort<T> | undefined;
   activeSortDirection: SortDirection;
+  onSortClick: (sort: Sort<T>) => void;
 };
+
+type Props<T> = BaseProps<T> | (BaseProps<T> & SortProps<T>);
+
+// type Props<T> = Pick<TableColumn<T>, 'align' | 'label' | 'sort'> & {
+//   activeSort: Sort<T> | undefined;
+//   activeSortDirection: SortDirection;
+//   onSortClick?: (sort: Sort<T>) => void;
+// };
 
 export default function TableHeader<T>({
   activeSort,
   activeSortDirection,
   align = 'left',
+  onSortClick,
   label,
   sort,
 }: Props<T>) {
@@ -25,6 +37,7 @@ export default function TableHeader<T>({
       {sort === undefined ? null : (
         <TableSortControls<T>
           activeSortDirection={activeSortDirection}
+          onClick={onSortClick}
           sort={sort}
         />
       )}
