@@ -16,14 +16,14 @@ export default function usePagination<T>(items: T[]) {
     setPage(1);
   }, [items, itemsPerPage]);
 
-  function paginatedItems() {
+  function getPaginatedItems(items: T[]) {
     return items.slice(lowerBound(), upperBound());
   }
 
   return {
+    getPaginatedItems,
     itemsPerPage,
     page,
-    paginatedItems,
     setItemsPerPage,
     setPage,
   };

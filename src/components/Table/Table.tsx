@@ -4,6 +4,7 @@ import Pagination from '../Pagination/Pagination';
 import TableCell from '../TableCell/TableCell';
 import TableHeader from '../TableHeader/TableHeader';
 import usePagination from '../../hooks/usePagination';
+import TableSortControls from '../TableSortControls';
 
 type Sort<T> = (items: T[]) => T[];
 
@@ -37,24 +38,31 @@ export type {
 };
 
 export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
-  const { itemsPerPage, page, paginatedItems, setItemsPerPage, setPage } =
-    usePagination(items);
-
   const [activeSort, setActiveSort] = useState<Sort<T>>();
   const [activeSortDirection, setActiveSortDirection] = useState(
     SortDirection.None
   );
 
+  const { getPaginatedItems, itemsPerPage, page, setItemsPerPage, setPage } =
+    usePagination(items);
+
   function Headers() {
     const listItems = columns.map(({ align = 'left', label, sort }, index) => {
+      const sortControls =
+        sort === undefined ? null : (
+          <TableSortControls<T>
+            activeSortDirection={activeSortDirection}
+            onClick={onSortControlsClick}
+            sort={sort}
+          />
+        );
+
       return (
         <TableHeader
-          activeSort={activeSort}
-          activeSortDirection={activeSortDirection}
           align={align}
           key={index}
           label={label}
-          sort={sort}
+          sortControls={sortControls}
         />
       );
     });
@@ -63,32 +71,49 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
   }
 
   function Rows() {
-    const listItems = paginatedItems().map((item, itemIndex) => {
-      const tds = columns.map(
-        ({ align = 'left', callback, wrap = false }, cellIndex) => {
-          return (
-            <TableCell
-              key={cellIndex}
-              align={align}
-              callback={callback}
-              item={item}
-              wrap={wrap}
-            />
-          );
-        }
-      );
+    const listItems = getPaginatedItems(getSortedItems(items)).map(
+      (item, itemIndex) => {
+        const tds = columns.map(
+          ({ align = 'left', callback, wrap = false }, cellIndex) => {
+            return (
+              <TableCell
+                key={cellIndex}
+                align={align}
+                callback={callback}
+                item={item}
+                wrap={wrap}
+              />
+            );
+          }
+        );
 
-      return (
-        <tr
-          className="table__tr"
-          key={itemIndex}
-        >
-          {tds}
-        </tr>
-      );
-    });
+        return (
+          <tr
+            className="table__tr"
+            key={itemIndex}
+          >
+            {tds}
+          </tr>
+        );
+      }
+    );
 
     return <>{listItems}</>;
+  }
+
+  function onSortControlsClick(sort: Sort<T>) {
+    if (activeSort !== sort) {
+      setActiveSort(() => sort);
+      setActiveSortDirection(SortDirection.Ascending);
+    } else {
+      setActiveSortDirection(
+        (direction) => (direction + 1) % (Object.keys(SortDirection).length / 2)
+      );
+    }
+  }
+
+  function getSortedItems(items: T[]) {
+    return activeSort === undefined ? items : activeSort(items);
   }
 
   return (
