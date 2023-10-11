@@ -75,7 +75,7 @@ export default function BasePageTableEbirdHotspot(props: Props) {
           label: 'Species Observed',
           sort: (items: EbirdHotspot[]) =>
             [...items].sort(
-              (a, b) => a.numSpeciesAllTime ?? 0 - (b.numSpeciesAllTime ?? 0)
+              (a, b) => (a.numSpeciesAllTime ?? 0) - (b.numSpeciesAllTime ?? 0)
             ),
         },
         {

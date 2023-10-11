@@ -106,14 +106,27 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
       setActiveSort(() => sort);
       setActiveSortDirection(SortDirection.Ascending);
     } else {
-      setActiveSortDirection(
-        (direction) => (direction + 1) % (Object.keys(SortDirection).length / 2)
-      );
+      const nextActiveSortDirection =
+        (activeSortDirection + 1) % (Object.keys(SortDirection).length / 2);
+
+      if (nextActiveSortDirection === SortDirection.None) {
+        setActiveSort(undefined);
+      }
+
+      setActiveSortDirection(nextActiveSortDirection);
     }
   }
 
   function getSortedItems(items: T[]) {
-    return activeSort === undefined ? items : activeSort(items);
+    if (activeSort === undefined) {
+      return items;
+    }
+
+    const sortedItems = activeSort(items);
+
+    return activeSortDirection === SortDirection.Ascending
+      ? sortedItems
+      : sortedItems.reverse();
   }
 
   return (
