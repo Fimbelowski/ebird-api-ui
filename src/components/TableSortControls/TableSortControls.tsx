@@ -1,20 +1,18 @@
-import { type Sort, SortDirection } from '../Table/Table';
+import { type SortConfig, SortDirection } from '../Table/Table';
 
 interface Props<T> {
-  activeSort?: Sort<T>;
   activeSortDirection: SortDirection;
-  onClick: (sort: Sort<T>) => void;
-  sort: Sort<T>;
+  onClick: (sortConfig: SortConfig<T>) => void;
+  sortConfig: SortConfig<T>;
 }
 
 export default function TableSortControls<T>({
-  activeSort,
   activeSortDirection,
   onClick: onClickProp,
-  sort,
+  sortConfig,
 }: Props<T>) {
   function onClick() {
-    onClickProp(sort);
+    onClickProp(sortConfig);
   }
 
   function sortIcon() {
@@ -23,7 +21,7 @@ export default function TableSortControls<T>({
         return '▲▼';
       case SortDirection.Ascending:
         return '▲';
-      case SortDirection.Descening:
+      case SortDirection.Descending:
         return '▼';
     }
   }

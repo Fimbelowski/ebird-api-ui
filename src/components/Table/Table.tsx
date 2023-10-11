@@ -11,14 +11,19 @@ type Sort<T> = (items: T[]) => T[];
 export enum SortDirection {
   None,
   Ascending,
-  Descening,
+  Descending,
+}
+
+interface SortConfig<T> {
+  initialSortDirection: SortDirection;
+  sort: Sort<T>;
 }
 
 interface Column<T> {
   align?: 'left' | 'center' | 'right';
   callback: (item: T) => string | ReactNode;
   label: string;
-  sort?: Sort<T>;
+  sortConfig?: SortConfig<T>;
   wrap?: boolean;
 }
 
@@ -35,6 +40,7 @@ export type {
   ColumnArray as TableColumnArray,
   Props as TableProps,
   Sort,
+  SortConfig,
 };
 
 export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
@@ -47,26 +53,28 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
     usePagination(items);
 
   function Headers() {
-    const listItems = columns.map(({ align = 'left', label, sort }, index) => {
-      const sortControls =
-        sort === undefined ? null : (
-          <TableSortControls<T>
-            activeSortDirection={activeSortDirection}
-            onClick={onSortControlsClick}
-            sort={sort}
+    const listItems = columns.map(
+      ({ align = 'left', label, sortConfig }, index) => {
+        const sortControls =
+          sortConfig === undefined ? null : (
+            <TableSortControls<T>
+              activeSortDirection={activeSortDirection}
+              onClick={onSortControlsClick}
+              sortConfig={sortConfig}
+            />
+          );
+
+        return (
+          <TableHeader
+            align={align}
+            key={index}
+            label={label}
+            sortControls={sortControls}
+            stretch={index === 0}
           />
         );
-
-      return (
-        <TableHeader
-          align={align}
-          key={index}
-          label={label}
-          sortControls={sortControls}
-          stretch={index === 0}
-        />
-      );
-    });
+      }
+    );
 
     return <tr>{listItems}</tr>;
   }
@@ -102,19 +110,19 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
     return <>{listItems}</>;
   }
 
-  function onSortControlsClick(sort: Sort<T>) {
+  function onSortControlsClick({ initialSortDirection, sort }: SortConfig<T>) {
     if (activeSort !== sort) {
       setActiveSort(() => sort);
-      setActiveSortDirection(SortDirection.Ascending);
+      setActiveSortDirection(initialSortDirection);
+    } else if (activeSortDirection === initialSortDirection) {
+      setActiveSortDirection(
+        initialSortDirection === SortDirection.Ascending
+          ? SortDirection.Descending
+          : SortDirection.Ascending
+      );
     } else {
-      const nextActiveSortDirection =
-        (activeSortDirection + 1) % (Object.keys(SortDirection).length / 2);
-
-      if (nextActiveSortDirection === SortDirection.None) {
-        setActiveSort(undefined);
-      }
-
-      setActiveSortDirection(nextActiveSortDirection);
+      setActiveSort(undefined);
+      setActiveSortDirection(SortDirection.None);
     }
   }
 
@@ -124,6 +132,8 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
     }
 
     const sortedItems = activeSort(items);
+
+    // TODO: Current sort config must also be known, otherwise determining whether or not to reverse sortedItems is impossible.
 
     return activeSortDirection === SortDirection.Ascending
       ? sortedItems

@@ -5,6 +5,7 @@ import {
 } from './BasePageTable';
 import GoogleMapsLink from './GoogleMapsLink';
 import type EbirdHotspot from '../types/EbirdHotspot';
+import { SortDirection } from './Table/Table';
 
 type Props = Omit<BasePageTableProps<EbirdHotspot>, 'tables'>;
 
@@ -73,10 +74,14 @@ export default function BasePageTableEbirdHotspot(props: Props) {
           callback: ({ numSpeciesAllTime = 0 }) =>
             numSpeciesAllTime.toLocaleString(),
           label: 'Species Observed',
-          sort: (items: EbirdHotspot[]) =>
-            [...items].sort(
-              (a, b) => (a.numSpeciesAllTime ?? 0) - (b.numSpeciesAllTime ?? 0)
-            ),
+          sortConfig: {
+            initialSortDirection: SortDirection.Descending,
+            sort: (items: EbirdHotspot[]) =>
+              items.toSorted(
+                (a, b) =>
+                  (a.numSpeciesAllTime ?? 0) - (b.numSpeciesAllTime ?? 0)
+              ),
+          },
         },
         {
           callback: ({ latestObsDt }) =>

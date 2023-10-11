@@ -4,7 +4,7 @@ import classNames from '../../utilities/classNames';
 
 import type { TableColumn } from '../Table/Table';
 
-type Props<T> = Pick<TableColumn<T>, 'align' | 'label' | 'sort'> & {
+type Props<T> = Pick<TableColumn<T>, 'align' | 'label'> & {
   sortControls?: ReactNode;
   stretch?: boolean;
 };
