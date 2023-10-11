@@ -1,4 +1,4 @@
-import { type Sort, SortDirection } from './Table/Table';
+import { type Sort, SortDirection } from '../Table/Table';
 
 interface Props<T> {
   activeSort?: Sort<T>;
@@ -20,13 +20,20 @@ export default function TableSortControls<T>({
   function sortIcon() {
     switch (activeSortDirection) {
       case SortDirection.None:
-        return 'AD';
+        return '▲▼';
       case SortDirection.Ascending:
-        return 'A';
+        return '▲';
       case SortDirection.Descening:
-        return 'D';
+        return '▼';
     }
   }
 
-  return <span onClick={onClick}>{sortIcon()}</span>;
+  return (
+    <span
+      className="table-sort-controls"
+      onClick={onClick}
+    >
+      {sortIcon()}
+    </span>
+  );
 }

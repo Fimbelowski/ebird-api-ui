@@ -4,7 +4,7 @@ import Pagination from '../Pagination/Pagination';
 import TableCell from '../TableCell/TableCell';
 import TableHeader from '../TableHeader/TableHeader';
 import usePagination from '../../hooks/usePagination';
-import TableSortControls from '../TableSortControls';
+import TableSortControls from '../TableSortControls/TableSortControls';
 
 type Sort<T> = (items: T[]) => T[];
 
@@ -63,6 +63,7 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
           key={index}
           label={label}
           sortControls={sortControls}
+          stretch={index === 0}
         />
       );
     });
