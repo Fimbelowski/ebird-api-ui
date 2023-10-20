@@ -8,13 +8,9 @@ interface Props<T> {
 
 export default function TableSortControls<T>({
   activeSortDirection,
-  onClick: onClickProp,
+  onClick,
   sortConfig,
 }: Props<T>) {
-  function onClick() {
-    onClickProp(sortConfig);
-  }
-
   function sortIcon() {
     switch (activeSortDirection) {
       case SortDirection.None:
@@ -29,7 +25,9 @@ export default function TableSortControls<T>({
   return (
     <span
       className="table-sort-controls"
-      onClick={onClick}
+      onClick={() => {
+        onClick(sortConfig);
+      }}
     >
       {sortIcon()}
     </span>
