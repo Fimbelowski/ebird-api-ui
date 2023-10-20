@@ -45,13 +45,10 @@ export type {
 };
 
 export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
-  const [activeSort, setActiveSort] = useState<Sort<T>>();
+  const [activeSortConfig, setActiveSortConfig] = useState<SortConfig<T>>();
   const [activeSortDirection, setActiveSortDirection] = useState(
     SortDirection.None
   );
-  const [activeSortId, setActiveSortId] = useState<string>();
-  const [activeSortInitialDirection, setActiveSortInitialDirection] =
-    useState<SortDirection>();
 
   const { getPaginatedItems, itemsPerPage, page, setItemsPerPage, setPage } =
     usePagination(items);
@@ -62,9 +59,8 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
         const sortControls =
           sortConfig === undefined ? null : (
             <TableSortControls<T>
-              activeSort={activeSort}
+              activeSortConfig={activeSortConfig}
               activeSortDirection={activeSortDirection}
-              activeSortId={activeSortId}
               onClick={onSortControlsClick}
               sortConfig={sortConfig}
             />
@@ -116,16 +112,12 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
     return <>{listItems}</>;
   }
 
-  function onSortControlsClick({
-    id,
-    initialSortDirection,
-    sort,
-  }: SortConfig<T>) {
-    if (activeSort !== sort) {
-      setActiveSort(() => sort);
+  function onSortControlsClick(sortConfig: SortConfig<T>) {
+    const { initialSortDirection } = sortConfig;
+
+    if (activeSortConfig !== sortConfig) {
+      setActiveSortConfig(sortConfig);
       setActiveSortDirection(initialSortDirection);
-      setActiveSortId(id);
-      setActiveSortInitialDirection(initialSortDirection);
     } else if (activeSortDirection === initialSortDirection) {
       setActiveSortDirection(
         initialSortDirection === SortDirection.Ascending
@@ -133,21 +125,21 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
           : SortDirection.Ascending
       );
     } else {
-      setActiveSort(undefined);
+      setActiveSortConfig(undefined);
       setActiveSortDirection(SortDirection.None);
-      setActiveSortId(undefined);
-      setActiveSortInitialDirection(undefined);
     }
   }
 
   function getSortedItems(items: T[]) {
-    if (activeSort === undefined) {
+    if (activeSortConfig === undefined) {
       return items;
     }
 
-    const sortedItems = activeSort(items);
+    const { initialSortDirection, sort } = activeSortConfig;
 
-    return activeSortDirection === activeSortInitialDirection
+    const sortedItems = sort(items);
+
+    return activeSortDirection === initialSortDirection
       ? sortedItems
       : sortedItems.reverse();
   }
