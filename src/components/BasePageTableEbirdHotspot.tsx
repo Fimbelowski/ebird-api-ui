@@ -75,6 +75,7 @@ export default function BasePageTableEbirdHotspot(props: Props) {
             numSpeciesAllTime.toLocaleString(),
           label: 'Species Observed',
           sortConfig: {
+            id: 'numSpeciesAllTimeSort',
             initialSortDirection: SortDirection.Descending,
             sort: (items: EbirdHotspot[]) =>
               items.toSorted(
@@ -91,6 +92,37 @@ export default function BasePageTableEbirdHotspot(props: Props) {
               <time>{new Date(latestObsDt).toLocaleString()}</time>
             ),
           label: 'Latest Observation',
+          sortConfig: {
+            id: 'latestObsDtSort',
+            initialSortDirection: SortDirection.Descending,
+            sort: (items: EbirdHotspot[]) =>
+              items.toSorted(
+                (
+                  { latestObsDt: latestObsDtA },
+                  { latestObsDt: latestObstDtB }
+                ) => {
+                  if (
+                    latestObsDtA === undefined &&
+                    latestObstDtB === undefined
+                  ) {
+                    return 0;
+                  } else if (latestObsDtA === undefined) {
+                    return 1;
+                  } else if (latestObstDtB === undefined) {
+                    return -1;
+                  } else {
+                    const latestObsDtAMilliseconds = new Date(
+                      latestObsDtA
+                    ).valueOf();
+                    const latestObstDtBMilliseconds = new Date(
+                      latestObstDtB
+                    ).valueOf();
+
+                    return latestObstDtBMilliseconds - latestObsDtAMilliseconds;
+                  }
+                }
+              ),
+          },
         },
       ],
       title: 'Simple Table',
