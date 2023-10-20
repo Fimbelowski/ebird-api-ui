@@ -60,6 +60,7 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
         const sortControls =
           sortConfig === undefined ? null : (
             <TableSortControls<T>
+              activeSort={activeSort}
               activeSortDirection={activeSortDirection}
               onClick={onSortControlsClick}
               sortConfig={sortConfig}

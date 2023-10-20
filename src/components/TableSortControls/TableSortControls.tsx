@@ -1,24 +1,27 @@
-import { type SortConfig, SortDirection } from '../Table/Table';
+import { type Sort, type SortConfig, SortDirection } from '../Table/Table';
 
 interface Props<T> {
+  activeSort: Sort<T> | undefined;
   activeSortDirection: SortDirection;
   onClick: (sortConfig: SortConfig<T>) => void;
   sortConfig: SortConfig<T>;
 }
 
 export default function TableSortControls<T>({
+  activeSort,
   activeSortDirection,
-  onClick: onClickProp,
+  onClick,
   sortConfig,
 }: Props<T>) {
-  function onClick() {
-    onClickProp(sortConfig);
-  }
-
   function sortIcon() {
+    if (
+      activeSort !== sortConfig.sort ||
+      activeSortDirection === SortDirection.None
+    ) {
+      return '▲▼';
+    }
+
     switch (activeSortDirection) {
-      case SortDirection.None:
-        return '▲▼';
       case SortDirection.Ascending:
         return '▲';
       case SortDirection.Descending:
@@ -29,7 +32,9 @@ export default function TableSortControls<T>({
   return (
     <span
       className="table-sort-controls"
-      onClick={onClick}
+      onClick={() => {
+        onClick(sortConfig);
+      }}
     >
       {sortIcon()}
     </span>
