@@ -79,7 +79,7 @@ export default function BasePageTableEbirdHotspot(props: Props) {
             sort: (items: EbirdHotspot[]) =>
               items.toSorted(
                 (a, b) =>
-                  (b.numSpeciesAllTime ?? 0) - (a.numSpeciesAllTime ?? 0)
+                  (a.numSpeciesAllTime ?? 0) - (b.numSpeciesAllTime ?? 0)
               ),
           },
         },

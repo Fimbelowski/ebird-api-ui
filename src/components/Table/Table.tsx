@@ -44,7 +44,7 @@ export type {
 };
 
 export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
-  const [activeSortConfig, setActiveSortConfig] = useState<SortConfig<T>>();
+  const [activeSort, setActiveSort] = useState<Sort<T>>();
   const [activeSortDirection, setActiveSortDirection] = useState(
     SortDirection.None
   );
@@ -110,11 +110,9 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
     return <>{listItems}</>;
   }
 
-  function onSortControlsClick(sortConfig: SortConfig<T>) {
-    const { initialSortDirection } = sortConfig;
-
-    if (activeSortConfig !== sortConfig) {
-      setActiveSortConfig(sortConfig);
+  function onSortControlsClick({ initialSortDirection, sort }: SortConfig<T>) {
+    if (activeSort !== sort) {
+      setActiveSort(() => sort);
       setActiveSortDirection(initialSortDirection);
     } else if (activeSortDirection === initialSortDirection) {
       setActiveSortDirection(
@@ -123,23 +121,21 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
           : SortDirection.Ascending
       );
     } else {
-      setActiveSortConfig(undefined);
+      setActiveSort(undefined);
       setActiveSortDirection(SortDirection.None);
     }
   }
 
   function getSortedItems(items: T[]) {
-    if (activeSortConfig === undefined) {
+    if (activeSort === undefined) {
       return items;
     }
 
-    const { initialSortDirection, sort } = activeSortConfig;
-
-    const sortedItems = sort(items);
+    const sortedItems = activeSort(items);
 
     // TODO: Current sort config must also be known, otherwise determining whether or not to reverse sortedItems is impossible.
 
-    return activeSortDirection === initialSortDirection
+    return activeSortDirection === SortDirection.Ascending
       ? sortedItems
       : sortedItems.reverse();
   }
