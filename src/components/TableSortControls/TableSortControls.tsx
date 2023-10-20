@@ -3,6 +3,7 @@ import { type Sort, type SortConfig, SortDirection } from '../Table/Table';
 interface Props<T> {
   activeSort: Sort<T> | undefined;
   activeSortDirection: SortDirection;
+  activeSortId: string | undefined;
   onClick: (sortConfig: SortConfig<T>) => void;
   sortConfig: SortConfig<T>;
 }
@@ -10,12 +11,13 @@ interface Props<T> {
 export default function TableSortControls<T>({
   activeSort,
   activeSortDirection,
+  activeSortId,
   onClick,
   sortConfig,
 }: Props<T>) {
   function sortIcon() {
     if (
-      activeSort !== sortConfig.sort ||
+      activeSortId !== sortConfig.id ||
       activeSortDirection === SortDirection.None
     ) {
       return '▲▼';

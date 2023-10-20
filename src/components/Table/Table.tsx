@@ -15,6 +15,7 @@ export enum SortDirection {
 }
 
 interface SortConfig<T> {
+  id: string;
   initialSortDirection: SortDirection;
   sort: Sort<T>;
 }
@@ -48,6 +49,7 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
   const [activeSortDirection, setActiveSortDirection] = useState(
     SortDirection.None
   );
+  const [activeSortId, setActiveSortId] = useState<string>();
   const [activeSortInitialDirection, setActiveSortInitialDirection] =
     useState<SortDirection>();
 
@@ -62,6 +64,7 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
             <TableSortControls<T>
               activeSort={activeSort}
               activeSortDirection={activeSortDirection}
+              activeSortId={activeSortId}
               onClick={onSortControlsClick}
               sortConfig={sortConfig}
             />
@@ -113,10 +116,15 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
     return <>{listItems}</>;
   }
 
-  function onSortControlsClick({ initialSortDirection, sort }: SortConfig<T>) {
+  function onSortControlsClick({
+    id,
+    initialSortDirection,
+    sort,
+  }: SortConfig<T>) {
     if (activeSort !== sort) {
       setActiveSort(() => sort);
       setActiveSortDirection(initialSortDirection);
+      setActiveSortId(id);
       setActiveSortInitialDirection(initialSortDirection);
     } else if (activeSortDirection === initialSortDirection) {
       setActiveSortDirection(
@@ -127,6 +135,7 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
     } else {
       setActiveSort(undefined);
       setActiveSortDirection(SortDirection.None);
+      setActiveSortId(undefined);
       setActiveSortInitialDirection(undefined);
     }
   }
