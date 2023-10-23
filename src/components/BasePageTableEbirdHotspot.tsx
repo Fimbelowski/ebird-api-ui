@@ -3,8 +3,9 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
-import GoogleMapsLink from './GoogleMapsLink';
 import type EbirdHotspot from '../types/EbirdHotspot';
+import GoogleMapsLink from './GoogleMapsLink';
+import radixSortBy from '../utilities/radixSortBy';
 import { SortDirection } from './Table/Table';
 
 type Props = Omit<BasePageTableProps<EbirdHotspot>, 'tables'>;
@@ -78,10 +79,10 @@ export default function BasePageTableEbirdHotspot(props: Props) {
             id: 'numSpeciesAllTimeSort',
             initialSortDirection: SortDirection.Descending,
             sort: (items: EbirdHotspot[]) =>
-              items.toSorted(
-                (a, b) =>
-                  (b.numSpeciesAllTime ?? 0) - (a.numSpeciesAllTime ?? 0)
-              ),
+              radixSortBy(
+                items,
+                ({ numSpeciesAllTime }) => numSpeciesAllTime ?? 0
+              ).reverse(),
           },
         },
         {
@@ -96,32 +97,9 @@ export default function BasePageTableEbirdHotspot(props: Props) {
             id: 'latestObsDtSort',
             initialSortDirection: SortDirection.Descending,
             sort: (items: EbirdHotspot[]) =>
-              items.toSorted(
-                (
-                  { latestObsDt: latestObsDtA },
-                  { latestObsDt: latestObstDtB }
-                ) => {
-                  if (
-                    latestObsDtA === undefined &&
-                    latestObstDtB === undefined
-                  ) {
-                    return 0;
-                  } else if (latestObsDtA === undefined) {
-                    return 1;
-                  } else if (latestObstDtB === undefined) {
-                    return -1;
-                  } else {
-                    const latestObsDtAMilliseconds = new Date(
-                      latestObsDtA
-                    ).valueOf();
-                    const latestObstDtBMilliseconds = new Date(
-                      latestObstDtB
-                    ).valueOf();
-
-                    return latestObstDtBMilliseconds - latestObsDtAMilliseconds;
-                  }
-                }
-              ),
+              radixSortBy(items, ({ latestObsDt }) =>
+                latestObsDt === undefined ? 0 : new Date(latestObsDt).valueOf()
+              ).reverse(),
           },
         },
       ],
