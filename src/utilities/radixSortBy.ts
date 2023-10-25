@@ -32,8 +32,8 @@ export default function radixSortBy<
     return getValueFromIteratee(item, iteratee);
   }
 
-  const negativeWhenTransformedItems: T[] = [];
-  const positiveWhenTransformedItems: T[] = [];
+  let negativeWhenTransformedItems: T[] = [];
+  let positiveWhenTransformedItems: T[] = [];
 
   items.forEach((item) => {
     if (partialGetValueFromIteratee(item) < 0) {
@@ -43,16 +43,8 @@ export default function radixSortBy<
     }
   });
 
-  let sortedNegativeWhenTransformedItems: T[] = [
-    ...negativeWhenTransformedItems,
-  ];
-
-  let sortedPositiveWhenTransformedItems: T[] = [
-    ...positiveWhenTransformedItems,
-  ];
-
-  if (sortedNegativeWhenTransformedItems.length > 0) {
-    sortedNegativeWhenTransformedItems = radixSortBy(
+  if (negativeWhenTransformedItems.length > 0) {
+    negativeWhenTransformedItems = radixSortBy(
       negativeWhenTransformedItems,
       (item: T) => partialGetValueFromIteratee(item) * -1
     ).reverse();
@@ -70,20 +62,17 @@ export default function radixSortBy<
   for (let i = 0; i < maxDigits; i++) {
     const buckets: T[][] = new Array(10).fill(undefined).map(() => []);
 
-    sortedPositiveWhenTransformedItems.forEach((item) =>
+    positiveWhenTransformedItems.forEach((item) =>
       buckets[
         getNthDigitFromRight(partialGetValueFromIteratee(item), i + 1)
       ].push(item)
     );
 
-    sortedPositiveWhenTransformedItems = buckets.reduce(
+    positiveWhenTransformedItems = buckets.reduce(
       (accumulator, currentValue) => [...accumulator, ...currentValue],
       []
     );
   }
 
-  return [
-    ...sortedNegativeWhenTransformedItems,
-    ...sortedPositiveWhenTransformedItems,
-  ];
+  return [...negativeWhenTransformedItems, ...positiveWhenTransformedItems];
 }
