@@ -13,7 +13,7 @@ type Props = Omit<BasePageProps<string[]>, 'onLoad' | 'resultsSections'>;
 export default function BasePageList(props: Props) {
   const [parsedResponse, setParsedResponse] = useState<string[]>([]);
 
-  const { itemsPerPage, page, paginatedItems, setItemsPerPage, setPage } =
+  const { getPaginatedItems, itemsPerPage, page, setItemsPerPage, setPage } =
     usePagination(parsedResponse);
 
   const resultSections: ResultsSection[] = [
@@ -35,7 +35,7 @@ export default function BasePageList(props: Props) {
   ];
 
   function ResultsList() {
-    const listItems = paginatedItems().map((item) => (
+    const listItems = getPaginatedItems(parsedResponse).map((item) => (
       <li key={item}>{item}</li>
     ));
 
