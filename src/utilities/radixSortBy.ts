@@ -1,3 +1,16 @@
+type KeysCorrespondingToValueType<T, V> = {
+  [K in keyof T]-?: T[K] extends V ? K : never;
+}[keyof T];
+
+type KeysCorrespondingToNumericValue<T> = KeysCorrespondingToValueType<
+  T,
+  number
+>;
+
+type Iteratee<T, V> = KeysCorrespondingToValueType<T, V> | ((item: T) => V);
+
+type NumericIteratee<T> = Iteratee<T, number>;
+
 function getNumDigits(value: number) {
   return Math.floor(Math.log10(Math.abs(value)) + 1);
 }
@@ -6,36 +19,51 @@ function getNthDigitFromRight(value: number, n: number) {
   return Math.floor(Math.abs(value) / Math.pow(10, n - 1)) % 10;
 }
 
-export default function radixSortBy<T>(
-  items: T[],
-  transformer: (item: T) => number
-) {
+function getValueFromIteratee<
+  T extends Record<KeysCorrespondingToNumericValue<T>, number>
+>(item: T, iteratee: NumericIteratee<T>) {
+  return typeof iteratee === 'function' ? iteratee(item) : item[iteratee];
+}
+
+export default function radixSortBy<
+  T extends Record<KeysCorrespondingToNumericValue<T>, number>
+>(items: T[], iteratee: NumericIteratee<T>) {
+  function partialGetValueFromIteratee(item: T) {
+    return getValueFromIteratee(item, iteratee);
+  }
+
   const negativeWhenTransformedItems: T[] = [];
   const positiveWhenTransformedItems: T[] = [];
 
   items.forEach((item) => {
-    if (transformer(item) < 0) {
+    if (partialGetValueFromIteratee(item) < 0) {
       negativeWhenTransformedItems.push(item);
     } else {
       positiveWhenTransformedItems.push(item);
     }
   });
 
-  const sortedNegativeWhenTransformedItems: T[] =
-    negativeWhenTransformedItems.length > 0
-      ? radixSortBy(
-          negativeWhenTransformedItems,
-          (item: T) => transformer(item) * -1
-        ).reverse()
-      : [];
+  let sortedNegativeWhenTransformedItems: T[] = [
+    ...negativeWhenTransformedItems,
+  ];
 
   let sortedPositiveWhenTransformedItems: T[] = [
     ...positiveWhenTransformedItems,
   ];
 
+  if (sortedNegativeWhenTransformedItems.length > 0) {
+    sortedNegativeWhenTransformedItems = radixSortBy(
+      negativeWhenTransformedItems,
+      (item: T) => partialGetValueFromIteratee(item) * -1
+    ).reverse();
+  }
+
   const maxDigits = positiveWhenTransformedItems.reduce(
     (previousValue, currentValue) =>
-      Math.max(previousValue, getNumDigits(transformer(currentValue))),
+      Math.max(
+        previousValue,
+        getNumDigits(partialGetValueFromIteratee(currentValue))
+      ),
     -Infinity
   );
 
@@ -43,7 +71,9 @@ export default function radixSortBy<T>(
     const buckets: T[][] = new Array(10).fill(undefined).map(() => []);
 
     sortedPositiveWhenTransformedItems.forEach((item) =>
-      buckets[getNthDigitFromRight(transformer(item), i + 1)].push(item)
+      buckets[
+        getNthDigitFromRight(partialGetValueFromIteratee(item), i + 1)
+      ].push(item)
     );
 
     sortedPositiveWhenTransformedItems = buckets.reduce(

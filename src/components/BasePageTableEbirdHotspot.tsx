@@ -79,10 +79,7 @@ export default function BasePageTableEbirdHotspot(props: Props) {
             id: 'numSpeciesAllTimeSort',
             initialSortDirection: SortDirection.Descending,
             sort: (items: EbirdHotspot[]) =>
-              radixSortBy(
-                items,
-                ({ numSpeciesAllTime }) => numSpeciesAllTime ?? 0
-              ).reverse(),
+              radixSortBy(items, 'numSpeciesAllTime').reverse(),
           },
         },
         {
