@@ -1,32 +1,11 @@
-type KeysCorrespondingToValueType<T, V> = {
-  [K in keyof T]-?: T[K] extends V ? K : never;
-}[keyof T];
-
-type KeysCorrespondingToNumericValue<T> = KeysCorrespondingToValueType<
-  T,
-  number
->;
-
-type Iteratee<T, V> = KeysCorrespondingToValueType<T, V> | ((item: T) => V);
-
-type NumericIteratee<T> = Iteratee<T, number>;
-
-function getNumDigits(value: number) {
-  return Math.floor(Math.log10(Math.abs(value)) + 1);
-}
-
-function getNthDigitFromRight(value: number, n: number) {
-  return Math.floor(Math.abs(value) / Math.pow(10, n - 1)) % 10;
-}
-
-function getValueFromIteratee<
-  T extends Record<KeysCorrespondingToNumericValue<T>, number>
->(item: T, iteratee: NumericIteratee<T>) {
-  return typeof iteratee === 'function' ? iteratee(item) : item[iteratee];
-}
+import getNumDigits from './getNumDigits';
+import getNthDigitFromRight from './getNthDigitFromRight';
+import getValueFromIteratee from './getValueFromIteratee';
+import type { KeysCorrespondingToNumericValues } from '../types/KeysCorrespondingToValueType';
+import type { NumericIteratee } from '../types/Iteratee';
 
 export default function radixSortBy<
-  T extends Record<KeysCorrespondingToNumericValue<T>, number>
+  T extends Record<KeysCorrespondingToNumericValues<T>, number>
 >(items: T[], iteratee: NumericIteratee<T>) {
   function partialGetValueFromIteratee(item: T) {
     return getValueFromIteratee(item, iteratee);
