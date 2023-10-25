@@ -1,5 +1,5 @@
 function getNumDigits(value: number) {
-  return Math.floor(Math.log10(value) + 1);
+  return Math.floor(Math.log10(Math.abs(value)) + 1);
 }
 
 function getNthDigitFromRight(value: number, n: number) {
@@ -10,26 +10,50 @@ export default function radixSortBy<T>(
   items: T[],
   transformer: (item: T) => number
 ) {
-  const maxDigits = items.reduce(
+  const negativeWhenTransformedItems: T[] = [];
+  const positiveWhenTransformedItems: T[] = [];
+
+  items.forEach((item) => {
+    if (transformer(item) < 0) {
+      negativeWhenTransformedItems.push(item);
+    } else {
+      positiveWhenTransformedItems.push(item);
+    }
+  });
+
+  const sortedNegativeWhenTransformedItems: T[] =
+    negativeWhenTransformedItems.length > 0
+      ? radixSortBy(
+          negativeWhenTransformedItems,
+          (item: T) => transformer(item) * -1
+        ).reverse()
+      : [];
+
+  let sortedPositiveWhenTransformedItems: T[] = [
+    ...positiveWhenTransformedItems,
+  ];
+
+  const maxDigits = positiveWhenTransformedItems.reduce(
     (previousValue, currentValue) =>
       Math.max(previousValue, getNumDigits(transformer(currentValue))),
     -Infinity
   );
 
-  let result: T[] = [...items];
-
   for (let i = 0; i < maxDigits; i++) {
     const buckets: T[][] = new Array(10).fill(undefined).map(() => []);
 
-    result.forEach((item) =>
+    sortedPositiveWhenTransformedItems.forEach((item) =>
       buckets[getNthDigitFromRight(transformer(item), i + 1)].push(item)
     );
 
-    result = buckets.reduce(
+    sortedPositiveWhenTransformedItems = buckets.reduce(
       (accumulator, currentValue) => [...accumulator, ...currentValue],
       []
     );
   }
 
-  return result;
+  return [
+    ...sortedNegativeWhenTransformedItems,
+    ...sortedPositiveWhenTransformedItems,
+  ];
 }
