@@ -5,6 +5,8 @@ import {
 } from './BasePageTable';
 import GoogleMapsLink from './GoogleMapsLink';
 import type EbirdLocation from '../types/EbirdLocation';
+import radixSortBy from '../utilities/radixSortBy';
+import { SortDirection } from './Table/Table';
 
 interface EbirdChecklist {
   loc: EbirdLocation;
@@ -65,6 +67,12 @@ export default function BasePageTableEbirdChecklist(props: Props) {
           align: 'right',
           callback: ({ numSpecies }) => numSpecies,
           label: '# Species',
+          sortConfig: {
+            id: 'numSpeciesSort',
+            initialSortDirection: SortDirection.Descending,
+            sort: (items: EbirdChecklist[]) =>
+              radixSortBy(items, 'numSpecies').reverse(),
+          },
         },
         {
           callback: ({ loc: { lat, lng, locName } }) => (
