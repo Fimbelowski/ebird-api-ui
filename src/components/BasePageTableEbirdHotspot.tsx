@@ -90,14 +90,6 @@ export default function BasePageTableEbirdHotspot(props: Props) {
               <time>{new Date(latestObsDt).toLocaleString()}</time>
             ),
           label: 'Latest Observation',
-          sortConfig: {
-            id: 'latestObsDtSort',
-            initialSortDirection: SortDirection.Descending,
-            sort: (items: EbirdHotspot[]) =>
-              radixSortBy(items, ({ latestObsDt }) =>
-                latestObsDt === undefined ? 0 : new Date(latestObsDt).valueOf()
-              ).reverse(),
-          },
         },
       ],
       title: 'Simple Table',
