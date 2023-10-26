@@ -1,4 +1,4 @@
-import type { Iteratee } from '../types/Iteratee';
+import type Iteratee from '../types/Iteratee';
 
 export default function getValueFromIteratee<T, V>(
   item: T,
