@@ -1,12 +1,12 @@
 import getNumDigits from './getNumDigits';
 import getNthDigitFromRight from './getNthDigitFromRight';
 import getValueFromIteratee from './getValueFromIteratee';
-import type { KeysCorrespondingToNumericValues } from '../types/KeysCorrespondingToValueType';
-import type { NumericIteratee } from '../types/Iteratee';
+import type Iteratee from '../types/Iteratee';
+import type KeysCorrespondingToValueType from '../types/KeysCorrespondingToValueType';
 
 export default function radixSortBy<
-  T extends Record<KeysCorrespondingToNumericValues<T>, number>
->(items: T[], iteratee: NumericIteratee<T>) {
+  T extends Record<KeysCorrespondingToValueType<T, number>, number>
+>(items: T[], iteratee: Iteratee<T, number>) {
   function partialGetValueFromIteratee(item: T) {
     return getValueFromIteratee(item, iteratee);
   }
