@@ -7,6 +7,10 @@ import type { NumericIteratee } from '../types/Iteratee';
 export default function radixSortBy<
   T extends Record<KeysCorrespondingToNumericValues<T>, number>
 >(items: T[], iteratee: NumericIteratee<T>) {
+  function partialGetValueFromIteratee(item: T) {
+    return getValueFromIteratee(item, iteratee);
+  }
+
   const maxDigits = items.reduce(
     (previousValue, currentValue) =>
       Math.max(
@@ -15,10 +19,6 @@ export default function radixSortBy<
       ),
     -Infinity
   );
-
-  function partialGetValueFromIteratee(item: T) {
-    return getValueFromIteratee(item, iteratee);
-  }
 
   let negativeWhenTransformedItems: T[] = [];
   let positiveWhenTransformedItems: T[] = [];
