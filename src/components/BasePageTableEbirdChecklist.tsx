@@ -7,6 +7,7 @@ import GoogleMapsLink from './GoogleMapsLink';
 import type EbirdLocation from '../types/EbirdLocation';
 import radixSortBy from '../utilities/radixSortBy';
 import { SortDirection } from './Table/Table';
+import radixSortByDateString from '../utilities/radixSortByDateString';
 
 interface EbirdChecklist {
   loc: EbirdLocation;
@@ -97,6 +98,16 @@ export default function BasePageTableEbirdChecklist(props: Props) {
               : date.toLocaleString();
           },
           label: 'Date of Observation',
+          sortConfig: {
+            id: 'obsDtObsTimeSort',
+            initialSortDirection: SortDirection.Descending,
+            sort: (items: EbirdChecklist[]) =>
+              radixSortByDateString(
+                items,
+                ({ obsDt, obsTime = '' }: EbirdChecklist) =>
+                  `${obsDt} ${obsTime}`
+              ).reverse(),
+          },
         },
       ],
       title: 'Simple Table',
