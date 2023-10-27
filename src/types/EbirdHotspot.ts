@@ -12,5 +12,5 @@ export default interface EbirdHotspot
     | 'subnational2Code'
   > {
   latestObsDt?: string;
-  numSpeciesAllTime?: number;
+  numSpeciesAllTime: number;
 }

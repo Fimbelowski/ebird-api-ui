@@ -10,10 +10,15 @@ import {
   KeyValuePairsList,
   type KeyValueTuple,
 } from '../../components/KeyValuePairsList/KeyValuePairsList';
-import { Table, type TableColumnArray } from '../../components/Table/Table';
+import {
+  SortDirection,
+  Table,
+  type TableColumnArray,
+} from '../../components/Table/Table';
 import kilometersToMiles from '../../utilities/kilometersToMiles';
 import hoursToHoursAndMinutes from '../../utilities/hoursToHoursAndMinutes';
 import PAGE from './PAGE';
+import radixSortBy from '../../utilities/radixSortBy';
 
 interface EbirdChecklist {
   allObsReported: boolean;
@@ -292,6 +297,16 @@ export default function ViewChecklist() {
         align: 'right',
         callback: ({ howManyStr, present }) => (present ? 'X' : howManyStr),
         label: 'Quantity',
+        sortConfig: {
+          id: 'quantitySort',
+          initialSortDirection: SortDirection.Descending,
+          sort: (items: EbirdChecklistObservation[]) =>
+            radixSortBy(
+              items,
+              ({ present, howManyStr }: EbirdChecklistObservation) =>
+                present ? 0 : parseInt(howManyStr, 10)
+            ).reverse(),
+        },
       },
     ];
 

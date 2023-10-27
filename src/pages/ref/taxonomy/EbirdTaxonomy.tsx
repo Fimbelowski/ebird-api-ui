@@ -12,6 +12,8 @@ import { BasePageTable, type Tables } from '../../../components/BasePageTable';
 import taxonomyCategoryToLabel from '../../../utilities/taxonomyCategoryToLabel';
 import csvToArray from '../../../utilities/csvToArray';
 import PAGE from './PAGE';
+import { SortDirection } from '../../../components/Table/Table';
+import radixSortBy from '../../../utilities/radixSortBy';
 
 interface EbirdTaxonomyEntry {
   bandingCodes: string[];
@@ -145,6 +147,15 @@ export default function EbirdTaxonomy() {
           align: 'right',
           callback: ({ extinctYear }) => extinctYear,
           label: 'Declared Extinct',
+          sortConfig: {
+            id: 'extinctYearSort',
+            initialSortDirection: SortDirection.Descending,
+            sort: (items: EbirdTaxonomyEntry[]) =>
+              radixSortBy(
+                items,
+                ({ extinctYear = 0 }: EbirdTaxonomyEntry) => extinctYear
+              ).reverse(),
+          },
         },
       ],
       title: 'Simplified Table',

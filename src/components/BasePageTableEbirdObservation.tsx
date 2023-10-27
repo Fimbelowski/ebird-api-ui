@@ -7,7 +7,13 @@ import {
 } from './BasePageTable';
 import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
 import GoogleMapsLink from './GoogleMapsLink';
-import type { TableColumn, TableColumnArray } from './Table/Table';
+import radixSortBy from '../utilities/radixSortBy';
+import {
+  SortDirection,
+  type TableColumn,
+  type TableColumnArray,
+} from './Table/Table';
+import radixSortByDateString from '../utilities/radixSortByDateString';
 
 interface EbirdObservation {
   checklistId?: string;
@@ -276,6 +282,15 @@ export default function BasePageTableEbirdObservation({
           align: 'right',
           callback: ({ howMany }) => howMany?.toLocaleString(),
           label: 'Quantity',
+          sortConfig: {
+            id: 'howManySort',
+            initialSortDirection: SortDirection.Descending,
+            sort: (items: EbirdObservation[]) =>
+              radixSortBy(
+                items,
+                ({ howMany = 0 }: EbirdObservation) => howMany
+              ).reverse(),
+          },
         },
         {
           callback: ({ lat, lng, locName }) => (
@@ -291,6 +306,15 @@ export default function BasePageTableEbirdObservation({
         {
           callback: ({ obsDt }) => new Date(obsDt).toLocaleString(),
           label: 'Date',
+          sortConfig: {
+            id: 'obsDtSort',
+            initialSortDirection: SortDirection.Descending,
+            sort: (items: EbirdObservation[]) =>
+              radixSortByDateString(
+                items,
+                ({ obsDt }: EbirdObservation) => obsDt
+              ).reverse(),
+          },
         },
       ],
       title: 'Simple Table',

@@ -3,6 +3,12 @@
   padding: var(--spacing-xs) var(--spacing-regular);
   white-space: nowrap;
 
+  &__content {
+    display: flex;
+    gap: var(--spacing-regular);
+    justify-content: space-between;
+  }
+
   &--center {
     text-align: center;
   }
@@ -13,5 +19,9 @@
 
   &--right {
     text-align: right;
+  }
+
+  &--stretch {
+    width: 100%;
   }
 }

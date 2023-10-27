@@ -3,8 +3,11 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
-import GoogleMapsLink from './GoogleMapsLink';
 import type EbirdHotspot from '../types/EbirdHotspot';
+import GoogleMapsLink from './GoogleMapsLink';
+import radixSortBy from '../utilities/radixSortBy';
+import radixSortByDateString from '../utilities/radixSortByDateString';
+import { SortDirection } from './Table/Table';
 
 type Props = Omit<BasePageTableProps<EbirdHotspot>, 'tables'>;
 
@@ -73,6 +76,15 @@ export default function BasePageTableEbirdHotspot(props: Props) {
           callback: ({ numSpeciesAllTime = 0 }) =>
             numSpeciesAllTime.toLocaleString(),
           label: 'Species Observed',
+          sortConfig: {
+            id: 'numSpeciesAllTimeSort',
+            initialSortDirection: SortDirection.Descending,
+            sort: (items: EbirdHotspot[]) =>
+              radixSortBy(
+                items,
+                ({ numSpeciesAllTime }: EbirdHotspot) => numSpeciesAllTime
+              ).reverse(),
+          },
         },
         {
           callback: ({ latestObsDt }) =>
@@ -82,6 +94,15 @@ export default function BasePageTableEbirdHotspot(props: Props) {
               <time>{new Date(latestObsDt).toLocaleString()}</time>
             ),
           label: 'Latest Observation',
+          sortConfig: {
+            id: 'latestObsDtSort',
+            initialSortDirection: SortDirection.Descending,
+            sort: (items: EbirdHotspot[]) =>
+              radixSortByDateString(
+                items,
+                ({ latestObsDt }: EbirdHotspot) => latestObsDt
+              ).reverse(),
+          },
         },
       ],
       title: 'Simple Table',
