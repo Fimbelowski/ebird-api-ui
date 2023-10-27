@@ -71,7 +71,10 @@ export default function BasePageTableEbirdChecklist(props: Props) {
             id: 'numSpeciesSort',
             initialSortDirection: SortDirection.Descending,
             sort: (items: EbirdChecklist[]) =>
-              radixSortBy(items, 'numSpecies').reverse(),
+              radixSortBy(
+                items,
+                ({ numSpecies }: EbirdChecklist) => numSpecies
+              ).reverse(),
           },
         },
         {
