@@ -13,6 +13,7 @@ import {
   type TableColumn,
   type TableColumnArray,
 } from './Table/Table';
+import radixSortByDateString from '../utilities/radixSortByDateString';
 
 interface EbirdObservation {
   checklistId?: string;
@@ -305,6 +306,15 @@ export default function BasePageTableEbirdObservation({
         {
           callback: ({ obsDt }) => new Date(obsDt).toLocaleString(),
           label: 'Date',
+          sortConfig: {
+            id: 'obsDtSort',
+            initialSortDirection: SortDirection.Descending,
+            sort: (items: EbirdObservation[]) =>
+              radixSortByDateString(
+                items,
+                ({ obsDt }: EbirdObservation) => obsDt
+              ).reverse(),
+          },
         },
       ],
       title: 'Simple Table',
