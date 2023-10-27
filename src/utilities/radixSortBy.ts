@@ -36,15 +36,8 @@ export default function radixSortBy<T>(
       positiveBuckets[getNthDigitFromRight(transformer(item), i + 1)].push(item)
     );
 
-    negativeWhenTransformedItems = negativeBuckets.reduce(
-      (accumulator, currentValue) => [...accumulator, ...currentValue],
-      []
-    );
-
-    positiveWhenTransformedItems = positiveBuckets.reduce(
-      (accumulator, currentValue) => [...accumulator, ...currentValue],
-      []
-    );
+    negativeWhenTransformedItems = negativeBuckets.flat();
+    positiveWhenTransformedItems = positiveBuckets.flat();
   }
 
   return [...negativeWhenTransformedItems, ...positiveWhenTransformedItems];
