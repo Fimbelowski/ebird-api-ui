@@ -1,44 +1,58 @@
 import getNumDigits from './getNumDigits';
 import getNthDigitFromRight from './getNthDigitFromRight';
 
+type ItemAndTransformedValue<T> = [T, number];
+
 export default function radixSortBy<T>(
   items: T[],
   transformer: (item: T) => number
-) {
-  const maxDigits = items.reduce(
-    (previousValue, currentValue) =>
-      Math.max(previousValue, getNumDigits(transformer(currentValue))),
+): T[] {
+  // https://en.wikipedia.org/wiki/Schwartzian_transform
+  const schwartzianItems: Array<ItemAndTransformedValue<T>> = items.map(
+    (item) => [item, transformer(item)]
+  );
+
+  const maxDigits = schwartzianItems.reduce(
+    (previousValue, [, transformedValue]) =>
+      Math.max(previousValue, getNumDigits(transformedValue)),
     -Infinity
   );
 
-  let negativeWhenTransformedItems: T[] = [];
-  let positiveWhenTransformedItems: T[] = [];
-
-  items.forEach((item) => {
-    if (transformer(item) < 0) {
-      negativeWhenTransformedItems.push(item);
-    } else {
-      positiveWhenTransformedItems.push(item);
-    }
-  });
+  let negativeSchwartzianItems: Array<ItemAndTransformedValue<T>> =
+    schwartzianItems.filter(([, transformedValue]) => transformedValue < 0);
+  let positiveSchwartzianItems: Array<ItemAndTransformedValue<T>> =
+    schwartzianItems.filter(([, transformedValue]) => transformedValue >= 0);
 
   for (let i = 0; i < maxDigits; i++) {
-    const negativeBuckets: T[][] = new Array(10).fill(undefined).map(() => []);
-    const positiveBuckets: T[][] = new Array(10).fill(undefined).map(() => []);
+    const negativeBuckets: Array<Array<ItemAndTransformedValue<T>>> = new Array(
+      10
+    )
+      .fill(undefined)
+      .map(() => []);
+    const positiveBuckets: Array<Array<ItemAndTransformedValue<T>>> = new Array(
+      10
+    )
+      .fill(undefined)
+      .map(() => []);
 
-    negativeWhenTransformedItems.forEach((item) => {
-      negativeBuckets[getNthDigitFromRight(transformer(item) * -1, i + 1)].push(
-        item
+    negativeSchwartzianItems.forEach((schwartzianItem) => {
+      negativeBuckets[getNthDigitFromRight(schwartzianItem[1], i + 1)].push(
+        schwartzianItem
       );
     });
 
-    positiveWhenTransformedItems.forEach((item) =>
-      positiveBuckets[getNthDigitFromRight(transformer(item), i + 1)].push(item)
+    positiveSchwartzianItems.forEach((schwartzianItem) =>
+      positiveBuckets[getNthDigitFromRight(schwartzianItem[1], i + 1)].push(
+        schwartzianItem
+      )
     );
 
-    negativeWhenTransformedItems = negativeBuckets.flat();
-    positiveWhenTransformedItems = positiveBuckets.flat();
+    negativeSchwartzianItems = negativeBuckets.flat();
+    positiveSchwartzianItems = positiveBuckets.flat();
   }
 
-  return [...negativeWhenTransformedItems, ...positiveWhenTransformedItems];
+  return [
+    ...negativeSchwartzianItems.map(([originalItem]) => originalItem).reverse(),
+    ...positiveSchwartzianItems.map(([originalItem]) => originalItem),
+  ];
 }
