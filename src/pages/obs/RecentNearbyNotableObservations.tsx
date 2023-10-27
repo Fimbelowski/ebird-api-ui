@@ -4,7 +4,7 @@ import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdOb
 import useRecentNearbyNotableObservations from '../../services/ebird/hooks/endpoints/data/obs/useRecentNearbyNotableObservations';
 import type EbirdObservationDetailLevel from '../../types/EbirdObservationDetailLevel';
 import LocationInputGroup from '../../components/LocationInputGroup/LocationInputGroup';
-import BackInput from '../../components/BaseInput/BackInput';
+import BackInput from '../../components/BackInput';
 import EbirdObservationDetailLevelSelect from '../../components/EbirdObservationDetailLevelSelect';
 import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import MaxResultsInput from '../../components/MaxResultsInput';

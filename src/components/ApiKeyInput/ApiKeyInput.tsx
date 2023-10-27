@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { BaseInput } from '../BaseInput';
+import { BaseInput } from '../BaseInput/BaseInput';
 import { Button } from '../Button/Button';
 import { updateApiKey } from '../../store/slices/apiKeySlice';
 import useAppDispatch from '../../store/hooks/useAppDispatch';

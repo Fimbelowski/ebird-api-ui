@@ -1,4 +1,4 @@
-import { BaseInput, type BaseInputProps } from './BaseInput';
+import { BaseInput, type BaseInputProps } from './BaseInput/BaseInput';
 
 type Props = Omit<
   BaseInputProps,
