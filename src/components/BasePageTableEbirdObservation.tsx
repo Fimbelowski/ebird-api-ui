@@ -5,15 +5,16 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
+import dateStringToEpochMilliseconds from '../utilities/dateStringToEpochMilliseconds';
 import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
 import GoogleMapsLink from './GoogleMapsLink';
-import radixSortBy from '../utilities/radixSortBy';
+import hybridSortBy from '../utilities/hybridSortBy';
+import hybridSortByDateString from '../utilities/hybridSortByDateString';
 import {
   SortDirection,
   type TableColumn,
   type TableColumnArray,
 } from './Table/Table';
-import radixSortByDateString from '../utilities/radixSortByDateString';
 
 interface EbirdObservation {
   checklistId?: string;
@@ -286,7 +287,7 @@ export default function BasePageTableEbirdObservation({
             id: 'howManySort',
             initialSortDirection: SortDirection.Descending,
             sort: (items: EbirdObservation[]) =>
-              radixSortBy(
+              hybridSortBy(
                 items,
                 ({ howMany = 0 }: EbirdObservation) => howMany
               ).reverse(),
@@ -310,9 +311,8 @@ export default function BasePageTableEbirdObservation({
             id: 'obsDtSort',
             initialSortDirection: SortDirection.Descending,
             sort: (items: EbirdObservation[]) =>
-              radixSortByDateString(
-                items,
-                ({ obsDt }: EbirdObservation) => obsDt
+              hybridSortByDateString(items, ({ obsDt }: EbirdObservation) =>
+                dateStringToEpochMilliseconds(obsDt)
               ).reverse(),
           },
         },

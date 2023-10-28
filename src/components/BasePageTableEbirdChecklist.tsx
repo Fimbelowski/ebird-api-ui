@@ -3,11 +3,12 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
-import GoogleMapsLink from './GoogleMapsLink';
+import dateStringToEpochMilliseconds from '../utilities/dateStringToEpochMilliseconds';
 import type EbirdLocation from '../types/EbirdLocation';
-import radixSortBy from '../utilities/radixSortBy';
+import GoogleMapsLink from './GoogleMapsLink';
+import hybridSortBy from '../utilities/hybridSortBy';
+import hybridSortByDateString from '../utilities/hybridSortByDateString';
 import { SortDirection } from './Table/Table';
-import radixSortByDateString from '../utilities/radixSortByDateString';
 
 interface EbirdChecklist {
   loc: EbirdLocation;
@@ -72,7 +73,7 @@ export default function BasePageTableEbirdChecklist(props: Props) {
             id: 'numSpeciesSort',
             initialSortDirection: SortDirection.Descending,
             sort: (items: EbirdChecklist[]) =>
-              radixSortBy(
+              hybridSortBy(
                 items,
                 ({ numSpecies }: EbirdChecklist) => numSpecies
               ).reverse(),
@@ -102,10 +103,10 @@ export default function BasePageTableEbirdChecklist(props: Props) {
             id: 'obsDtObsTimeSort',
             initialSortDirection: SortDirection.Descending,
             sort: (items: EbirdChecklist[]) =>
-              radixSortByDateString(
+              hybridSortByDateString(
                 items,
                 ({ obsDt, obsTime = '' }: EbirdChecklist) =>
-                  `${obsDt} ${obsTime}`
+                  dateStringToEpochMilliseconds(`${obsDt} ${obsTime}`)
               ).reverse(),
           },
         },

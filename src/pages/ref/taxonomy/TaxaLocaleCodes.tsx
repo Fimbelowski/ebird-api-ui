@@ -1,9 +1,10 @@
 import { BasePageTable, type Tables } from '../../../components/BasePageTable';
+import dateStringToEpochMilliseconds from '../../../utilities/dateStringToEpochMilliseconds';
 import type EbirdTaxaLocaleCode from '../../../types/EbirdTaxaLocaleCode';
-import useTaxaLocaleCodes from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxaLocaleCodes';
 import PAGE from './PAGE';
+import hybridSortByDateString from '../../../utilities/hybridSortByDateString';
 import { SortDirection } from '../../../components/Table/Table';
-import radixSortByDateString from '../../../utilities/radixSortByDateString';
+import useTaxaLocaleCodes from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useTaxaLocaleCodes';
 
 export default function TaxaLocaleCodes() {
   const getTaxaLocaleCodes = useTaxaLocaleCodes();
@@ -26,9 +27,10 @@ export default function TaxaLocaleCodes() {
             id: 'lastUpdateSort',
             initialSortDirection: SortDirection.Descending,
             sort: (items: EbirdTaxaLocaleCode[]) =>
-              radixSortByDateString(
+              hybridSortByDateString(
                 items,
-                ({ lastUpdate }: EbirdTaxaLocaleCode) => lastUpdate
+                ({ lastUpdate }: EbirdTaxaLocaleCode) =>
+                  dateStringToEpochMilliseconds(lastUpdate)
               ).reverse(),
           },
         },
