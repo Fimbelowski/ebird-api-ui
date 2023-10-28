@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import usePaginationBounds from './usePaginationBounds';
 
@@ -16,14 +16,15 @@ export default function usePagination<T>(items: T[]) {
     setPage(1);
   }, [items, itemsPerPage]);
 
-  function getPaginatedItems(items: T[]) {
-    return items.slice(lowerBound(), upperBound());
-  }
+  const paginatedItems = useMemo(
+    () => items.slice(lowerBound, upperBound),
+    [items, lowerBound, upperBound]
+  );
 
   return {
-    getPaginatedItems,
     itemsPerPage,
     page,
+    paginatedItems,
     setItemsPerPage,
     setPage,
   };

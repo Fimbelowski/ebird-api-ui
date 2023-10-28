@@ -55,7 +55,7 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
     [items, activeSortConfig, activeSortDirection]
   );
 
-  const { getPaginatedItems, itemsPerPage, page, setItemsPerPage, setPage } =
+  const { itemsPerPage, page, paginatedItems, setItemsPerPage, setPage } =
     usePagination(sortedItems);
 
   function Headers() {
@@ -87,7 +87,7 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
   }
 
   function Rows() {
-    const listItems = getPaginatedItems(sortedItems).map((item, itemIndex) => {
+    const listItems = paginatedItems.map((item, itemIndex) => {
       const tds = columns.map(
         ({ align = 'left', callback, wrap = false }, cellIndex) => {
           return (

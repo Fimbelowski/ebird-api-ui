@@ -75,8 +75,8 @@ export default function Pagination({
   }
 
   function paginationInfo() {
-    const lowerBoundString = (lowerBound() + 1).toLocaleString();
-    const upperBoundString = upperBound().toLocaleString();
+    const lowerBoundString = (lowerBound + 1).toLocaleString();
+    const upperBoundString = upperBound.toLocaleString();
 
     return `Showing ${lowerBoundString} - ${upperBoundString} of ${totalItems.toLocaleString()}`;
   }
