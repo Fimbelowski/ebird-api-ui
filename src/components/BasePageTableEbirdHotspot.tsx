@@ -3,10 +3,11 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
+import dateStringToEpochMilliseconds from '../utilities/dateStringToEpochMilliseconds';
 import type EbirdHotspot from '../types/EbirdHotspot';
 import GoogleMapsLink from './GoogleMapsLink';
-import radixSortBy from '../utilities/radixSortBy';
-import radixSortByDateString from '../utilities/radixSortByDateString';
+import hybridSortBy from '../utilities/hybridSortBy';
+import hybridSortByDateString from '../utilities/hybridSortByDateString';
 import { SortDirection } from './Table/Table';
 
 type Props = Omit<BasePageTableProps<EbirdHotspot>, 'tables'>;
@@ -80,7 +81,7 @@ export default function BasePageTableEbirdHotspot(props: Props) {
             id: 'numSpeciesAllTimeSort',
             initialSortDirection: SortDirection.Descending,
             sort: (items: EbirdHotspot[]) =>
-              radixSortBy(
+              hybridSortBy(
                 items,
                 ({ numSpeciesAllTime }: EbirdHotspot) => numSpeciesAllTime
               ).reverse(),
@@ -98,9 +99,8 @@ export default function BasePageTableEbirdHotspot(props: Props) {
             id: 'latestObsDtSort',
             initialSortDirection: SortDirection.Descending,
             sort: (items: EbirdHotspot[]) =>
-              radixSortByDateString(
-                items,
-                ({ latestObsDt }: EbirdHotspot) => latestObsDt
+              hybridSortByDateString(items, ({ latestObsDt }: EbirdHotspot) =>
+                dateStringToEpochMilliseconds(latestObsDt)
               ).reverse(),
           },
         },
