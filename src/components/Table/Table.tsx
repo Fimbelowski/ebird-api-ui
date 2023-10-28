@@ -1,4 +1,4 @@
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useMemo, useState } from 'react';
 
 import Pagination from '../Pagination/Pagination';
 import TableCell from '../TableCell/TableCell';
@@ -50,8 +50,13 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
     SortDirection.None
   );
 
+  const sortedItems = useMemo(
+    () => getSortedItems(items),
+    [items, activeSortConfig, activeSortDirection]
+  );
+
   const { getPaginatedItems, itemsPerPage, page, setItemsPerPage, setPage } =
-    usePagination(items);
+    usePagination(sortedItems);
 
   function Headers() {
     const listItems = columns.map(
@@ -82,32 +87,30 @@ export function Table<T>({ columns, hidePagination = false, items }: Props<T>) {
   }
 
   function Rows() {
-    const listItems = getPaginatedItems(getSortedItems(items)).map(
-      (item, itemIndex) => {
-        const tds = columns.map(
-          ({ align = 'left', callback, wrap = false }, cellIndex) => {
-            return (
-              <TableCell
-                key={cellIndex}
-                align={align}
-                callback={callback}
-                item={item}
-                wrap={wrap}
-              />
-            );
-          }
-        );
+    const listItems = getPaginatedItems(sortedItems).map((item, itemIndex) => {
+      const tds = columns.map(
+        ({ align = 'left', callback, wrap = false }, cellIndex) => {
+          return (
+            <TableCell
+              key={cellIndex}
+              align={align}
+              callback={callback}
+              item={item}
+              wrap={wrap}
+            />
+          );
+        }
+      );
 
-        return (
-          <tr
-            className="table__tr"
-            key={itemIndex}
-          >
-            {tds}
-          </tr>
-        );
-      }
-    );
+      return (
+        <tr
+          className="table__tr"
+          key={itemIndex}
+        >
+          {tds}
+        </tr>
+      );
+    });
 
     return <>{listItems}</>;
   }
