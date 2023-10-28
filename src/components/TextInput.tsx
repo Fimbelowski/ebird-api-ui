@@ -1,4 +1,4 @@
-import { BaseInput, type BaseInputProps } from './BaseInput';
+import { BaseInput, type BaseInputProps } from './BaseInput/BaseInput';
 
 export type TextInputProps = Omit<
   BaseInputProps,

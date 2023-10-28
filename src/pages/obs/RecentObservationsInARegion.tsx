@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import BasePageTableEbirdObservation from '../../components/BasePageTableEbirdObservation';
-import BackInput from '../../components/BaseInput/BackInput';
+import BackInput from '../../components/BackInput';
 import IncludeProvisionalObservationsInput from '../../components/IncludeProvisionalObservationsInput';
 import EbirdOnlyObservationsFromHotspotsInput from '../../components/EbirdOnlyObservationsFromHotspotsInput';
 import EbirdRegionCodeInput from '../../components/EbirdRegionCodeInput';

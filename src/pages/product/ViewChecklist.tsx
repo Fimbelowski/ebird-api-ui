@@ -15,10 +15,10 @@ import {
   Table,
   type TableColumnArray,
 } from '../../components/Table/Table';
-import kilometersToMiles from '../../utilities/kilometersToMiles';
+import hybridSortBy from '../../utilities/hybridSortBy';
 import hoursToHoursAndMinutes from '../../utilities/hoursToHoursAndMinutes';
+import kilometersToMiles from '../../utilities/kilometersToMiles';
 import PAGE from './PAGE';
-import radixSortBy from '../../utilities/radixSortBy';
 
 interface EbirdChecklist {
   allObsReported: boolean;
@@ -301,7 +301,7 @@ export default function ViewChecklist() {
           id: 'quantitySort',
           initialSortDirection: SortDirection.Descending,
           sort: (items: EbirdChecklistObservation[]) =>
-            radixSortBy(
+            hybridSortBy(
               items,
               ({ present, howManyStr }: EbirdChecklistObservation) =>
                 present ? 0 : parseInt(howManyStr, 10)

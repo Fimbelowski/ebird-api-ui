@@ -1,4 +1,4 @@
-import { NumberInput, type NumberInputProps } from '../NumberInput';
+import { NumberInput, type NumberInputProps } from './NumberInput';
 
 type Props = Omit<NumberInputProps, 'id' | 'label' | 'max' | 'min'>;
 

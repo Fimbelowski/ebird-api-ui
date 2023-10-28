@@ -1,8 +1,8 @@
 import { type ChangeEvent } from 'react';
 
-import classNames from '../utilities/classNames';
-import getValueFromChangeEvent from '../utilities/getValueFromChangeEvent';
-import useAppSelector from '../store/hooks/useAppSelector';
+import classNames from '../../utilities/classNames';
+import getValueFromChangeEvent from '../../utilities/getValueFromChangeEvent';
+import useAppSelector from '../../store/hooks/useAppSelector';
 
 export interface BaseInputProps {
   disabled?: boolean;

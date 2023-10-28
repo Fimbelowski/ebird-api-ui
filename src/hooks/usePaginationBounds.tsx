@@ -1,15 +1,19 @@
+import { useMemo } from 'react';
+
 export default function usePaginationBounds(
   page: number,
   itemsPerPage: number,
   totalItems: number
 ) {
-  function lowerBound() {
-    return (page - 1) * itemsPerPage;
-  }
+  const lowerBound = useMemo(
+    () => (page - 1) * itemsPerPage,
+    [page, itemsPerPage]
+  );
 
-  function upperBound() {
-    return Math.min(page * itemsPerPage, totalItems);
-  }
+  const upperBound = useMemo(
+    () => Math.min(page * itemsPerPage, totalItems),
+    [page, itemsPerPage, totalItems]
+  );
 
   return { lowerBound, upperBound };
 }

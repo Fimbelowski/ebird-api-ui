@@ -1,19 +1,19 @@
 import { useState } from 'react';
 
-import type EbirdTaxonomyCategory from '../../../types/EbirdTaxonomyCategory';
+import { BasePageTable, type Tables } from '../../../components/BasePageTable';
+import csvToArray from '../../../utilities/csvToArray';
 import type EbirdRecordFormat from '../../../types/EbirdRecordFormat';
-import { useEbirdTaxonomy } from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useEbirdTaxonomy';
+import type EbirdTaxonomyCategory from '../../../types/EbirdTaxonomyCategory';
 import EbirdTaxonomyCategorySelect from '../../../components/EbirdTaxonomyCategorySelect';
 import FormatSelect from '../../../components/FormatSelect';
-import SpeciesCommonNameLocaleSelect from '../../../components/SpeciesCommonNameLocaleSelect';
-import { TextInput } from '../../../components/TextInput';
-import VersionSelect from '../../../components/VersionSelect';
-import { BasePageTable, type Tables } from '../../../components/BasePageTable';
-import taxonomyCategoryToLabel from '../../../utilities/taxonomyCategoryToLabel';
-import csvToArray from '../../../utilities/csvToArray';
+import hybridSortBy from '../../../utilities/hybridSortBy';
 import PAGE from './PAGE';
 import { SortDirection } from '../../../components/Table/Table';
-import radixSortBy from '../../../utilities/radixSortBy';
+import SpeciesCommonNameLocaleSelect from '../../../components/SpeciesCommonNameLocaleSelect';
+import taxonomyCategoryToLabel from '../../../utilities/taxonomyCategoryToLabel';
+import { TextInput } from '../../../components/TextInput';
+import { useEbirdTaxonomy } from '../../../services/ebird/hooks/endpoints/ref/taxonomy/useEbirdTaxonomy';
+import VersionSelect from '../../../components/VersionSelect';
 
 interface EbirdTaxonomyEntry {
   bandingCodes: string[];
@@ -151,7 +151,7 @@ export default function EbirdTaxonomy() {
             id: 'extinctYearSort',
             initialSortDirection: SortDirection.Descending,
             sort: (items: EbirdTaxonomyEntry[]) =>
-              radixSortBy(
+              hybridSortBy(
                 items,
                 ({ extinctYear = 0 }: EbirdTaxonomyEntry) => extinctYear
               ).reverse(),
