@@ -1,16 +1,14 @@
 import getNumDigits from './getNumDigits';
 import getNthDigitFromRight from './getNthDigitFromRight';
+import { type SchwartzianTransform, toSchwartzian } from './toSchwartzian';
 
 type ItemAndTransformedValue<T> = [T, number];
 
 export default function radixSortBy<T>(
   items: T[],
-  transformer: (item: T) => number
+  transformer: SchwartzianTransform<T>
 ): T[] {
-  // https://en.wikipedia.org/wiki/Schwartzian_transform
-  const schwartzianItems: Array<ItemAndTransformedValue<T>> = items.map(
-    (item) => [item, transformer(item)]
-  );
+  const schwartzianItems = toSchwartzian(items, transformer);
 
   const maxDigits = schwartzianItems.reduce(
     (previousValue, [, transformedValue]) =>
