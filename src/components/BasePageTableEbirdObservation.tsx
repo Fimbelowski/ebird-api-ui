@@ -5,7 +5,6 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
-import dateStringToEpochMilliseconds from '../utilities/dateStringToEpochMilliseconds';
 import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
 import GoogleMapsLink from './GoogleMapsLink';
 import hybridSortBy from '../utilities/hybridSortBy';
@@ -311,8 +310,9 @@ export default function BasePageTableEbirdObservation({
             id: 'obsDtSort',
             initialSortDirection: SortDirection.Descending,
             sort: (items: EbirdObservation[]) =>
-              hybridSortByDateString(items, ({ obsDt }: EbirdObservation) =>
-                dateStringToEpochMilliseconds(obsDt)
+              hybridSortByDateString(
+                items,
+                ({ obsDt }: EbirdObservation) => obsDt
               ).reverse(),
           },
         },

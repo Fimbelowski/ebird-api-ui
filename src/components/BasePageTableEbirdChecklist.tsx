@@ -3,7 +3,6 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
-import dateStringToEpochMilliseconds from '../utilities/dateStringToEpochMilliseconds';
 import type EbirdLocation from '../types/EbirdLocation';
 import GoogleMapsLink from './GoogleMapsLink';
 import hybridSortBy from '../utilities/hybridSortBy';
@@ -106,7 +105,7 @@ export default function BasePageTableEbirdChecklist(props: Props) {
               hybridSortByDateString(
                 items,
                 ({ obsDt, obsTime = '' }: EbirdChecklist) =>
-                  dateStringToEpochMilliseconds(`${obsDt} ${obsTime}`)
+                  `${obsDt} ${obsTime}`
               ).reverse(),
           },
         },

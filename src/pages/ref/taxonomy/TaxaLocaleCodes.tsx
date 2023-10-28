@@ -1,5 +1,4 @@
 import { BasePageTable, type Tables } from '../../../components/BasePageTable';
-import dateStringToEpochMilliseconds from '../../../utilities/dateStringToEpochMilliseconds';
 import type EbirdTaxaLocaleCode from '../../../types/EbirdTaxaLocaleCode';
 import PAGE from './PAGE';
 import hybridSortByDateString from '../../../utilities/hybridSortByDateString';
@@ -29,8 +28,7 @@ export default function TaxaLocaleCodes() {
             sort: (items: EbirdTaxaLocaleCode[]) =>
               hybridSortByDateString(
                 items,
-                ({ lastUpdate }: EbirdTaxaLocaleCode) =>
-                  dateStringToEpochMilliseconds(lastUpdate)
+                ({ lastUpdate }: EbirdTaxaLocaleCode) => lastUpdate
               ).reverse(),
           },
         },

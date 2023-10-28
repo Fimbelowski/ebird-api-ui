@@ -1,13 +1,17 @@
+import dateStringToEpochMilliseconds from './dateStringToEpochMilliseconds';
 import fromSchwartzian from './fromSchwartzian';
 import hybridSortBy from './hybridSortBy';
-import { type SchwartzianTransform } from './toSchwartzian';
 import { toSchwartzian } from './toSchwartzian';
 
 export default function hybridSortByDateString<T>(
   items: T[],
-  transformer: SchwartzianTransform<T>
+  transformer: (item: T) => string
 ) {
-  const schwartzianItems = toSchwartzian(items, transformer);
+  function modifiedTransformer(item: T) {
+    return dateStringToEpochMilliseconds(transformer(item));
+  }
+
+  const schwartzianItems = toSchwartzian(items, modifiedTransformer);
 
   const itemsWithoutValidDate = schwartzianItems.filter(
     ([, transformedValue]) => isNaN(transformedValue)
@@ -18,6 +22,6 @@ export default function hybridSortByDateString<T>(
 
   return [
     ...fromSchwartzian(itemsWithoutValidDate),
-    ...hybridSortBy(fromSchwartzian(itemsWithValidDate), transformer),
+    ...hybridSortBy(fromSchwartzian(itemsWithValidDate), modifiedTransformer),
   ];
 }
