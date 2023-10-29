@@ -8,6 +8,7 @@ import GoogleMapsLink from './GoogleMapsLink';
 import hybridSortBy from '../utilities/hybridSortBy';
 import hybridSortByDateString from '../utilities/hybridSortByDateString';
 import { SortDirection } from './Table/Table';
+import EbirdHotspotLink from './EbirdHotspotLink';
 
 interface EbirdChecklist {
   loc: EbirdLocation;
@@ -79,14 +80,20 @@ export default function BasePageTableEbirdChecklist(props: Props) {
           },
         },
         {
-          callback: ({ loc: { lat, lng, locName } }) => (
-            <GoogleMapsLink
-              latitude={lat}
-              longitude={lng}
-            >
-              {locName}
-            </GoogleMapsLink>
-          ),
+          callback: ({ loc: { isHotspot, lat, lng, locId, locName } }) =>
+            isHotspot ? (
+              <EbirdHotspotLink
+                id={locId}
+                name={locName}
+              />
+            ) : (
+              <GoogleMapsLink
+                latitude={lat}
+                longitude={lng}
+              >
+                {locName}
+              </GoogleMapsLink>
+            ),
           label: 'Location',
         },
         {
