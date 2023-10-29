@@ -3,6 +3,7 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
+import EbirdChecklistLink from './EbirdChecklistLink';
 import type EbirdLocation from '../types/EbirdLocation';
 import GoogleMapsLink from './GoogleMapsLink';
 import hybridSortBy from '../utilities/hybridSortBy';
@@ -97,12 +98,18 @@ export default function BasePageTableEbirdChecklist(props: Props) {
           label: 'Location',
         },
         {
-          callback: ({ obsDt, obsTime = '' }) => {
+          callback: ({ obsDt, obsTime = '', subId }) => {
             const date = new Date(`${obsDt} ${obsTime}`);
+            const localeString =
+              obsTime === ''
+                ? date.toLocaleDateString()
+                : date.toLocaleString();
 
-            return obsTime === ''
-              ? date.toLocaleDateString()
-              : date.toLocaleString();
+            return (
+              <EbirdChecklistLink subId={subId}>
+                {localeString}
+              </EbirdChecklistLink>
+            );
           },
           label: 'Date of Observation',
           sortConfig: {
