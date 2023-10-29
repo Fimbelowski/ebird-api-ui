@@ -5,7 +5,9 @@ import {
   type BasePageTableProps,
   type Tables,
 } from './BasePageTable';
+import EbirdChecklistLink from './EbirdChecklistLink';
 import type EbirdObservationDetailLevel from '../types/EbirdObservationDetailLevel';
+import EbirdSpeciesLink from './EbirdSpeciesLink';
 import GoogleMapsLink from './GoogleMapsLink';
 import hybridSortBy from '../utilities/hybridSortBy';
 import hybridSortByDateString from '../utilities/hybridSortByDateString';
@@ -275,7 +277,12 @@ export default function BasePageTableEbirdObservation({
     {
       columns: [
         {
-          callback: ({ comName }) => comName,
+          callback: ({ comName, speciesCode }) => (
+            <EbirdSpeciesLink
+              commonName={comName}
+              speciesCode={speciesCode}
+            />
+          ),
           label: 'Species',
         },
         {
@@ -304,7 +311,11 @@ export default function BasePageTableEbirdObservation({
           label: 'Location',
         },
         {
-          callback: ({ obsDt }) => new Date(obsDt).toLocaleString(),
+          callback: ({ subId, obsDt }) => (
+            <EbirdChecklistLink subId={subId}>
+              {new Date(obsDt).toLocaleString()}
+            </EbirdChecklistLink>
+          ),
           label: 'Date',
           sortConfig: {
             id: 'obsDtSort',

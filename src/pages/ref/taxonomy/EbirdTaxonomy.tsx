@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { BasePageTable, type Tables } from '../../../components/BasePageTable';
 import csvToArray from '../../../utilities/csvToArray';
 import type EbirdRecordFormat from '../../../types/EbirdRecordFormat';
+import EbirdSpeciesLink from '../../../components/EbirdSpeciesLink';
 import type EbirdTaxonomyCategory from '../../../types/EbirdTaxonomyCategory';
 import EbirdTaxonomyCategorySelect from '../../../components/EbirdTaxonomyCategorySelect';
 import FormatSelect from '../../../components/FormatSelect';
@@ -112,16 +113,21 @@ export default function EbirdTaxonomy() {
     {
       columns: [
         {
+          callback: ({ comName, speciesCode }) => (
+            <EbirdSpeciesLink
+              commonName={comName}
+              speciesCode={speciesCode}
+            />
+          ),
+          label: 'Common Name',
+        },
+        {
           callback: ({ speciesCode }) => speciesCode,
           label: 'Species Code',
         },
         {
           callback: ({ category }) => taxonomyCategoryToLabel(category),
           label: 'Category',
-        },
-        {
-          callback: ({ comName }) => comName,
-          label: 'Common Name',
         },
         {
           callback: ({ sciName }) => sciName,

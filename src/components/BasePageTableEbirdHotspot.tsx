@@ -4,7 +4,7 @@ import {
   type Tables,
 } from './BasePageTable';
 import type EbirdHotspot from '../types/EbirdHotspot';
-import GoogleMapsLink from './GoogleMapsLink';
+import EbirdHotspotLink from './EbirdHotspotLink';
 import hybridSortBy from '../utilities/hybridSortBy';
 import hybridSortByDateString from '../utilities/hybridSortByDateString';
 import { SortDirection } from './Table/Table';
@@ -61,13 +61,11 @@ export default function BasePageTableEbirdHotspot(props: Props) {
     {
       columns: [
         {
-          callback: ({ lat, lng, locName }) => (
-            <GoogleMapsLink
-              latitude={lat}
-              longitude={lng}
-            >
-              {locName}
-            </GoogleMapsLink>
+          callback: ({ locId, locName }) => (
+            <EbirdHotspotLink
+              id={locId}
+              name={locName}
+            />
           ),
           label: 'Name',
         },
