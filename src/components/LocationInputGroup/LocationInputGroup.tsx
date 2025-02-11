@@ -76,7 +76,7 @@ export default function LocationInputGroup({
       />
       <div className="location-input-group__button">
         <Button
-          disabled={isLoadingPosition}
+          disableWhenLoadingPosition
           fullWidth
           onClick={getUserPosition}
           secondary

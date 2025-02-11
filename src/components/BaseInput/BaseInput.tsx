@@ -47,9 +47,6 @@ export function BaseInput({
   type,
   value,
 }: BaseInputProps) {
-  const isLoadingPosition = useAppSelector(
-    (state) => state.loading.isLoadingPosition
-  );
   const isLoadingRequest = useAppSelector(
     (state) => state.loading.isLoadingRequest
   );
@@ -63,7 +60,7 @@ export function BaseInput({
       'base-input__input',
       { 'base-input__input--disabled': disabled },
       { 'base-input__input--inline': inline },
-      { 'base-input__input--loading': isLoadingRequest || isLoadingPosition },
+      { 'base-input__input--loading': isLoadingRequest },
       { 'base-input__input--no-stepper': hideStepper },
     ]);
   }
@@ -117,7 +114,7 @@ export function BaseInput({
       </label>
       <input
         className={inputClasses()}
-        disabled={disabled || isLoadingRequest || isLoadingPosition}
+        disabled={disabled || isLoadingRequest}
         id={id}
         max={max}
         maxLength={maxLength}

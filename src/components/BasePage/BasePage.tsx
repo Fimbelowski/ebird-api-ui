@@ -37,6 +37,9 @@ export function BasePage<T>({
   requestOnMount = false,
   resultsSections,
 }: BasePageProps<T>) {
+  const isLoadingPosition = useAppSelector(
+    (state) => state.loading.isLoadingPosition
+  );
   const isLoadingRequest = useAppSelector(
     (state) => state.loading.isLoadingRequest
   );
@@ -165,6 +168,7 @@ export function BasePage<T>({
             </Fieldset>
           )}
           <Button
+            disableWhenLoadingPosition
             primary
             type="submit"
           >

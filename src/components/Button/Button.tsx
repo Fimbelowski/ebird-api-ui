@@ -6,6 +6,7 @@ import useAppSelector from '../../store/hooks/useAppSelector';
 export interface ButtonProps {
   children?: ReactNode;
   disabled?: boolean;
+  disableWhenLoadingPosition?: boolean;
   fullWidth?: boolean;
   onClick?: () => void;
   primary?: boolean;
@@ -16,6 +17,7 @@ export interface ButtonProps {
 export function Button({
   children,
   disabled = false,
+  disableWhenLoadingPosition = false,
   fullWidth = false,
   onClick,
   primary = false,
@@ -32,9 +34,15 @@ export function Button({
   function classes() {
     return classNames([
       'button',
-      { 'button--disabled': disabled },
+      {
+        'button--disabled':
+          disabled || (disableWhenLoadingPosition && isLoadingPosition),
+      },
       { 'button--full-width': fullWidth },
-      { 'button--loading': isLoadingRequest || isLoadingPosition },
+      {
+        'button--loading':
+          isLoadingRequest || (disableWhenLoadingPosition && isLoadingPosition),
+      },
       { 'button--primary': primary },
       { 'button--secondary': secondary },
     ]);
@@ -43,7 +51,11 @@ export function Button({
   return (
     <button
       className={classes()}
-      disabled={disabled || isLoadingRequest || isLoadingPosition}
+      disabled={
+        disabled ||
+        isLoadingRequest ||
+        (disableWhenLoadingPosition && isLoadingPosition)
+      }
       onClick={onClick}
       type={type}
     >

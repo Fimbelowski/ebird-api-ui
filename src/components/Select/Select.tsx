@@ -32,9 +32,6 @@ export function Select<T extends string>({
   required = false,
   value,
 }: SelectProps<T>) {
-  const isLoadingPosition = useAppSelector(
-    (state) => state.loading.isLoadingPosition
-  );
   const isLoadingRequest = useAppSelector(
     (state) => state.loading.isLoadingRequest
   );
@@ -73,7 +70,7 @@ export function Select<T extends string>({
       'select__select',
       { 'select__select--disabled': disabled },
       { 'select__select--inline': inline },
-      { 'select__select--loading': isLoadingRequest || isLoadingPosition },
+      { 'select__select--loading': isLoadingRequest },
     ]);
   }
 
@@ -87,7 +84,7 @@ export function Select<T extends string>({
       </label>
       <select
         className={selectClasses()}
-        disabled={disabled || isLoadingRequest || isLoadingPosition}
+        disabled={disabled || isLoadingRequest}
         id={id}
         onChange={onChange}
         required={required}
