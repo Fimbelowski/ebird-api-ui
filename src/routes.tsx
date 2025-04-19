@@ -16,7 +16,7 @@ import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import NearestObservationOfASpecies from './pages/obs/NearestObservationsOfASpecies';
 import NotFound from './pages/NotFound';
 import observationsPages from './pages/obs/pages';
-import PATH from './types/PATH';
+import PATHS from './types/PATHS';
 import productPages from './pages/product/pages';
 import RecentChecklistsFeed from './pages/obs/RecentChecklistsFeed';
 import RecentNearbyNotableObservations from './pages/obs/RecentNearbyNotableObservations';
@@ -41,7 +41,7 @@ import ViewChecklist from './pages/product/ViewChecklist';
 
 export default createRoutesFromChildren(
   <Route
-    path={PATH.Root}
+    path={PATHS.Root}
     element={<Root />}
   >
     <Route errorElement={<Error />}>
@@ -51,9 +51,9 @@ export default createRoutesFromChildren(
       />
       <Route
         element={<Feedback />}
-        path={PATH.Feedback}
+        path={PATHS.Feedback}
       />
-      <Route path={PATH.Geography}>
+      <Route path={PATHS.Geography}>
         <Route
           element={
             <BaseIndexPage
@@ -66,10 +66,10 @@ export default createRoutesFromChildren(
         />
         <Route
           element={<AdjacentRegions />}
-          path={PATH.AdjacentRegions}
+          path={PATHS.AdjacentRegions}
         />
       </Route>
-      <Route path={PATH.Hotspots}>
+      <Route path={PATHS.Hotspots}>
         <Route
           element={
             <BaseIndexPage
@@ -82,18 +82,18 @@ export default createRoutesFromChildren(
         />
         <Route
           element={<HotspotInfo />}
-          path={PATH.HotspotInfo}
+          path={PATHS.HotspotInfo}
         />
         <Route
           element={<HotspotsInARegion />}
-          path={PATH.HotspotsInARegion}
+          path={PATHS.HotspotsInARegion}
         />
         <Route
           element={<NearbyHotspots />}
-          path={PATH.NearbyHotspots}
+          path={PATHS.NearbyHotspots}
         />
       </Route>
-      <Route path={PATH.Observations}>
+      <Route path={PATHS.Observations}>
         <Route
           element={
             <BaseIndexPage
@@ -106,42 +106,42 @@ export default createRoutesFromChildren(
         />
         <Route
           element={<HistoricObservationsOnADate />}
-          path={PATH.HistoricObservationsOnADate}
+          path={PATHS.HistoricObservationsOnADate}
         />
         <Route
           element={<NearestObservationOfASpecies />}
-          path={PATH.NearestObservationsOfASpecies}
+          path={PATHS.NearestObservationsOfASpecies}
         />
         <Route
           element={<RecentChecklistsFeed />}
-          path={PATH.RecentChecklistsFeed}
+          path={PATHS.RecentChecklistsFeed}
         />
         <Route
           element={<RecentNearbyNotableObservations />}
-          path={PATH.RecentNearbyNotableObservations}
+          path={PATHS.RecentNearbyNotableObservations}
         />
         <Route
           element={<RecentNearbyObservations />}
-          path={PATH.RecentNearbyObservations}
+          path={PATHS.RecentNearbyObservations}
         />
         <Route
           element={<RecentNearbyObservationsOfASpecies />}
-          path={PATH.RecentNearbyObservationsOfASPecies}
+          path={PATHS.RecentNearbyObservationsOfASPecies}
         />
         <Route
           element={<RecentNotableObservationsInARegion />}
-          path={PATH.RecentNotableObservationsInARegion}
+          path={PATHS.RecentNotableObservationsInARegion}
         />
         <Route
           element={<RecentObservationsInARegion />}
-          path={PATH.RecentObservationsInARegion}
+          path={PATHS.RecentObservationsInARegion}
         />
         <Route
           element={<RecentObservationsOfASpeciesInARegion />}
-          path={PATH.RecentObservationsOfASpeciesInARegion}
+          path={PATHS.RecentObservationsOfASpeciesInARegion}
         />
       </Route>
-      <Route path={PATH.Product}>
+      <Route path={PATHS.Product}>
         <Route
           element={
             <BaseIndexPage
@@ -154,26 +154,26 @@ export default createRoutesFromChildren(
         />
         <Route
           element={<ChecklistFeedOnADate />}
-          path={PATH.ChecklistFeedOnADate}
+          path={PATHS.ChecklistFeedOnADate}
         />
         <Route
           element={<RegionalStatisticsOnADate />}
-          path={PATH.RegionalStatisticsOnADate}
+          path={PATHS.RegionalStatisticsOnADate}
         />
         <Route
           element={<SpeciesListForARegion />}
-          path={PATH.SpeciesListForARegion}
+          path={PATHS.SpeciesListForARegion}
         />
         <Route
           element={<Top100 />}
-          path={PATH.Top100}
+          path={PATHS.Top100}
         />
         <Route
           element={<ViewChecklist />}
-          path={PATH.ViewChecklist}
+          path={PATHS.ViewChecklist}
         />
       </Route>
-      <Route path={PATH.Regions}>
+      <Route path={PATHS.Regions}>
         <Route
           element={
             <BaseIndexPage
@@ -186,14 +186,14 @@ export default createRoutesFromChildren(
         />
         <Route
           element={<RegionInfo />}
-          path={PATH.RegionInfo}
+          path={PATHS.RegionInfo}
         />
         <Route
           element={<SubregionList />}
-          path={PATH.SubregionList}
+          path={PATHS.SubregionList}
         />
       </Route>
-      <Route path={PATH.Taxonomy}>
+      <Route path={PATHS.Taxonomy}>
         <Route
           element={
             <BaseIndexPage
@@ -206,28 +206,28 @@ export default createRoutesFromChildren(
         />
         <Route
           element={<EbirdTaxonomy />}
-          path={PATH.EbirdTaxonomy}
+          path={PATHS.EbirdTaxonomy}
         />
         <Route
           element={<TaxaLocaleCodes />}
-          path={PATH.TaxaLocaleCodes}
+          path={PATHS.TaxaLocaleCodes}
         />
         <Route
           element={<TaxonomicForms />}
-          path={PATH.TaxonomicForms}
+          path={PATHS.TaxonomicForms}
         />
         <Route
           element={<TaxonomicGroups />}
-          path={PATH.TaxonomicGroups}
+          path={PATHS.TaxonomicGroups}
         />
         <Route
           element={<TaxonomyVersions />}
-          path={PATH.TaxonomyVersions}
+          path={PATHS.TaxonomyVersions}
         />
       </Route>
       <Route
         element={<NotFound />}
-        path={PATH.NotFound}
+        path={PATHS.NotFound}
       />
     </Route>
   </Route>

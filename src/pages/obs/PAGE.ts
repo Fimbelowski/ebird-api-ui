@@ -1,4 +1,4 @@
-import Path from '../../types/PATH';
+import Path from '../../types/PATHS';
 
 const PAGE = {
   HistoricObservationsOnADate: {

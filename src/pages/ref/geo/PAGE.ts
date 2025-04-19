@@ -1,10 +1,10 @@
-import PATH from '../../../types/PATH';
+import PATHS from '../../../types/PATHS';
 
 const PAGE = {
   AdjacentRegions: {
     description:
       'Fetches the list of countries or regions that share a border with the specified region.',
-    path: PATH.AdjacentRegions,
+    path: PATHS.AdjacentRegions,
     requiresApiKey: true,
     title: 'Adjacent Regions',
   },

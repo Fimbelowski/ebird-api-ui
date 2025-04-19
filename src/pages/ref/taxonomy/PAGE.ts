@@ -1,37 +1,37 @@
-import PATH from '../../../types/PATH';
+import PATHS from '../../../types/PATHS';
 
 const PAGE = {
   EbirdTaxonomy: {
     description:
       'Fetches the taxonomy (species, species codes, common names, scientific names, etc.) used by Ebird',
-    path: PATH.EbirdTaxonomy,
+    path: PATHS.EbirdTaxonomy,
     requiresApiKey: true,
     title: 'eBird Taxonomy',
   },
   TaxaLocaleCodes: {
     description:
       'Fetches a list of supported locale codes and names used for species common names, as well as the last time they were updated.',
-    path: PATH.TaxaLocaleCodes,
+    path: PATHS.TaxaLocaleCodes,
     requiresApiKey: true,
     title: 'Taxa Locale Codes',
   },
   TaxonomicForms: {
     description:
       'For a given species, fetches a list of subspecies recognised by the eBird taxonomy (including the given species).',
-    path: PATH.TaxonomicForms,
+    path: PATHS.TaxonomicForms,
     requiresApiKey: true,
     title: 'Taxonomic Forms',
   },
   TaxonomicGroups: {
     description: 'Fetches a list of species groups (terns, finches, etc.)',
-    path: PATH.TaxonomicGroups,
+    path: PATHS.TaxonomicGroups,
     requiresApiKey: true,
     title: 'Taxonomic Groups',
   },
   TaxonomyVersions: {
     description:
       "Fetches a list of all versions of eBird's taxonomy, with a flag indicating the latest version.",
-    path: PATH.TaxonomyVersions,
+    path: PATHS.TaxonomyVersions,
     title: 'Taxonomy Versions',
   },
 } as const;

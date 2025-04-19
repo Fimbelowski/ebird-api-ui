@@ -1,6 +1,6 @@
 import BaseIndexPage from '../components/BaseIndexPage/BaseIndexPage';
 import type Page from '../types/Page';
-import Path from '../types/PATH';
+import Path from '../types/PATHS';
 
 export default function Index() {
   const pages: Page[] = [

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import PATH from '../../types/PATH';
+import PATHS from '../../types/PATHS';
 
 export default function Footer() {
   return (
@@ -12,7 +12,7 @@ export default function Footer() {
       >
         eBird
       </a>{' '}
-      - <Link to={PATH.Feedback}>Feedback</Link> -{' '}
+      - <Link to={PATHS.Feedback}>Feedback</Link> -{' '}
       <a
         href="https://github.com/Fimbelowski/ebird-api-ui"
         rel="noopener noreferrer"

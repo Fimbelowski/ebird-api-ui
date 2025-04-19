@@ -9,7 +9,7 @@ const FOLDER_PATH = {
   Taxonomy: `${BASE_PATH}taxonomy`,
 } as const;
 
-const PATH = {
+const PATHS = {
   AdjacentRegions: `${FOLDER_PATH.Geography}/adjacent-regions`,
   ChecklistFeedOnADate: `${FOLDER_PATH.Product}/checklist-feed-on-a-date`,
   EbirdTaxonomy: `${FOLDER_PATH.Taxonomy}/ebird-taxonomy`,
@@ -46,4 +46,4 @@ const PATH = {
   ViewChecklist: `${FOLDER_PATH.Product}/view-checklist`,
 } as const;
 
-export default PATH;
+export default PATHS;
