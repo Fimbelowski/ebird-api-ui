@@ -95,7 +95,7 @@ export function BasePage<T>({
     makeRequest();
   }
 
-  function renderForm() {
+  function shouldRenderForm() {
     return formContent !== undefined || requiresApiKey;
   }
 
@@ -130,7 +130,7 @@ export function BasePage<T>({
     );
   }
 
-  function showResults() {
+  function shouldShowResults() {
     return hasQueried && !isError && !noData();
   }
 
@@ -155,7 +155,7 @@ export function BasePage<T>({
           </Notification>
         ) : null}
       </div>
-      {renderForm() ? (
+      {shouldRenderForm() && (
         <form
           className="base-page__form"
           onSubmit={onSubmit}
@@ -175,20 +175,19 @@ export function BasePage<T>({
             Submit
           </Button>
         </form>
-      ) : null}
+      )}
       {isLoadingRequest ? (
         'Loading...'
       ) : (
         <>
-          {isError
-            ? 'An error occured and has been logged to the console. Please check the form and try again.'
-            : null}
-          {noData() ? 'No data' : null}
-          {showResults() ? (
+          {isError &&
+            'An error occured and has been logged to the console. Please check the form and try again.'}
+          {noData() && 'No data'}
+          {shouldShowResults() && (
             <div className="base-page__results-container">
               {resultsContent()}
             </div>
-          ) : null}
+          )}
         </>
       )}
     </section>
