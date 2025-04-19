@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import BaseAuxiliaryPage from '../components/BaseAuxiliaryPage/BaseAuxiliaryPage';
-import PATHS from '../types/PATHS';
+import PATHS from '../utilities/PATHS';
 
 export default function Error() {
   return (

@@ -1,4 +1,4 @@
-import PATHS from '../../../types/PATHS';
+import PATHS from '../../../utilities/PATHS';
 
 const PAGE = {
   AdjacentRegions: {

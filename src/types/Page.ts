@@ -1,4 +1,4 @@
-import type PATHS from './PATHS';
+import type PATHS from '../utilities/PATHS';
 
 export default interface Page {
   description: string;

@@ -16,7 +16,7 @@ import NearbyHotspots from './pages/ref/hotspot/NearbyHotspots';
 import NearestObservationOfASpecies from './pages/obs/NearestObservationsOfASpecies';
 import NotFound from './pages/NotFound';
 import observationsPages from './pages/obs/pages';
-import PATHS from './types/PATHS';
+import PATHS from './utilities/PATHS';
 import productPages from './pages/product/pages';
 import RecentChecklistsFeed from './pages/obs/RecentChecklistsFeed';
 import RecentNearbyNotableObservations from './pages/obs/RecentNearbyNotableObservations';

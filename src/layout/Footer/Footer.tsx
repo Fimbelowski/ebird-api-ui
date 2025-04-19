@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import PATHS from '../../types/PATHS';
+import PATHS from '../../utilities/PATHS';
 
 export default function Footer() {
   return (
