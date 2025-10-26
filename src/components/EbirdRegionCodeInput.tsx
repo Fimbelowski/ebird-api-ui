@@ -172,6 +172,7 @@ export default function EbirdRegionCodeInput({
   return (
     <TextInput
       {...rest}
+      forceUppercase
       id="region-code"
       label={label()}
       pattern={pattern()}
