@@ -1,3 +1,5 @@
+@use '../../sass/abstracts/mixins';
+
 .nav-menu {
   position: relative;
 
@@ -13,7 +15,7 @@
   }
 
   &__menu {
-    @include paper;
+    @include mixins.paper;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -22,7 +24,7 @@
     white-space: nowrap;
     z-index: 1;
 
-    @include respond(md) {
+    @include mixins.respond(md) {
       display: none;
     }
 

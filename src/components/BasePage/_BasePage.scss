@@ -1,3 +1,5 @@
+@use '../../sass/abstracts/mixins';
+
 .base-page {
   display: flex;
   flex-direction: column;
@@ -8,7 +10,7 @@
   }
 
   &__copy-raw-response {
-    @include paper;
+    @include mixins.paper;
     padding: var(--spacing-regular);
   }
 
@@ -16,7 +18,7 @@
   }
 
   &__form {
-    @include paper;
+    @include mixins.paper;
     width: 100%;
     padding: var(--spacing-lg);
     display: flex;
@@ -26,7 +28,7 @@
   }
 
   &__info-box {
-    @include paper;
+    @include mixins.paper;
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
   }

@@ -1,5 +1,7 @@
+@use '../../sass/abstracts/mixins';
+
 .details {
-  @include paper;
+  @include mixins.paper;
   width: 100%;
 
   &__content {

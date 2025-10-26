@@ -1,3 +1,5 @@
+@use '../../sass/abstracts/mixins';
+
 .nav {
   &__menu {
     display: flex;
@@ -5,7 +7,7 @@
     gap: var(--spacing-sm);
     justify-content: center;
 
-    @include respond(md) {
+    @include mixins.respond(md) {
       gap: var(--spacing-lg) var(--spacing-sm);
     }
   }

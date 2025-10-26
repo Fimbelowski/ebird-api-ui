@@ -1,8 +1,10 @@
+@use '../../sass/abstracts/mixins';
+
 .copy-raw-response-button {
   position: relative;
 
   &__confirmation {
-    @include paper;
+    @include mixins.paper;
     padding: var(--spacing-regular);
     position: absolute;
     left: 50%;

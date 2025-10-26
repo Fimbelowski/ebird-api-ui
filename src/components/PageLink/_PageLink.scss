@@ -1,5 +1,7 @@
+@use '../../sass/abstracts/mixins';
+
 .page-link {
-  @include paper;
+  @include mixins.paper;
   display: block;
   color: inherit;
   padding: var(--spacing-regular) var(--spacing-lg);
