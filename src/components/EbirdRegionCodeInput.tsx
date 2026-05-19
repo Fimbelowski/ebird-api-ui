@@ -149,12 +149,12 @@ export default function EbirdRegionCodeInput({
     }
 
     if (allowSubnational1) {
-      regexSources.push('^[A-Z]{2}-(?:[A-Z]{2,3}|\\d{2})$');
+      regexSources.push('^[A-Z]{2}-(?:[A-Z]{1,3}|\\d{2})$');
     }
 
     if (allowSubnational2) {
       regexSources.push(
-        '^[A-Z]{2}-(?:[A-Z]{2,3}|\\d{2})-(?:[A-Z]{2,3}|\\d{3})$'
+        '^[A-Z]{2}-(?:[A-Z]{2,3}|\\d{2})-(?:[A-Z]{1,3}|\\d{3})$'
       );
     }
 
